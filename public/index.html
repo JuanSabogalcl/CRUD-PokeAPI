@@ -19,11 +19,31 @@
     </header>
 
     <main class="main">
+      <section class="card catalog-section">
+        <div class="list-header">
+          <div>
+            <h2>Catálogo Gen 1</h2>
+            <p class="hint">151 Pokémon disponibles en PokeAPI (#001 Bulbasaur – #151 Mew)</p>
+          </div>
+          <div class="catalog-actions">
+            <span id="recordCount" class="record-count">0 / 151 registros</span>
+            <button type="button" id="syncGen1Btn">Sincronizar 151 Pokémon</button>
+          </div>
+        </div>
+        <div class="catalog-toolbar">
+          <input type="text" id="catalogFilter" placeholder="Filtrar por nombre o número (#25, pikachu)...">
+        </div>
+        <div id="pokemonCatalog" class="pokemon-catalog"></div>
+      </section>
+
       <section class="card search-section">
         <h2>Consultar PokeAPI</h2>
-        <p class="hint">Busca un Pokémon para cargar sus estadísticas base (ejemplo: ditto, pikachu, charizard)</p>
+        <p class="hint">Selecciona o busca un Pokémon para ver sus estadísticas base</p>
         <form id="searchForm" class="search-form">
-          <input type="text" id="pokemonSearch" placeholder="Nombre del Pokémon" value="ditto" required>
+          <select id="pokemonSelect" required>
+            <option value="">Selecciona un Pokémon...</option>
+          </select>
+          <input type="text" id="pokemonSearch" placeholder="O escribe el nombre" value="ditto">
           <button type="submit">Buscar en PokeAPI</button>
         </form>
         <div id="apiResult" class="api-result hidden"></div>
@@ -36,6 +56,9 @@
 
           <div class="field">
             <label for="pokemonName">Nombre del Pokémon</label>
+            <select id="pokemonNameSelect">
+              <option value="">Selecciona de la Gen 1...</option>
+            </select>
             <input type="text" id="pokemonName" placeholder="ditto" required>
           </div>
 
@@ -86,8 +109,14 @@
 
       <section class="card list-section">
         <div class="list-header">
-          <h2>Registros guardados</h2>
+          <div>
+            <h2>Registros guardados</h2>
+            <p class="hint">151 Pokémon de la Gen 1 con sus 6 estadísticas principales</p>
+          </div>
           <button type="button" id="refreshBtn" class="secondary">Actualizar</button>
+        </div>
+        <div class="catalog-toolbar">
+          <input type="text" id="recordsFilter" placeholder="Filtrar registros por nombre o número...">
         </div>
         <div id="recordsList" class="records-list"></div>
       </section>

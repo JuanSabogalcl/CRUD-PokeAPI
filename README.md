@@ -15,6 +15,8 @@ Aplicación web CRUD para gestionar las **seis estadísticas principales** de Po
 
 ## Funcionalidades
 
+- **Catálogo Gen 1:** Navega entre los 151 Pokémon (#001 Bulbasaur – #151 Mew).
+- **Sincronización masiva:** Importa o actualiza los 151 registros desde PokeAPI con un clic.
 - **Read (Consultar):** Buscar cualquier Pokémon en PokeAPI y ver sus estadísticas base.
 - **Create (Crear):** Guardar un registro con nombre y las 6 estadísticas.
 - **Update (Actualizar):** Editar registros guardados localmente.
@@ -33,11 +35,21 @@ npm start
 
 Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
 
+Para importar los 151 Pokémon de la primera generación desde PokeAPI:
+
+```bash
+npm run seed
+```
+
+También puedes usar el botón **Sincronizar 151 Pokémon** en la interfaz web.
+
 ## API REST
 
 | Método | Endpoint | Descripción |
 |--------|----------|-------------|
+| GET | `/api/pokemon-list?limit=151` | Lista los 151 Pokémon de la Gen 1 |
 | GET | `/api/pokemon/:name` | Obtiene estadísticas desde PokeAPI |
+| POST | `/api/records/sync-gen1` | Importa/actualiza los 151 Pokémon locales |
 | GET | `/api/records` | Lista todos los registros locales |
 | GET | `/api/records/:id` | Obtiene un registro por ID |
 | POST | `/api/records` | Crea un nuevo registro |

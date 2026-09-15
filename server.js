@@ -1,21 +1,19 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const {
+  STAT_LABELS,
+  GEN1_LIMIT,
+  mapStatsFromApi,
+  getSpriteUrl,
+  syncGen1Records: syncGen1FromApi,
+} = require('./lib/pokeapi-sync');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const DATA_DIR = path.join(__dirname, 'data');
 const DATA_FILE = path.join(DATA_DIR, 'records.json');
 const POKEAPI_BASE = 'https://pokeapi.co/api/v2/pokemon';
-
-const STAT_LABELS = {
-  hp: 'PS (Puntos de Salud)',
-  attack: 'Ataque',
-  defense: 'Defensa',
-  'special-attack': 'Ataque Especial',
-  'special-defense': 'Defensa Especial',
-  speed: 'Velocidad',
-};
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -39,20 +37,27 @@ function writeRecords(records) {
   fs.writeFileSync(DATA_FILE, JSON.stringify(records, null, 2));
 }
 
-function mapStatsFromApi(stats) {
-  const mapped = {};
-  for (const entry of stats) {
-    const name = entry.stat.name;
-    if (STAT_LABELS[name]) {
-      mapped[name] = entry.base_stat;
-    }
-  }
-  return mapped;
+function formatPokemonResponse(data) {
+  const stats = mapStatsFromApi(data.stats);
+
+  return {
+    id: data.id,
+    name: data.name,
+    sprite: getSpriteUrl(data),
+    stats,
+    statsFormatted: Object.entries(stats).map(([key, value]) => ({
+      key,
+      label: STAT_LABELS[key],
+      value,
+    })),
+  };
 }
 
 function formatRecord(record) {
   return {
     ...record,
+    sprite: record.sprite
+      || `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${record.pokemonId || 0}.png`,
     statsFormatted: Object.entries(record.stats).map(([key, value]) => ({
       key,
       label: STAT_LABELS[key],
@@ -61,36 +66,71 @@ function formatRecord(record) {
   };
 }
 
+async function fetchPokemonList(limit = GEN1_LIMIT, offset = 0) {
+  const response = await fetch(`${POKEAPI_BASE}?limit=${limit}&offset=${offset}`);
+  if (!response.ok) {
+    throw new Error('No se pudo obtener la lista de Pokémon');
+  }
+
+  return response.json();
+}
+
+async function fetchPokemonData(nameOrId) {
+  const response = await fetch(`${POKEAPI_BASE}/${nameOrId}`);
+  if (!response.ok) {
+    throw new Error(`Pokémon "${nameOrId}" no encontrado`);
+  }
+
+  return response.json();
+}
+
 app.get('/api/stats-labels', (_req, res) => {
   res.json(STAT_LABELS);
+});
+
+app.get('/api/pokemon-list', async (req, res) => {
+  const limit = Math.min(Number(req.query.limit) || GEN1_LIMIT, GEN1_LIMIT);
+  const offset = Number(req.query.offset) || 0;
+
+  try {
+    const listData = await fetchPokemonList(limit, offset);
+
+    res.json({
+      count: listData.count,
+      totalGen1: GEN1_LIMIT,
+      results: listData.results.map((item, index) => ({
+        id: offset + index + 1,
+        name: item.name,
+        url: item.url,
+        sprite: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${offset + index + 1}.png`,
+      })),
+    });
+  } catch {
+    res.status(500).json({ error: 'Error al conectar con PokeAPI' });
+  }
 });
 
 app.get('/api/pokemon/:name', async (req, res) => {
   const name = req.params.name.trim().toLowerCase();
 
   try {
-    const response = await fetch(`${POKEAPI_BASE}/${name}`);
-    if (!response.ok) {
-      return res.status(response.status).json({ error: `Pokémon "${name}" no encontrado` });
-    }
+    const data = await fetchPokemonData(name);
+    res.json(formatPokemonResponse(data));
+  } catch (error) {
+    const status = error.message.includes('no encontrado') ? 404 : 500;
+    res.status(status).json({ error: error.message || 'Error al conectar con PokeAPI' });
+  }
+});
 
-    const data = await response.json();
-    const stats = mapStatsFromApi(data.stats);
-
+app.post('/api/records/sync-gen1', async (_req, res) => {
+  try {
+    const result = await syncGen1FromApi(__dirname);
     res.json({
-      id: data.id,
-      name: data.name,
-      sprite: data.sprites?.other?.['official-artwork']?.front_default
-        || data.sprites?.front_default,
-      stats,
-      statsFormatted: Object.entries(stats).map(([key, value]) => ({
-        key,
-        label: STAT_LABELS[key],
-        value,
-      })),
+      message: `Sincronizados ${result.total} Pokémon de la Gen 1`,
+      ...result,
     });
   } catch {
-    res.status(500).json({ error: 'Error al conectar con PokeAPI' });
+    res.status(500).json({ error: 'Error al sincronizar la Gen 1 desde PokeAPI' });
   }
 });
 
@@ -129,6 +169,8 @@ app.post('/api/records', (req, res) => {
   const newRecord = {
     id: crypto.randomUUID(),
     pokemonName: pokemonName.toLowerCase(),
+    pokemonId: req.body.pokemonId || null,
+    sprite: req.body.sprite || null,
     stats: Object.fromEntries(
       Object.keys(STAT_LABELS).map((key) => [key, Number(stats[key])]),
     ),
@@ -187,7 +229,24 @@ app.delete('/api/records/:id', (req, res) => {
   res.json({ message: 'Registro eliminado', record: formatRecord(deleted) });
 });
 
+async function bootstrapGen1() {
+  const records = readRecords();
+  if (records.length >= GEN1_LIMIT) {
+    console.log(`Gen 1 lista: ${records.length}/${GEN1_LIMIT} Pokémon cargados`);
+    return;
+  }
+
+  console.log(`Importando Gen 1 desde PokeAPI (${records.length}/${GEN1_LIMIT})...`);
+  try {
+    const result = await syncGen1FromApi(__dirname);
+    console.log(`Gen 1 sincronizada: ${result.total} registros (${result.created} nuevos, ${result.updated} actualizados)`);
+  } catch (error) {
+    console.error('No se pudo sincronizar la Gen 1 al iniciar:', error.message);
+  }
+}
+
 app.listen(PORT, () => {
   ensureDataFile();
   console.log(`Servidor CRUD PokeAPI en http://localhost:${PORT}`);
+  bootstrapGen1();
 });
