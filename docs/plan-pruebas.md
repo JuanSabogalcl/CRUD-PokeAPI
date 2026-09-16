@@ -2,7 +2,7 @@
 
 **Materia:** Optativa II – Pruebas de Software · Semanas 4, 5 y 7
 **Proyecto:** [CRUD-PokeAPI](https://github.com/JuanSabogalcl/CRUD-PokeAPI)
-**Grupo (3 integrantes):** _completar con nombres del equipo_
+**Grupo (3 integrantes):** Hernán Felipe Patiño, Juan José Sabogal, Orlando Rojas
 **Fecha:** 2026-09-15
 
 ## Alcance
