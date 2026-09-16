@@ -1,0 +1,161 @@
+{
+  "startedAt": "2026-09-16T00:49:46.018Z",
+  "endedAt": "2026-09-16T00:49:49.653Z",
+  "node": "v24.21.0",
+  "platform": "win32",
+  "suite": "all",
+  "provider": "PokeAPI simulada en localhost; integración HTTP real con la API del proyecto",
+  "sourceCommit": "c468b40f1258fd01b1228544065f1a123eef2825",
+  "hashes": {
+    "server.js": "a839719b7226f1ad953fe34a565695d484725d300f2beba7ec322972a3253e61",
+    "lib/pokeapi-sync.js": "27217e389e6a670d6db303d2d6e3dfba7fbc62be9e96243663883aa0067e0b20",
+    "lib/pokeapi-client.js": "d442c7c0c95c87030f44f4ef66c0bad918d2425352a635d93f20501ab56a0497",
+    "lib/validation.js": "f00d8846f74159bcd48197d16a6d427a5fbfae7da915f13749b9f210ca4b4fab",
+    "tests/run.js": "614498d695d2fe1b3f165593f00226838c273fa4249930fd4502a73a137affa4",
+    "tests/fixture.js": "e5df795d47383baf406f0ffaa7f746ec4dd149b72645db3fceac479f9ad7fd39",
+    "tests/helpers.js": "e9f92a9fc1ec484046a6e3047c009684640425ba9cba2a11aca1a764fd5f4134"
+  },
+  "totals": {
+    "PASA": 15,
+    "FALLA": 0,
+    "BLOQUEADO": 0
+  },
+  "results": [
+    {
+      "id": "S01",
+      "title": "Disponibilidad y contrato básico",
+      "criterion": "CA01",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 187,
+      "evidence": "S01.json"
+    },
+    {
+      "id": "S02",
+      "title": "Crear registro con seis estadísticas",
+      "criterion": "CA02",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 162,
+      "evidence": "S02.json"
+    },
+    {
+      "id": "S03",
+      "title": "Consultar registro persistido por ID",
+      "criterion": "CA03",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 150,
+      "evidence": "S03.json"
+    },
+    {
+      "id": "S04",
+      "title": "Actualizar parcialmente y conservar al reiniciar",
+      "criterion": "CA04",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 295,
+      "evidence": "S04.json"
+    },
+    {
+      "id": "S05",
+      "title": "Eliminar y comprobar ausencia",
+      "criterion": "CA05",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 302,
+      "evidence": "S05.json"
+    },
+    {
+      "id": "R01",
+      "title": "Mapeo de PokeAPI por nombre y número",
+      "criterion": "CA06",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 177,
+      "evidence": "R01.json"
+    },
+    {
+      "id": "R02",
+      "title": "Pokémon inexistente",
+      "criterion": "CA07",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 173,
+      "evidence": "R02.json"
+    },
+    {
+      "id": "R03",
+      "title": "Catálogo Gen 1 y parámetros de paginación",
+      "criterion": "CA08",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 180,
+      "evidence": "R03.json"
+    },
+    {
+      "id": "R04",
+      "title": "Campos obligatorios y nombre válido al crear",
+      "criterion": "CA09",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 168,
+      "evidence": "R04.json"
+    },
+    {
+      "id": "R05",
+      "title": "Límites y tipos de las seis estadísticas",
+      "criterion": "CA10",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 206,
+      "evidence": "R05.json"
+    },
+    {
+      "id": "R06",
+      "title": "Actualización inválida sin alterar datos",
+      "criterion": "CA11",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 164,
+      "evidence": "R06.json"
+    },
+    {
+      "id": "R07",
+      "title": "ID inexistente en lectura, edición y eliminación",
+      "criterion": "CA12",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 166,
+      "evidence": "R07.json"
+    },
+    {
+      "id": "R08",
+      "title": "Sincronizar 151 sin duplicar y conservar registros locales",
+      "criterion": "CA13",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 409,
+      "evidence": "R08.json"
+    },
+    {
+      "id": "R09",
+      "title": "Errores, timeout y sincronización fallida del proveedor",
+      "criterion": "CA14",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 716,
+      "evidence": "R09.json"
+    },
+    {
+      "id": "R10",
+      "title": "JSON malformado y cuerpo incompatible",
+      "criterion": "CA15",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 162,
+      "evidence": "R10.json"
+    }
+  ],
+  "decision": "LISTO para el alcance automatizado local"
+}

@@ -1,0 +1,71 @@
+{
+  "id": "R07",
+  "title": "ID inexistente en lectura, edición y eliminación",
+  "criterion": "CA12",
+  "status": "PASA",
+  "observation": "",
+  "durationMs": 165,
+  "evidence": "R07.json",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/records/00000000-0000-0000-0000-000000000000"
+      },
+      "response": {
+        "status": 404,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "Registro no encontrado"
+        }
+      },
+      "durationMs": 7
+    },
+    {
+      "request": {
+        "method": "PUT",
+        "route": "/api/records/00000000-0000-0000-0000-000000000000",
+        "body": {
+          "stats": {
+            "hp": 50
+          }
+        }
+      },
+      "response": {
+        "status": 404,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "Registro no encontrado"
+        }
+      },
+      "durationMs": 7
+    },
+    {
+      "request": {
+        "method": "DELETE",
+        "route": "/api/records/00000000-0000-0000-0000-000000000000"
+      },
+      "response": {
+        "status": 404,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "Registro no encontrado"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/records"
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": []
+      },
+      "durationMs": 1
+    }
+  ],
+  "serverLog": "Servidor CRUD PokeAPI en http://localhost:62259\n"
+}

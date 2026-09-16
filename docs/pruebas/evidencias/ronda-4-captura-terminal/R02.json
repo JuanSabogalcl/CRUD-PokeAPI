@@ -1,0 +1,26 @@
+{
+  "id": "R02",
+  "title": "Pokémon inexistente",
+  "criterion": "CA07",
+  "status": "PASA",
+  "observation": "",
+  "durationMs": 173,
+  "evidence": "R02.json",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/pokemon/no-existe-grupo6"
+      },
+      "response": {
+        "status": 404,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "Pokémon no encontrado"
+        }
+      },
+      "durationMs": 27
+    }
+  ],
+  "serverLog": "Servidor CRUD PokeAPI en http://localhost:54797\n"
+}

@@ -1,0 +1,2255 @@
+{
+  "id": "R05",
+  "title": "Límites y tipos de las seis estadísticas",
+  "criterion": "CA10",
+  "status": "PASA",
+  "observation": "",
+  "durationMs": 203,
+  "evidence": "R05.json",
+  "exchanges": [
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 1,
+            "attack": 1,
+            "defense": 1,
+            "special-attack": 1,
+            "special-defense": 1,
+            "speed": 1
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "ccba40d5-101e-40a8-8732-56d582376b11",
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+          "stats": {
+            "hp": 1,
+            "attack": 1,
+            "defense": 1,
+            "special-attack": 1,
+            "special-defense": 1,
+            "speed": 1
+          },
+          "createdAt": "2026-09-16T00:48:14.601Z",
+          "updatedAt": "2026-09-16T00:48:14.602Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 1
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 1
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 1
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 1
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 1
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 1
+            }
+          ]
+        }
+      },
+      "durationMs": 12
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 999,
+            "attack": 999,
+            "defense": 999,
+            "special-attack": 999,
+            "special-defense": 999,
+            "speed": 999
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "6849f9f3-ce85-4cb6-9738-52da28d58aaa",
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+          "stats": {
+            "hp": 999,
+            "attack": 999,
+            "defense": 999,
+            "special-attack": 999,
+            "special-defense": 999,
+            "speed": 999
+          },
+          "createdAt": "2026-09-16T00:48:14.605Z",
+          "updatedAt": "2026-09-16T00:48:14.605Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 999
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 999
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 999
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 999
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 999
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 999
+            }
+          ]
+        }
+      },
+      "durationMs": 3
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": "48",
+            "attack": "48",
+            "defense": "48",
+            "special-attack": "48",
+            "special-defense": "48",
+            "speed": "48"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "35a51ab3-9f9a-4227-a1bf-d38966454af5",
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          },
+          "createdAt": "2026-09-16T00:48:14.607Z",
+          "updatedAt": "2026-09-16T00:48:14.607Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 48
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 48
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 48
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 48
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 48
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 48
+            }
+          ]
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/records"
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": [
+          {
+            "id": "ccba40d5-101e-40a8-8732-56d582376b11",
+            "pokemonName": "ditto",
+            "pokemonId": 132,
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+            "stats": {
+              "hp": 1,
+              "attack": 1,
+              "defense": 1,
+              "special-attack": 1,
+              "special-defense": 1,
+              "speed": 1
+            },
+            "createdAt": "2026-09-16T00:48:14.601Z",
+            "updatedAt": "2026-09-16T00:48:14.602Z",
+            "statsFormatted": [
+              {
+                "key": "hp",
+                "label": "PS (Puntos de Salud)",
+                "value": 1
+              },
+              {
+                "key": "attack",
+                "label": "Ataque",
+                "value": 1
+              },
+              {
+                "key": "defense",
+                "label": "Defensa",
+                "value": 1
+              },
+              {
+                "key": "special-attack",
+                "label": "Ataque Especial",
+                "value": 1
+              },
+              {
+                "key": "special-defense",
+                "label": "Defensa Especial",
+                "value": 1
+              },
+              {
+                "key": "speed",
+                "label": "Velocidad",
+                "value": 1
+              }
+            ]
+          },
+          {
+            "id": "6849f9f3-ce85-4cb6-9738-52da28d58aaa",
+            "pokemonName": "ditto",
+            "pokemonId": 132,
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+            "stats": {
+              "hp": 999,
+              "attack": 999,
+              "defense": 999,
+              "special-attack": 999,
+              "special-defense": 999,
+              "speed": 999
+            },
+            "createdAt": "2026-09-16T00:48:14.605Z",
+            "updatedAt": "2026-09-16T00:48:14.605Z",
+            "statsFormatted": [
+              {
+                "key": "hp",
+                "label": "PS (Puntos de Salud)",
+                "value": 999
+              },
+              {
+                "key": "attack",
+                "label": "Ataque",
+                "value": 999
+              },
+              {
+                "key": "defense",
+                "label": "Defensa",
+                "value": 999
+              },
+              {
+                "key": "special-attack",
+                "label": "Ataque Especial",
+                "value": 999
+              },
+              {
+                "key": "special-defense",
+                "label": "Defensa Especial",
+                "value": 999
+              },
+              {
+                "key": "speed",
+                "label": "Velocidad",
+                "value": 999
+              }
+            ]
+          },
+          {
+            "id": "35a51ab3-9f9a-4227-a1bf-d38966454af5",
+            "pokemonName": "ditto",
+            "pokemonId": 132,
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+            "stats": {
+              "hp": 48,
+              "attack": 48,
+              "defense": 48,
+              "special-attack": 48,
+              "special-defense": 48,
+              "speed": 48
+            },
+            "createdAt": "2026-09-16T00:48:14.607Z",
+            "updatedAt": "2026-09-16T00:48:14.607Z",
+            "statsFormatted": [
+              {
+                "key": "hp",
+                "label": "PS (Puntos de Salud)",
+                "value": 48
+              },
+              {
+                "key": "attack",
+                "label": "Ataque",
+                "value": 48
+              },
+              {
+                "key": "defense",
+                "label": "Defensa",
+                "value": 48
+              },
+              {
+                "key": "special-attack",
+                "label": "Ataque Especial",
+                "value": 48
+              },
+              {
+                "key": "special-defense",
+                "label": "Defensa Especial",
+                "value": 48
+              },
+              {
+                "key": "speed",
+                "label": "Velocidad",
+                "value": 48
+              }
+            ]
+          }
+        ]
+      },
+      "durationMs": 2
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 0,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística hp debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": -1,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística hp debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 0
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 1000,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística hp debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 2.5,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística hp debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": "abc",
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística hp debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": "",
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística hp debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": " ",
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística hp debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 0
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": null,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística hp debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": true,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística hp debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": [],
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística hp debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 0
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": {},
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística hp debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 0,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística attack debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 0
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": -1,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística attack debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 1000,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística attack debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 2.5,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística attack debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 0
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": "abc",
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística attack debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": "",
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística attack debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": " ",
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística attack debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 0
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": null,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística attack debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": true,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística attack debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 0
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": [],
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística attack debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": {},
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística attack debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 0
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 0,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística defense debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": -1,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística defense debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 0
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 1000,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística defense debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 2.5,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística defense debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": "abc",
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística defense debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 0
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": "",
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística defense debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": " ",
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística defense debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": null,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística defense debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 0
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": true,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística defense debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": [],
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística defense debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 0
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": {},
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística defense debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 0,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística special-attack debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 0
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": -1,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística special-attack debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 1000,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística special-attack debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 0
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 2.5,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística special-attack debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": "abc",
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística special-attack debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": "",
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística special-attack debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 0
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": " ",
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística special-attack debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": null,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística special-attack debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": true,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística special-attack debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": [],
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística special-attack debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 0
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": {},
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística special-attack debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 0,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística special-defense debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 0
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": -1,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística special-defense debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 1000,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística special-defense debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 0
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 2.5,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística special-defense debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": "abc",
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística special-defense debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": "",
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística special-defense debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 0
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": " ",
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística special-defense debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": null,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística special-defense debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 0
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": true,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística special-defense debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": [],
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística special-defense debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": {},
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística special-defense debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 0
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 0
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística speed debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": -1
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística speed debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 0
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 1000
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística speed debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 2.5
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística speed debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 0
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": "abc"
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística speed debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": ""
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística speed debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": " "
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística speed debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 0
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": null
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística speed debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": true
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística speed debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": []
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística speed debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 0
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": {}
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística speed debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/records"
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": [
+          {
+            "id": "ccba40d5-101e-40a8-8732-56d582376b11",
+            "pokemonName": "ditto",
+            "pokemonId": 132,
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+            "stats": {
+              "hp": 1,
+              "attack": 1,
+              "defense": 1,
+              "special-attack": 1,
+              "special-defense": 1,
+              "speed": 1
+            },
+            "createdAt": "2026-09-16T00:48:14.601Z",
+            "updatedAt": "2026-09-16T00:48:14.602Z",
+            "statsFormatted": [
+              {
+                "key": "hp",
+                "label": "PS (Puntos de Salud)",
+                "value": 1
+              },
+              {
+                "key": "attack",
+                "label": "Ataque",
+                "value": 1
+              },
+              {
+                "key": "defense",
+                "label": "Defensa",
+                "value": 1
+              },
+              {
+                "key": "special-attack",
+                "label": "Ataque Especial",
+                "value": 1
+              },
+              {
+                "key": "special-defense",
+                "label": "Defensa Especial",
+                "value": 1
+              },
+              {
+                "key": "speed",
+                "label": "Velocidad",
+                "value": 1
+              }
+            ]
+          },
+          {
+            "id": "6849f9f3-ce85-4cb6-9738-52da28d58aaa",
+            "pokemonName": "ditto",
+            "pokemonId": 132,
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+            "stats": {
+              "hp": 999,
+              "attack": 999,
+              "defense": 999,
+              "special-attack": 999,
+              "special-defense": 999,
+              "speed": 999
+            },
+            "createdAt": "2026-09-16T00:48:14.605Z",
+            "updatedAt": "2026-09-16T00:48:14.605Z",
+            "statsFormatted": [
+              {
+                "key": "hp",
+                "label": "PS (Puntos de Salud)",
+                "value": 999
+              },
+              {
+                "key": "attack",
+                "label": "Ataque",
+                "value": 999
+              },
+              {
+                "key": "defense",
+                "label": "Defensa",
+                "value": 999
+              },
+              {
+                "key": "special-attack",
+                "label": "Ataque Especial",
+                "value": 999
+              },
+              {
+                "key": "special-defense",
+                "label": "Defensa Especial",
+                "value": 999
+              },
+              {
+                "key": "speed",
+                "label": "Velocidad",
+                "value": 999
+              }
+            ]
+          },
+          {
+            "id": "35a51ab3-9f9a-4227-a1bf-d38966454af5",
+            "pokemonName": "ditto",
+            "pokemonId": 132,
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+            "stats": {
+              "hp": 48,
+              "attack": 48,
+              "defense": 48,
+              "special-attack": 48,
+              "special-defense": 48,
+              "speed": 48
+            },
+            "createdAt": "2026-09-16T00:48:14.607Z",
+            "updatedAt": "2026-09-16T00:48:14.607Z",
+            "statsFormatted": [
+              {
+                "key": "hp",
+                "label": "PS (Puntos de Salud)",
+                "value": 48
+              },
+              {
+                "key": "attack",
+                "label": "Ataque",
+                "value": 48
+              },
+              {
+                "key": "defense",
+                "label": "Defensa",
+                "value": 48
+              },
+              {
+                "key": "special-attack",
+                "label": "Ataque Especial",
+                "value": 48
+              },
+              {
+                "key": "special-defense",
+                "label": "Defensa Especial",
+                "value": 48
+              },
+              {
+                "key": "speed",
+                "label": "Velocidad",
+                "value": 48
+              }
+            ]
+          }
+        ]
+      },
+      "durationMs": 1
+    }
+  ],
+  "serverLog": "Servidor CRUD PokeAPI en http://localhost:62251\n"
+}

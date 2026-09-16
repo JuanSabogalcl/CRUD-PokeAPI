@@ -1,0 +1,700 @@
+{
+  "id": "R06",
+  "title": "Actualización inválida sin alterar datos",
+  "criterion": "CA11",
+  "status": "PASA",
+  "observation": "",
+  "durationMs": 164,
+  "evidence": "R06.json",
+  "exchanges": [
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "14d9bb73-ef5e-4001-96b2-a4361285733d",
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          },
+          "createdAt": "2026-09-16T00:49:48.164Z",
+          "updatedAt": "2026-09-16T00:49:48.164Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 48
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 48
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 48
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 48
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 48
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 48
+            }
+          ]
+        }
+      },
+      "durationMs": 12
+    },
+    {
+      "request": {
+        "method": "PUT",
+        "route": "/api/records/14d9bb73-ef5e-4001-96b2-a4361285733d",
+        "body": {
+          "pokemonName": " "
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "El nombre del Pokémon debe ser un texto no vacío"
+        }
+      },
+      "durationMs": 2
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/records/14d9bb73-ef5e-4001-96b2-a4361285733d"
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "14d9bb73-ef5e-4001-96b2-a4361285733d",
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          },
+          "createdAt": "2026-09-16T00:49:48.164Z",
+          "updatedAt": "2026-09-16T00:49:48.164Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 48
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 48
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 48
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 48
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 48
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 48
+            }
+          ]
+        }
+      },
+      "durationMs": 2
+    },
+    {
+      "request": {
+        "method": "PUT",
+        "route": "/api/records/14d9bb73-ef5e-4001-96b2-a4361285733d",
+        "body": {
+          "pokemonName": 42
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "El nombre del Pokémon debe ser un texto no vacío"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/records/14d9bb73-ef5e-4001-96b2-a4361285733d"
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "14d9bb73-ef5e-4001-96b2-a4361285733d",
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          },
+          "createdAt": "2026-09-16T00:49:48.164Z",
+          "updatedAt": "2026-09-16T00:49:48.164Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 48
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 48
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 48
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 48
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 48
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 48
+            }
+          ]
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "PUT",
+        "route": "/api/records/14d9bb73-ef5e-4001-96b2-a4361285733d",
+        "body": {
+          "stats": {
+            "hp": -1
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística hp debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/records/14d9bb73-ef5e-4001-96b2-a4361285733d"
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "14d9bb73-ef5e-4001-96b2-a4361285733d",
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          },
+          "createdAt": "2026-09-16T00:49:48.164Z",
+          "updatedAt": "2026-09-16T00:49:48.164Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 48
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 48
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 48
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 48
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 48
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 48
+            }
+          ]
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "PUT",
+        "route": "/api/records/14d9bb73-ef5e-4001-96b2-a4361285733d",
+        "body": {
+          "stats": {
+            "speed": null
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística speed debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/records/14d9bb73-ef5e-4001-96b2-a4361285733d"
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "14d9bb73-ef5e-4001-96b2-a4361285733d",
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          },
+          "createdAt": "2026-09-16T00:49:48.164Z",
+          "updatedAt": "2026-09-16T00:49:48.164Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 48
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 48
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 48
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 48
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 48
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 48
+            }
+          ]
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "PUT",
+        "route": "/api/records/14d9bb73-ef5e-4001-96b2-a4361285733d",
+        "body": {
+          "stats": {
+            "attack": "abc"
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística attack debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/records/14d9bb73-ef5e-4001-96b2-a4361285733d"
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "14d9bb73-ef5e-4001-96b2-a4361285733d",
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          },
+          "createdAt": "2026-09-16T00:49:48.164Z",
+          "updatedAt": "2026-09-16T00:49:48.164Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 48
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 48
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 48
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 48
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 48
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 48
+            }
+          ]
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "PUT",
+        "route": "/api/records/14d9bb73-ef5e-4001-96b2-a4361285733d",
+        "body": {
+          "stats": null
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "Las estadísticas deben ser un objeto JSON"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/records/14d9bb73-ef5e-4001-96b2-a4361285733d"
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "14d9bb73-ef5e-4001-96b2-a4361285733d",
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          },
+          "createdAt": "2026-09-16T00:49:48.164Z",
+          "updatedAt": "2026-09-16T00:49:48.164Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 48
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 48
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 48
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 48
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 48
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 48
+            }
+          ]
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "PUT",
+        "route": "/api/records/14d9bb73-ef5e-4001-96b2-a4361285733d",
+        "body": {
+          "stats": []
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "Las estadísticas deben ser un objeto JSON"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/records/14d9bb73-ef5e-4001-96b2-a4361285733d"
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "14d9bb73-ef5e-4001-96b2-a4361285733d",
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          },
+          "createdAt": "2026-09-16T00:49:48.164Z",
+          "updatedAt": "2026-09-16T00:49:48.164Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 48
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 48
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 48
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 48
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 48
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 48
+            }
+          ]
+        }
+      },
+      "durationMs": 0
+    },
+    {
+      "request": {
+        "method": "PUT",
+        "route": "/api/records/14d9bb73-ef5e-4001-96b2-a4361285733d",
+        "body": {
+          "pokemonName": "pikachu",
+          "stats": {
+            "hp": 1000
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "La estadística hp debe ser un entero entre 1 y 999"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/records/14d9bb73-ef5e-4001-96b2-a4361285733d"
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "14d9bb73-ef5e-4001-96b2-a4361285733d",
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          },
+          "createdAt": "2026-09-16T00:49:48.164Z",
+          "updatedAt": "2026-09-16T00:49:48.164Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 48
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 48
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 48
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 48
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 48
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 48
+            }
+          ]
+        }
+      },
+      "durationMs": 1
+    }
+  ],
+  "serverLog": "Servidor CRUD PokeAPI en http://localhost:54815\n"
+}

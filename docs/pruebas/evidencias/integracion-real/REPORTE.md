@@ -1,6 +1,6 @@
 # Comprobación de integración real
 
-Fecha UTC: 2026-09-16T00:18:29.520Z. Proveedor: https://pokeapi.co/api/v2/pokemon.
+Fecha UTC: 2026-09-16T00:49:49.997Z. Proveedor: https://pokeapi.co/api/v2/pokemon.
 
 Comprobaciones adicionales a la suite controlada de 15 casos. No modifican registros.
 

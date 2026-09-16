@@ -1,0 +1,289 @@
+{
+  "id": "R09",
+  "title": "Errores, timeout y sincronización fallida del proveedor",
+  "criterion": "CA14",
+  "status": "PASA",
+  "observation": "",
+  "durationMs": 716,
+  "evidence": "R09.json",
+  "exchanges": [
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "1f2a49df-faa6-48fe-b471-b3cc1f8b6530",
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          },
+          "createdAt": "2026-09-16T00:49:48.920Z",
+          "updatedAt": "2026-09-16T00:49:48.921Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 48
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 48
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 48
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 48
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 48
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 48
+            }
+          ]
+        }
+      },
+      "durationMs": 11
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/records"
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": [
+          {
+            "id": "1f2a49df-faa6-48fe-b471-b3cc1f8b6530",
+            "pokemonName": "ditto",
+            "pokemonId": 132,
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+            "stats": {
+              "hp": 48,
+              "attack": 48,
+              "defense": 48,
+              "special-attack": 48,
+              "special-defense": 48,
+              "speed": 48
+            },
+            "createdAt": "2026-09-16T00:49:48.920Z",
+            "updatedAt": "2026-09-16T00:49:48.921Z",
+            "statsFormatted": [
+              {
+                "key": "hp",
+                "label": "PS (Puntos de Salud)",
+                "value": 48
+              },
+              {
+                "key": "attack",
+                "label": "Ataque",
+                "value": 48
+              },
+              {
+                "key": "defense",
+                "label": "Defensa",
+                "value": 48
+              },
+              {
+                "key": "special-attack",
+                "label": "Ataque Especial",
+                "value": 48
+              },
+              {
+                "key": "special-defense",
+                "label": "Defensa Especial",
+                "value": 48
+              },
+              {
+                "key": "speed",
+                "label": "Velocidad",
+                "value": 48
+              }
+            ]
+          }
+        ]
+      },
+      "durationMs": 3
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/pokemon/pikachu"
+      },
+      "response": {
+        "status": 502,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "Error al conectar con PokeAPI"
+        }
+      },
+      "durationMs": 22
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/pokemon-list"
+      },
+      "response": {
+        "status": 502,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "Error al conectar con PokeAPI"
+        }
+      },
+      "durationMs": 2
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records/sync-gen1"
+      },
+      "response": {
+        "status": 502,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "Error al sincronizar la Gen 1 desde PokeAPI"
+        }
+      },
+      "durationMs": 2
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/pokemon/slow"
+      },
+      "response": {
+        "status": 504,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "PokeAPI excedió el tiempo de espera"
+        }
+      },
+      "durationMs": 508
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/pokemon/broken-json"
+      },
+      "response": {
+        "status": 502,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "PokeAPI no está disponible o devolvió una respuesta inválida"
+        }
+      },
+      "durationMs": 4
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records/sync-gen1"
+      },
+      "response": {
+        "status": 502,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "Error al sincronizar la Gen 1 desde PokeAPI"
+        }
+      },
+      "durationMs": 15
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/records"
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": [
+          {
+            "id": "1f2a49df-faa6-48fe-b471-b3cc1f8b6530",
+            "pokemonName": "ditto",
+            "pokemonId": 132,
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+            "stats": {
+              "hp": 48,
+              "attack": 48,
+              "defense": 48,
+              "special-attack": 48,
+              "special-defense": 48,
+              "speed": 48
+            },
+            "createdAt": "2026-09-16T00:49:48.920Z",
+            "updatedAt": "2026-09-16T00:49:48.921Z",
+            "statsFormatted": [
+              {
+                "key": "hp",
+                "label": "PS (Puntos de Salud)",
+                "value": 48
+              },
+              {
+                "key": "attack",
+                "label": "Ataque",
+                "value": 48
+              },
+              {
+                "key": "defense",
+                "label": "Defensa",
+                "value": 48
+              },
+              {
+                "key": "special-attack",
+                "label": "Ataque Especial",
+                "value": 48
+              },
+              {
+                "key": "special-defense",
+                "label": "Defensa Especial",
+                "value": 48
+              },
+              {
+                "key": "speed",
+                "label": "Velocidad",
+                "value": 48
+              }
+            ]
+          }
+        ]
+      },
+      "durationMs": 2
+    }
+  ],
+  "serverLog": "Servidor CRUD PokeAPI en http://localhost:54866\n"
+}

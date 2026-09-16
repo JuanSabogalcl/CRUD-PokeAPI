@@ -17,4 +17,6 @@ input: O escribe el nombre [ditto]
 button: Buscar en PokeAPI
 ```
 
-La captura PNG no se obtuvo porque el navegador agotó el tiempo de espera. No se adjunta una captura simulada ni se declara probado el CRUD completo desde la interfaz. El CRUD se comprobó mediante peticiones HTTP en los casos S02–S05.
+En la revisión posterior se obtuvieron pantallazos reales del catálogo, del filtro y de las seis estadísticas de Pikachu. Se guardaron en `docs/pruebas/capturas`, junto con una captura del reporte de 15 pruebas aprobadas abierto en GitHub. El archivo `fuentes.json` identifica su procedencia y huella SHA-256. El informe `INFORME_GRUPO_6.pdf` los incorpora.
+
+Esta revisión no comprueba el CRUD completo desde la interfaz. El CRUD se comprobó mediante peticiones HTTP en los casos S02–S05.

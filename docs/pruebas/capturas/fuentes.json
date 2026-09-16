@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-09-15T19:54:06.007671-05:00",
+  "images": [
+    {
+      "file": "01-catalogo.png",
+      "source": "http://localhost:3000",
+      "capturedAt": "2026-09-15T19:50:02.853164-05:00",
+      "sha256": "a04d68bd8ebc0600c154c050395a87581b0a2c53c01333a517caa9ada30a559c"
+    },
+    {
+      "file": "02-pikachu.png",
+      "source": "http://localhost:3000",
+      "capturedAt": "2026-09-15T19:47:53.125604-05:00",
+      "sha256": "9184156f77ecc03543e826142615d5994fed86e4eff3f2c814bbb90ec682b9b7"
+    },
+    {
+      "file": "03-estadisticas.png",
+      "source": "http://localhost:3000",
+      "capturedAt": "2026-09-15T19:50:18.971656-05:00",
+      "sha256": "a40a05ebc05df9b4008cf2f72cb9384309ec468f7ae62f15834a0ea3640fd9f8"
+    },
+    {
+      "file": "04-reporte-pruebas.png",
+      "source": "https://github.com/JuanSabogalcl/CRUD-PokeAPI/blob/b9e59f77ca15af45512b37bd767caebcee3ab7e0/docs/pruebas/evidencias/ronda-2-verificacion/REPORTE.md",
+      "capturedAt": "2026-09-15T19:50:34.581197-05:00",
+      "sha256": "4fc2efeb1915fe84d1d5feaadf0d7973887a25455c223f451a5a8cda588b3355"
+    }
+  ]
+}

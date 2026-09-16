@@ -14,6 +14,8 @@ En este equipo se prepararon Git y Node.js portátiles en `%LOCALAPPDATA%\Optati
 
 ## Pruebas y entrega
 
+El informe principal es [INFORME_GRUPO_6.pdf](docs/pruebas/INFORME_GRUPO_6.pdf): cinco páginas, formato sencillo, los tres integrantes y pantallazos reales. Las capturas completas se guardan en `docs/pruebas/capturas` y la versión HTML permite consultar el mismo contenido.
+
 Haz doble clic en **PRUEBAS.cmd**. Genera una ronda nueva en `docs/pruebas/evidencias/`. Las pruebas crean sus propios datos temporales y no borran los registros de la aplicación.
 
 Desde la terminal preparada:
