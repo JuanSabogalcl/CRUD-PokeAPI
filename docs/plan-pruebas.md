@@ -1,6 +1,6 @@
 # Plan mínimo de pruebas — API REST CRUD-PokeAPI
 
-**Materia:** Optativa II – Pruebas de Software · Semana 7
+**Materia:** Optativa II – Pruebas de Software · Semanas 4, 5 y 7
 **Proyecto:** [CRUD-PokeAPI](https://github.com/JuanSabogalcl/CRUD-PokeAPI)
 **Grupo (3 integrantes):** _completar con nombres del equipo_
 **Fecha:** 2026-09-15
@@ -12,7 +12,7 @@ Se prueba la **API REST** del backend Express (`server.js`, `lib/pokeapi-sync.js
 - Operaciones CRUD sobre registros locales de estadísticas Pokémon (`/api/records*`).
 - Consulta e importación masiva contra PokeAPI (`/api/pokemon*`, `/api/records/sync-gen1`).
 
-**Fuera de alcance:** interfaz visual (`public/`), pruebas de carga/rendimiento, y pruebas de disponibilidad de PokeAPI (dependencia externa).
+**Fuera de alcance:** interfaz visual (`public/`) más allá de un escenario de aceptación manual, pruebas de carga (solo se incluye 1 chequeo puntual de tiempo de respuesta), y pruebas de disponibilidad de PokeAPI (dependencia externa).
 
 ## Riesgos (probabilidad × impacto)
 
@@ -23,6 +23,7 @@ Se prueba la **API REST** del backend Express (`server.js`, `lib/pokeapi-sync.js
 | Validaciones de entrada insuficientes (campos faltantes) | Media | Medio | Medio |
 | IDs/nombres inexistentes no manejados (404) | Media | Medio | Medio |
 | Datos de usuario no sanitizados antes de guardarse/renderizarse | Media | Alto | Alto (seguridad) |
+| Estadísticas fuera del rango declarado (negativas, >999, no numéricas) se aceptan sin validar | Alta | Medio | Alto |
 | Incompatibilidad con la versión mínima de Node declarada (18) | Baja | Alto | Medio |
 
 Lo alto-alto (CRUD básico) va primero en la suite **smoke**; el resto queda en **regresión**.
@@ -56,11 +57,36 @@ Por **tipo**: casi toda la suite es **funcional** (entrada → proceso → salid
 - REG-10 (compatibilidad: versión mínima de Node soportada).
 - NFR-01 (rendimiento: tiempo de respuesta de un endpoint local).
 
+## Diseño de casos (caja negra — Semana 5)
+
+Sin mirar el código: se toma como especificación el propio formulario (`public/index.html`, cada estadística `min="1" max="999"`) y la regla de negocio de creación de registros.
+
+- **Partición de equivalencia** sobre el campo `hp` (representativo de las 6 estadísticas, todas comparten la misma ruta de validación en `server.js`): clase válida (1-999), inválida por debajo (≤0), inválida por encima (>999), inválida por tipo (no numérico), inválida por ausencia (vacío/`undefined`).
+- **Valores límite**: mínimo (1), máximo (999), justo por debajo (0) y justo por encima (1000).
+- **Negativos básicos**: vacío, tipo incorrecto (texto en un campo numérico).
+- **Tabla de decisión** para la regla "crear registro" (2 condiciones → 4 reglas): ver [tabla-decision-crear-registro.md](tabla-decision-crear-registro.md).
+
+## Trazabilidad (criterio → casos)
+
+| Criterio | Casos de prueba |
+|---|---|
+| CRUD básico funciona (Create/Read/Update/Delete) | SMK-01 a SMK-05 |
+| El servidor valida presencia de nombre y estadísticas | DT-01 a DT-04, REG-02, REG-03 |
+| El servidor solo acepta estadísticas dentro del rango declarado (1-999) | BVA-01 a BVA-05, EQ-06, EQ-07 |
+| IDs/nombres inexistentes se manejan con 404 | REG-01, REG-04, REG-05, REG-06 |
+| La sincronización masiva importa la Gen 1 completa | REG-07, REG-08 |
+| Los datos de usuario no deben ejecutar código en el navegador | REG-09, ACC-05 |
+| Compatibilidad con la versión mínima de Node declarada | REG-10 |
+| Funciones puras de mapeo/sprite se comportan como se espera | UNI-01 a UNI-05 |
+| Tiempo de respuesta razonable en endpoints locales | NFR-01 |
+
 ## Suite
 
 - **Unitaria (5 casos)** — `tests/unit.test.js`: funciones puras de mapeo de estadísticas y resolución de sprite.
 - **Smoke (5 casos)** — `tests/smoke.test.js`: camino feliz completo del CRUD (Create, Read, Update, Delete + consulta a PokeAPI). Debe pasar al 100% en cualquier despliegue.
 - **Regresión (10 casos)** — `tests/regression.test.js`: validaciones (400), casos borde (404), límite de la Gen 1, sincronización masiva, y 2 defectos conocidos de seguridad/compatibilidad.
+- **Tabla de decisión (4 casos)** — `tests/decision-table.test.js`: las 4 reglas de la regla de negocio "crear registro".
+- **Caja negra: equivalencias y límites (7 casos)** — `tests/boundary.test.js`: clases válidas/inválidas y bordes del rango 1-999 en el campo `hp`.
 - **No funcional (1 caso)** — `tests/nonfuncional.test.js`: presupuesto de tiempo de respuesta en un endpoint local.
 
 Detalle de casos en [reporte-ejecucion.md](reporte-ejecucion.md).

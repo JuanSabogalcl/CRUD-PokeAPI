@@ -2,7 +2,7 @@
 > crud-pokeapi@1.0.0 test
 > jest --runInBand
 
-FAIL tests/regression.test.js (9.057 s)
+FAIL tests/regression.test.js (13.787 s)
   ● REGRESIÓN - validaciones, errores y casos borde › REG-09 [DEFECTO CONOCIDO] el nombre de un registro se sanitiza antes de guardarse (XSS)
 
     expect(received).not.toContain(expected) // indexOf
@@ -37,9 +37,78 @@ FAIL tests/regression.test.js (9.057 s)
 
       at Object.toBe (tests/regression.test.js:114:50)
 
+FAIL tests/boundary.test.js
+  ● CAJA NEGRA - partición de equivalencia y valores límite (campo hp, rango 1-999) › BVA-03 [DEFECTO CONOCIDO: DEF-03] hp=0 (min-1) debería rechazarse
 
-Test Suites: 1 failed, 3 passed, 4 total
-Tests:       2 failed, 19 passed, 21 total
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 400
+    Received: 201
+
+    [0m [90m 53 |[39m     [36mconst[39m { res[33m,[39m body } [33m=[39m [36mawait[39m crearConHp([35m0[39m)[33m;[39m
+     [90m 54 |[39m     [36mtry[39m {
+    [31m[1m>[22m[39m[90m 55 |[39m       expect(res[33m.[39mstatus)[33m.[39mtoBe([35m400[39m)[33m;[39m
+     [90m    |[39m                          [31m[1m^[22m[39m
+     [90m 56 |[39m     } [36mfinally[39m {
+     [90m 57 |[39m       [36mawait[39m limpiar(body[33m.[39mid)[33m;[39m
+     [90m 58 |[39m     }[0m
+
+      at Object.toBe (tests/boundary.test.js:55:26)
+
+  ● CAJA NEGRA - partición de equivalencia y valores límite (campo hp, rango 1-999) › BVA-04 [DEFECTO CONOCIDO: DEF-03] hp=1000 (max+1) debería rechazarse
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 400
+    Received: 201
+
+    [0m [90m 62 |[39m     [36mconst[39m { res[33m,[39m body } [33m=[39m [36mawait[39m crearConHp([35m1000[39m)[33m;[39m
+     [90m 63 |[39m     [36mtry[39m {
+    [31m[1m>[22m[39m[90m 64 |[39m       expect(res[33m.[39mstatus)[33m.[39mtoBe([35m400[39m)[33m;[39m
+     [90m    |[39m                          [31m[1m^[22m[39m
+     [90m 65 |[39m     } [36mfinally[39m {
+     [90m 66 |[39m       [36mawait[39m limpiar(body[33m.[39mid)[33m;[39m
+     [90m 67 |[39m     }[0m
+
+      at Object.toBe (tests/boundary.test.js:64:26)
+
+  ● CAJA NEGRA - partición de equivalencia y valores límite (campo hp, rango 1-999) › BVA-05 [DEFECTO CONOCIDO: DEF-03] hp negativo (-50, clase inválida) debería rechazarse
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 400
+    Received: 201
+
+    [0m [90m 71 |[39m     [36mconst[39m { res[33m,[39m body } [33m=[39m [36mawait[39m crearConHp([33m-[39m[35m50[39m)[33m;[39m
+     [90m 72 |[39m     [36mtry[39m {
+    [31m[1m>[22m[39m[90m 73 |[39m       expect(res[33m.[39mstatus)[33m.[39mtoBe([35m400[39m)[33m;[39m
+     [90m    |[39m                          [31m[1m^[22m[39m
+     [90m 74 |[39m     } [36mfinally[39m {
+     [90m 75 |[39m       [36mawait[39m limpiar(body[33m.[39mid)[33m;[39m
+     [90m 76 |[39m     }[0m
+
+      at Object.toBe (tests/boundary.test.js:73:26)
+
+  ● CAJA NEGRA - partición de equivalencia y valores límite (campo hp, rango 1-999) › EQ-06 [DEFECTO CONOCIDO: DEF-03] hp no numérico ("abc") debería rechazarse, no guardarse como null
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 400
+    Received: 201
+
+    [0m [90m 80 |[39m     [36mconst[39m { res[33m,[39m body } [33m=[39m [36mawait[39m crearConHp([32m'abc'[39m)[33m;[39m
+     [90m 81 |[39m     [36mtry[39m {
+    [31m[1m>[22m[39m[90m 82 |[39m       expect(res[33m.[39mstatus)[33m.[39mtoBe([35m400[39m)[33m;[39m
+     [90m    |[39m                          [31m[1m^[22m[39m
+     [90m 83 |[39m     } [36mfinally[39m {
+     [90m 84 |[39m       [36mawait[39m limpiar(body[33m.[39mid)[33m;[39m
+     [90m 85 |[39m     }[0m
+
+      at Object.toBe (tests/boundary.test.js:82:26)
+
+
+Test Suites: 2 failed, 4 passed, 6 total
+Tests:       6 failed, 26 passed, 32 total
 Snapshots:   0 total
-Time:        10.612 s
+Time:        15.886 s
 Ran all test suites.
