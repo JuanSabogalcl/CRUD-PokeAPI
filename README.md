@@ -60,6 +60,16 @@ También puedes usar el botón **Sincronizar 151 Pokémon** en la interfaz web.
 
 Consulta de Ditto: https://pokeapi.co/api/v2/pokemon/ditto
 
+## Pruebas
+
+```bash
+npm test              # suite completa (smoke + regresión)
+npm run test:smoke    # solo camino feliz del CRUD
+npm run test:regression
+```
+
+Ver [plan de pruebas](docs/plan-pruebas.md) y [reporte de ejecución](docs/reporte-ejecucion.md) (incluye defectos conocidos).
+
 ## Tecnologías
 
 - Node.js + Express

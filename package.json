@@ -6,11 +6,21 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js",
-    "seed": "node scripts/seed-gen1.js"
+    "seed": "node scripts/seed-gen1.js",
+    "test": "jest --runInBand",
+    "test:smoke": "jest --runInBand tests/smoke.test.js",
+    "test:regression": "jest --runInBand tests/regression.test.js"
   },
-  "keywords": ["pokeapi", "pokemon", "crud"],
+  "keywords": [
+    "pokeapi",
+    "pokemon",
+    "crud"
+  ],
   "license": "MIT",
   "dependencies": {
     "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "jest": "^30.5.1"
   }
 }

@@ -1,0 +1,40 @@
+FAIL tests/regression.test.js (6.642 s)
+  ● REGRESIÓN - validaciones, errores y casos borde › REG-09 [DEFECTO CONOCIDO] el nombre de un registro se sanitiza antes de guardarse (XSS)
+
+    expect(received).not.toContain(expected) // indexOf
+
+    Expected substring: not "<img"
+    Received string:        "<img src=x onerror=alert(1)>"
+
+    [0m [90m 94 |[39m       [90m// Hoy lo guarda y lo devuelve tal cual -> el frontend lo inyecta sin escapar[39m
+     [90m 95 |[39m       [90m// (public/js/app.js, renderRecordsList) y el script se ejecuta en el navegador.[39m
+    [31m[1m>[22m[39m[90m 96 |[39m       expect(body[33m.[39mpokemonName)[33m.[39mnot[33m.[39mtoContain([32m'<img'[39m)[33m;[39m
+     [90m    |[39m                                    [31m[1m^[22m[39m
+     [90m 97 |[39m     } [36mfinally[39m {
+     [90m 98 |[39m       [90m// Limpieza garantizada incluso si la aserción de arriba falla (defecto conocido).[39m
+     [90m 99 |[39m       [36mawait[39m fetch([32m`${server.baseUrl}/api/records/${body.id}`[39m[33m,[39m { method[33m:[39m [32m'DELETE'[39m })[33m;[39m[0m
+
+      at Object.toContain (tests/regression.test.js:96:36)
+
+  ● REGRESIÓN - validaciones, errores y casos borde › REG-10 [DEFECTO CONOCIDO] crypto.randomUUID se referencia con su módulo explícito (compatibilidad Node 18)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+    [0m [90m 112 |[39m     [90m// garantizado desde Node 19+. Sin `require('crypto')` explícito, Create y[39m
+     [90m 113 |[39m     [90m// la sincronización Gen 1 fallarían con "crypto is not defined" en Node 18.[39m
+    [31m[1m>[22m[39m[90m 114 |[39m     expect(usaGlobalCryptoSinRequire(serverSrc))[33m.[39mtoBe([36mfalse[39m)[33m;[39m
+     [90m     |[39m                                                  [31m[1m^[22m[39m
+     [90m 115 |[39m     expect(usaGlobalCryptoSinRequire(syncSrc))[33m.[39mtoBe([36mfalse[39m)[33m;[39m
+     [90m 116 |[39m   })[33m;[39m
+     [90m 117 |[39m })[33m;[39m[0m
+
+      at Object.toBe (tests/regression.test.js:114:50)
+
+Test Suites: 1 failed, 1 passed, 2 total
+Tests:       2 failed, 13 passed, 15 total
+Snapshots:   0 total
+Time:        7.528 s
+Ran all test suites.
