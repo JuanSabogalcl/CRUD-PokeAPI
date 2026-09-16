@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><title>Plan mínimo de pruebas · Grupo 6</title>
+<style>
+@page{size:A4;margin:15mm}*{box-sizing:border-box}body{font-family:Arial,sans-serif;color:#172334;font-size:10pt;line-height:1.3;max-width:180mm;margin:22px auto}h1{font-size:21pt;margin:0 0 4px;color:#163b66}h2{font-size:11pt;margin:12px 0 4px;color:#163b66}p{margin:4px 0}table{border-collapse:collapse;width:100%;font-size:9pt}th,td{border:1px solid #cbd5df;text-align:left;padding:5px}th{background:#edf2f7}header{border-bottom:2px solid #163b66;padding-bottom:9px}.meta{font-size:9pt;color:#475569}code{font-size:9pt}footer{border-top:1px solid #cbd5df;margin-top:12px;padding-top:6px;font-size:8pt;color:#475569}@media print{body{margin:0;max-width:none}.no-print{display:none}}
+</style></head><body>
+<header><div class="meta">FET · Optativa II · Semana 7 · Grupo 6</div><h1>Plan mínimo de pruebas</h1><p>API REST CRUD PokeAPI · Ronda de verificación local</p><div class="meta">Hernan Felipe Patiño Rico · Juan Jose Sabogal Garcia · Orlando Rojas Narvaez</div></header>
+<h2>1. Objetivo y alcance</h2>
+<p>Verificar creación, consulta, edición, eliminación y persistencia de registros; catálogo Gen 1, transformación de PokeAPI, sincronización y errores HTTP. Confirmar que entradas inválidas no alteran los datos. Fuera de alcance: carga, concurrencia entre procesos, auditoría de seguridad y cobertura completa de la interfaz.</p>
+<h2>2. Prioridad por riesgo</h2>
+<p>Escala: probabilidad (P) e impacto (I) de 1 a 3. Riesgo = P × I. Alto: 6–9; medio: 3–4; bajo: 1–2. Estimaciones del plan, no frecuencias medidas.</p>
+<table><thead><tr><th>Riesgo</th><th>P</th><th>I</th><th>P×I</th><th>Casos / prioridad</th></tr></thead><tbody>
+<tr><td>API inaccesible o CRUD esencial roto</td><td>3</td><td>3</td><td>9</td><td>S01–S05 / primero</td></tr>
+<tr><td>Datos inválidos guardados o edición parcial dañada</td><td>3</td><td>3</td><td>9</td><td>R04–R06, R10 / alta</td></tr>
+<tr><td>Dependencia externa o sincronización fallida</td><td>2</td><td>3</td><td>6</td><td>R08–R09 / alta</td></tr>
+<tr><td>Catálogo o mapeo incorrectos; recursos ausentes</td><td>2</td><td>2</td><td>4</td><td>R01–R03, R07 / media</td></tr>
+</tbody></table>
+<h2>3. Ambiente, datos y herramientas</h2>
+<p>Windows, Node.js 24.21.0, Express y aserciones nativas de Node. Cada caso inicia la API en un puerto libre con almacenamiento temporal vacío y PokeAPI simulada. Sincronización inicial desactivada. Datos: Ditto (seis valores 48), Pikachu (35, 55, 40, 50, 50, 90), 151 entradas sintéticas y un registro local. Límites válidos: 1 y 999, según el formulario del proyecto. La comprobación real usa PokeAPI pública por separado.</p>
+<h2>4. Suites y ejecución</h2>
+<p><b>Smoke, 5 casos:</b> disponibilidad, crear, consultar, editar y persistir, eliminar. <b>Regresión, 10 casos:</b> mapeo, Pokémon inexistente, paginación, obligatorios, límites/tipos, edición inválida, ID inexistente, sincronización, fallos externos y JSON inválido. Cada caso tiene criterio CA01–CA15 y pasos en <a href="CASOS.md">CASOS.md</a>.</p>
+<p>Ejecutar <code>npm run test:smoke</code>; si pasa, <code>npm run test:regression</code>. <code>npm test</code> ejecuta los 15 para diagnóstico completo. Ejecutar <code>npm run test:live</code> para tres consultas reales adicionales.</p>
+<h2>5. Entrada, detención y salida</h2>
+<p><b>Entrada:</b> dependencias instaladas, API de prueba iniciable, datos aislados y esperados definidos. <b>Detener promoción:</b> cualquier smoke FALLA/BLOQUEADO, pérdida de datos o defecto alto abierto. Conservar evidencia; corregir y repetir los casos afectados y ambas suites. El diagnóstico puede continuar para registrar otros fallos.</p>
+<p><b>Salida GO:</b> 5/5 smoke y 10/10 regresión PASA, sin bloqueos ni defectos altos abiertos dentro del alcance, con evidencia. Para demostrar integración en línea se exige además 3/3 consultas reales PASA. <b>NO-GO:</b> cualquier condición incumplida. PASA = coincide; FALLA = difiere; BLOQUEADO = ambiente/dependencia impide comprobar.</p>
+<h2>6. Evidencia y control de ronda</h2>
+<p>Guardar caso, resultado, solicitud/respuesta, observación, fecha UTC, versión de Node y huellas del código en <code>evidencias/</code>. Registrar defectos, repetir tras la corrección y cerrar con decisión justificada. El grupo revisa resultados y prepara la sustentación; no se atribuyen ejecuciones individuales.</p>
+<footer>Fuente académica: “OptativaII_Semana_7_Estrategia_de_pruebas_y_plan_m_nimo_v2.pptx”, diapositivas 4–9, Diego Fernando Vargas Ramírez. Código base: c468b40f1258fd01b1228544065f1a123eef2825. Plan de una página A4.</footer>
+</body></html>

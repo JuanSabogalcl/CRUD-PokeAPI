@@ -1,0 +1,140 @@
+{
+  "id": "R04",
+  "title": "Campos obligatorios y nombre válido al crear",
+  "criterion": "CA09",
+  "status": "FALLA",
+  "observation": "{\"id\":\"b379db87-4352-44da-86d4-00704e1944ea\",\"pokemonName\":\"   \",\"pokemonId\":132,\"sprite\":\"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png\",\"stats\":{\"hp\":48,\"attack\":48,\"defense\":48,\"special-attack\":48,\"special-defense\":48,\"speed\":48},\"createdAt\":\"2026-09-16T00:16:52\n\n201 !== 400\n",
+  "durationMs": 146,
+  "evidence": "R04.json",
+  "exchanges": [
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {}
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "Nombre del Pokémon y estadísticas son requeridos"
+        }
+      },
+      "durationMs": 11
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto"
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "Nombre del Pokémon y estadísticas son requeridos"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "Todas las estadísticas son requeridas"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "   ",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "b379db87-4352-44da-86d4-00704e1944ea",
+          "pokemonName": "   ",
+          "pokemonId": 132,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          },
+          "createdAt": "2026-09-16T00:16:52.525Z",
+          "updatedAt": "2026-09-16T00:16:52.525Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 48
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 48
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 48
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 48
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 48
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 48
+            }
+          ]
+        }
+      },
+      "durationMs": 3
+    }
+  ],
+  "serverLog": "Servidor CRUD PokeAPI en http://localhost:53823\n"
+}

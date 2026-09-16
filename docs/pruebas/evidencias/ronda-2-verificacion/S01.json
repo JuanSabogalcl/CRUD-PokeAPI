@@ -1,0 +1,43 @@
+{
+  "id": "S01",
+  "title": "Disponibilidad y contrato básico",
+  "criterion": "CA01",
+  "status": "PASA",
+  "observation": "",
+  "durationMs": 198,
+  "evidence": "S01.json",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/stats-labels"
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "hp": "PS (Puntos de Salud)",
+          "attack": "Ataque",
+          "defense": "Defensa",
+          "special-attack": "Ataque Especial",
+          "special-defense": "Defensa Especial",
+          "speed": "Velocidad"
+        }
+      },
+      "durationMs": 26
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/records"
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": []
+      },
+      "durationMs": 3
+    }
+  ],
+  "serverLog": "Servidor CRUD PokeAPI en http://localhost:60116\n"
+}

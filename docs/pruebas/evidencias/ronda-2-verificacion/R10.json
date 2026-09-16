@@ -1,0 +1,277 @@
+{
+  "id": "R10",
+  "title": "JSON malformado y cuerpo incompatible",
+  "criterion": "CA15",
+  "status": "PASA",
+  "observation": "",
+  "durationMs": 204,
+  "evidence": "R10.json",
+  "exchanges": [
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": "{\"pokemonName\":"
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "El cuerpo debe contener JSON válido"
+        }
+      },
+      "durationMs": 15
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": []
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "El cuerpo debe ser un objeto JSON"
+        }
+      },
+      "durationMs": 6
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": null
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "El cuerpo debe contener JSON válido"
+        }
+      },
+      "durationMs": 4
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": "ditto"
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "El cuerpo debe contener JSON válido"
+        }
+      },
+      "durationMs": 3
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": 123
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "El cuerpo debe contener JSON válido"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "fc3417f4-a6f4-4633-b49e-4ea975e9c43d",
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          },
+          "createdAt": "2026-09-16T00:23:51.216Z",
+          "updatedAt": "2026-09-16T00:23:51.216Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 48
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 48
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 48
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 48
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 48
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 48
+            }
+          ]
+        }
+      },
+      "durationMs": 3
+    },
+    {
+      "request": {
+        "method": "PUT",
+        "route": "/api/records/fc3417f4-a6f4-4633-b49e-4ea975e9c43d",
+        "body": []
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "El cuerpo debe ser un objeto JSON"
+        }
+      },
+      "durationMs": 2
+    },
+    {
+      "request": {
+        "method": "PUT",
+        "route": "/api/records/fc3417f4-a6f4-4633-b49e-4ea975e9c43d",
+        "body": null
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "El cuerpo debe contener JSON válido"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "PUT",
+        "route": "/api/records/fc3417f4-a6f4-4633-b49e-4ea975e9c43d",
+        "body": "ditto"
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "El cuerpo debe contener JSON válido"
+        }
+      },
+      "durationMs": 2
+    },
+    {
+      "request": {
+        "method": "PUT",
+        "route": "/api/records/fc3417f4-a6f4-4633-b49e-4ea975e9c43d",
+        "body": 123
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "El cuerpo debe contener JSON válido"
+        }
+      },
+      "durationMs": 2
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/records/fc3417f4-a6f4-4633-b49e-4ea975e9c43d"
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "fc3417f4-a6f4-4633-b49e-4ea975e9c43d",
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          },
+          "createdAt": "2026-09-16T00:23:51.216Z",
+          "updatedAt": "2026-09-16T00:23:51.216Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 48
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 48
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 48
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 48
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 48
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 48
+            }
+          ]
+        }
+      },
+      "durationMs": 3
+    }
+  ],
+  "serverLog": "Servidor CRUD PokeAPI en http://localhost:60242\n"
+}

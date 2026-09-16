@@ -1,0 +1,1012 @@
+{
+  "id": "R03",
+  "title": "Catálogo Gen 1 y parámetros de paginación",
+  "criterion": "CA08",
+  "status": "FALLA",
+  "observation": "No deben salir Pokémon posteriores a Mew\n\n10 !== 1\n",
+  "durationMs": 160,
+  "evidence": "R03.json",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/pokemon-list?limit=999"
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "count": 1350,
+          "totalGen1": 151,
+          "results": [
+            {
+              "id": 1,
+              "name": "bulbasaur",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/1",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
+            },
+            {
+              "id": 2,
+              "name": "pokemon-2",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/2",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png"
+            },
+            {
+              "id": 3,
+              "name": "pokemon-3",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/3",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png"
+            },
+            {
+              "id": 4,
+              "name": "pokemon-4",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/4",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png"
+            },
+            {
+              "id": 5,
+              "name": "pokemon-5",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/5",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png"
+            },
+            {
+              "id": 6,
+              "name": "pokemon-6",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/6",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png"
+            },
+            {
+              "id": 7,
+              "name": "pokemon-7",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/7",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png"
+            },
+            {
+              "id": 8,
+              "name": "pokemon-8",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/8",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png"
+            },
+            {
+              "id": 9,
+              "name": "pokemon-9",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/9",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/9.png"
+            },
+            {
+              "id": 10,
+              "name": "pokemon-10",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/10",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10.png"
+            },
+            {
+              "id": 11,
+              "name": "pokemon-11",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/11",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/11.png"
+            },
+            {
+              "id": 12,
+              "name": "pokemon-12",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/12",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/12.png"
+            },
+            {
+              "id": 13,
+              "name": "pokemon-13",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/13",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/13.png"
+            },
+            {
+              "id": 14,
+              "name": "pokemon-14",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/14",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/14.png"
+            },
+            {
+              "id": 15,
+              "name": "pokemon-15",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/15",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png"
+            },
+            {
+              "id": 16,
+              "name": "pokemon-16",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/16",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/16.png"
+            },
+            {
+              "id": 17,
+              "name": "pokemon-17",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/17",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/17.png"
+            },
+            {
+              "id": 18,
+              "name": "pokemon-18",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/18",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/18.png"
+            },
+            {
+              "id": 19,
+              "name": "pokemon-19",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/19",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/19.png"
+            },
+            {
+              "id": 20,
+              "name": "pokemon-20",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/20",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/20.png"
+            },
+            {
+              "id": 21,
+              "name": "pokemon-21",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/21",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/21.png"
+            },
+            {
+              "id": 22,
+              "name": "pokemon-22",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/22",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/22.png"
+            },
+            {
+              "id": 23,
+              "name": "pokemon-23",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/23",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/23.png"
+            },
+            {
+              "id": 24,
+              "name": "pokemon-24",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/24",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/24.png"
+            },
+            {
+              "id": 25,
+              "name": "pikachu",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/25",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
+            },
+            {
+              "id": 26,
+              "name": "pokemon-26",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/26",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/26.png"
+            },
+            {
+              "id": 27,
+              "name": "pokemon-27",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/27",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/27.png"
+            },
+            {
+              "id": 28,
+              "name": "pokemon-28",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/28",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/28.png"
+            },
+            {
+              "id": 29,
+              "name": "pokemon-29",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/29",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/29.png"
+            },
+            {
+              "id": 30,
+              "name": "pokemon-30",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/30",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/30.png"
+            },
+            {
+              "id": 31,
+              "name": "pokemon-31",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/31",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/31.png"
+            },
+            {
+              "id": 32,
+              "name": "pokemon-32",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/32",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/32.png"
+            },
+            {
+              "id": 33,
+              "name": "pokemon-33",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/33",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/33.png"
+            },
+            {
+              "id": 34,
+              "name": "pokemon-34",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/34",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/34.png"
+            },
+            {
+              "id": 35,
+              "name": "pokemon-35",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/35",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/35.png"
+            },
+            {
+              "id": 36,
+              "name": "pokemon-36",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/36",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/36.png"
+            },
+            {
+              "id": 37,
+              "name": "pokemon-37",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/37",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/37.png"
+            },
+            {
+              "id": 38,
+              "name": "pokemon-38",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/38",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/38.png"
+            },
+            {
+              "id": 39,
+              "name": "pokemon-39",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/39",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/39.png"
+            },
+            {
+              "id": 40,
+              "name": "pokemon-40",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/40",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/40.png"
+            },
+            {
+              "id": 41,
+              "name": "pokemon-41",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/41",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/41.png"
+            },
+            {
+              "id": 42,
+              "name": "pokemon-42",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/42",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/42.png"
+            },
+            {
+              "id": 43,
+              "name": "pokemon-43",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/43",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/43.png"
+            },
+            {
+              "id": 44,
+              "name": "pokemon-44",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/44",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/44.png"
+            },
+            {
+              "id": 45,
+              "name": "pokemon-45",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/45",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/45.png"
+            },
+            {
+              "id": 46,
+              "name": "pokemon-46",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/46",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/46.png"
+            },
+            {
+              "id": 47,
+              "name": "pokemon-47",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/47",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/47.png"
+            },
+            {
+              "id": 48,
+              "name": "pokemon-48",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/48",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/48.png"
+            },
+            {
+              "id": 49,
+              "name": "pokemon-49",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/49",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/49.png"
+            },
+            {
+              "id": 50,
+              "name": "pokemon-50",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/50",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/50.png"
+            },
+            {
+              "id": 51,
+              "name": "pokemon-51",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/51",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/51.png"
+            },
+            {
+              "id": 52,
+              "name": "pokemon-52",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/52",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/52.png"
+            },
+            {
+              "id": 53,
+              "name": "pokemon-53",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/53",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/53.png"
+            },
+            {
+              "id": 54,
+              "name": "pokemon-54",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/54",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/54.png"
+            },
+            {
+              "id": 55,
+              "name": "pokemon-55",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/55",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/55.png"
+            },
+            {
+              "id": 56,
+              "name": "pokemon-56",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/56",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/56.png"
+            },
+            {
+              "id": 57,
+              "name": "pokemon-57",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/57",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/57.png"
+            },
+            {
+              "id": 58,
+              "name": "pokemon-58",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/58",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/58.png"
+            },
+            {
+              "id": 59,
+              "name": "pokemon-59",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/59",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/59.png"
+            },
+            {
+              "id": 60,
+              "name": "pokemon-60",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/60",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/60.png"
+            },
+            {
+              "id": 61,
+              "name": "pokemon-61",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/61",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/61.png"
+            },
+            {
+              "id": 62,
+              "name": "pokemon-62",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/62",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/62.png"
+            },
+            {
+              "id": 63,
+              "name": "pokemon-63",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/63",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/63.png"
+            },
+            {
+              "id": 64,
+              "name": "pokemon-64",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/64",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/64.png"
+            },
+            {
+              "id": 65,
+              "name": "pokemon-65",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/65",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/65.png"
+            },
+            {
+              "id": 66,
+              "name": "pokemon-66",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/66",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/66.png"
+            },
+            {
+              "id": 67,
+              "name": "pokemon-67",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/67",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/67.png"
+            },
+            {
+              "id": 68,
+              "name": "pokemon-68",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/68",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/68.png"
+            },
+            {
+              "id": 69,
+              "name": "pokemon-69",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/69",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/69.png"
+            },
+            {
+              "id": 70,
+              "name": "pokemon-70",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/70",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/70.png"
+            },
+            {
+              "id": 71,
+              "name": "pokemon-71",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/71",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/71.png"
+            },
+            {
+              "id": 72,
+              "name": "pokemon-72",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/72",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/72.png"
+            },
+            {
+              "id": 73,
+              "name": "pokemon-73",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/73",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/73.png"
+            },
+            {
+              "id": 74,
+              "name": "pokemon-74",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/74",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/74.png"
+            },
+            {
+              "id": 75,
+              "name": "pokemon-75",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/75",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/75.png"
+            },
+            {
+              "id": 76,
+              "name": "pokemon-76",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/76",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/76.png"
+            },
+            {
+              "id": 77,
+              "name": "pokemon-77",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/77",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/77.png"
+            },
+            {
+              "id": 78,
+              "name": "pokemon-78",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/78",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/78.png"
+            },
+            {
+              "id": 79,
+              "name": "pokemon-79",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/79",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/79.png"
+            },
+            {
+              "id": 80,
+              "name": "pokemon-80",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/80",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/80.png"
+            },
+            {
+              "id": 81,
+              "name": "pokemon-81",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/81",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/81.png"
+            },
+            {
+              "id": 82,
+              "name": "pokemon-82",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/82",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/82.png"
+            },
+            {
+              "id": 83,
+              "name": "pokemon-83",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/83",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/83.png"
+            },
+            {
+              "id": 84,
+              "name": "pokemon-84",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/84",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/84.png"
+            },
+            {
+              "id": 85,
+              "name": "pokemon-85",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/85",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/85.png"
+            },
+            {
+              "id": 86,
+              "name": "pokemon-86",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/86",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/86.png"
+            },
+            {
+              "id": 87,
+              "name": "pokemon-87",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/87",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/87.png"
+            },
+            {
+              "id": 88,
+              "name": "pokemon-88",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/88",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/88.png"
+            },
+            {
+              "id": 89,
+              "name": "pokemon-89",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/89",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/89.png"
+            },
+            {
+              "id": 90,
+              "name": "pokemon-90",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/90",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/90.png"
+            },
+            {
+              "id": 91,
+              "name": "pokemon-91",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/91",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/91.png"
+            },
+            {
+              "id": 92,
+              "name": "pokemon-92",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/92",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/92.png"
+            },
+            {
+              "id": 93,
+              "name": "pokemon-93",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/93",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/93.png"
+            },
+            {
+              "id": 94,
+              "name": "pokemon-94",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/94",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/94.png"
+            },
+            {
+              "id": 95,
+              "name": "pokemon-95",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/95",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/95.png"
+            },
+            {
+              "id": 96,
+              "name": "pokemon-96",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/96",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/96.png"
+            },
+            {
+              "id": 97,
+              "name": "pokemon-97",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/97",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/97.png"
+            },
+            {
+              "id": 98,
+              "name": "pokemon-98",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/98",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/98.png"
+            },
+            {
+              "id": 99,
+              "name": "pokemon-99",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/99",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/99.png"
+            },
+            {
+              "id": 100,
+              "name": "pokemon-100",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/100",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/100.png"
+            },
+            {
+              "id": 101,
+              "name": "pokemon-101",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/101",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/101.png"
+            },
+            {
+              "id": 102,
+              "name": "pokemon-102",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/102",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/102.png"
+            },
+            {
+              "id": 103,
+              "name": "pokemon-103",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/103",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/103.png"
+            },
+            {
+              "id": 104,
+              "name": "pokemon-104",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/104",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/104.png"
+            },
+            {
+              "id": 105,
+              "name": "pokemon-105",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/105",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/105.png"
+            },
+            {
+              "id": 106,
+              "name": "pokemon-106",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/106",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/106.png"
+            },
+            {
+              "id": 107,
+              "name": "pokemon-107",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/107",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/107.png"
+            },
+            {
+              "id": 108,
+              "name": "pokemon-108",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/108",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/108.png"
+            },
+            {
+              "id": 109,
+              "name": "pokemon-109",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/109",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/109.png"
+            },
+            {
+              "id": 110,
+              "name": "pokemon-110",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/110",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/110.png"
+            },
+            {
+              "id": 111,
+              "name": "pokemon-111",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/111",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/111.png"
+            },
+            {
+              "id": 112,
+              "name": "pokemon-112",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/112",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/112.png"
+            },
+            {
+              "id": 113,
+              "name": "pokemon-113",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/113",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/113.png"
+            },
+            {
+              "id": 114,
+              "name": "pokemon-114",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/114",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/114.png"
+            },
+            {
+              "id": 115,
+              "name": "pokemon-115",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/115",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/115.png"
+            },
+            {
+              "id": 116,
+              "name": "pokemon-116",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/116",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/116.png"
+            },
+            {
+              "id": 117,
+              "name": "pokemon-117",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/117",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/117.png"
+            },
+            {
+              "id": 118,
+              "name": "pokemon-118",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/118",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/118.png"
+            },
+            {
+              "id": 119,
+              "name": "pokemon-119",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/119",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/119.png"
+            },
+            {
+              "id": 120,
+              "name": "pokemon-120",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/120",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/120.png"
+            },
+            {
+              "id": 121,
+              "name": "pokemon-121",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/121",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/121.png"
+            },
+            {
+              "id": 122,
+              "name": "pokemon-122",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/122",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/122.png"
+            },
+            {
+              "id": 123,
+              "name": "pokemon-123",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/123",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/123.png"
+            },
+            {
+              "id": 124,
+              "name": "pokemon-124",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/124",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/124.png"
+            },
+            {
+              "id": 125,
+              "name": "pokemon-125",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/125",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/125.png"
+            },
+            {
+              "id": 126,
+              "name": "pokemon-126",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/126",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/126.png"
+            },
+            {
+              "id": 127,
+              "name": "pokemon-127",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/127",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/127.png"
+            },
+            {
+              "id": 128,
+              "name": "pokemon-128",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/128",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/128.png"
+            },
+            {
+              "id": 129,
+              "name": "pokemon-129",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/129",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/129.png"
+            },
+            {
+              "id": 130,
+              "name": "pokemon-130",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/130",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/130.png"
+            },
+            {
+              "id": 131,
+              "name": "pokemon-131",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/131",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/131.png"
+            },
+            {
+              "id": 132,
+              "name": "ditto",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/132",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png"
+            },
+            {
+              "id": 133,
+              "name": "pokemon-133",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/133",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/133.png"
+            },
+            {
+              "id": 134,
+              "name": "pokemon-134",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/134",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/134.png"
+            },
+            {
+              "id": 135,
+              "name": "pokemon-135",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/135",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/135.png"
+            },
+            {
+              "id": 136,
+              "name": "pokemon-136",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/136",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/136.png"
+            },
+            {
+              "id": 137,
+              "name": "pokemon-137",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/137",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/137.png"
+            },
+            {
+              "id": 138,
+              "name": "pokemon-138",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/138",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/138.png"
+            },
+            {
+              "id": 139,
+              "name": "pokemon-139",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/139",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/139.png"
+            },
+            {
+              "id": 140,
+              "name": "pokemon-140",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/140",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/140.png"
+            },
+            {
+              "id": 141,
+              "name": "pokemon-141",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/141",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/141.png"
+            },
+            {
+              "id": 142,
+              "name": "pokemon-142",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/142",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/142.png"
+            },
+            {
+              "id": 143,
+              "name": "pokemon-143",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/143",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/143.png"
+            },
+            {
+              "id": 144,
+              "name": "pokemon-144",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/144",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/144.png"
+            },
+            {
+              "id": 145,
+              "name": "pokemon-145",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/145",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/145.png"
+            },
+            {
+              "id": 146,
+              "name": "pokemon-146",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/146",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/146.png"
+            },
+            {
+              "id": 147,
+              "name": "pokemon-147",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/147",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/147.png"
+            },
+            {
+              "id": 148,
+              "name": "pokemon-148",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/148",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/148.png"
+            },
+            {
+              "id": 149,
+              "name": "pokemon-149",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/149",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/149.png"
+            },
+            {
+              "id": 150,
+              "name": "pokemon-150",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/150",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/150.png"
+            },
+            {
+              "id": 151,
+              "name": "mew",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/151",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/151.png"
+            }
+          ]
+        }
+      },
+      "durationMs": 29
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/pokemon-list?limit=10&offset=150"
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "count": 1350,
+          "totalGen1": 151,
+          "results": [
+            {
+              "id": 151,
+              "name": "mew",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/151",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/151.png"
+            },
+            {
+              "id": 152,
+              "name": "pokemon-152",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/152",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/152.png"
+            },
+            {
+              "id": 153,
+              "name": "pokemon-153",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/153",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/153.png"
+            },
+            {
+              "id": 154,
+              "name": "pokemon-154",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/154",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/154.png"
+            },
+            {
+              "id": 155,
+              "name": "pokemon-155",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/155",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/155.png"
+            },
+            {
+              "id": 156,
+              "name": "pokemon-156",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/156",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/156.png"
+            },
+            {
+              "id": 157,
+              "name": "pokemon-157",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/157",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/157.png"
+            },
+            {
+              "id": 158,
+              "name": "pokemon-158",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/158",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/158.png"
+            },
+            {
+              "id": 159,
+              "name": "pokemon-159",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/159",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/159.png"
+            },
+            {
+              "id": 160,
+              "name": "pokemon-160",
+              "url": "http://127.0.0.1:53817/api/v2/pokemon/160",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/160.png"
+            }
+          ]
+        }
+      },
+      "durationMs": 5
+    }
+  ],
+  "serverLog": "Servidor CRUD PokeAPI en http://localhost:53818\n"
+}

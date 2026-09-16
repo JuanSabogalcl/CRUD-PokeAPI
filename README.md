@@ -1,5 +1,7 @@
 # CRUD PokeAPI
 
+> Configuración local y actividad de la semana 7: [LEEME_PRIMERO.md](LEEME_PRIMERO.md). Suite ejecutable: `npm test` (5 smoke + 10 regresión). Entrega: [docs/pruebas/ENTREGA.html](docs/pruebas/ENTREGA.html).
+
 Aplicación web CRUD para gestionar las **seis estadísticas principales** de Pokémon, con conexión a [PokeAPI](https://pokeapi.co/).
 
 ## Estadísticas soportadas
@@ -24,7 +26,7 @@ Aplicación web CRUD para gestionar las **seis estadísticas principales** de Po
 
 ## Requisitos
 
-- [Node.js](https://nodejs.org/) 18 o superior
+- [Node.js](https://nodejs.org/) 22 o superior (verificado con 24.21.0)
 
 ## Instalación y ejecución
 

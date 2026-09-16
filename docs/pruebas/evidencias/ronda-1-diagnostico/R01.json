@@ -1,0 +1,124 @@
+{
+  "id": "R01",
+  "title": "Mapeo de PokeAPI por nombre y número",
+  "criterion": "CA06",
+  "status": "PASA",
+  "observation": "",
+  "durationMs": 165,
+  "evidence": "R01.json",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/pokemon/%20PIKACHU%20"
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": 25,
+          "name": "pikachu",
+          "sprite": "https://example.test/25.png",
+          "stats": {
+            "hp": 35,
+            "attack": 55,
+            "defense": 40,
+            "special-attack": 50,
+            "special-defense": 50,
+            "speed": 90
+          },
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 35
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 55
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 40
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 50
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 50
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 90
+            }
+          ]
+        }
+      },
+      "durationMs": 29
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/pokemon/25"
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": 25,
+          "name": "pikachu",
+          "sprite": "https://example.test/25.png",
+          "stats": {
+            "hp": 35,
+            "attack": 55,
+            "defense": 40,
+            "special-attack": 50,
+            "special-defense": 50,
+            "speed": 90
+          },
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 35
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 55
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 40
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 50
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 50
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 90
+            }
+          ]
+        }
+      },
+      "durationMs": 4
+    }
+  ],
+  "serverLog": "Servidor CRUD PokeAPI en http://localhost:53809\n"
+}

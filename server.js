@@ -1,6 +1,9 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const { randomUUID } = require('node:crypto');
+const { validateRecord } = require('./lib/validation');
+const { fetchJson } = require('./lib/pokeapi-client');
 const {
   STAT_LABELS,
   GEN1_LIMIT,
@@ -11,9 +14,9 @@ const {
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const DATA_DIR = path.join(__dirname, 'data');
+const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, 'data');
 const DATA_FILE = path.join(DATA_DIR, 'records.json');
-const POKEAPI_BASE = 'https://pokeapi.co/api/v2/pokemon';
+const POKEAPI_BASE = process.env.POKEAPI_BASE || 'https://pokeapi.co/api/v2/pokemon';
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -67,21 +70,11 @@ function formatRecord(record) {
 }
 
 async function fetchPokemonList(limit = GEN1_LIMIT, offset = 0) {
-  const response = await fetch(`${POKEAPI_BASE}?limit=${limit}&offset=${offset}`);
-  if (!response.ok) {
-    throw new Error('No se pudo obtener la lista de Pokémon');
-  }
-
-  return response.json();
+  return fetchJson(`${POKEAPI_BASE}?limit=${limit}&offset=${offset}`);
 }
 
 async function fetchPokemonData(nameOrId) {
-  const response = await fetch(`${POKEAPI_BASE}/${nameOrId}`);
-  if (!response.ok) {
-    throw new Error(`Pokémon "${nameOrId}" no encontrado`);
-  }
-
-  return response.json();
+  return fetchJson(`${POKEAPI_BASE}/${encodeURIComponent(nameOrId)}`);
 }
 
 app.get('/api/stats-labels', (_req, res) => {
@@ -89,14 +82,22 @@ app.get('/api/stats-labels', (_req, res) => {
 });
 
 app.get('/api/pokemon-list', async (req, res) => {
-  const limit = Math.min(Number(req.query.limit) || GEN1_LIMIT, GEN1_LIMIT);
-  const offset = Number(req.query.offset) || 0;
+  const parseInteger = (value, fallback) => value === undefined ? fallback
+    : typeof value === 'string' && /^\d+$/.test(value) ? Number(value) : NaN;
+  const requestedLimit = parseInteger(req.query.limit, GEN1_LIMIT);
+  const offset = parseInteger(req.query.offset, 0);
+  if (!Number.isSafeInteger(requestedLimit) || requestedLimit < 1
+    || !Number.isSafeInteger(offset) || offset < 0) {
+    return res.status(400).json({ error: 'limit debe ser un entero positivo y offset un entero no negativo' });
+  }
+  if (offset >= GEN1_LIMIT) return res.json({ count: GEN1_LIMIT, totalGen1: GEN1_LIMIT, results: [] });
+  const limit = Math.min(requestedLimit, GEN1_LIMIT - offset);
 
   try {
     const listData = await fetchPokemonList(limit, offset);
 
     res.json({
-      count: listData.count,
+      count: GEN1_LIMIT,
       totalGen1: GEN1_LIMIT,
       results: listData.results.map((item, index) => ({
         id: offset + index + 1,
@@ -105,8 +106,8 @@ app.get('/api/pokemon-list', async (req, res) => {
         sprite: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${offset + index + 1}.png`,
       })),
     });
-  } catch {
-    res.status(500).json({ error: 'Error al conectar con PokeAPI' });
+  } catch (error) {
+    res.status(error.status === 504 ? 504 : 502).json({ error: error.message || 'Error al conectar con PokeAPI' });
   }
 });
 
@@ -117,7 +118,7 @@ app.get('/api/pokemon/:name', async (req, res) => {
     const data = await fetchPokemonData(name);
     res.json(formatPokemonResponse(data));
   } catch (error) {
-    const status = error.message.includes('no encontrado') ? 404 : 500;
+    const status = error.status || 502;
     res.status(status).json({ error: error.message || 'Error al conectar con PokeAPI' });
   }
 });
@@ -129,8 +130,8 @@ app.post('/api/records/sync-gen1', async (_req, res) => {
       message: `Sincronizados ${result.total} Pokémon de la Gen 1`,
       ...result,
     });
-  } catch {
-    res.status(500).json({ error: 'Error al sincronizar la Gen 1 desde PokeAPI' });
+  } catch (error) {
+    res.status(error.status === 504 ? 504 : 502).json({ error: 'Error al sincronizar la Gen 1 desde PokeAPI' });
   }
 });
 
@@ -151,29 +152,17 @@ app.get('/api/records/:id', (req, res) => {
 });
 
 app.post('/api/records', (req, res) => {
-  const { pokemonName, stats } = req.body;
-
-  if (!pokemonName || !stats) {
-    return res.status(400).json({ error: 'Nombre del Pokémon y estadísticas son requeridos' });
-  }
-
-  const missing = Object.keys(STAT_LABELS).filter(
-    (key) => stats[key] === undefined || stats[key] === null || stats[key] === '',
-  );
-
-  if (missing.length > 0) {
-    return res.status(400).json({ error: 'Todas las estadísticas son requeridas' });
-  }
+  const validation = validateRecord(req.body);
+  if (validation.error) return res.status(400).json({ error: validation.error });
+  const { pokemonName, stats } = validation.value;
 
   const records = readRecords();
   const newRecord = {
-    id: crypto.randomUUID(),
-    pokemonName: pokemonName.toLowerCase(),
+    id: randomUUID(),
+    pokemonName,
     pokemonId: req.body.pokemonId || null,
     sprite: req.body.sprite || null,
-    stats: Object.fromEntries(
-      Object.keys(STAT_LABELS).map((key) => [key, Number(stats[key])]),
-    ),
+    stats,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   };
@@ -192,20 +181,17 @@ app.put('/api/records/:id', (req, res) => {
     return res.status(404).json({ error: 'Registro no encontrado' });
   }
 
-  const { pokemonName, stats } = req.body;
+  const validation = validateRecord(req.body, true);
+  if (validation.error) return res.status(400).json({ error: validation.error });
+  const { pokemonName, stats } = validation.value;
   const current = records[index];
 
   if (pokemonName) {
-    current.pokemonName = pokemonName.toLowerCase();
+    current.pokemonName = pokemonName;
   }
 
   if (stats) {
-    current.stats = Object.fromEntries(
-      Object.keys(STAT_LABELS).map((key) => [
-        key,
-        stats[key] !== undefined ? Number(stats[key]) : current.stats[key],
-      ]),
-    );
+    current.stats = { ...current.stats, ...stats };
   }
 
   current.updatedAt = new Date().toISOString();
@@ -245,8 +231,16 @@ async function bootstrapGen1() {
   }
 }
 
-app.listen(PORT, () => {
+// Express entrega JSON también para errores del parser y del almacenamiento.
+app.use((error, _req, res, _next) => {
+  const status = error.status >= 400 && error.status < 500 ? error.status : 500;
+  res.status(status).json({ error: status === 400 ? 'El cuerpo debe contener JSON válido'
+    : status === 413 ? 'El cuerpo excede el tamaño permitido' : 'No se pudo procesar la solicitud' });
+});
+
+const server = app.listen(PORT, process.env.HOST || '127.0.0.1', () => {
   ensureDataFile();
-  console.log(`Servidor CRUD PokeAPI en http://localhost:${PORT}`);
-  bootstrapGen1();
+  console.log(`Servidor CRUD PokeAPI en http://localhost:${server.address().port}`);
+  if (process.send) process.send({ port: server.address().port });
+  if (process.env.AUTO_SYNC_GEN1 !== 'false') bootstrapGen1();
 });

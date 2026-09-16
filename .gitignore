@@ -1,2 +1,5 @@
 node_modules/
 data/records.json
+*.log
+Entrega_Grupo6_Semana7.zip
+.server-session.json
