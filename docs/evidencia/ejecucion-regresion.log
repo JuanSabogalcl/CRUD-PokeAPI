@@ -1,4 +1,4 @@
-FAIL tests/regression.test.js
+FAIL tests/regression.test.js (5.24 s)
   ● REGRESIÓN - validaciones, errores y casos borde › REG-09 [DEFECTO CONOCIDO] el nombre de un registro se sanitiza antes de guardarse (XSS)
 
     expect(received).not.toContain(expected) // indexOf
@@ -36,5 +36,5 @@ FAIL tests/regression.test.js
 Test Suites: 1 failed, 1 total
 Tests:       2 failed, 8 passed, 10 total
 Snapshots:   0 total
-Time:        4.888 s, estimated 7 s
+Time:        5.389 s, estimated 10 s
 Ran all test suites matching tests/regression.test.js.

@@ -1,4 +1,8 @@
-FAIL tests/regression.test.js (6.642 s)
+
+> crud-pokeapi@1.0.0 test
+> jest --runInBand
+
+FAIL tests/regression.test.js (9.057 s)
   ● REGRESIÓN - validaciones, errores y casos borde › REG-09 [DEFECTO CONOCIDO] el nombre de un registro se sanitiza antes de guardarse (XSS)
 
     expect(received).not.toContain(expected) // indexOf
@@ -33,8 +37,9 @@ FAIL tests/regression.test.js (6.642 s)
 
       at Object.toBe (tests/regression.test.js:114:50)
 
-Test Suites: 1 failed, 1 passed, 2 total
-Tests:       2 failed, 13 passed, 15 total
+
+Test Suites: 1 failed, 3 passed, 4 total
+Tests:       2 failed, 19 passed, 21 total
 Snapshots:   0 total
-Time:        7.528 s
+Time:        10.612 s
 Ran all test suites.

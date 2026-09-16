@@ -8,8 +8,10 @@
     "dev": "node server.js",
     "seed": "node scripts/seed-gen1.js",
     "test": "jest --runInBand",
+    "test:unit": "jest --runInBand tests/unit.test.js",
     "test:smoke": "jest --runInBand tests/smoke.test.js",
-    "test:regression": "jest --runInBand tests/regression.test.js"
+    "test:regression": "jest --runInBand tests/regression.test.js",
+    "test:nonfunctional": "jest --runInBand tests/nonfuncional.test.js"
   },
   "keywords": [
     "pokeapi",

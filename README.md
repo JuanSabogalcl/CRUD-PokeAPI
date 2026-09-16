@@ -63,9 +63,11 @@ Consulta de Ditto: https://pokeapi.co/api/v2/pokemon/ditto
 ## Pruebas
 
 ```bash
-npm test              # suite completa (smoke + regresión)
-npm run test:smoke    # solo camino feliz del CRUD
-npm run test:regression
+npm test                  # suite completa (unitaria + smoke + regresión + no funcional)
+npm run test:unit         # funciones puras (sin servidor ni red)
+npm run test:smoke        # camino feliz del CRUD
+npm run test:regression   # validaciones, casos borde y defectos conocidos
+npm run test:nonfunctional
 ```
 
 Ver [plan de pruebas](docs/plan-pruebas.md) y [reporte de ejecución](docs/reporte-ejecucion.md) (incluye defectos conocidos).
