@@ -1,0 +1,140 @@
+{
+  "startedAt": "2026-10-28T00:19:17.622Z",
+  "endedAt": "2026-10-28T00:19:24.597Z",
+  "node": "v24.21.0",
+  "platform": "win32",
+  "suite": "combat",
+  "provider": "PokeAPI simulada en localhost; integración HTTP real con la API del proyecto",
+  "sourceCommit": "c468b40f1258fd01b1228544065f1a123eef2825",
+  "hashes": {
+    "server.js": "be5ad9ae9fce5d5a552e42f2849b1c7df026d0cf20837c9cc733d88d0016cee0",
+    "lib/pokeapi-sync.js": "434f55004284e9335d9942272de859d0dba72480120c15609ef4bcc3bb6c3620",
+    "lib/pokeapi-client.js": "9fc83a95cea42a2032f89c5e1a790e363d8aa5c2be6d6ed0a07f58f6f1a666ed",
+    "lib/validation.js": "178b2dc262e8e4d98ea8c3ba5837dfaba9c8707af1266d7d342b2a6315cc68cc",
+    "lib/combat/types.js": "055f36e1d9798cb9916d39a9df86b05cc163daf7929839d2f18538fba9e6eaaa",
+    "lib/combat/moves.js": "a9f2218a216b460fd68048c21d9de85eff5f1fb3659d3804e24df23d0d468151",
+    "lib/combat/rules.js": "95d321c3c362f0ccb02585ba86e3b78285c59b1154610678721f3f5f478bbc28",
+    "lib/combat/battle.js": "9422daf6907fc3357e47f2fcdab8d87970ab6feec97eaa5e8e9e11fe9ffabc26",
+    "lib/combat/routes.js": "179b127de89350f3830dd187688632cb481e9cfe0df115e9a5d047e92a2100a3",
+    "tests/run.js": "4b6a55fce15e2f673cc7aca5b13db07208e1caa2d97c10910ce376731f66bb42",
+    "tests/combat-cases.js": "ce099af36f6769381367ed49637842795d3516c107c3ba9e4e637a02d098e3e6",
+    "tests/fixture.js": "189593a795e91a6f4a84ee6c340a2e03cfa3c73e439e1087446c0534e093f8aa",
+    "tests/helpers.js": "b89a13a546ffd31c67e707be571c59be91f188463189fa3bf5d565fa883484f3"
+  },
+  "totals": {
+    "PASA": 12,
+    "FALLA": 0,
+    "BLOQUEADO": 0
+  },
+  "results": [
+    {
+      "id": "C01",
+      "title": "Seleccionar dos Pokémon disponibles en la API",
+      "criterion": "RF01",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 818,
+      "evidence": "C01.json"
+    },
+    {
+      "id": "C02",
+      "title": "Mostrar los datos básicos de ambos Pokémon",
+      "criterion": "RF02/RF03",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 534,
+      "evidence": "C02.json"
+    },
+    {
+      "id": "C03",
+      "title": "Ejecutar un movimiento válido y actualizar los PS",
+      "criterion": "RF04/RF10",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 520,
+      "evidence": "C03.json"
+    },
+    {
+      "id": "C04",
+      "title": "Un movimiento fallido por precisión no causa daño",
+      "criterion": "RF06",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 574,
+      "evidence": "C04.json"
+    },
+    {
+      "id": "C05",
+      "title": "Ataque con STAB y ataque sin STAB",
+      "criterion": "RF07/RF09",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 632,
+      "evidence": "C05.json"
+    },
+    {
+      "id": "C06",
+      "title": "Ataque súper efectivo",
+      "criterion": "RF08",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 571,
+      "evidence": "C06.json"
+    },
+    {
+      "id": "C07",
+      "title": "Ataque poco efectivo",
+      "criterion": "RF08",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 523,
+      "evidence": "C07.json"
+    },
+    {
+      "id": "C08",
+      "title": "Inmunidad entre tipos de primera generación",
+      "criterion": "RF08",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 565,
+      "evidence": "C08.json"
+    },
+    {
+      "id": "C09",
+      "title": "El daño no deja PS negativos",
+      "criterion": "RF10",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 535,
+      "evidence": "C09.json"
+    },
+    {
+      "id": "C10",
+      "title": "El combate termina cuando un Pokémon llega a cero",
+      "criterion": "RF11",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 545,
+      "evidence": "C10.json"
+    },
+    {
+      "id": "C11",
+      "title": "No se permiten acciones después de finalizar",
+      "criterion": "RF11",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 540,
+      "evidence": "C11.json"
+    },
+    {
+      "id": "C12",
+      "title": "Error o dato faltante de la API con mensaje controlado",
+      "criterion": "Sección 10/11",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 572,
+      "evidence": "C12.json"
+    }
+  ],
+  "decision": "LISTO para el alcance automatizado local"
+}

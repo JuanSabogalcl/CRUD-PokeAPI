@@ -11,6 +11,8 @@ const {
   getSpriteUrl,
   syncGen1Records: syncGen1FromApi,
 } = require('./lib/pokeapi-sync');
+const { mapTypesFromApi } = require('./lib/combat/types');
+const { registerCombatRoutes } = require('./lib/combat/routes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -47,6 +49,7 @@ function formatPokemonResponse(data) {
     id: data.id,
     name: data.name,
     sprite: getSpriteUrl(data),
+    types: mapTypesFromApi(data),
     stats,
     statsFormatted: Object.entries(stats).map(([key, value]) => ({
       key,
@@ -214,6 +217,8 @@ app.delete('/api/records/:id', (req, res) => {
 
   res.json({ message: 'Registro eliminado', record: formatRecord(deleted) });
 });
+
+registerCombatRoutes(app, { readRecords, writeRecords, fetchPokemonData });
 
 async function bootstrapGen1() {
   const records = readRecords();

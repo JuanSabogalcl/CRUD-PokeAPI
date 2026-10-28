@@ -164,15 +164,19 @@ add('R10', 'JSON malformado y cuerpo incompatible', 'CA15', async (c) => {
   assert.deepEqual((await c.req('GET', `/api/records/${record.id}`)).data, record);
 });
 
+require('./combat-cases')(add, { ok, jsonError });
+
+const SUITE_PREFIX = { smoke: 'S', regression: 'R', combat: 'C' };
+
 async function main() {
   const suite = process.argv.find((arg) => arg.startsWith('--suite='))?.split('=')[1] || 'all';
-  if (!['all','smoke','regression'].includes(suite)) throw new Error('Suite inválida');
+  if (suite !== 'all' && !SUITE_PREFIX[suite]) throw new Error('Suite inválida');
   const runName = process.argv.find((arg) => arg.startsWith('--run='))?.split('=')[1]
     || new Date().toISOString().replace(/[:.]/g, '-');
   if (!/^[\w-]+$/.test(runName)) throw new Error('Nombre de ronda inválido');
   const outDir = path.join(root, 'docs', 'pruebas', 'evidencias', runName);
   fs.mkdirSync(outDir, { recursive: true });
-  const selected = cases.filter((item) => suite === 'all' || item.id.startsWith(suite === 'smoke' ? 'S' : 'R'));
+  const selected = cases.filter((item) => suite === 'all' || item.id.startsWith(SUITE_PREFIX[suite]));
   const results = [];
   const startedAt = new Date().toISOString();
   for (const item of selected) {
@@ -207,7 +211,7 @@ async function main() {
     }
   }
   const totals = Object.fromEntries(['PASA','FALLA','BLOQUEADO'].map((state) => [state, results.filter((item) => item.status === state).length]));
-  const hashes = Object.fromEntries(['server.js','lib/pokeapi-sync.js','lib/pokeapi-client.js','lib/validation.js','tests/run.js','tests/fixture.js','tests/helpers.js'].filter((file) => fs.existsSync(path.join(root,file))).map((file) => [file, createHash('sha256').update(fs.readFileSync(path.join(root,file))).digest('hex')]));
+  const hashes = Object.fromEntries(['server.js','lib/pokeapi-sync.js','lib/pokeapi-client.js','lib/validation.js','lib/combat/types.js','lib/combat/moves.js','lib/combat/rules.js','lib/combat/battle.js','lib/combat/routes.js','tests/run.js','tests/combat-cases.js','tests/fixture.js','tests/helpers.js'].filter((file) => fs.existsSync(path.join(root,file))).map((file) => [file, createHash('sha256').update(fs.readFileSync(path.join(root,file))).digest('hex')]));
   const report = { startedAt, endedAt: new Date().toISOString(), node: process.version, platform: process.platform,
     suite, provider: 'PokeAPI simulada en localhost; integración HTTP real con la API del proyecto',
     sourceCommit: 'c468b40f1258fd01b1228544065f1a123eef2825', hashes, totals, results,

@@ -7,9 +7,11 @@
     "start": "node server.js",
     "dev": "node server.js",
     "seed": "node scripts/seed-gen1.js",
-    "test": "node tests/run.js",
+    "test": "node --test \"tests/unit/*.test.js\" && node tests/run.js",
+    "test:unit": "node --test \"tests/unit/*.test.js\"",
     "test:smoke": "node tests/run.js --suite=smoke",
     "test:regression": "node tests/run.js --suite=regression",
+    "test:combat": "node tests/run.js --suite=combat",
     "test:live": "node tests/live.js"
   },
   "engines": { "node": ">=22" },

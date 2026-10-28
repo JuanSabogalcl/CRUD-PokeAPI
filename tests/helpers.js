@@ -12,7 +12,8 @@ async function launch(dataDir, pokeapiBase, timeout = 500) {
   const child = fork(path.join(root, 'server.js'), [], {
     cwd: root,
     env: { ...process.env, PORT: '0', HOST: '127.0.0.1', DATA_DIR: dataDir,
-      AUTO_SYNC_GEN1: 'false', POKEAPI_BASE: pokeapiBase, POKEAPI_TIMEOUT_MS: String(timeout) },
+      AUTO_SYNC_GEN1: 'false', POKEAPI_BASE: pokeapiBase, POKEAPI_TIMEOUT_MS: String(timeout),
+      COMBAT_ALLOW_SEED: 'true' },
     stdio: ['ignore', 'pipe', 'pipe', 'ipc'],
   });
   let logs = '';

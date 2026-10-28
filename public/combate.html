@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Combate Pokémon - CRUD PokeAPI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/combate.css">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="header-content">
+        <img src="https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png" alt="PokeAPI" class="logo">
+        <div>
+          <h1>Combate Pokémon</h1>
+          <p>Combate por turnos con los 151 Pokémon de la Gen 1 guardados en el proyecto</p>
+        </div>
+        <a href="/" class="header-link">Volver al CRUD</a>
+      </div>
+    </header>
+
+    <main class="main">
+      <section id="setupSection" class="card">
+        <h2>Preparar combate</h2>
+        <p class="hint">Elige tu Pokémon y el Pokémon salvaje entre los registros de la API del proyecto.
+          El salvaje elegirá sus ataques al azar.</p>
+        <div id="setupError" class="battle-alert hidden" role="alert"></div>
+
+        <div class="setup-grid">
+          <div class="setup-side">
+            <label for="p1Select">Tu Pokémon</label>
+            <select id="p1Select"></select>
+            <div id="p1Preview" class="preview"></div>
+          </div>
+          <div class="setup-vs">VS</div>
+          <div class="setup-side">
+            <label for="p2Select">Pokémon salvaje</label>
+            <select id="p2Select"></select>
+            <div id="p2Preview" class="preview"></div>
+          </div>
+        </div>
+
+        <div class="setup-actions">
+          <button type="button" id="randomBtn" class="secondary">Salvaje aleatorio</button>
+          <button type="button" id="startBtn">¡A combatir!</button>
+        </div>
+      </section>
+
+      <section id="battleSection" class="hidden">
+        <div class="gb-frame">
+          <div class="gb-screen">
+            <div id="scene" class="scene">
+              <div id="enemyInfo" class="info-box enemy-info"></div>
+              <div class="platform enemy-platform"></div>
+              <img id="enemySprite" class="sprite enemy-sprite" alt="">
+              <div class="platform player-platform"></div>
+              <img id="playerSprite" class="sprite player-sprite" alt="">
+              <div id="playerInfo" class="info-box player-info"></div>
+            </div>
+
+            <div id="textBox" class="text-box">
+              <p id="message" class="message" aria-live="polite"></p>
+              <span id="advance" class="advance hidden" aria-hidden="true">▼</span>
+              <div id="commandMenu" class="menu command-menu hidden">
+                <button type="button" class="menu-option" data-command="fight">LUCHAR</button>
+                <button type="button" class="menu-option" data-command="run">HUIR</button>
+              </div>
+              <div id="moveMenu" class="move-menu hidden">
+                <div id="moveGrid" class="menu move-grid"></div>
+                <div id="moveInfo" class="move-info"></div>
+              </div>
+              <div id="endMenu" class="menu command-menu hidden">
+                <button type="button" class="menu-option" data-command="rematch">REVANCHA</button>
+                <button type="button" class="menu-option" data-command="new">NUEVO</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="battleError" class="battle-alert hidden" role="alert"></div>
+        <div id="resultBanner" class="result-banner hidden" role="status"></div>
+        <p class="hint controls-hint">Controles: clic, o teclado con flechas, Enter/Z para aceptar y Esc/X para volver.</p>
+
+        <details class="card log-card">
+          <summary>Registro del combate y cálculo del daño</summary>
+          <ol id="battleLog" class="battle-log" reversed></ol>
+        </details>
+      </section>
+
+      <section class="card">
+        <h2>Reglas aplicadas</h2>
+        <div id="rulesBox" class="rules-box hint">Cargando reglas...</div>
+      </section>
+    </main>
+
+    <div id="toast" class="toast hidden"></div>
+  </div>
+
+  <script src="/js/combate.js"></script>
+</body>
+</html>
