@@ -53,6 +53,21 @@ body {
   object-fit: contain;
 }
 
+.header-content .header-link {
+  margin-left: auto;
+  white-space: nowrap;
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+
+.header-content .header-link:hover {
+  background: var(--surface-light);
+}
+
 .header h1 {
   font-size: 1.8rem;
   margin-bottom: 4px;

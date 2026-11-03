@@ -1,8 +1,12 @@
 # CRUD PokeAPI
 
-Configuración local y actividad de la semana 7: [LEEME_PRIMERO.md](LEEME_PRIMERO.md). Suite ejecutable: `npm test` (5 smoke + 10 regresión). [Informe del grupo 6 con pantallazos](docs/pruebas/INFORME_GRUPO_6.pdf). [Documentos y evidencias](docs/pruebas/ENTREGA.html).
+Configuración local y actividad de la semana 7: [LEEME_PRIMERO.md](LEEME_PRIMERO.md). Suite ejecutable: `npm test` (17 unitarias + 5 smoke + 10 regresión + 12 combate). [Informe del grupo 6 con pantallazos](docs/pruebas/INFORME_GRUPO_6.pdf). [Documentos y evidencias](docs/pruebas/ENTREGA.html).
 
 Aplicación web CRUD para gestionar las **seis estadísticas principales** de Pokémon, con conexión a [PokeAPI](https://pokeapi.co/).
+
+## Módulo de combate
+
+Combate por turnos estilo Game Boy con imágenes modernas en [http://localhost:3000/combate.html](http://localhost:3000/combate.html): eliges tu Pokémon y el Pokémon salvaje, que ataca al azar. Reglas, arquitectura e integración: [docs/combate/ARQUITECTURA.md](docs/combate/ARQUITECTURA.md). Pruebas: [docs/combate/PRUEBAS.md](docs/combate/PRUEBAS.md) (`npm run test:unit` y `npm run test:combat`).
 
 ## Estadísticas soportadas
 
@@ -57,6 +61,10 @@ También puedes usar el botón **Sincronizar 151 Pokémon** en la interfaz web.
 | POST | `/api/records` | Crea un nuevo registro |
 | PUT | `/api/records/:id` | Actualiza un registro |
 | DELETE | `/api/records/:id` | Elimina un registro |
+| GET | `/api/combat/rules` | Reglas, tabla de tipos y movimientos del combate |
+| POST | `/api/battles` | Inicia un combate entre dos registros |
+| GET | `/api/battles/:id` | Estado de un combate |
+| POST | `/api/battles/:id/turn` | Ejecuta una ronda con el movimiento elegido |
 
 ## Ejemplo PokeAPI
 

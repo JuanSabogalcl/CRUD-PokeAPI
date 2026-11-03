@@ -22,6 +22,8 @@ Desde la terminal preparada:
 
 ```bat
 npm test
+npm run test:unit
+npm run test:combat
 npm run test:smoke
 npm run test:regression
 npm run test:live

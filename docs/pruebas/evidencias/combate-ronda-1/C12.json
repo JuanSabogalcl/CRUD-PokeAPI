@@ -1,0 +1,801 @@
+{
+  "id": "C12",
+  "title": "Error o dato faltante de la API con mensaje controlado",
+  "criterion": "Sección 10/11",
+  "status": "PASA",
+  "observation": "",
+  "durationMs": 572,
+  "evidence": "C12.json",
+  "exchanges": [
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "pikachu",
+          "pokemonId": 25,
+          "stats": {
+            "hp": 35,
+            "attack": 55,
+            "defense": 40,
+            "special-attack": 50,
+            "special-defense": 50,
+            "speed": 90
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "ab4cbb7e-a6b7-402f-bb75-61c686588d86",
+          "pokemonName": "pikachu",
+          "pokemonId": 25,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+          "stats": {
+            "hp": 35,
+            "attack": 55,
+            "defense": 40,
+            "special-attack": 50,
+            "special-defense": 50,
+            "speed": 90
+          },
+          "createdAt": "2026-10-28T00:19:24.414Z",
+          "updatedAt": "2026-10-28T00:19:24.416Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 35
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 55
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 40
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 50
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 50
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 90
+            }
+          ]
+        }
+      },
+      "durationMs": 35
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "444ad80d-9d43-4b04-9832-afa27ac95cde",
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          },
+          "createdAt": "2026-10-28T00:19:24.429Z",
+          "updatedAt": "2026-10-28T00:19:24.429Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 48
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 48
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 48
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 48
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 48
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 48
+            }
+          ]
+        }
+      },
+      "durationMs": 8
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "p1": {
+            "recordId": "ab4cbb7e-a6b7-402f-bb75-61c686588d86"
+          },
+          "p2": {
+            "recordId": "444ad80d-9d43-4b04-9832-afa27ac95cde"
+          }
+        }
+      },
+      "response": {
+        "status": 502,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "No se pudieron completar los tipos de pikachu: Error al conectar con PokeAPI"
+        }
+      },
+      "durationMs": 61
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "pvp",
+          "p1": {
+            "recordId": "ab4cbb7e-a6b7-402f-bb75-61c686588d86"
+          },
+          "p2": {
+            "recordId": "444ad80d-9d43-4b04-9832-afa27ac95cde"
+          },
+          "seed": 7
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "1e2d9e76-fdcc-4a50-a2eb-a00bf73c301c",
+          "mode": "pvp",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "ab4cbb7e-a6b7-402f-bb75-61c686588d86",
+              "pokemonId": 25,
+              "name": "pikachu",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+              "types": [
+                "electric"
+              ],
+              "baseStats": {
+                "hp": 35,
+                "attack": 55,
+                "defense": 40,
+                "special-attack": 50,
+                "special-defense": 50,
+                "speed": 90
+              },
+              "stats": {
+                "hp": 95,
+                "attack": 60,
+                "defense": 45,
+                "special-attack": 55,
+                "special-defense": 55,
+                "speed": 95
+              },
+              "hp": {
+                "current": 95,
+                "max": 95
+              },
+              "moves": [
+                {
+                  "id": "thunderbolt",
+                  "name": "Rayo",
+                  "type": "electric",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Eléctrico",
+                  "stab": true
+                },
+                {
+                  "id": "thunder",
+                  "name": "Trueno",
+                  "type": "electric",
+                  "power": 120,
+                  "accuracy": 70,
+                  "category": "special",
+                  "typeLabel": "Eléctrico",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Eléctrico"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "humano",
+              "recordId": "444ad80d-9d43-4b04-9832-afa27ac95cde",
+              "pokemonId": 132,
+              "name": "ditto",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+              "types": [
+                "normal"
+              ],
+              "baseStats": {
+                "hp": 48,
+                "attack": 48,
+                "defense": 48,
+                "special-attack": 48,
+                "special-defense": 48,
+                "speed": 48
+              },
+              "stats": {
+                "hp": 108,
+                "attack": 53,
+                "defense": 53,
+                "special-attack": 53,
+                "special-defense": 53,
+                "speed": 53
+              },
+              "hp": {
+                "current": 108,
+                "max": 108
+              },
+              "moves": [
+                {
+                  "id": "body-slam",
+                  "name": "Golpe Cuerpo",
+                  "type": "normal",
+                  "power": 85,
+                  "accuracy": 100,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": true
+                },
+                {
+                  "id": "slam",
+                  "name": "Atizar",
+                  "type": "normal",
+                  "power": 80,
+                  "accuracy": 75,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": true
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": true
+                }
+              ],
+              "typeLabels": [
+                "Normal"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-10-28T00:19:24.518Z"
+        }
+      },
+      "durationMs": 27
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/records/ab4cbb7e-a6b7-402f-bb75-61c686588d86"
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "ab4cbb7e-a6b7-402f-bb75-61c686588d86",
+          "pokemonName": "pikachu",
+          "pokemonId": 25,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+          "stats": {
+            "hp": 35,
+            "attack": 55,
+            "defense": 40,
+            "special-attack": 50,
+            "special-defense": 50,
+            "speed": 90
+          },
+          "createdAt": "2026-10-28T00:19:24.414Z",
+          "updatedAt": "2026-10-28T00:19:24.416Z",
+          "types": [
+            "electric"
+          ],
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 35
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 55
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 40
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 50
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 50
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 90
+            }
+          ]
+        }
+      },
+      "durationMs": 7
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "grupo6-custom",
+          "stats": {
+            "hp": 50,
+            "attack": 50,
+            "defense": 50,
+            "special-attack": 50,
+            "special-defense": 50,
+            "speed": 50
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "7ea82180-a53e-4a67-ba37-e2b062ed1540",
+          "pokemonName": "grupo6-custom",
+          "pokemonId": null,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png",
+          "stats": {
+            "hp": 50,
+            "attack": 50,
+            "defense": 50,
+            "special-attack": 50,
+            "special-defense": 50,
+            "speed": 50
+          },
+          "createdAt": "2026-10-28T00:19:24.533Z",
+          "updatedAt": "2026-10-28T00:19:24.533Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 50
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 50
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 50
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 50
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 50
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 50
+            }
+          ]
+        }
+      },
+      "durationMs": 7
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "p1": {
+            "recordId": "7ea82180-a53e-4a67-ba37-e2b062ed1540"
+          },
+          "p2": {
+            "recordId": "444ad80d-9d43-4b04-9832-afa27ac95cde"
+          }
+        }
+      },
+      "response": {
+        "status": 422,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "Datos incompletos de grupo6-custom: no tiene tipos y no existe en PokeAPI para completarlos"
+        }
+      },
+      "durationMs": 7
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "p1": {
+            "recordId": "00000000-0000-0000-0000-000000000000"
+          },
+          "p2": {
+            "recordId": "444ad80d-9d43-4b04-9832-afa27ac95cde"
+          }
+        }
+      },
+      "response": {
+        "status": 404,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "Registro 00000000-0000-0000-0000-000000000000 no encontrado"
+        }
+      },
+      "durationMs": 5
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "p1": {
+            "recordId": "ab4cbb7e-a6b7-402f-bb75-61c686588d86"
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "Selecciona un Pokémon para el jugador 2"
+        }
+      },
+      "durationMs": 6
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "online",
+          "p1": {
+            "recordId": "ab4cbb7e-a6b7-402f-bb75-61c686588d86"
+          },
+          "p2": {
+            "recordId": "444ad80d-9d43-4b04-9832-afa27ac95cde"
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "mode debe ser \"cpu\" o \"pvp\""
+        }
+      },
+      "durationMs": 2
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": []
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "El cuerpo debe ser un objeto JSON"
+        }
+      },
+      "durationMs": 3
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/battles/no-existe"
+      },
+      "response": {
+        "status": 404,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "Combate no encontrado"
+        }
+      },
+      "durationMs": 2
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles/1e2d9e76-fdcc-4a50-a2eb-a00bf73c301c/turn",
+        "body": {
+          "p1Move": "hyper-beam",
+          "p2Move": "swift"
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "Selecciona un movimiento válido para pikachu (p1)"
+        }
+      },
+      "durationMs": 3
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/battles/1e2d9e76-fdcc-4a50-a2eb-a00bf73c301c"
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "1e2d9e76-fdcc-4a50-a2eb-a00bf73c301c",
+          "mode": "pvp",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "ab4cbb7e-a6b7-402f-bb75-61c686588d86",
+              "pokemonId": 25,
+              "name": "pikachu",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+              "types": [
+                "electric"
+              ],
+              "baseStats": {
+                "hp": 35,
+                "attack": 55,
+                "defense": 40,
+                "special-attack": 50,
+                "special-defense": 50,
+                "speed": 90
+              },
+              "stats": {
+                "hp": 95,
+                "attack": 60,
+                "defense": 45,
+                "special-attack": 55,
+                "special-defense": 55,
+                "speed": 95
+              },
+              "hp": {
+                "current": 95,
+                "max": 95
+              },
+              "moves": [
+                {
+                  "id": "thunderbolt",
+                  "name": "Rayo",
+                  "type": "electric",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Eléctrico",
+                  "stab": true
+                },
+                {
+                  "id": "thunder",
+                  "name": "Trueno",
+                  "type": "electric",
+                  "power": 120,
+                  "accuracy": 70,
+                  "category": "special",
+                  "typeLabel": "Eléctrico",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Eléctrico"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "humano",
+              "recordId": "444ad80d-9d43-4b04-9832-afa27ac95cde",
+              "pokemonId": 132,
+              "name": "ditto",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+              "types": [
+                "normal"
+              ],
+              "baseStats": {
+                "hp": 48,
+                "attack": 48,
+                "defense": 48,
+                "special-attack": 48,
+                "special-defense": 48,
+                "speed": 48
+              },
+              "stats": {
+                "hp": 108,
+                "attack": 53,
+                "defense": 53,
+                "special-attack": 53,
+                "special-defense": 53,
+                "speed": 53
+              },
+              "hp": {
+                "current": 108,
+                "max": 108
+              },
+              "moves": [
+                {
+                  "id": "body-slam",
+                  "name": "Golpe Cuerpo",
+                  "type": "normal",
+                  "power": 85,
+                  "accuracy": 100,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": true
+                },
+                {
+                  "id": "slam",
+                  "name": "Atizar",
+                  "type": "normal",
+                  "power": 80,
+                  "accuracy": 75,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": true
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": true
+                }
+              ],
+              "typeLabels": [
+                "Normal"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-10-28T00:19:24.518Z"
+        }
+      },
+      "durationMs": 3
+    }
+  ],
+  "serverLog": "Servidor CRUD PokeAPI en http://localhost:48857\n"
+}

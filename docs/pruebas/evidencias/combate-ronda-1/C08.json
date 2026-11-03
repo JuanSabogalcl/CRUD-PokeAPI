@@ -1,0 +1,1254 @@
+{
+  "id": "C08",
+  "title": "Inmunidad entre tipos de primera generación",
+  "criterion": "RF08",
+  "status": "PASA",
+  "observation": "",
+  "durationMs": 565,
+  "evidence": "C08.json",
+  "exchanges": [
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "charmander",
+          "pokemonId": 4,
+          "stats": {
+            "hp": 39,
+            "attack": 52,
+            "defense": 43,
+            "special-attack": 60,
+            "special-defense": 50,
+            "speed": 65
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "c8b7043c-af4a-4615-84e6-2de31c4f538e",
+          "pokemonName": "charmander",
+          "pokemonId": 4,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
+          "stats": {
+            "hp": 39,
+            "attack": 52,
+            "defense": 43,
+            "special-attack": 60,
+            "special-defense": 50,
+            "speed": 65
+          },
+          "createdAt": "2026-10-28T00:19:22.217Z",
+          "updatedAt": "2026-10-28T00:19:22.219Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 39
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 52
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 43
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 60
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 50
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 65
+            }
+          ]
+        }
+      },
+      "durationMs": 33
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "gastly",
+          "pokemonId": 92,
+          "stats": {
+            "hp": 30,
+            "attack": 35,
+            "defense": 30,
+            "special-attack": 100,
+            "special-defense": 35,
+            "speed": 80
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "1e47160b-0247-469b-b7e0-9a5f1aa6ffca",
+          "pokemonName": "gastly",
+          "pokemonId": 92,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/92.png",
+          "stats": {
+            "hp": 30,
+            "attack": 35,
+            "defense": 30,
+            "special-attack": 100,
+            "special-defense": 35,
+            "speed": 80
+          },
+          "createdAt": "2026-10-28T00:19:22.231Z",
+          "updatedAt": "2026-10-28T00:19:22.231Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 30
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 35
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 30
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 100
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 35
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 80
+            }
+          ]
+        }
+      },
+      "durationMs": 9
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "pvp",
+          "p1": {
+            "recordId": "c8b7043c-af4a-4615-84e6-2de31c4f538e"
+          },
+          "p2": {
+            "recordId": "1e47160b-0247-469b-b7e0-9a5f1aa6ffca"
+          },
+          "seed": 7
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "28076e23-acb3-4886-886f-f4390adb8287",
+          "mode": "pvp",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "c8b7043c-af4a-4615-84e6-2de31c4f538e",
+              "pokemonId": 4,
+              "name": "charmander",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
+              "types": [
+                "fire"
+              ],
+              "baseStats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "special-attack": 60,
+                "special-defense": 50,
+                "speed": 65
+              },
+              "stats": {
+                "hp": 99,
+                "attack": 57,
+                "defense": 48,
+                "special-attack": 65,
+                "special-defense": 55,
+                "speed": 70
+              },
+              "hp": {
+                "current": 99,
+                "max": 99
+              },
+              "moves": [
+                {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "power": 120,
+                  "accuracy": 85,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fuego"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "humano",
+              "recordId": "1e47160b-0247-469b-b7e0-9a5f1aa6ffca",
+              "pokemonId": 92,
+              "name": "gastly",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/92.png",
+              "types": [
+                "ghost",
+                "poison"
+              ],
+              "baseStats": {
+                "hp": 30,
+                "attack": 35,
+                "defense": 30,
+                "special-attack": 100,
+                "special-defense": 35,
+                "speed": 80
+              },
+              "stats": {
+                "hp": 90,
+                "attack": 40,
+                "defense": 35,
+                "special-attack": 105,
+                "special-defense": 40,
+                "speed": 85
+              },
+              "hp": {
+                "current": 90,
+                "max": 90
+              },
+              "moves": [
+                {
+                  "id": "lick",
+                  "name": "Lengüetazo",
+                  "type": "ghost",
+                  "power": 20,
+                  "accuracy": 100,
+                  "category": "physical",
+                  "typeLabel": "Fantasma",
+                  "stab": true
+                },
+                {
+                  "id": "sludge",
+                  "name": "Lodo",
+                  "type": "poison",
+                  "power": 65,
+                  "accuracy": 100,
+                  "category": "physical",
+                  "typeLabel": "Veneno",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fantasma",
+                "Veneno"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-10-28T00:19:22.317Z"
+        }
+      },
+      "durationMs": 85
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles/28076e23-acb3-4886-886f-f4390adb8287/turn",
+        "body": {
+          "p1Move": "swift",
+          "p2Move": "swift"
+        }
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "turn": {
+            "round": 1,
+            "order": [
+              "p2",
+              "p1"
+            ],
+            "speedTie": false,
+            "events": [
+              {
+                "attacker": "p2",
+                "defender": "p1",
+                "move": {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "category": "physical",
+                  "power": 60,
+                  "accuracy": null
+                },
+                "hit": true,
+                "damage": 30,
+                "hpBefore": 99,
+                "hpAfter": 69,
+                "fainted": false,
+                "effectiveness": 1,
+                "stab": 1,
+                "baseDamage": 24,
+                "critical": true,
+                "random": 85,
+                "message": "gastly usó Rapidez. ¡Golpe crítico! charmander pierde 30 PS."
+              },
+              {
+                "attacker": "p1",
+                "defender": "p2",
+                "move": {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "category": "physical",
+                  "power": 60,
+                  "accuracy": null
+                },
+                "hit": true,
+                "damage": 0,
+                "hpBefore": 90,
+                "hpAfter": 90,
+                "fainted": false,
+                "effectiveness": 0,
+                "stab": 1,
+                "baseDamage": 44,
+                "critical": false,
+                "message": "charmander usó Rapidez. No afecta a gastly..."
+              }
+            ]
+          },
+          "battle": {
+            "id": "28076e23-acb3-4886-886f-f4390adb8287",
+            "mode": "pvp",
+            "status": "en-curso",
+            "round": 1,
+            "level": 50,
+            "participants": {
+              "p1": {
+                "side": "p1",
+                "controller": "humano",
+                "recordId": "c8b7043c-af4a-4615-84e6-2de31c4f538e",
+                "pokemonId": 4,
+                "name": "charmander",
+                "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
+                "types": [
+                  "fire"
+                ],
+                "baseStats": {
+                  "hp": 39,
+                  "attack": 52,
+                  "defense": 43,
+                  "special-attack": 60,
+                  "special-defense": 50,
+                  "speed": 65
+                },
+                "stats": {
+                  "hp": 99,
+                  "attack": 57,
+                  "defense": 48,
+                  "special-attack": 65,
+                  "special-defense": 55,
+                  "speed": 70
+                },
+                "hp": {
+                  "current": 69,
+                  "max": 99
+                },
+                "moves": [
+                  {
+                    "id": "flamethrower",
+                    "name": "Lanzallamas",
+                    "type": "fire",
+                    "power": 95,
+                    "accuracy": 100,
+                    "category": "special",
+                    "typeLabel": "Fuego",
+                    "stab": true
+                  },
+                  {
+                    "id": "fire-blast",
+                    "name": "Llamarada",
+                    "type": "fire",
+                    "power": 120,
+                    "accuracy": 85,
+                    "category": "special",
+                    "typeLabel": "Fuego",
+                    "stab": true
+                  },
+                  {
+                    "id": "tackle",
+                    "name": "Placaje",
+                    "type": "normal",
+                    "power": 35,
+                    "accuracy": 95,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": false
+                  },
+                  {
+                    "id": "swift",
+                    "name": "Rapidez",
+                    "type": "normal",
+                    "power": 60,
+                    "accuracy": null,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": false
+                  }
+                ],
+                "typeLabels": [
+                  "Fuego"
+                ]
+              },
+              "p2": {
+                "side": "p2",
+                "controller": "humano",
+                "recordId": "1e47160b-0247-469b-b7e0-9a5f1aa6ffca",
+                "pokemonId": 92,
+                "name": "gastly",
+                "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/92.png",
+                "types": [
+                  "ghost",
+                  "poison"
+                ],
+                "baseStats": {
+                  "hp": 30,
+                  "attack": 35,
+                  "defense": 30,
+                  "special-attack": 100,
+                  "special-defense": 35,
+                  "speed": 80
+                },
+                "stats": {
+                  "hp": 90,
+                  "attack": 40,
+                  "defense": 35,
+                  "special-attack": 105,
+                  "special-defense": 40,
+                  "speed": 85
+                },
+                "hp": {
+                  "current": 90,
+                  "max": 90
+                },
+                "moves": [
+                  {
+                    "id": "lick",
+                    "name": "Lengüetazo",
+                    "type": "ghost",
+                    "power": 20,
+                    "accuracy": 100,
+                    "category": "physical",
+                    "typeLabel": "Fantasma",
+                    "stab": true
+                  },
+                  {
+                    "id": "sludge",
+                    "name": "Lodo",
+                    "type": "poison",
+                    "power": 65,
+                    "accuracy": 100,
+                    "category": "physical",
+                    "typeLabel": "Veneno",
+                    "stab": true
+                  },
+                  {
+                    "id": "tackle",
+                    "name": "Placaje",
+                    "type": "normal",
+                    "power": 35,
+                    "accuracy": 95,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": false
+                  },
+                  {
+                    "id": "swift",
+                    "name": "Rapidez",
+                    "type": "normal",
+                    "power": 60,
+                    "accuracy": null,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": false
+                  }
+                ],
+                "typeLabels": [
+                  "Fantasma",
+                  "Veneno"
+                ]
+              }
+            },
+            "turns": [
+              {
+                "round": 1,
+                "order": [
+                  "p2",
+                  "p1"
+                ],
+                "speedTie": false,
+                "events": [
+                  {
+                    "attacker": "p2",
+                    "defender": "p1",
+                    "move": {
+                      "id": "swift",
+                      "name": "Rapidez",
+                      "type": "normal",
+                      "category": "physical",
+                      "power": 60,
+                      "accuracy": null
+                    },
+                    "hit": true,
+                    "damage": 30,
+                    "hpBefore": 99,
+                    "hpAfter": 69,
+                    "fainted": false,
+                    "effectiveness": 1,
+                    "stab": 1,
+                    "baseDamage": 24,
+                    "critical": true,
+                    "random": 85,
+                    "message": "gastly usó Rapidez. ¡Golpe crítico! charmander pierde 30 PS."
+                  },
+                  {
+                    "attacker": "p1",
+                    "defender": "p2",
+                    "move": {
+                      "id": "swift",
+                      "name": "Rapidez",
+                      "type": "normal",
+                      "category": "physical",
+                      "power": 60,
+                      "accuracy": null
+                    },
+                    "hit": true,
+                    "damage": 0,
+                    "hpBefore": 90,
+                    "hpAfter": 90,
+                    "fainted": false,
+                    "effectiveness": 0,
+                    "stab": 1,
+                    "baseDamage": 44,
+                    "critical": false,
+                    "message": "charmander usó Rapidez. No afecta a gastly..."
+                  }
+                ]
+              }
+            ],
+            "result": null,
+            "createdAt": "2026-10-28T00:19:22.317Z"
+          }
+        }
+      },
+      "durationMs": 4
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "pikachu",
+          "pokemonId": 25,
+          "stats": {
+            "hp": 35,
+            "attack": 55,
+            "defense": 40,
+            "special-attack": 50,
+            "special-defense": 50,
+            "speed": 90
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "cecac8f0-b530-47d3-89f9-21864727b1a2",
+          "pokemonName": "pikachu",
+          "pokemonId": 25,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+          "stats": {
+            "hp": 35,
+            "attack": 55,
+            "defense": 40,
+            "special-attack": 50,
+            "special-defense": 50,
+            "speed": 90
+          },
+          "createdAt": "2026-10-28T00:19:22.328Z",
+          "updatedAt": "2026-10-28T00:19:22.328Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 35
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 55
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 40
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 50
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 50
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 90
+            }
+          ]
+        }
+      },
+      "durationMs": 9
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "diglett",
+          "pokemonId": 50,
+          "stats": {
+            "hp": 10,
+            "attack": 55,
+            "defense": 25,
+            "special-attack": 35,
+            "special-defense": 45,
+            "speed": 95
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "dba725ca-8e6f-4349-b5b1-7eb342d01838",
+          "pokemonName": "diglett",
+          "pokemonId": 50,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/50.png",
+          "stats": {
+            "hp": 10,
+            "attack": 55,
+            "defense": 25,
+            "special-attack": 35,
+            "special-defense": 45,
+            "speed": 95
+          },
+          "createdAt": "2026-10-28T00:19:22.337Z",
+          "updatedAt": "2026-10-28T00:19:22.337Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 10
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 55
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 25
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 35
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 45
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 95
+            }
+          ]
+        }
+      },
+      "durationMs": 7
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "pvp",
+          "p1": {
+            "recordId": "cecac8f0-b530-47d3-89f9-21864727b1a2"
+          },
+          "p2": {
+            "recordId": "dba725ca-8e6f-4349-b5b1-7eb342d01838"
+          },
+          "seed": 7
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "155a26d6-d7f5-468d-922c-696651cf3a25",
+          "mode": "pvp",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "cecac8f0-b530-47d3-89f9-21864727b1a2",
+              "pokemonId": 25,
+              "name": "pikachu",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+              "types": [
+                "electric"
+              ],
+              "baseStats": {
+                "hp": 35,
+                "attack": 55,
+                "defense": 40,
+                "special-attack": 50,
+                "special-defense": 50,
+                "speed": 90
+              },
+              "stats": {
+                "hp": 95,
+                "attack": 60,
+                "defense": 45,
+                "special-attack": 55,
+                "special-defense": 55,
+                "speed": 95
+              },
+              "hp": {
+                "current": 95,
+                "max": 95
+              },
+              "moves": [
+                {
+                  "id": "thunderbolt",
+                  "name": "Rayo",
+                  "type": "electric",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Eléctrico",
+                  "stab": true
+                },
+                {
+                  "id": "thunder",
+                  "name": "Trueno",
+                  "type": "electric",
+                  "power": 120,
+                  "accuracy": 70,
+                  "category": "special",
+                  "typeLabel": "Eléctrico",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Eléctrico"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "humano",
+              "recordId": "dba725ca-8e6f-4349-b5b1-7eb342d01838",
+              "pokemonId": 50,
+              "name": "diglett",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/50.png",
+              "types": [
+                "ground"
+              ],
+              "baseStats": {
+                "hp": 10,
+                "attack": 55,
+                "defense": 25,
+                "special-attack": 35,
+                "special-defense": 45,
+                "speed": 95
+              },
+              "stats": {
+                "hp": 70,
+                "attack": 60,
+                "defense": 30,
+                "special-attack": 40,
+                "special-defense": 50,
+                "speed": 100
+              },
+              "hp": {
+                "current": 70,
+                "max": 70
+              },
+              "moves": [
+                {
+                  "id": "earthquake",
+                  "name": "Terremoto",
+                  "type": "ground",
+                  "power": 100,
+                  "accuracy": 100,
+                  "category": "physical",
+                  "typeLabel": "Tierra",
+                  "stab": true
+                },
+                {
+                  "id": "bone-club",
+                  "name": "Hueso Palo",
+                  "type": "ground",
+                  "power": 65,
+                  "accuracy": 85,
+                  "category": "physical",
+                  "typeLabel": "Tierra",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Tierra"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-10-28T00:19:22.360Z"
+        }
+      },
+      "durationMs": 22
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles/155a26d6-d7f5-468d-922c-696651cf3a25/turn",
+        "body": {
+          "p1Move": "thunderbolt",
+          "p2Move": "swift"
+        }
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "turn": {
+            "round": 1,
+            "order": [
+              "p2",
+              "p1"
+            ],
+            "speedTie": false,
+            "events": [
+              {
+                "attacker": "p2",
+                "defender": "p1",
+                "move": {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "category": "physical",
+                  "power": 60,
+                  "accuracy": null
+                },
+                "hit": true,
+                "damage": 47,
+                "hpBefore": 95,
+                "hpAfter": 48,
+                "fainted": false,
+                "effectiveness": 1,
+                "stab": 1,
+                "baseDamage": 37,
+                "critical": true,
+                "random": 85,
+                "message": "diglett usó Rapidez. ¡Golpe crítico! pikachu pierde 47 PS."
+              },
+              {
+                "attacker": "p1",
+                "defender": "p2",
+                "move": {
+                  "id": "thunderbolt",
+                  "name": "Rayo",
+                  "type": "electric",
+                  "category": "special",
+                  "power": 95,
+                  "accuracy": 100
+                },
+                "hit": true,
+                "damage": 0,
+                "hpBefore": 70,
+                "hpAfter": 70,
+                "fainted": false,
+                "effectiveness": 0,
+                "stab": 1.5,
+                "baseDamage": 47,
+                "critical": false,
+                "message": "pikachu usó Rayo. No afecta a diglett..."
+              }
+            ]
+          },
+          "battle": {
+            "id": "155a26d6-d7f5-468d-922c-696651cf3a25",
+            "mode": "pvp",
+            "status": "en-curso",
+            "round": 1,
+            "level": 50,
+            "participants": {
+              "p1": {
+                "side": "p1",
+                "controller": "humano",
+                "recordId": "cecac8f0-b530-47d3-89f9-21864727b1a2",
+                "pokemonId": 25,
+                "name": "pikachu",
+                "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+                "types": [
+                  "electric"
+                ],
+                "baseStats": {
+                  "hp": 35,
+                  "attack": 55,
+                  "defense": 40,
+                  "special-attack": 50,
+                  "special-defense": 50,
+                  "speed": 90
+                },
+                "stats": {
+                  "hp": 95,
+                  "attack": 60,
+                  "defense": 45,
+                  "special-attack": 55,
+                  "special-defense": 55,
+                  "speed": 95
+                },
+                "hp": {
+                  "current": 48,
+                  "max": 95
+                },
+                "moves": [
+                  {
+                    "id": "thunderbolt",
+                    "name": "Rayo",
+                    "type": "electric",
+                    "power": 95,
+                    "accuracy": 100,
+                    "category": "special",
+                    "typeLabel": "Eléctrico",
+                    "stab": true
+                  },
+                  {
+                    "id": "thunder",
+                    "name": "Trueno",
+                    "type": "electric",
+                    "power": 120,
+                    "accuracy": 70,
+                    "category": "special",
+                    "typeLabel": "Eléctrico",
+                    "stab": true
+                  },
+                  {
+                    "id": "tackle",
+                    "name": "Placaje",
+                    "type": "normal",
+                    "power": 35,
+                    "accuracy": 95,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": false
+                  },
+                  {
+                    "id": "swift",
+                    "name": "Rapidez",
+                    "type": "normal",
+                    "power": 60,
+                    "accuracy": null,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": false
+                  }
+                ],
+                "typeLabels": [
+                  "Eléctrico"
+                ]
+              },
+              "p2": {
+                "side": "p2",
+                "controller": "humano",
+                "recordId": "dba725ca-8e6f-4349-b5b1-7eb342d01838",
+                "pokemonId": 50,
+                "name": "diglett",
+                "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/50.png",
+                "types": [
+                  "ground"
+                ],
+                "baseStats": {
+                  "hp": 10,
+                  "attack": 55,
+                  "defense": 25,
+                  "special-attack": 35,
+                  "special-defense": 45,
+                  "speed": 95
+                },
+                "stats": {
+                  "hp": 70,
+                  "attack": 60,
+                  "defense": 30,
+                  "special-attack": 40,
+                  "special-defense": 50,
+                  "speed": 100
+                },
+                "hp": {
+                  "current": 70,
+                  "max": 70
+                },
+                "moves": [
+                  {
+                    "id": "earthquake",
+                    "name": "Terremoto",
+                    "type": "ground",
+                    "power": 100,
+                    "accuracy": 100,
+                    "category": "physical",
+                    "typeLabel": "Tierra",
+                    "stab": true
+                  },
+                  {
+                    "id": "bone-club",
+                    "name": "Hueso Palo",
+                    "type": "ground",
+                    "power": 65,
+                    "accuracy": 85,
+                    "category": "physical",
+                    "typeLabel": "Tierra",
+                    "stab": true
+                  },
+                  {
+                    "id": "tackle",
+                    "name": "Placaje",
+                    "type": "normal",
+                    "power": 35,
+                    "accuracy": 95,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": false
+                  },
+                  {
+                    "id": "swift",
+                    "name": "Rapidez",
+                    "type": "normal",
+                    "power": 60,
+                    "accuracy": null,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": false
+                  }
+                ],
+                "typeLabels": [
+                  "Tierra"
+                ]
+              }
+            },
+            "turns": [
+              {
+                "round": 1,
+                "order": [
+                  "p2",
+                  "p1"
+                ],
+                "speedTie": false,
+                "events": [
+                  {
+                    "attacker": "p2",
+                    "defender": "p1",
+                    "move": {
+                      "id": "swift",
+                      "name": "Rapidez",
+                      "type": "normal",
+                      "category": "physical",
+                      "power": 60,
+                      "accuracy": null
+                    },
+                    "hit": true,
+                    "damage": 47,
+                    "hpBefore": 95,
+                    "hpAfter": 48,
+                    "fainted": false,
+                    "effectiveness": 1,
+                    "stab": 1,
+                    "baseDamage": 37,
+                    "critical": true,
+                    "random": 85,
+                    "message": "diglett usó Rapidez. ¡Golpe crítico! pikachu pierde 47 PS."
+                  },
+                  {
+                    "attacker": "p1",
+                    "defender": "p2",
+                    "move": {
+                      "id": "thunderbolt",
+                      "name": "Rayo",
+                      "type": "electric",
+                      "category": "special",
+                      "power": 95,
+                      "accuracy": 100
+                    },
+                    "hit": true,
+                    "damage": 0,
+                    "hpBefore": 70,
+                    "hpAfter": 70,
+                    "fainted": false,
+                    "effectiveness": 0,
+                    "stab": 1.5,
+                    "baseDamage": 47,
+                    "critical": false,
+                    "message": "pikachu usó Rayo. No afecta a diglett..."
+                  }
+                ]
+              }
+            ],
+            "result": null,
+            "createdAt": "2026-10-28T00:19:22.360Z"
+          }
+        }
+      },
+      "durationMs": 3
+    }
+  ],
+  "serverLog": "Servidor CRUD PokeAPI en http://localhost:48831\n"
+}

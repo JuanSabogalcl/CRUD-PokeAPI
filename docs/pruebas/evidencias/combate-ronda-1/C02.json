@@ -1,0 +1,585 @@
+{
+  "id": "C02",
+  "title": "Mostrar los datos básicos de ambos Pokémon",
+  "criterion": "RF02/RF03",
+  "status": "PASA",
+  "observation": "",
+  "durationMs": 534,
+  "evidence": "C02.json",
+  "exchanges": [
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "pikachu",
+          "pokemonId": 25,
+          "stats": {
+            "hp": 35,
+            "attack": 55,
+            "defense": 40,
+            "special-attack": 50,
+            "special-defense": 50,
+            "speed": 90
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "ebce2fc3-8cda-4058-9a55-cbba4678682b",
+          "pokemonName": "pikachu",
+          "pokemonId": 25,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+          "stats": {
+            "hp": 35,
+            "attack": 55,
+            "defense": 40,
+            "special-attack": 50,
+            "special-defense": 50,
+            "speed": 90
+          },
+          "createdAt": "2026-10-28T00:19:18.840Z",
+          "updatedAt": "2026-10-28T00:19:18.842Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 35
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 55
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 40
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 50
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 50
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 90
+            }
+          ]
+        }
+      },
+      "durationMs": 35
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "squirtle",
+          "pokemonId": 7,
+          "stats": {
+            "hp": 44,
+            "attack": 48,
+            "defense": 65,
+            "special-attack": 50,
+            "special-defense": 64,
+            "speed": 43
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "4ccfa257-ab07-4987-97e5-aef93da8f108",
+          "pokemonName": "squirtle",
+          "pokemonId": 7,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
+          "stats": {
+            "hp": 44,
+            "attack": 48,
+            "defense": 65,
+            "special-attack": 50,
+            "special-defense": 64,
+            "speed": 43
+          },
+          "createdAt": "2026-10-28T00:19:18.857Z",
+          "updatedAt": "2026-10-28T00:19:18.857Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 44
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 48
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 65
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 50
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 64
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 43
+            }
+          ]
+        }
+      },
+      "durationMs": 11
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "pvp",
+          "p1": {
+            "recordId": "ebce2fc3-8cda-4058-9a55-cbba4678682b"
+          },
+          "p2": {
+            "recordId": "4ccfa257-ab07-4987-97e5-aef93da8f108"
+          },
+          "seed": 7
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "fd13878c-77d2-49f9-9fd6-a4862040595a",
+          "mode": "pvp",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "ebce2fc3-8cda-4058-9a55-cbba4678682b",
+              "pokemonId": 25,
+              "name": "pikachu",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+              "types": [
+                "electric"
+              ],
+              "baseStats": {
+                "hp": 35,
+                "attack": 55,
+                "defense": 40,
+                "special-attack": 50,
+                "special-defense": 50,
+                "speed": 90
+              },
+              "stats": {
+                "hp": 95,
+                "attack": 60,
+                "defense": 45,
+                "special-attack": 55,
+                "special-defense": 55,
+                "speed": 95
+              },
+              "hp": {
+                "current": 95,
+                "max": 95
+              },
+              "moves": [
+                {
+                  "id": "thunderbolt",
+                  "name": "Rayo",
+                  "type": "electric",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Eléctrico",
+                  "stab": true
+                },
+                {
+                  "id": "thunder",
+                  "name": "Trueno",
+                  "type": "electric",
+                  "power": 120,
+                  "accuracy": 70,
+                  "category": "special",
+                  "typeLabel": "Eléctrico",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Eléctrico"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "humano",
+              "recordId": "4ccfa257-ab07-4987-97e5-aef93da8f108",
+              "pokemonId": 7,
+              "name": "squirtle",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
+              "types": [
+                "water"
+              ],
+              "baseStats": {
+                "hp": 44,
+                "attack": 48,
+                "defense": 65,
+                "special-attack": 50,
+                "special-defense": 64,
+                "speed": 43
+              },
+              "stats": {
+                "hp": 104,
+                "attack": 53,
+                "defense": 70,
+                "special-attack": 55,
+                "special-defense": 69,
+                "speed": 48
+              },
+              "hp": {
+                "current": 104,
+                "max": 104
+              },
+              "moves": [
+                {
+                  "id": "surf",
+                  "name": "Surf",
+                  "type": "water",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "hydro-pump",
+                  "name": "Hidrobomba",
+                  "type": "water",
+                  "power": 120,
+                  "accuracy": 80,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Agua"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-10-28T00:19:18.942Z"
+        }
+      },
+      "durationMs": 84
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/battles/fd13878c-77d2-49f9-9fd6-a4862040595a"
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "fd13878c-77d2-49f9-9fd6-a4862040595a",
+          "mode": "pvp",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "ebce2fc3-8cda-4058-9a55-cbba4678682b",
+              "pokemonId": 25,
+              "name": "pikachu",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+              "types": [
+                "electric"
+              ],
+              "baseStats": {
+                "hp": 35,
+                "attack": 55,
+                "defense": 40,
+                "special-attack": 50,
+                "special-defense": 50,
+                "speed": 90
+              },
+              "stats": {
+                "hp": 95,
+                "attack": 60,
+                "defense": 45,
+                "special-attack": 55,
+                "special-defense": 55,
+                "speed": 95
+              },
+              "hp": {
+                "current": 95,
+                "max": 95
+              },
+              "moves": [
+                {
+                  "id": "thunderbolt",
+                  "name": "Rayo",
+                  "type": "electric",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Eléctrico",
+                  "stab": true
+                },
+                {
+                  "id": "thunder",
+                  "name": "Trueno",
+                  "type": "electric",
+                  "power": 120,
+                  "accuracy": 70,
+                  "category": "special",
+                  "typeLabel": "Eléctrico",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Eléctrico"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "humano",
+              "recordId": "4ccfa257-ab07-4987-97e5-aef93da8f108",
+              "pokemonId": 7,
+              "name": "squirtle",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
+              "types": [
+                "water"
+              ],
+              "baseStats": {
+                "hp": 44,
+                "attack": 48,
+                "defense": 65,
+                "special-attack": 50,
+                "special-defense": 64,
+                "speed": 43
+              },
+              "stats": {
+                "hp": 104,
+                "attack": 53,
+                "defense": 70,
+                "special-attack": 55,
+                "special-defense": 69,
+                "speed": 48
+              },
+              "hp": {
+                "current": 104,
+                "max": 104
+              },
+              "moves": [
+                {
+                  "id": "surf",
+                  "name": "Surf",
+                  "type": "water",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "hydro-pump",
+                  "name": "Hidrobomba",
+                  "type": "water",
+                  "power": 120,
+                  "accuracy": 80,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Agua"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-10-28T00:19:18.942Z"
+        }
+      },
+      "durationMs": 7
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/pokemon/clefairy"
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": 35,
+          "name": "clefairy",
+          "sprite": "https://example.test/35.png",
+          "types": [
+            "normal"
+          ],
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          },
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 48
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 48
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 48
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 48
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 48
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 48
+            }
+          ]
+        }
+      },
+      "durationMs": 7
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/combate.html"
+      },
+      "response": {
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "body": "<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Combate Pokémon - CRUD PokeAPI</title>\n  <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n  <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n  <link href=\"https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap\" rel=\"stylesheet\">\n  <link rel=\"stylesheet\" href=\"/css/style.css\">\n  <link rel=\"stylesheet\" href=\"/css/combate.css\">\n</head>\n<body>\n  <div class=\"app\">\n    <header class=\"header\">\n      <div class=\"header-content\">\n        <img src=\"https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png\" alt=\"PokeAPI\" class=\"logo\">\n        <div>\n          <h1>Combate Pokémon</h1>\n          <p>Combate por turnos con los 151 Pokémon de la Gen 1 guardados en el proyecto</p>\n        </div>\n        <a href=\"/\" class=\"header-link\">Volver al CRUD</a>\n      </div>\n    </header>\n\n    <main class=\"main\">\n      <section id=\"setupSection\" class=\"card\">\n        <h2>Preparar combate</h2>\n        <p class=\"hint\">Elige tu Pokémon y el Pokémon salvaje entre los registros de la API del proyecto.\n          El salvaje elegirá sus ataques al azar.</p>\n        <div id=\"setupError\" class=\"battle-alert hidden\" role=\"alert\"></div>\n\n        <div class=\"setup-grid\">\n          <div class=\"setup-side\">\n            <label for=\"p1Select\">Tu Pokémon</label>\n            <select id=\"p1Select\"></select>\n            <div id=\"p1Preview\" class=\"preview\"></div>\n          </div>\n          <div class=\"setup-vs\">VS</div>\n          <div class=\"setup-side\">\n            <label for=\"p2Select\">Pokémon salvaje</label>\n            <select id=\"p2Select\"></select>\n            <div id=\"p2Preview\" class=\"preview\"></div>\n          </div>\n        </div>\n\n        <div class=\"setup-actions\">\n          <button type=\"button\" id=\"randomBtn\" class=\"secondary\">Salvaje aleatorio</button>\n          <button type=\"button\" id=\"startBtn\">¡A combatir!</button>\n        </div>\n      </section>\n\n      <section id=\"battleSection\" class=\"hidden\">\n        <div class=\"gb-frame\">\n          <div class=\"gb-screen\">\n            <div id=\"scene\" class=\"scene\">\n              <div id=\"enemyInfo\" class=\"info-box enemy-info\"></div>\n              <div class=\"platform enemy-platform\"></div>\n              <img id=\"enemySprite\" class=\"sprite enemy-sprite\" alt=\"\">\n              <div class=\"platform player-platform\"></div>\n              <img id=\"playerSprite\" class=\"sprite player-sprite\" alt=\"\">\n              <div id=\"playerInfo\" class=\"info-box player-info\"></div>\n            </div>\n\n            <div id=\"textBox\" class=\"text-box\">\n              <p id=\"message\" class=\"message\" aria-live=\"polite\"></p>\n              <span id=\"advance\" class=\"advance hidden\" aria-hidden=\"true\">▼</span>\n              <div id=\"commandMenu\" class=\"menu command-menu hidden\">\n                <button type=\"button\" class=\"menu-option\" data-command=\"fight\">LUCHAR</button>\n                <button type=\"button\" class=\"menu-option\" data-command=\"run\">HUIR</button>\n              </div>\n              <div id=\"moveMenu\" class=\"move-menu hidden\">\n                <div id=\"moveGrid\" class=\"menu move-grid\"></div>\n                <div id=\"moveInfo\" class=\"move-info\"></div>\n              </div>\n              <div id=\"endMenu\" class=\"menu command-menu hidden\">\n                <button type=\"button\" class=\"menu-option\" data-command=\"rematch\">REVANCHA</button>\n                <button type=\"button\" class=\"menu-option\" data-command=\"new\">NUEVO</button>\n              </div>\n            </div>\n          </div>\n        </div>\n\n        <div id=\"battleError\" class=\"battle-alert hidden\" role=\"alert\"></div>\n        <div id=\"resultBanner\" class=\"result-banner hidden\" role=\"status\"></div>\n        <p class=\"hint controls-hint\">Controles: clic, o teclado con flechas, Enter/Z para aceptar y Esc/X para volver.</p>\n\n        <details class=\"card log-card\">\n          <summary>Registro del combate y cálculo del daño</summary>\n          <ol id=\"battleLog\" class=\"battle-log\" reversed></ol>\n        </details>\n      </section>\n\n      <section class=\"card\">\n        <h2>Reglas aplicadas</h2>\n        <div id=\"rulesBox\" class=\"rules-box hint\">Cargando reglas...</div>\n      </section>\n    </main>\n\n    <div id=\"toast\" class=\"toast hidden\"></div>\n  </div>\n\n  <script src=\"/js/combate.js\"></script>\n</body>\n</html>\n"
+      },
+      "durationMs": 7
+    }
+  ],
+  "serverLog": "Servidor CRUD PokeAPI en http://localhost:48793\n"
+}
