@@ -15,7 +15,8 @@ const species = {
 };
 const typeList = (names) => names.map((name, index) => ({ slot: index + 1, type: { name } }));
 
-async function createFixture() {
+// realSprites: usa las imágenes reales de GitHub (pruebas de interfaz con capturas legibles).
+async function createFixture({ realSprites = false } = {}) {
   const state = { failure: false, brokenDetail: false };
   const names = Array.from({ length: 151 }, (_, i) => `pokemon-${i + 1}`);
   names[0] = 'bulbasaur'; names[24] = 'pikachu'; names[131] = 'ditto'; names[150] = 'mew';
@@ -51,7 +52,8 @@ async function createFixture() {
       stats: fields.map((name, index) => ({ stat: { name }, base_stat: values[index] })),
       types: typeList(species[id]?.types || ['normal']),
       past_types: species[id]?.past ? [{ generation: { name: 'generation-v' }, types: typeList(species[id].past) }] : [],
-      sprites: { front_default: `https://example.test/${id}.png` },
+      sprites: { front_default: realSprites
+        ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png` : `https://example.test/${id}.png` },
     });
   });
   server.listen(0, '127.0.0.1');

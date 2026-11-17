@@ -14,7 +14,8 @@
     "test:combat": "node tests/run.js --suite=combat",
     "test:exploratoria": "node tests/run.js --suite=exploratoria",
     "test:nofuncional": "node tests/run.js --suite=nofuncional",
-    "test:live": "node tests/live.js"
+    "test:live": "node tests/live.js",
+    "test:ui": "node tests/ui/run-ui.js"
   },
   "engines": { "node": ">=22" },
   "keywords": ["pokeapi", "pokemon", "crud"],

@@ -1,0 +1,38 @@
+{
+  "id": "U05",
+  "title": "Nombre de 41 caracteres",
+  "criterion": "D16 / interfaz",
+  "status": "PASA",
+  "observation": "Caracteres aceptados en el campo: 41. Avisos: El nombre del Pokémon admite máximo 40 caracteres",
+  "durationMs": 2393,
+  "screenshots": [
+    "U05-1-nombre-41.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/pokemon-list?limit=151"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "GET",
+      "url": "/api/pokemon/ditto"
+    },
+    {
+      "method": "POST",
+      "url": "/api/records"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [
+    {
+      "text": "El nombre del Pokémon admite máximo 40 caracteres",
+      "type": "error"
+    }
+  ],
+  "messages": []
+}

@@ -1,0 +1,47 @@
+{
+  "id": "U18",
+  "title": "Súper eficaz: PS y desglose en pantalla iguales a la lógica",
+  "criterion": "RF07–RF10 / interfaz",
+  "status": "PASA",
+  "observation": "Daño 117 = ⌊43 × 1,5 × 2 × 0.91⌋",
+  "durationMs": 9562,
+  "screenshots": [
+    "U18-1-super-eficaz.png",
+    "U18-2-desglose.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/combat/rules"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles/574c2f13-a791-4c02-aabd-92e4cbdc7a33/turn"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [],
+  "messages": [
+    "¡Un CHARMANDER salvaje apareció!",
+    "¡Adelante, SQUIRTLE!",
+    "¿Qué debe hacer SQUIRTLE?",
+    "¡El CHARMANDER salvaje usó RAPIDEZ!",
+    "¡SQUIRTLE usó SURF!",
+    "¡Es súper eficaz!",
+    "¡El CHARMANDER salvaje se debilitó!",
+    "¡Ganaste! Derrotaste al CHARMANDER salvaje."
+  ]
+}
