@@ -1,0 +1,421 @@
+{
+  "startedAt": "2026-11-17T16:55:55.579Z",
+  "endedAt": "2026-11-17T16:56:09.825Z",
+  "node": "v24.21.0",
+  "platform": "win32",
+  "suite": "all",
+  "provider": "PokeAPI simulada en localhost; integración HTTP real con la API del proyecto",
+  "sourceCommit": "fe8a5bdcf305b590b04a94a514f15a72aab21c19",
+  "hashes": {
+    "server.js": "e541bacd1c00b834dc5811ccc3a9f5e6c1550364a2f4485da7b0ff7ad319c694",
+    "lib/pokeapi-sync.js": "7e38fd79091d4fa18a298c037bc5fde612e04ef5839cbf09448627952e2c656e",
+    "lib/pokeapi-client.js": "9fc83a95cea42a2032f89c5e1a790e363d8aa5c2be6d6ed0a07f58f6f1a666ed",
+    "lib/validation.js": "f2a9401640b8f9722fb390acb23dd3ba2f9a7f3cfbf941f4bec84b66847394c3",
+    "lib/combat/types.js": "055f36e1d9798cb9916d39a9df86b05cc163daf7929839d2f18538fba9e6eaaa",
+    "lib/combat/moves.js": "a9f2218a216b460fd68048c21d9de85eff5f1fb3659d3804e24df23d0d468151",
+    "lib/combat/rules.js": "95d321c3c362f0ccb02585ba86e3b78285c59b1154610678721f3f5f478bbc28",
+    "lib/combat/battle.js": "9422daf6907fc3357e47f2fcdab8d87970ab6feec97eaa5e8e9e11fe9ffabc26",
+    "lib/combat/routes.js": "871ae7b4f5f055da8f72f4fcb63ff4c4daa2f29ccde556b2bc6d4ba42d72d082",
+    "public/js/app.js": "ab22c62901e77ef4dcf90a6cbb06d74e6f8ee6f586f4d569f341415b357bfcaf",
+    "tests/run.js": "3ab60acf1fcb5cec1d86e79bab5205f4695a77ab26be1004e6db3faf82394960",
+    "tests/combat-cases.js": "ce099af36f6769381367ed49637842795d3516c107c3ba9e4e637a02d098e3e6",
+    "tests/semana13-cases.js": "57499a4aa4eb4cc3631f9bfd7c4909d5afa421b617a9fd17a0f466a85886059d",
+    "tests/fixture.js": "5fa8876a3d018981aca8b5ececcd2e05316a0b74c19e805ca82cd301002a4c27",
+    "tests/helpers.js": "dd0031318848843b7f920285ab28e4fb69b9086ec262c875a3fc563020c30522"
+  },
+  "totals": {
+    "PASA": 43,
+    "FALLA": 0,
+    "BLOQUEADO": 0
+  },
+  "results": [
+    {
+      "id": "S01",
+      "title": "Disponibilidad y contrato básico",
+      "criterion": "CA01",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 290,
+      "evidence": "S01.json"
+    },
+    {
+      "id": "S02",
+      "title": "Crear registro con seis estadísticas",
+      "criterion": "CA02",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 208,
+      "evidence": "S02.json"
+    },
+    {
+      "id": "S03",
+      "title": "Consultar registro persistido por ID",
+      "criterion": "CA03",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 200,
+      "evidence": "S03.json"
+    },
+    {
+      "id": "S04",
+      "title": "Actualizar parcialmente y conservar al reiniciar",
+      "criterion": "CA04",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 387,
+      "evidence": "S04.json"
+    },
+    {
+      "id": "S05",
+      "title": "Eliminar y comprobar ausencia",
+      "criterion": "CA05",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 407,
+      "evidence": "S05.json"
+    },
+    {
+      "id": "R01",
+      "title": "Mapeo de PokeAPI por nombre y número",
+      "criterion": "CA06",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 224,
+      "evidence": "R01.json"
+    },
+    {
+      "id": "R02",
+      "title": "Pokémon inexistente",
+      "criterion": "CA07",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 215,
+      "evidence": "R02.json"
+    },
+    {
+      "id": "R03",
+      "title": "Catálogo Gen 1 y parámetros de paginación",
+      "criterion": "CA08",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 236,
+      "evidence": "R03.json"
+    },
+    {
+      "id": "R04",
+      "title": "Campos obligatorios y nombre válido al crear",
+      "criterion": "CA09",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 211,
+      "evidence": "R04.json"
+    },
+    {
+      "id": "R05",
+      "title": "Límites y tipos de las seis estadísticas",
+      "criterion": "CA10",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 287,
+      "evidence": "R05.json"
+    },
+    {
+      "id": "R06",
+      "title": "Actualización inválida sin alterar datos",
+      "criterion": "CA11",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 232,
+      "evidence": "R06.json"
+    },
+    {
+      "id": "R07",
+      "title": "ID inexistente en lectura, edición y eliminación",
+      "criterion": "CA12",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 207,
+      "evidence": "R07.json"
+    },
+    {
+      "id": "R08",
+      "title": "Sincronizar 151 sin duplicar y conservar registros locales",
+      "criterion": "CA13",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 547,
+      "evidence": "R08.json"
+    },
+    {
+      "id": "R09",
+      "title": "Errores, timeout y sincronización fallida del proveedor",
+      "criterion": "CA14",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 782,
+      "evidence": "R09.json"
+    },
+    {
+      "id": "R10",
+      "title": "JSON malformado y cuerpo incompatible",
+      "criterion": "CA15",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 210,
+      "evidence": "R10.json"
+    },
+    {
+      "id": "C01",
+      "title": "Seleccionar dos Pokémon disponibles en la API",
+      "criterion": "RF01",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 301,
+      "evidence": "C01.json"
+    },
+    {
+      "id": "C02",
+      "title": "Mostrar los datos básicos de ambos Pokémon",
+      "criterion": "RF02/RF03",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 250,
+      "evidence": "C02.json"
+    },
+    {
+      "id": "C03",
+      "title": "Ejecutar un movimiento válido y actualizar los PS",
+      "criterion": "RF04/RF10",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 244,
+      "evidence": "C03.json"
+    },
+    {
+      "id": "C04",
+      "title": "Un movimiento fallido por precisión no causa daño",
+      "criterion": "RF06",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 263,
+      "evidence": "C04.json"
+    },
+    {
+      "id": "C05",
+      "title": "Ataque con STAB y ataque sin STAB",
+      "criterion": "RF07/RF09",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 252,
+      "evidence": "C05.json"
+    },
+    {
+      "id": "C06",
+      "title": "Ataque súper efectivo",
+      "criterion": "RF08",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 246,
+      "evidence": "C06.json"
+    },
+    {
+      "id": "C07",
+      "title": "Ataque poco efectivo",
+      "criterion": "RF08",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 251,
+      "evidence": "C07.json"
+    },
+    {
+      "id": "C08",
+      "title": "Inmunidad entre tipos de primera generación",
+      "criterion": "RF08",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 272,
+      "evidence": "C08.json"
+    },
+    {
+      "id": "C09",
+      "title": "El daño no deja PS negativos",
+      "criterion": "RF10",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 246,
+      "evidence": "C09.json"
+    },
+    {
+      "id": "C10",
+      "title": "El combate termina cuando un Pokémon llega a cero",
+      "criterion": "RF11",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 247,
+      "evidence": "C10.json"
+    },
+    {
+      "id": "C11",
+      "title": "No se permiten acciones después de finalizar",
+      "criterion": "RF11",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 250,
+      "evidence": "C11.json"
+    },
+    {
+      "id": "C12",
+      "title": "Error o dato faltante de la API con mensaje controlado",
+      "criterion": "Sección 10/11",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 269,
+      "evidence": "C12.json"
+    },
+    {
+      "id": "E01",
+      "title": "Nombre: valores límite de longitud (1–40)",
+      "criterion": "RN-01",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 204,
+      "evidence": "E01.json"
+    },
+    {
+      "id": "E02",
+      "title": "Nombre: caracteres válidos y contenido HTML",
+      "criterion": "RN-01 / RNF-SEG",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 222,
+      "evidence": "E02.json"
+    },
+    {
+      "id": "E03",
+      "title": "Número de Pokédex (pokemonId): clases y límites",
+      "criterion": "RN-02",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 226,
+      "evidence": "E03.json"
+    },
+    {
+      "id": "E04",
+      "title": "Imagen (sprite): solo URL http/https seguras",
+      "criterion": "RN-03 / RNF-SEG",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 225,
+      "evidence": "E04.json"
+    },
+    {
+      "id": "E05",
+      "title": "Consulta a PokeAPI: identificador fuera de formato y respuesta incompleta",
+      "criterion": "CA06 / CA14",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 244,
+      "evidence": "E05.json"
+    },
+    {
+      "id": "E06",
+      "title": "Rutas de la API inexistentes responden con error JSON",
+      "criterion": "CA15",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 188,
+      "evidence": "E06.json"
+    },
+    {
+      "id": "E07",
+      "title": "Renombrar un registro actualiza la especie usada en el combate",
+      "criterion": "RF02 / Sección 11",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 301,
+      "evidence": "E07.json"
+    },
+    {
+      "id": "E08",
+      "title": "Tabla de decisión: iniciar combate",
+      "criterion": "RF01 / Sección 11",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 309,
+      "evidence": "E08.json"
+    },
+    {
+      "id": "E09",
+      "title": "Tabla de decisión: ejecutar turno",
+      "criterion": "RF04 / RF11",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 281,
+      "evidence": "E09.json"
+    },
+    {
+      "id": "N01",
+      "title": "Rendimiento: listar 151 registros (p95 ≤ 300 ms)",
+      "criterion": "RNF-REN-01",
+      "status": "PASA",
+      "observation": "30 consultas: p50 3.4 ms, p95 5.8 ms, máx 18.9 ms",
+      "durationMs": 416,
+      "evidence": "N01.json"
+    },
+    {
+      "id": "N02",
+      "title": "Rendimiento: resolver una ronda de combate (p95 ≤ 150 ms)",
+      "criterion": "RNF-REN-02",
+      "status": "PASA",
+      "observation": "20 rondas: p50 1.2 ms, p95 2.0 ms",
+      "durationMs": 311,
+      "evidence": "N02.json"
+    },
+    {
+      "id": "N03",
+      "title": "Seguridad: el cliente no puede alterar el combate",
+      "criterion": "RNF-SEG-01 / Sección 10",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 467,
+      "evidence": "N03.json"
+    },
+    {
+      "id": "N04",
+      "title": "Seguridad: cabeceras HTTP y tamaño máximo del cuerpo",
+      "criterion": "RNF-SEG-02",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 196,
+      "evidence": "N04.json"
+    },
+    {
+      "id": "N05",
+      "title": "Usabilidad: errores comprensibles en JSON y en español",
+      "criterion": "RNF-USA-01",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 251,
+      "evidence": "N05.json"
+    },
+    {
+      "id": "N06",
+      "title": "Confiabilidad: 40 peticiones concurrentes y 25 combates completos",
+      "criterion": "RNF-CON-01",
+      "status": "PASA",
+      "observation": "40 concurrentes sin 5xx; 25 combates terminados con ganador, 1.9 rondas en promedio",
+      "durationMs": 517,
+      "evidence": "N06.json"
+    },
+    {
+      "id": "N07",
+      "title": "Confiabilidad: archivo de datos dañado o incompleto",
+      "criterion": "RNF-CON-02",
+      "status": "PASA",
+      "observation": "",
+      "durationMs": 2098,
+      "evidence": "N07.json"
+    }
+  ],
+  "decision": "LISTO para el alcance automatizado local"
+}

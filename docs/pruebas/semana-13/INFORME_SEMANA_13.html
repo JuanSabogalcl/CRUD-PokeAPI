@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Informe de pruebas · Semana 13 · Grupo 6</title>
+<style>
+  body{font:10.5pt/1.5 Arial,Helvetica,sans-serif;color:#111;background:#fff;max-width:900px;margin:32px auto;padding:0 16px}
+  h1{font-size:18pt;margin:0 0 4px}
+  h2{font-size:13.5pt;margin:28px 0 8px;border-bottom:2px solid #222;padding-bottom:3px}
+  h3{font-size:11.5pt;margin:18px 0 6px}
+  p{margin:6px 0}
+  table{border-collapse:collapse;width:100%;font-size:9pt;margin:10px 0}
+  td,th{border:1px solid #999;padding:5px 6px;text-align:left;vertical-align:top}
+  th{background:#e8e8e8}
+  code{font:9pt Consolas,monospace;background:#f2f2f2;padding:0 3px;border-radius:3px;word-break:break-word}
+  .portada{border:2px solid #222;padding:18px 20px;margin-bottom:18px}
+  .meta{color:#444;font-size:9.5pt}
+  .ok{color:#14532d;font-weight:700}
+  .bad{color:#991b1b;font-weight:700}
+  .na{color:#555;font-style:italic}
+  .resumen{background:#f4f4f4;border-left:5px solid #222;padding:10px 14px;margin:10px 0}
+  .dt td:first-child,.dt th:first-child{font-weight:700;background:#f5f5f5}
+  .dt td{text-align:center}
+  .dt td:first-child{text-align:left}
+  .defecto{border:1px solid #999;margin:14px 0;break-inside:avoid}
+  .defecto h3{margin:0;background:#222;color:#fff;padding:6px 10px;font-size:10.5pt}
+  .defecto table{margin:0}
+  .defecto table td:first-child{width:150px;background:#f5f5f5;font-weight:700}
+  .par{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0 18px;break-inside:avoid}
+  figure{margin:0;border:1px solid #bbb;padding:6px}
+  figure img{width:100%;display:block}
+  figcaption{font-size:8.5pt;margin-top:4px;color:#333}
+  .uno{max-width:430px}
+  .estado{display:inline-block;padding:0 6px;border:1px solid #444;border-radius:3px;font-size:8.5pt;margin-right:3px}
+  ul{margin:4px 0 8px 20px;padding:0}
+  li{margin:2px 0}
+  @media print{body{margin:0;max-width:none}.salto{break-before:page}h2{break-after:avoid}}
+</style>
+</head>
+<body>
+
+<div class="portada">
+  <h1>Informe de pruebas de la última versión de CRUD-PokeAPI</h1>
+  <p><strong>Optativa II · Semana 13 · Gestión de defectos II: triage, seguimiento y métricas</strong></p>
+  <p class="meta">Grupo 6: Hernan Felipe Patiño Rico, Juan Jose Sabogal Garcia y Orlando Rojas Narvaez.
+    Docente: Diego Fernando Vargas Ramírez. Fundación Escuela Tecnológica de Neiva (FET).</p>
+  <p class="meta">Fecha de ejecución: 17 de noviembre de 2026. Versión probada: <code>master</code> en el commit <code>31b6d97</code>
+    (CRUD, catálogo Gen 1, sincronización y módulo de combate). Versión corregida: commit <code>fe8a5bd</code> en la rama
+    <code>test/semana-13-defectos</code>. Ambiente: Windows 11 Pro, Node.js v24.21.0, Express 4, navegador Chromium.</p>
+</div>
+
+<h2>1. Resumen</h2>
+<div class="resumen">
+  <p><strong>¿La última versión está funcional?</strong> Sí en sus funciones principales, pero tenía defectos que impedían
+    recomendarla. Sobre <code>master</code> pasaron las 27 pruebas anteriores del proyecto (5 smoke, 10 de regresión y 12 del combate)
+    y las 17 unitarias. De los 16 casos nuevos de esta ronda fallaron 10, y la revisión manual de la interfaz encontró 3 fallas más.</p>
+  <p>Se registraron <strong>10 defectos</strong> (D08–D17): 2 de severidad alta (XSS y datos sin validar), 5 media y 3 baja.
+    Todos se corrigieron. En la ronda 2 se repitieron los casos que fallaron y toda la regresión:
+    <strong>43/43 PASA</strong>, 17/17 unitarias, 3/3 contra la PokeAPI real y 4/4 manuales.</p>
+  <p><strong>Recomendación:</strong> LISTO para la demostración académica local con la versión corregida (<code>fe8a5bd</code>),
+    con los límites de la sección 11. La versión de <code>master</code> sin corregir: NO LISTO.</p>
+</div>
+
+<h2>2. Plan mínimo de la ronda (semana 7)</h2>
+<p><strong>Objetivo.</strong> Determinar si la última versión del proyecto funciona, buscar defectos que las suites anteriores no
+  cubrían y comprobar las correcciones con re-test y regresión.</p>
+<p><strong>Alcance incluido.</strong> API REST del CRUD, catálogo y sincronización con PokeAPI, API y motor del combate, interfaz del CRUD
+  y del combate, y requisitos no funcionales de rendimiento, seguridad, usabilidad y confiabilidad.
+  <strong>Excluido:</strong> carga de muchos usuarios, varios procesos escribiendo el mismo archivo, autenticación (el proyecto no la tiene)
+  y compatibilidad con otros navegadores.</p>
+<p><strong>Ambiente y datos.</strong> Cada caso automatizado levanta su propia API en un puerto libre, con una carpeta temporal vacía y una
+  PokeAPI simulada (<code>tests/fixture.js</code>) con tipos y estadísticas reales de los Pokémon usados. Así los casos se pueden repetir
+  y no tocan <code>data/records.json</code>. Las consultas reales (L01–L03) usan <code>https://pokeapi.co</code>. Las pruebas manuales
+  usan un servidor local con los 151 Pokémon sincronizados.</p>
+
+<h3>Riesgos (probabilidad × impacto, de 1 a 3)</h3>
+<table>
+  <tr><th>Riesgo</th><th>P</th><th>I</th><th>P×I</th><th>Casos que lo cubren</th></tr>
+  <tr><td>Entradas inválidas o maliciosas guardadas o ejecutadas</td><td>3</td><td>3</td><td>9</td><td>R04–R06, R10, E01–E04, N03, M01</td></tr>
+  <tr><td>CRUD básico sin funcionar o pérdida de datos</td><td>2</td><td>3</td><td>6</td><td>S01–S05, N07</td></tr>
+  <tr><td>Lógica de combate incorrecta (daño, turnos, fin)</td><td>2</td><td>3</td><td>6</td><td>17 unitarias, C01–C12, E08, E09</td></tr>
+  <tr><td>Fallo o respuesta extraña de PokeAPI</td><td>2</td><td>3</td><td>6</td><td>R09, C12, E05, E08, M03, L01–L03</td></tr>
+  <tr><td>Datos inconsistentes entre CRUD y combate</td><td>2</td><td>2</td><td>4</td><td>E07, C01, C02</td></tr>
+  <tr><td>Mensajes confusos o funciones de la interfaz rotas</td><td>2</td><td>2</td><td>4</td><td>N05, M02, M04</td></tr>
+  <tr><td>Lentitud o errores con peticiones simultáneas</td><td>1</td><td>2</td><td>2</td><td>N01, N02, N06</td></tr>
+</table>
+
+<h3>Suites y criterios de la ronda</h3>
+<table>
+  <tr><th>Suite</th><th>Casos</th><th>Comando</th></tr>
+  <tr><td>Unitarias del motor de combate</td><td>17</td><td><code>npm run test:unit</code></td></tr>
+  <tr><td>Smoke (semana 7)</td><td>S01–S05</td><td><code>npm run test:smoke</code></td></tr>
+  <tr><td>Regresión del CRUD (semana 7)</td><td>R01–R10</td><td><code>npm run test:regression</code></td></tr>
+  <tr><td>Regresión del combate</td><td>C01–C12</td><td><code>npm run test:combat</code></td></tr>
+  <tr><td>Caja negra y tablas de decisión (nuevos)</td><td>E01–E09</td><td><code>npm run test:exploratoria</code></td></tr>
+  <tr><td>No funcionales con umbral (nuevos)</td><td>N01–N07</td><td><code>npm run test:nofuncional</code></td></tr>
+  <tr><td>Integración con la PokeAPI real</td><td>L01–L03</td><td><code>npm run test:live -- --run=&lt;carpeta&gt;</code></td></tr>
+  <tr><td>Manuales en el navegador</td><td>M01–M04</td><td>Pasos de la sección 5</td></tr>
+</table>
+<p><strong>Entrada:</strong> dependencias instaladas, smoke en verde y resultado esperado definido para cada caso antes de ejecutarlo.
+  <strong>Detención:</strong> una smoke fallida detiene la ronda. <strong>Salida:</strong> todos los casos en PASA, ningún defecto alto o
+  medio abierto y re-test con evidencia de cada corrección. PASA: cumple lo esperado. FALLA: no coincide. BLOQUEADO: no se pudo comprobar.</p>
+
+<h2>3. Niveles, tipos y estrategias (semana 4)</h2>
+<table>
+  <tr><th>Nivel</th><th>Qué se probó</th><th>Casos</th></tr>
+  <tr><td>Unitaria</td><td>Fórmula de daño, tabla de tipos, STAB, precisión, críticos, orden por Velocidad y fin del combate, sin servidor ni interfaz</td><td>17 en <code>tests/unit/combat.test.js</code></td></tr>
+  <tr><td>Integración</td><td>API con almacenamiento JSON y con PokeAPI (simulada y real); contrato de errores</td><td>R01–R10, C12, E03–E08, L01–L03</td></tr>
+  <tr><td>Sistema</td><td>Flujos completos: sincronizar, crear, combatir hasta el final; servidor con archivo dañado</td><td>S04, R08, C09–C11, N06, N07</td></tr>
+  <tr><td>Aceptación</td><td>Criterios de la especificación del combate y del CRUD en la interfaz real</td><td>C01–C12, M01–M04</td></tr>
+</table>
+<p><strong>Tipos:</strong> funcional (S, R, C, E, M01–M03) y no funcional (N01–N07, M04).
+  <strong>Estrategias:</strong> smoke para decidir si seguir; regresión después de cada corrección; priorización por riesgo;
+  y <strong>exploración guiada</strong> con objetivos concretos (datos raros en cada campo, rutas manipuladas, proveedor caído,
+  archivo dañado, renombrar registros, cabeceras HTTP y la interfaz con contenido HTML). Cada hallazgo de la exploración se convirtió en un caso
+  repetible (E o N) o en un caso manual (M) antes de reportarlo como defecto.</p>
+
+<h2 class="salto">4. Diseño de casos de caja negra (semanas 2 y 5)</h2>
+<h3>4.1 Partición de equivalencia y valores límite</h3>
+<table>
+  <tr><th>Entrada</th><th>Clases válidas</th><th>Clases inválidas</th><th>Valores límite probados</th><th>Casos</th></tr>
+  <tr><td>Nombre del Pokémon</td><td>Texto de 1 a 40 caracteres sin &lt; &gt; (incluye acentos, punto, apóstrofo, ♀/♂: <code>Mr. Mime</code>, <code>Nidoran♀</code>, <code>Farfetch'd</code>)</td>
+    <td>Vacío o espacios; más de 40; con HTML o caracteres de control; no texto</td>
+    <td>0 → 400; 1 → 201; 39 → 201; 40 → 201; 41 → 400; 5000 → 400</td><td>R04, E01, E02</td></tr>
+  <tr><td>Estadísticas (6)</td><td>Entero 1–999 o texto numérico</td><td>0, negativo, 1000, decimal, texto, vacío, null, booleano, lista, objeto</td>
+    <td>0 → 400; 1 → 201; 999 → 201; 1000 → 400</td><td>R05, R06</td></tr>
+  <tr><td><code>pokemonId</code></td><td>Ausente o null; entero 1–100000; texto numérico</td><td>0, negativo, decimal, &gt;100000, texto, vacío, objeto, booleano, lista</td>
+    <td>0 → 400; 1 → 201; 100000 → 201; 100001 → 400</td><td>E03</td></tr>
+  <tr><td><code>sprite</code></td><td>URL http/https sin espacios ni comillas, de hasta 500 caracteres</td>
+    <td><code>javascript:</code>, <code>data:</code>, con comillas, <code>ftp:</code>, más de 500 caracteres, número</td><td>URL de 519 caracteres → 400</td><td>E04</td></tr>
+  <tr><td>Identificador en <code>/api/pokemon/:name</code></td><td>Letras, números y guiones (1–40), con espacios alrededor</td>
+    <td><code>..</code>, <code>.</code>, <code>../25</code>, con espacio interno</td><td><code>%20PIKACHU%20</code> → 200</td><td>R01, E05</td></tr>
+  <tr><td>Paginación del catálogo</td><td><code>limit</code> ≥ 1, <code>offset</code> ≥ 0</td><td>Negativo, 0 en limit, decimal, texto, repetido</td>
+    <td><code>offset=150</code> → solo Mew; <code>offset=151</code> → vacío</td><td>R03</td></tr>
+</table>
+<p>Negativos básicos y datos raros aplicados: vacío, null, espacios, caracteres especiales, HTML, formato inválido, campos muy largos,
+  tipo incorrecto, JSON truncado, cuerpo de 200 KB, ruta manipulada y archivo de datos dañado.</p>
+
+<h3>4.2 Tablas de decisión</h3>
+<p>Para cada tabla se calcularon las 2<sup>n</sup> combinaciones y se colapsaron las columnas cuyo resultado no depende de una condición (–).
+  Cada regla es un caso de prueba; la cobertura es el porcentaje de reglas ejecutadas.</p>
+
+<p><strong>TD1. Crear registro</strong> (4 condiciones: 2<sup>4</sup> = 16 combinaciones, colapsadas a 5 reglas)</p>
+<table class="dt">
+  <tr><th>Condición / acción</th><th>Regla 1</th><th>Regla 2</th><th>Regla 3</th><th>Regla 4</th><th>Regla 5</th></tr>
+  <tr><td>¿Nombre válido?</td><td>V</td><td>F</td><td>V</td><td>V</td><td>V</td></tr>
+  <tr><td>¿Seis estadísticas válidas?</td><td>V</td><td>–</td><td>F</td><td>V</td><td>V</td></tr>
+  <tr><td>¿pokemonId válido o ausente?</td><td>V</td><td>–</td><td>–</td><td>F</td><td>V</td></tr>
+  <tr><td>¿sprite válido o ausente?</td><td>V</td><td>–</td><td>–</td><td>–</td><td>F</td></tr>
+  <tr><td>Guardar y responder 201</td><td>Sí</td><td>No</td><td>No</td><td>No</td><td>No</td></tr>
+  <tr><td>Responder 400 sin guardar</td><td>No</td><td>Sí</td><td>Sí</td><td>Sí</td><td>Sí</td></tr>
+  <tr><td>Casos</td><td>S02</td><td>R04, E01, E02</td><td>R05</td><td>E03</td><td>E04</td></tr>
+  <tr><td>Ronda 1 / ronda 2</td><td class="ok">PASA / PASA</td><td><span class="bad">FALLA</span> / <span class="ok">PASA</span></td><td class="ok">PASA / PASA</td><td><span class="bad">FALLA</span> / <span class="ok">PASA</span></td><td><span class="bad">FALLA</span> / <span class="ok">PASA</span></td></tr>
+</table>
+<p>Las reglas 4 y 5 no estaban en la suite anterior. Al escribirlas apareció D09, y en la regla 2 con contenido HTML apareció D08.</p>
+
+<p><strong>TD2. Iniciar combate</strong> (4 condiciones: 16 combinaciones, colapsadas a 5 reglas) · caso E08 y C12</p>
+<table class="dt">
+  <tr><th>Condición / acción</th><th>Regla 1</th><th>Regla 2</th><th>Regla 3</th><th>Regla 4</th><th>Regla 5</th></tr>
+  <tr><td>¿Existen los dos registros?</td><td>V</td><td>F</td><td>V</td><td>V</td><td>V</td></tr>
+  <tr><td>¿Tienen tipos guardados?</td><td>V</td><td>–</td><td>F</td><td>F</td><td>F</td></tr>
+  <tr><td>¿PokeAPI responde?</td><td>–</td><td>–</td><td>V</td><td>F</td><td>V</td></tr>
+  <tr><td>¿El Pokémon existe en PokeAPI?</td><td>–</td><td>–</td><td>V</td><td>–</td><td>F</td></tr>
+  <tr><td>Respuesta</td><td>201 sin consultar PokeAPI</td><td>404</td><td>201 y guarda tipos</td><td>502</td><td>422</td></tr>
+  <tr><td>Ronda 1 / ronda 2</td><td class="ok">PASA / PASA</td><td class="ok">PASA / PASA</td><td class="ok">PASA / PASA</td><td class="ok">PASA / PASA</td><td class="ok">PASA / PASA</td></tr>
+</table>
+
+<p><strong>TD3. Ejecutar turno</strong> (3 condiciones: 2<sup>3</sup> = 8 combinaciones, colapsadas a 4 reglas) · caso E09, C11 y C12</p>
+<table class="dt">
+  <tr><th>Condición / acción</th><th>Regla 1</th><th>Regla 2</th><th>Regla 3</th><th>Regla 4</th></tr>
+  <tr><td>¿Existe el combate?</td><td>F</td><td>V</td><td>V</td><td>V</td></tr>
+  <tr><td>¿Está finalizado?</td><td>–</td><td>V</td><td>F</td><td>F</td></tr>
+  <tr><td>¿Movimiento válido?</td><td>–</td><td>–</td><td>F</td><td>V</td></tr>
+  <tr><td>Respuesta</td><td>404</td><td>409</td><td>400, no avanza la ronda</td><td>200, avanza la ronda</td></tr>
+  <tr><td>Ronda 1 / ronda 2</td><td class="ok">PASA / PASA</td><td class="ok">PASA / PASA</td><td class="ok">PASA / PASA</td><td class="ok">PASA / PASA</td></tr>
+</table>
+
+<p><strong>TD4. Resolver un ataque</strong> (4 condiciones: 16 combinaciones, colapsadas a 5 reglas) · pruebas unitarias y C04–C08</p>
+<table class="dt">
+  <tr><th>Condición / acción</th><th>Regla 1</th><th>Regla 2</th><th>Regla 3</th><th>Regla 4</th><th>Regla 5</th></tr>
+  <tr><td>¿Acierta (precisión)?</td><td>F</td><td>V</td><td>V</td><td>V</td><td>V</td></tr>
+  <tr><td>¿Efectividad 0 (inmunidad)?</td><td>–</td><td>V</td><td>F</td><td>F</td><td>F</td></tr>
+  <tr><td>¿Tipo del movimiento = tipo del atacante?</td><td>–</td><td>–</td><td>V</td><td>F</td><td>–</td></tr>
+  <tr><td>¿Golpe crítico?</td><td>–</td><td>–</td><td>F</td><td>F</td><td>V</td></tr>
+  <tr><td>Resultado</td><td>Daño 0, «¡Pero falló!»</td><td>Daño 0, «No afecta», sin crítico</td><td>Fórmula × STAB 1,5</td><td>Fórmula × 1,0</td><td>Fórmula × crítico 1,5</td></tr>
+  <tr><td>Ronda 1 / ronda 2</td><td class="ok">PASA / PASA</td><td class="ok">PASA / PASA</td><td class="ok">PASA / PASA</td><td class="ok">PASA / PASA</td><td class="ok">PASA / PASA</td></tr>
+</table>
+<p>Cobertura de reglas de las cuatro tablas: 19/19 (100 %). Las tablas TD2–TD4 confirmaron que el combate funciona como se especificó.</p>
+
+<h2 class="salto">5. Casos nuevos, resultados y trazabilidad</h2>
+<p>Los 27 casos anteriores (S01–S05, R01–R10, C01–C12) se describen en <code>docs/pruebas/CASOS.md</code> y <code>docs/combate/PRUEBAS.md</code>;
+  pasaron en ambas rondas. Los casos nuevos son:</p>
+<table>
+  <tr><th>Caso</th><th>Criterio</th><th>Técnica</th><th>Datos principales</th><th>Resultado esperado</th><th>Ronda 1</th><th>Ronda 2</th><th>Defecto</th></tr>
+  <tr><td>E01</td><td>RN-01</td><td>Límites</td><td>Nombres de 1, 39, 40, 41 y 5000 caracteres</td><td>201 hasta 40; 400 desde 41; se guardan solo 3</td><td class="bad">FALLA</td><td class="ok">PASA</td><td>D16</td></tr>
+  <tr><td>E02</td><td>RN-01 / RNF-SEG</td><td>Equivalencia</td><td>Mr. Mime, Nidoran♀, Farfetch'd; <code>&lt;img…&gt;</code>, <code>&lt;script&gt;</code>, control</td><td>Válidos 201; con HTML o control 400 en POST y PUT</td><td class="bad">FALLA</td><td class="ok">PASA</td><td>D08</td></tr>
+  <tr><td>E03</td><td>RN-02</td><td>Equivalencia y límites</td><td>pokemonId ausente, null, 1, "25", 100000; 0, -1, 2.5, 100001, "abc", {}…</td><td>Válidos guardados como número; inválidos 400</td><td class="bad">FALLA</td><td class="ok">PASA</td><td>D09</td></tr>
+  <tr><td>E04</td><td>RN-03 / RNF-SEG</td><td>Equivalencia</td><td>https, http; <code>javascript:</code>, comillas, <code>data:</code>, &gt;500, ftp, 123</td><td>Solo http/https seguras; resto 400</td><td class="bad">FALLA</td><td class="ok">PASA</td><td>D09</td></tr>
+  <tr><td>E05</td><td>CA06 / CA14</td><td>Datos raros</td><td><code>%2E%2E</code>, <code>%2e</code>, <code>..%2F25</code>, con espacio; respuesta 200 sin stats</td><td>400 sin texto interno; 502 con mensaje claro</td><td class="bad">FALLA</td><td class="ok">PASA</td><td>D12</td></tr>
+  <tr><td>E06</td><td>CA15</td><td>Negativos</td><td>GET /api/no-existe, DELETE /api/records, POST /api/pokemon/x, GET /api/pokemon/</td><td>404 con error en JSON</td><td class="bad">FALLA</td><td class="ok">PASA</td><td>D15</td></tr>
+  <tr><td>E07</td><td>RF02 / Secc. 11</td><td>Exploratoria</td><td>Squirtle #7 combate, se renombra a Bulbasaur y vuelve a combatir</td><td>Tipos Planta/Veneno y #1; con número explícito, sigue siendo Agua</td><td class="bad">FALLA</td><td class="ok">PASA</td><td>D14</td></tr>
+  <tr><td>E08</td><td>RF01 / Secc. 11</td><td>Tabla de decisión TD2</td><td>5 reglas</td><td>201 / 404 / 201 / 502 / 422</td><td class="ok">PASA</td><td class="ok">PASA</td><td>–</td></tr>
+  <tr><td>E09</td><td>RF04 / RF11</td><td>Tabla de decisión TD3</td><td>4 reglas</td><td>404 / 409 / 400 / 200</td><td class="ok">PASA</td><td class="ok">PASA</td><td>–</td></tr>
+  <tr><td>N01–N07</td><td colspan="4">Suite no funcional: ver sección 6</td><td>4 FALLA</td><td class="ok">7 PASA</td><td>D12, D13, D15, D17</td></tr>
+  <tr><td>M01</td><td>RNF-SEG</td><td>Manual</td><td>Registro con nombre <code>xss-nombre &lt;img src=x onerror="…"&gt;</code> y otro con sprite <code>x" onerror="…</code>; abrir el CRUD</td><td>Se ve como texto; no se ejecuta código</td><td class="bad">FALLA</td><td class="ok">PASA</td><td>D08</td></tr>
+  <tr><td>M02</td><td>CRUD Read</td><td>Manual</td><td>Escribir «pikachu» en «O escribe el nombre» y pulsar Buscar</td><td>Muestra a Pikachu</td><td class="bad">FALLA</td><td class="ok">PASA</td><td>D10</td></tr>
+  <tr><td>M03</td><td>RNF-CON</td><td>Manual</td><td>Servidor con 151 registros y PokeAPI inaccesible; abrir el CRUD</td><td>Registros visibles y aviso de catálogo no disponible</td><td class="bad">FALLA</td><td class="ok">PASA</td><td>D11</td></tr>
+  <tr><td>M04</td><td>RNF-USA-02</td><td>Manual</td><td>Ancho 375 px: CRUD y pantalla de combate hasta el menú LUCHAR</td><td>Sin desplazamiento horizontal; combate jugable</td><td class="na">No ejecutado</td><td class="ok">PASA</td><td>–</td></tr>
+</table>
+
+<h3>Trazabilidad requisito → casos</h3>
+<table>
+  <tr><th>Requisito o criterio</th><th>Casos</th></tr>
+  <tr><td>RN-01 Nombre de 1 a 40 caracteres, sin HTML ni control</td><td>R04, R06, E01, E02, M01</td></tr>
+  <tr><td>RN-02 pokemonId entero opcional entre 1 y 100000</td><td>E03</td></tr>
+  <tr><td>RN-03 sprite opcional, solo URL http/https segura</td><td>E04, M01</td></tr>
+  <tr><td>CA06/CA14 Consulta y errores del proveedor</td><td>R01, R02, R09, E05, M02, M03, L01–L03</td></tr>
+  <tr><td>CA15 Errores siempre en JSON</td><td>R10, E06, N05</td></tr>
+  <tr><td>RF01–RF11 Combate (especificación técnica)</td><td>C01–C12, E07–E09, 17 unitarias</td></tr>
+  <tr><td>RNF-REN-01/02, SEG-01/02, USA-01/02, CON-01/02</td><td>N01–N07, M04</td></tr>
+</table>
+
+<h2>6. Suite mínima no funcional (semana 11)</h2>
+<table>
+  <tr><th>Caso</th><th>Requisito</th><th>Prioridad (riesgo)</th><th>Umbral</th><th>Método</th><th>Ronda 1 (medido)</th><th>Ronda 2 (medido)</th></tr>
+  <tr><td>N01</td><td>RNF-REN-01 Listar 151 registros</td><td>Media</td><td>p95 ≤ 300 ms</td><td>30 GET seguidos tras sincronizar</td><td class="ok">PASA · p95 8,5 ms</td><td class="ok">PASA · p95 5,8 ms</td></tr>
+  <tr><td>N02</td><td>RNF-REN-02 Resolver una ronda</td><td>Media</td><td>p95 ≤ 150 ms</td><td>20 rondas contra el salvaje</td><td class="ok">PASA · p95 2,3 ms</td><td class="ok">PASA · p95 2,0 ms</td></tr>
+  <tr><td>N03</td><td>RNF-SEG-01 El cliente no altera el combate</td><td>Alta</td><td>0 campos del cliente aplicados</td><td>Enviar daño, PS, ganador y ataque del salvaje; semilla sin permiso</td><td class="ok">PASA</td><td class="ok">PASA</td></tr>
+  <tr><td>N04</td><td>RNF-SEG-02 Cabeceras y tamaño</td><td>Alta</td><td>Sin X-Powered-By; nosniff; cuerpo &gt; 100 KB → 413</td><td>Leer cabeceras; POST de 200 KB</td><td class="bad">FALLA · Express</td><td class="ok">PASA</td></tr>
+  <tr><td>N05</td><td>RNF-USA-01 Errores comprensibles</td><td>Media</td><td>100 % JSON con mensaje en español, sin texto técnico</td><td>6 errores distintos (400, 404, 422, 502)</td><td class="bad">FALLA · 404 en HTML</td><td class="ok">PASA</td></tr>
+  <tr><td>N06</td><td>RNF-CON-01 Concurrencia y combates completos</td><td>Media</td><td>0 respuestas 5xx; combates &lt; 80 rondas</td><td>40 peticiones a la vez; 25 combates hasta el final</td><td class="ok">PASA · 0 errores</td><td class="ok">PASA · 0 errores</td></tr>
+  <tr><td>N07</td><td>RNF-CON-02 Archivo de datos dañado</td><td>Alta</td><td>El servidor sigue activo y responde 500 JSON con la causa</td><td>Escribir <code>{</code> en records.json y arrancar</td><td class="bad">FALLA · proceso terminado</td><td class="ok">PASA</td></tr>
+  <tr><td>M04</td><td>RNF-USA-02 Uso en móvil</td><td>Baja</td><td>scrollWidth = 375 px</td><td>Viewport de 375 × 812</td><td class="na">No ejecutado</td><td class="ok">PASA · 375 px en ambas páginas</td></tr>
+</table>
+<p>Conclusión de la suite: el rendimiento queda muy por debajo de los umbrales en este equipo. En la ronda 1 fallaron los requisitos de
+  seguridad (N04), usabilidad (N05) y confiabilidad (N07); los tres se cumplen en la ronda 2.</p>
+
+<h2 class="salto">7. Ejecución y métricas</h2>
+<table>
+  <tr><th>Ronda</th><th>Versión</th><th>Automatizados</th><th>Unitarias</th><th>PokeAPI real</th><th>Manuales</th><th>Aprobación</th><th>Decisión</th></tr>
+  <tr><td>1 · diagnóstico</td><td><code>31b6d97</code> (master)</td><td>33 PASA · 10 FALLA · 0 BLOQUEADO</td><td>17/17</td><td class="na">No ejecutada</td><td>0/3 (M01–M03 FALLA)</td><td>76,7 % de 43</td><td class="bad">NO LISTO</td></tr>
+  <tr><td>2 · verificación</td><td><code>fe8a5bd</code> (corregida)</td><td>43 PASA · 0 FALLA · 0 BLOQUEADO</td><td>17/17</td><td>3/3</td><td>4/4</td><td>100 %</td><td class="ok">LISTO</td></tr>
+</table>
+<p>Reportes con un JSON por caso (peticiones, respuestas, tiempos, salida del servidor y SHA-256 del código):
+  <code>docs/pruebas/evidencias/semana13-ronda-1-diagnostico/</code>, <code>semana13-ronda-2-verificacion/</code> y <code>semana13-integracion-real/</code>.</p>
+
+<h3>Métricas de defectos</h3>
+<table>
+  <tr><th>Métrica</th><th>Valor</th></tr>
+  <tr><td>Defectos nuevos de esta ronda</td><td>10 (D08–D17)</td></tr>
+  <tr><td>Por severidad</td><td>Alta 2 (D08, D09) · Media 5 (D10–D14) · Baja 3 (D15–D17)</td></tr>
+  <tr><td>Por prioridad</td><td>P1: 2 · P2: 4 · P3: 3 · P4: 1</td></tr>
+  <tr><td>Abiertos / cerrados</td><td>0 / 10 (todos verificados con re-test)</td></tr>
+  <tr><td>Reincidentes</td><td>0. Los defectos D01–D06 de la semana 7 no reaparecieron (R03–R10 en PASA en ambas rondas)</td></tr>
+  <tr><td>Por componente</td><td>Interfaz del CRUD 3 (D08 en pantalla, D10, D11) · API REST 5 (D09, D12, D15, D16, D17) · Almacenamiento 1 (D13) · Integración CRUD–combate 1 (D14) · Motor de combate 0</td></tr>
+  <tr><td>Por tipo de caso que lo detectó</td><td>Caja negra E: 5 · No funcional N: 2 · Manual M: 3</td></tr>
+  <tr><td>Histórico del proyecto</td><td>17 defectos (D01–D17), 17 cerrados, 0 abiertos</td></tr>
+</table>
+
+<h2>8. Gestión de defectos: triage y estados (semanas 12 y 13)</h2>
+<p><strong>Triage.</strong> Antes de registrar cada defecto se confirmó que (1) se reproduce con pasos y datos exactos (todos tienen un caso
+  automatizado o manual que falla en <code>master</code>), (2) la información está completa (entorno, esperado frente a actual, evidencia) y
+  (3) su impacto. Se descartaron observaciones que no contradicen ningún requisito: que la API acepte nombres repetidos, ya que no hay una regla
+  de unicidad, y una primera captura en móvil sin imágenes, que se repitió y resultó ser la animación de entrada en curso.</p>
+<p><strong>Severidad</strong> es el impacto técnico o para el usuario. <strong>Prioridad</strong> es la urgencia: P1 se corrige antes de cualquier
+  demostración, P2 antes de entregar, P3 en la misma ronda si el costo es bajo y P4 cuando haya tiempo. Ciclo de vida usado:
+  <span class="estado">Nuevo</span>→<span class="estado">Asignado</span>→<span class="estado">En progreso</span>→<span class="estado">Resuelto</span>→<span class="estado">Verificado/Cerrado</span>.
+  Ninguno se cerró sin re-test.</p>
+
+<table>
+  <tr><th>ID</th><th>Título</th><th>Sev.</th><th>Prio.</th><th>Caso</th><th>Estado</th><th>Resuelto en</th><th>Re-test</th></tr>
+  <tr><td>D08</td><td>XSS: el CRUD ejecuta HTML del nombre o del sprite de un registro</td><td>Alta</td><td>P1</td><td>E02, M01</td><td>Cerrado</td><td><code>fe8a5bd</code></td><td>E02, M01 PASA</td></tr>
+  <tr><td>D09</td><td>La API guarda pokemonId y sprite sin validar</td><td>Alta</td><td>P1</td><td>E03, E04</td><td>Cerrado</td><td><code>fe8a5bd</code></td><td>E03, E04 PASA</td></tr>
+  <tr><td>D10</td><td>La búsqueda ignora el nombre escrito</td><td>Media</td><td>P2</td><td>M02</td><td>Cerrado</td><td><code>fe8a5bd</code></td><td>M02 PASA</td></tr>
+  <tr><td>D11</td><td>Si PokeAPI falla, el CRUD muestra 0 registros sin aviso</td><td>Media</td><td>P2</td><td>M03</td><td>Cerrado</td><td><code>fe8a5bd</code></td><td>M03 PASA</td></tr>
+  <tr><td>D12</td><td><code>/api/pokemon/%2E%2E</code> consulta otra ruta de PokeAPI y expone un error interno</td><td>Media</td><td>P2</td><td>E05, N05</td><td>Cerrado</td><td><code>fe8a5bd</code></td><td>E05, N05 PASA</td></tr>
+  <tr><td>D13</td><td>Un records.json dañado tumba el servidor al iniciar</td><td>Media</td><td>P2</td><td>N07</td><td>Cerrado</td><td><code>fe8a5bd</code></td><td>N07 PASA</td></tr>
+  <tr><td>D14</td><td>Renombrar un registro conserva tipos, número e imagen del Pokémon anterior</td><td>Media</td><td>P3</td><td>E07</td><td>Cerrado</td><td><code>fe8a5bd</code></td><td>E07 PASA</td></tr>
+  <tr><td>D15</td><td>Rutas /api inexistentes responden HTML en lugar de JSON</td><td>Baja</td><td>P3</td><td>E06, N05</td><td>Cerrado</td><td><code>fe8a5bd</code></td><td>E06, N05 PASA</td></tr>
+  <tr><td>D16</td><td>El nombre no tiene longitud máxima</td><td>Baja</td><td>P3</td><td>E01</td><td>Cerrado</td><td><code>fe8a5bd</code></td><td>E01 PASA</td></tr>
+  <tr><td>D17</td><td>Cabecera X-Powered-By expone la tecnología y falta nosniff</td><td>Baja</td><td>P4</td><td>N04</td><td>Cerrado</td><td><code>fe8a5bd</code></td><td>N04 PASA</td></tr>
+</table>
+<p><strong>Regresión después de las correcciones:</strong> se ejecutaron otra vez todas las suites (17 unitarias, S01–S05, R01–R10, C01–C12, E01–E09,
+  N01–N07, L01–L03 y M01–M04). Ningún caso que pasaba en la ronda 1 dejó de pasar.</p>
+
+<h2 class="salto">9. Reportes de defectos con capturas antes y después</h2>
+<p>Las capturas de la API muestran la petición y la respuesta reales guardadas en la evidencia de cada ronda: la misma petición antes
+  (<code>31b6d97</code>) y después (<code>fe8a5bd</code>). Se generan con <code>node scripts/capturas-evidencia.js</code>. Las de la interfaz son
+  capturas del navegador.</p>
+
+<div class="defecto"><h3>D08 · XSS: el CRUD ejecuta HTML del nombre o del sprite de un registro</h3><table>
+  <tr><td>Severidad / prioridad</td><td>Alta / P1</td></tr>
+  <tr><td>Entorno</td><td>Windows 11, Node 24.21.0, navegador Chromium, servidor local con los 151 Pokémon sincronizados</td></tr>
+  <tr><td>Casos</td><td>M01 (interfaz) y E02 (API)</td></tr>
+  <tr><td>Pasos</td><td>1) <code>POST /api/records</code> con <code>pokemonName</code> = <code>xss-nombre &lt;img src=x onerror="document.body.style.border='10px solid red';this.after('⚠ xss…')"&gt;</code>.
+    2) <code>POST /api/records</code> con <code>sprite</code> = <code>x" onerror="document.body.insertAdjacentHTML('afterbegin','&lt;div…&gt;XSS…')</code>.
+    3) Abrir <code>http://localhost:3000</code> y filtrar los registros.</td></tr>
+  <tr><td>Esperado</td><td>La API rechaza nombres con &lt; &gt; (400) y la interfaz muestra cualquier dato como texto, sin ejecutarlo.</td></tr>
+  <tr><td>Actual</td><td>La API respondió 201. Al abrir el CRUD se ejecutó el código: borde rojo, texto inyectado y franjas con «XSS: código ejecutado desde el campo sprite».</td></tr>
+  <tr><td>Causa</td><td><code>public/js/app.js</code> arma el HTML con plantillas sin escapar (<code>innerHTML</code>) y la validación no restringía caracteres.</td></tr>
+  <tr><td>Corrección</td><td>Función <code>escapeHtml</code> aplicada a nombre, sprite, ID, etiquetas y valores en catálogo, listas, selectores y resultado de búsqueda.
+    <code>lib/validation.js</code> rechaza &lt; &gt; y caracteres de control en el nombre (POST y PUT). El sprite se cubre con D09.</td></tr>
+  <tr><td>Re-test</td><td>Los mismos registros escritos directamente en <code>records.json</code> (como datos guardados antes de la corrección) se muestran como texto; E02 PASA.</td></tr>
+</table></div>
+<div class="par">
+  <figure><img src="capturas/antes/D08-xss-nombre.jpg" alt="Antes: borde rojo y texto inyectado"><figcaption><strong>Antes (M01, nombre):</strong> el navegador ejecutó el código del nombre (borde rojo y texto «⚠ Xss: código ejecutado…»).</figcaption></figure>
+  <figure><img src="capturas/despues/D08-xss-escapado.jpg" alt="Después: el nombre se ve como texto"><figcaption><strong>Después (M01):</strong> los dos registros maliciosos se muestran como texto; no hay borde ni franjas.</figcaption></figure>
+</div>
+<div class="par">
+  <figure><img src="capturas/antes/D08-xss-sprite.jpg" alt="Antes: franjas XSS desde sprite"><figcaption><strong>Antes (M01, sprite):</strong> franjas «XSS: código ejecutado desde el campo sprite» creadas por el atributo inyectado.</figcaption></figure>
+  <figure><img src="capturas/despues/E02.png" alt="Después: E02 PASA"><figcaption><strong>Después (E02):</strong> la API rechaza los nombres con HTML (400). Caso en PASA.</figcaption></figure>
+</div>
+<div class="par">
+  <figure><img src="capturas/antes/E02.png" alt="Antes: E02 FALLA"><figcaption><strong>Antes (E02):</strong> <code>POST</code> con <code>&lt;img src=x onerror=alert(1)&gt;</code> respondió 201.</figcaption></figure>
+</div>
+
+<div class="defecto"><h3>D09 · La API guarda pokemonId y sprite sin validar</h3><table>
+  <tr><td>Severidad / prioridad</td><td>Alta / P1 (el sprite sin validar permite el XSS de D08)</td></tr>
+  <tr><td>Casos</td><td>E03, E04 · reglas 4 y 5 de TD1</td></tr>
+  <tr><td>Pasos</td><td>1) <code>POST /api/records</code> con datos válidos y <code>pokemonId</code> = <code>"25"</code>, <code>"abc"</code>, <code>{"a":1}</code> o <code>0</code>.
+    2) <code>POST</code> con <code>sprite</code> = <code>javascript:alert(1)</code>.</td></tr>
+  <tr><td>Esperado</td><td>pokemonId entero de 1 a 100000 guardado como número; sprite solo http/https; inválidos → 400 sin guardar.</td></tr>
+  <tr><td>Actual</td><td>201 en todos: <code>"25"</code> quedó como texto, <code>{"a":1}</code> como objeto y <code>javascript:alert(1)</code> como imagen.</td></tr>
+  <tr><td>Causa</td><td><code>server.js</code> copiaba <code>req.body.pokemonId || null</code> y <code>req.body.sprite || null</code> sin pasar por la validación.</td></tr>
+  <tr><td>Corrección</td><td><code>validateRecord</code> valida ambos campos (entero 1–100000; URL http/https sin espacios, comillas ni ángulos, de hasta 500 caracteres) y el servidor guarda solo los valores validados. PUT también los acepta validados.</td></tr>
+</table></div>
+<div class="par">
+  <figure><img src="capturas/antes/E04.png" alt="Antes E04"><figcaption><strong>Antes (E04):</strong> <code>sprite: "javascript:alert(1)"</code> guardado con 201.</figcaption></figure>
+  <figure><img src="capturas/despues/E04.png" alt="Después E04"><figcaption><strong>Después (E04):</strong> la misma petición responde 400 con el motivo.</figcaption></figure>
+</div>
+<div class="par">
+  <figure><img src="capturas/antes/E03.png" alt="Antes E03"><figcaption><strong>Antes (E03):</strong> <code>pokemonId: "25"</code> se guardó como texto <code>"25"</code>.</figcaption></figure>
+  <figure><img src="capturas/despues/E03.png" alt="Después E03"><figcaption><strong>Después (E03):</strong> se guarda como el número 25; las clases inválidas responden 400.</figcaption></figure>
+</div>
+
+<div class="defecto"><h3>D10 · La búsqueda ignora el nombre escrito</h3><table>
+  <tr><td>Severidad / prioridad</td><td>Media / P2</td></tr>
+  <tr><td>Caso</td><td>M02</td></tr>
+  <tr><td>Pasos</td><td>1) Abrir el CRUD (la lista «Selecciona un Pokémon» queda en Ditto). 2) Escribir <code>pikachu</code> en «O escribe el nombre». 3) Pulsar Buscar o Enter.</td></tr>
+  <tr><td>Esperado</td><td>Se consulta y muestra Pikachu.</td></tr>
+  <tr><td>Actual</td><td>Se muestra Ditto y el texto vuelve a «ditto». Si se vacía la lista, el formulario no se envía («Selecciona un elemento de la lista»), así que el campo de texto nunca se usa.</td></tr>
+  <tr><td>Causa</td><td>El envío daba prioridad a la lista sobre el texto y la lista tenía el atributo <code>required</code>.</td></tr>
+  <tr><td>Corrección</td><td>El texto escrito manda (elegir en la lista ya lo copia al campo), se quitó <code>required</code>, se avisa si ambos están vacíos y «encontrado» solo aparece si la consulta tuvo éxito.</td></tr>
+</table></div>
+<div class="par">
+  <figure><img src="capturas/antes/D10-busqueda-1-escribe-pikachu.jpg" alt="Antes: se escribe pikachu"><figcaption><strong>Antes, paso 2:</strong> se escribe «pikachu».</figcaption></figure>
+  <figure><img src="capturas/antes/D10-busqueda-2-muestra-ditto.jpg" alt="Antes: aparece Ditto"><figcaption><strong>Antes, paso 3:</strong> aparece Ditto y el aviso «Pokémon ditto encontrado».</figcaption></figure>
+</div>
+<div class="par">
+  <figure><img src="capturas/despues/D10-busqueda-1-escribe-pikachu.jpg" alt="Después: se escribe pikachu"><figcaption><strong>Después, paso 2:</strong> mismos pasos.</figcaption></figure>
+  <figure><img src="capturas/despues/D10-busqueda-2-muestra-pikachu.jpg" alt="Después: aparece Pikachu"><figcaption><strong>Después, paso 3:</strong> aparece Pikachu (#025) y la lista se sincroniza.</figcaption></figure>
+</div>
+
+<div class="defecto"><h3>D11 · Si PokeAPI falla, el CRUD muestra 0 registros sin aviso</h3><table>
+  <tr><td>Severidad / prioridad</td><td>Media / P2 (los datos parecen perdidos)</td></tr>
+  <tr><td>Caso</td><td>M03</td></tr>
+  <tr><td>Pasos</td><td>1) Iniciar el servidor con 151 registros guardados y <code>POKEAPI_BASE=http://127.0.0.1:9/api/v2/pokemon</code> (proveedor inaccesible). 2) Abrir el CRUD.</td></tr>
+  <tr><td>Esperado</td><td>Se ven los registros locales y un aviso de que el catálogo de PokeAPI no está disponible.</td></tr>
+  <tr><td>Actual</td><td>«0 / 151 registros», catálogo y lista vacíos, sin mensaje. <code>GET /api/records</code> sí devolvía 153 registros. Consola: <code>TypeError: Cannot read properties of undefined (reading 'map') at populateSelects</code>.</td></tr>
+  <tr><td>Causa</td><td><code>loadGen1List</code> no revisaba la respuesta 502 y la excepción cortaba <code>init()</code> antes de cargar los registros.</td></tr>
+  <tr><td>Corrección</td><td>Se maneja el error del catálogo con un aviso, se cargan los registros de todas formas y el aviso del catálogo vacío ocupa todo el ancho.</td></tr>
+</table></div>
+<div class="par">
+  <figure><img src="capturas/antes/D11-crud-sin-pokeapi.jpg" alt="Antes: 0 registros"><figcaption><strong>Antes:</strong> «0 / 151 registros» y la página vacía, sin aviso.</figcaption></figure>
+  <figure><img src="capturas/despues/D11-crud-sin-pokeapi.jpg" alt="Después: registros visibles"><figcaption><strong>Después:</strong> «151 / 151 registros», aviso del catálogo y registros visibles. Para que catálogo y registros cupieran en una sola captura, se ocultaron temporalmente las secciones de consulta y formulario.</figcaption></figure>
+</div>
+
+<div class="defecto"><h3>D12 · <code>/api/pokemon/%2E%2E</code> consulta otra ruta de PokeAPI y expone un error interno</h3><table>
+  <tr><td>Severidad / prioridad</td><td>Media / P2</td></tr>
+  <tr><td>Casos</td><td>E05, N05</td></tr>
+  <tr><td>Pasos</td><td>1) Con un cliente HTTP que no normalice la ruta: <code>GET /api/pokemon/%2E%2E</code>.</td></tr>
+  <tr><td>Esperado</td><td>400 con un mensaje claro; no consultar otra ruta del proveedor.</td></tr>
+  <tr><td>Actual</td><td>502 <code>{"error":"stats is not iterable"}</code>. El servidor pidió la raíz de la API de PokeAPI (<code>/api/v2/</code>) y mostró el texto de una excepción interna.</td></tr>
+  <tr><td>Corrección</td><td><code>parsePokemonQuery</code> solo acepta letras, números y guiones (400 si no); <code>mapStatsFromApi</code> rechaza respuestas sin estadísticas con 502 «datos incompletos»; los errores no controlados ya no muestran su mensaje. El combate usa la misma validación al completar datos.</td></tr>
+</table></div>
+<div class="par">
+  <figure><img src="capturas/antes/E05.png" alt="Antes E05"><figcaption><strong>Antes (E05):</strong> 502 con «stats is not iterable».</figcaption></figure>
+  <figure><img src="capturas/despues/E05.png" alt="Después E05"><figcaption><strong>Después (E05):</strong> 400 con un mensaje en español.</figcaption></figure>
+</div>
+
+<div class="defecto"><h3>D13 · Un records.json dañado tumba el servidor al iniciar</h3><table>
+  <tr><td>Severidad / prioridad</td><td>Media / P2 (probabilidad baja, impacto alto: la aplicación deja de responder)</td></tr>
+  <tr><td>Caso</td><td>N07</td></tr>
+  <tr><td>Pasos</td><td>1) Escribir <code>{</code> en <code>data/records.json</code>. 2) Iniciar el servidor con la configuración normal (sincronización automática activa).</td></tr>
+  <tr><td>Esperado</td><td>El servidor sigue activo; <code>GET /api/records</code> responde 500 en JSON con la causa y el resto de la API funciona.</td></tr>
+  <tr><td>Actual</td><td>El proceso imprime «Servidor CRUD PokeAPI en …» y termina con <code>SyntaxError</code> en <code>readRecords</code> llamado desde <code>bootstrapGen1</code> (promesa rechazada sin manejar).</td></tr>
+  <tr><td>Corrección</td><td><code>parseRecords</code> convierte el JSON inválido (o que no sea una lista) en un error con mensaje para el usuario; <code>bootstrapGen1</code> queda dentro de <code>try</code>; el manejador de errores responde ese mensaje. Además, un registro sin estadísticas ya no impide listar los demás.</td></tr>
+</table></div>
+<div class="par">
+  <figure><img src="capturas/antes/N07.png" alt="Antes N07"><figcaption><strong>Antes (N07):</strong> salida del servidor con el <code>SyntaxError</code> y el proceso terminado.</figcaption></figure>
+  <figure><img src="capturas/despues/N07.png" alt="Después N07"><figcaption><strong>Después (N07):</strong> el servidor sigue activo y responde 500 con «El archivo de datos (records.json) está dañado…».</figcaption></figure>
+</div>
+
+<div class="defecto"><h3>D14 · Renombrar un registro conserva tipos, número e imagen del Pokémon anterior</h3><table>
+  <tr><td>Severidad / prioridad</td><td>Media / P3</td></tr>
+  <tr><td>Caso</td><td>E07</td></tr>
+  <tr><td>Pasos</td><td>1) Crear Squirtle (#7) y combatir (se guardan sus tipos). 2) <code>PUT</code> con <code>{"pokemonName":"bulbasaur"}</code>. 3) Iniciar otro combate con ese registro.</td></tr>
+  <tr><td>Esperado</td><td>Bulbasaur combate con tipos Planta/Veneno, número 1 y su imagen.</td></tr>
+  <tr><td>Actual</td><td>Aparece «bulbasaur» con tipo Agua, número 7 e imagen de Squirtle.</td></tr>
+  <tr><td>Corrección</td><td>Al cambiar el nombre o el número, el PUT descarta número, imagen y tipos, salvo que el mismo cambio indique el número. El combate completa tipos, número e imagen desde PokeAPI. El formulario del CRUD solo envía el número si el nombre no cambió.</td></tr>
+</table></div>
+<div class="par">
+  <figure><img src="capturas/antes/E07.png" alt="Antes E07"><figcaption><strong>Antes (E07):</strong> «bulbasaur» con <code>pokemonId</code> 7 y tipo <code>water</code>.</figcaption></figure>
+  <figure><img src="capturas/despues/E07.png" alt="Después E07"><figcaption><strong>Después (E07):</strong> la misma petición devuelve <code>pokemonId</code> 1 y tipos <code>grass</code>/<code>poison</code>.</figcaption></figure>
+</div>
+
+<div class="defecto"><h3>D15 · Rutas /api inexistentes responden HTML en lugar de JSON</h3><table>
+  <tr><td>Severidad / prioridad</td><td>Baja / P3</td></tr>
+  <tr><td>Casos</td><td>E06, N05</td></tr>
+  <tr><td>Pasos</td><td><code>GET /api/no-existe</code>, <code>DELETE /api/records</code>, <code>POST /api/pokemon/pikachu</code>, <code>GET /api/pokemon/</code>.</td></tr>
+  <tr><td>Esperado / actual</td><td>Esperado: 404 con <code>{"error": …}</code> (contrato CA15). Actual: 404 con la página HTML «Cannot GET /api/no-existe» de Express.</td></tr>
+  <tr><td>Relación</td><td>No es una reincidencia de D06. D06 corrigió los errores del cuerpo JSON; esta ruta (sin coincidencia de URL) no estaba cubierta.</td></tr>
+  <tr><td>Corrección</td><td>Manejador <code>app.use('/api', …)</code> después de todas las rutas que responde 404 «Ruta de la API no encontrada».</td></tr>
+</table></div>
+<div class="par">
+  <figure><img src="capturas/antes/N05.png" alt="Antes N05"><figcaption><strong>Antes (N05/E06):</strong> 404 en HTML «Cannot GET /api/no-existe».</figcaption></figure>
+  <figure><img src="capturas/despues/N05.png" alt="Después N05"><figcaption><strong>Después (N05/E06):</strong> 404 en JSON con mensaje en español.</figcaption></figure>
+</div>
+
+<div class="defecto"><h3>D16 · El nombre no tiene longitud máxima</h3><table>
+  <tr><td>Severidad / prioridad</td><td>Baja / P3</td></tr>
+  <tr><td>Caso</td><td>E01 (valores límite 1, 39, 40, 41 y 5000)</td></tr>
+  <tr><td>Esperado / actual</td><td>Esperado: máximo 40 caracteres (el nombre más largo de la Gen 1 tiene 10; 40 deja margen para apodos). Actual: 41 y 5000 caracteres respondieron 201.</td></tr>
+  <tr><td>Corrección</td><td><code>NAME_MAX = 40</code> en <code>lib/validation.js</code>, aplicado en POST y PUT.</td></tr>
+</table></div>
+<div class="par">
+  <figure><img src="capturas/antes/E01.png" alt="Antes E01"><figcaption><strong>Antes (E01):</strong> nombre de 41 caracteres guardado con 201.</figcaption></figure>
+  <figure><img src="capturas/despues/E01.png" alt="Después E01"><figcaption><strong>Después (E01):</strong> 400 «admite máximo 40 caracteres».</figcaption></figure>
+</div>
+
+<div class="defecto"><h3>D17 · Cabecera X-Powered-By expone la tecnología y falta nosniff</h3><table>
+  <tr><td>Severidad / prioridad</td><td>Baja / P4</td></tr>
+  <tr><td>Caso</td><td>N04</td></tr>
+  <tr><td>Esperado / actual</td><td>Esperado: sin <code>X-Powered-By</code> y con <code>X-Content-Type-Options: nosniff</code>. Actual: <code>X-Powered-By: Express</code> y sin <code>nosniff</code> en <code>/api/records</code>.</td></tr>
+  <tr><td>Corrección</td><td><code>app.disable('x-powered-by')</code> y un middleware que agrega <code>nosniff</code> a todas las respuestas.</td></tr>
+</table></div>
+<div class="par">
+  <figure><img src="capturas/antes/N04.png" alt="Antes N04"><figcaption><strong>Antes (N04):</strong> <code>x-powered-by: Express</code>; <code>nosniff</code> ausente.</figcaption></figure>
+  <figure><img src="capturas/despues/N04.png" alt="Después N04"><figcaption><strong>Después (N04):</strong> cabecera eliminada y <code>nosniff</code> presente.</figcaption></figure>
+</div>
+
+<h3>Evidencia de usabilidad (M04)</h3>
+<figure class="uno"><img src="capturas/despues/M04-combate-movil-375.jpg" alt="Combate en 375 px"><figcaption><strong>M04, ronda 2:</strong> pantalla de combate a 375 px sin desplazamiento horizontal (scrollWidth = 375 en el CRUD y en el combate). Se jugó con PokeAPI inaccesible: el combate usó los tipos ya guardados (regla 1 de TD2).</figcaption></figure>
+
+<h2 class="salto">10. Historial: cómo se corrigieron los defectos anteriores</h2>
+<p>Según el archivo de pruebas previo (<code>docs/pruebas/DEFECTOS.md</code>, semana 7), la suite de 15 casos encontró seis fallos en la ronda
+  <code>ronda-1-diagnostico</code> (9 PASA / 6 FALLA). Se corrigieron y se verificaron en <code>ronda-2-verificacion</code> (15/15 PASA).
+  Durante el desarrollo del módulo de combate apareció un séptimo defecto. Ninguno reapareció en esta ronda.</p>
+<table>
+  <tr><th>ID</th><th>Sev.</th><th>Falla observada (antes)</th><th>Cómo se corrigió</th><th>Verificación</th><th>¿Reincide en sem. 13?</th></tr>
+  <tr><td>D01</td><td>Media</td><td><code>GET /api/pokemon-list?limit=10&amp;offset=150</code> devolvía 10 Pokémon y salía de la Gen 1</td><td>Limitar por offset hasta 151 y rechazar parámetros inválidos con 400</td><td>R03 PASA (sem. 7)</td><td>No · R03 PASA</td></tr>
+  <tr><td>D02</td><td>Alta</td><td>POST con nombre de tres espacios respondía 201</td><td>Validación del servidor: texto no vacío, recortado, estructura de stats</td><td>R04 PASA</td><td>No · R04 PASA</td></tr>
+  <tr><td>D03</td><td>Alta</td><td>POST con <code>hp=0</code> respondía 201</td><td>Entero 1–999 sin convertir null, booleanos ni objetos</td><td>R05 PASA</td><td>No · R05 PASA</td></tr>
+  <tr><td>D04</td><td>Alta</td><td>PUT con nombre de un espacio respondía 200 y alteraba el registro</td><td>Validar todos los campos antes de modificar el objeto</td><td>R06 PASA</td><td>No · R06 PASA</td></tr>
+  <tr><td>D05</td><td>Alta</td><td>Con PokeAPI respondiendo 503, la API decía 404 «no existe»</td><td>Separar 404 (ausente), 502 (fallo externo) y 504 (tiempo agotado); revisar el estado también al sincronizar</td><td>R09 PASA</td><td>No · R09 PASA</td></tr>
+  <tr><td>D06</td><td>Media</td><td>JSON truncado producía 400 con contenido HTML</td><td>Middleware de errores que siempre responde JSON con <code>error</code></td><td>R10 PASA</td><td>No · R10 PASA. D15 es un caso distinto del mismo contrato</td></tr>
+  <tr><td>D07</td><td>Media</td><td>Combate (C02): los registros creados desde el formulario llegaban sin imagen (<code>sprite</code> nulo)</td><td>El combate usa el mismo respaldo por número que el CRUD (<code>lib/combat/battle.js</code>)</td><td>C02 PASA antes de integrar el módulo (commit <code>8596d23</code>). La ronda de diagnóstico de ese momento no se conservó</td><td>No · C02 PASA</td></tr>
+</table>
+<p>Lección para esta ronda: las suites anteriores probaban bien los campos obligatorios (D02–D04), pero no los opcionales (pokemonId, sprite),
+  los caracteres especiales ni lo que la interfaz hace con los datos. Por eso los defectos nuevos se concentran en esos huecos y se
+  encontraron con tablas de decisión completas y exploración guiada.</p>
+
+<h2>11. Conclusión y recomendación</h2>
+<ul>
+  <li><strong>Versión de master (<code>31b6d97</code>):</strong> funcional en CRUD, catálogo, sincronización y combate, pero con 2 defectos altos de seguridad
+    y 5 medios. <span class="bad">NO LISTO</span>.</li>
+  <li><strong>Versión corregida (<code>fe8a5bd</code>):</strong> 43/43 automatizados, 17/17 unitarias, 3/3 contra la PokeAPI real y 4/4 manuales.
+    0 defectos abiertos y 0 reincidentes. <span class="ok">LISTO</span> para la demostración académica local.</li>
+  <li><strong>Pendientes fuera de alcance (no se presentan como PASA):</strong> política de seguridad de contenido (CSP), autenticación,
+    escrituras concurrentes de varios procesos sobre el JSON, pruebas automatizadas de navegador (las de interfaz fueron manuales),
+    compatibilidad con otros navegadores y una regla de nombres únicos si el equipo la quiere.</li>
+  <li>Las correcciones están en la rama <code>test/semana-13-defectos</code> y deben integrarse a <code>master</code> con un pull request.
+    Si cambia el código o el ambiente, hay que repetir la suite con <code>npm test</code>.</li>
+</ul>
+
+</body>
+</html>
