@@ -1,0 +1,67 @@
+{
+  "id": "U13",
+  "title": "Editar la Velocidad cambia quién ataca primero",
+  "criterion": "RF05 / interfaz",
+  "status": "PASA",
+  "observation": "Orden en pantalla: ¡El CHARMANDER salvaje usó RAPIDEZ! → ¡PIKACHU usó RAYO!",
+  "durationMs": 15566,
+  "screenshots": [
+    "U13-1-velocidad-editada.png",
+    "U13-2-vista-previa.png",
+    "U13-3-salvaje-primero.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/pokemon-list?limit=151"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "GET",
+      "url": "/api/pokemon/ditto"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records/72b4356b-f7e8-453d-8629-8eb9e1dae124"
+    },
+    {
+      "method": "PUT",
+      "url": "/api/records/72b4356b-f7e8-453d-8629-8eb9e1dae124"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "GET",
+      "url": "/api/combat/rules"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles/adaffe0b-16e7-425c-a371-c0e99f52733a/turn"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [],
+  "messages": [
+    "¡El CHARMANDER salvaje usó RAPIDEZ!",
+    "¡PIKACHU usó RAYO!",
+    "¿Qué debe hacer PIKACHU?"
+  ]
+}

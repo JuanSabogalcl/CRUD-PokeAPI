@@ -46,8 +46,8 @@
   <p class="meta">Grupo 6: Hernan Felipe Patiño Rico, Juan Jose Sabogal Garcia y Orlando Rojas Narvaez.
     Docente: Diego Fernando Vargas Ramírez. Fundación Escuela Tecnológica de Neiva (FET).</p>
   <p class="meta">Fecha de ejecución: 17 de noviembre de 2026. Versión probada: <code>master</code> en el commit <code>31b6d97</code>
-    (CRUD, catálogo Gen 1, sincronización y módulo de combate). Versión corregida: commit <code>fe8a5bd</code> en la rama
-    <code>test/semana-13-defectos</code>. Ambiente: Windows 11 Pro, Node.js v24.21.0, Express 4, navegador Chromium.</p>
+    (CRUD, catálogo Gen 1, sincronización y módulo de combate). Versiones corregidas: <code>fe8a5bd</code> (D08–D17) y <code>cab9c88</code> (D18–D19, pruebas de interfaz)
+    en la rama <code>test/semana-13-defectos</code>. Ambiente: Windows 11 Pro, Node.js v24.21.0, Express 4, navegador Chromium.</p>
 </div>
 
 <h2>1. Resumen</h2>
@@ -58,8 +58,11 @@
   <p>Se registraron <strong>10 defectos</strong> (D08–D17): 2 de severidad alta (XSS y datos sin validar), 5 media y 3 baja.
     Todos se corrigieron. En la ronda 2 se repitieron los casos que fallaron y toda la regresión:
     <strong>43/43 PASA</strong>, 17/17 unitarias, 3/3 contra la PokeAPI real y 4/4 manuales.</p>
+  <p><strong>Pruebas de interfaz (sección 11):</strong> 23 casos en los que un usuario simulado comete errores típicos en el navegador.
+    Confirmaron que la lógica se aplica en pantalla y encontraron 2 defectos más (D18 doble clic en Guardar, D19 texto «a el»).
+    Tras corregirlos: <strong>23/23 PASA</strong>, con la regresión completa de nuevo en verde.</p>
   <p><strong>Recomendación:</strong> LISTO para la demostración académica local con la versión corregida (<code>fe8a5bd</code>),
-    con los límites de la sección 11. La versión de <code>master</code> sin corregir: NO LISTO.</p>
+    con los límites de la sección 12. La versión de <code>master</code> sin corregir: NO LISTO.</p>
 </div>
 
 <h2>2. Plan mínimo de la ronda (semana 7)</h2>
@@ -97,6 +100,7 @@
   <tr><td>No funcionales con umbral (nuevos)</td><td>N01–N07</td><td><code>npm run test:nofuncional</code></td></tr>
   <tr><td>Integración con la PokeAPI real</td><td>L01–L03</td><td><code>npm run test:live -- --run=&lt;carpeta&gt;</code></td></tr>
   <tr><td>Manuales en el navegador</td><td>M01–M04</td><td>Pasos de la sección 5</td></tr>
+  <tr><td>Interfaz automatizada (usuario simulado)</td><td>U01–U23</td><td><code>npm run test:ui</code></td></tr>
 </table>
 <p><strong>Entrada:</strong> dependencias instaladas, smoke en verde y resultado esperado definido para cada caso antes de ejecutarlo.
   <strong>Detención:</strong> una smoke fallida detiene la ronda. <strong>Salida:</strong> todos los casos en PASA, ningún defecto alto o
@@ -241,6 +245,8 @@
   <tr><th>Ronda</th><th>Versión</th><th>Automatizados</th><th>Unitarias</th><th>PokeAPI real</th><th>Manuales</th><th>Aprobación</th><th>Decisión</th></tr>
   <tr><td>1 · diagnóstico</td><td><code>31b6d97</code> (master)</td><td>33 PASA · 10 FALLA · 0 BLOQUEADO</td><td>17/17</td><td class="na">No ejecutada</td><td>0/3 (M01–M03 FALLA)</td><td>76,7 % de 43</td><td class="bad">NO LISTO</td></tr>
   <tr><td>2 · verificación</td><td><code>fe8a5bd</code> (corregida)</td><td>43 PASA · 0 FALLA · 0 BLOQUEADO</td><td>17/17</td><td>3/3</td><td>4/4</td><td>100 %</td><td class="ok">LISTO</td></tr>
+  <tr><td>Interfaz 1</td><td><code>fe8a5bd</code></td><td colspan="4">U01–U23: 21 PASA · 2 FALLA (D18, D19)</td><td>91,3 % de 23</td><td class="bad">NO LISTO</td></tr>
+  <tr><td>Interfaz 2 y regresión 3</td><td><code>cab9c88</code></td><td>43/43 PASA</td><td>17/17</td><td class="na">–</td><td>U01–U23: 23/23</td><td>100 %</td><td class="ok">LISTO</td></tr>
 </table>
 <p>Reportes con un JSON por caso (peticiones, respuestas, tiempos, salida del servidor y SHA-256 del código):
   <code>docs/pruebas/evidencias/semana13-ronda-1-diagnostico/</code>, <code>semana13-ronda-2-verificacion/</code> y <code>semana13-integracion-real/</code>.</p>
@@ -248,14 +254,15 @@
 <h3>Métricas de defectos</h3>
 <table>
   <tr><th>Métrica</th><th>Valor</th></tr>
-  <tr><td>Defectos nuevos de esta ronda</td><td>10 (D08–D17)</td></tr>
-  <tr><td>Por severidad</td><td>Alta 2 (D08, D09) · Media 5 (D10–D14) · Baja 3 (D15–D17)</td></tr>
-  <tr><td>Por prioridad</td><td>P1: 2 · P2: 4 · P3: 3 · P4: 1</td></tr>
-  <tr><td>Abiertos / cerrados</td><td>0 / 10 (todos verificados con re-test)</td></tr>
+  <tr><td>Defectos nuevos de esta ronda</td><td>12 (D08–D17 en API y revisión manual; D18–D19 en pruebas de interfaz)</td></tr>
+  <tr><td>Por severidad</td><td>Alta 2 (D08, D09) · Media 6 (D10–D14, D18) · Baja 4 (D15–D17, D19)</td></tr>
+  <tr><td>Por prioridad</td><td>P1: 2 · P2: 5 · P3: 4 · P4: 1</td></tr>
+  <tr><td>Abiertos / cerrados</td><td>0 / 12 (todos verificados con re-test)</td></tr>
   <tr><td>Reincidentes</td><td>0. Los defectos D01–D06 de la semana 7 no reaparecieron (R03–R10 en PASA en ambas rondas)</td></tr>
-  <tr><td>Por componente</td><td>Interfaz del CRUD 3 (D08 en pantalla, D10, D11) · API REST 5 (D09, D12, D15, D16, D17) · Almacenamiento 1 (D13) · Integración CRUD–combate 1 (D14) · Motor de combate 0</td></tr>
-  <tr><td>Por tipo de caso que lo detectó</td><td>Caja negra E: 5 · No funcional N: 2 · Manual M: 3</td></tr>
-  <tr><td>Histórico del proyecto</td><td>17 defectos (D01–D17), 17 cerrados, 0 abiertos</td></tr>
+  <tr><td>Por componente</td><td>Interfaz del CRUD 4 (D08 en pantalla, D10, D11, D18) · Interfaz del combate 1 (D19) · API REST 5 (D09, D12, D15, D16, D17) · Almacenamiento 1 (D13) · Integración CRUD–combate 1 (D14) · Motor de combate 0</td></tr>
+  <tr><td>Por tipo de caso que lo detectó</td><td>Caja negra E: 5 · No funcional N: 2 · Manual M: 3 · Interfaz automatizada U: 2</td></tr>
+  <tr><td>Falsos positivos descartados en triage</td><td>4 (fallas del script de interfaz en su primera ejecución; sección 11)</td></tr>
+  <tr><td>Histórico del proyecto</td><td>19 defectos (D01–D19), 19 cerrados, 0 abiertos</td></tr>
 </table>
 
 <h2>8. Gestión de defectos: triage y estados (semanas 12 y 13)</h2>
@@ -280,6 +287,8 @@
   <tr><td>D15</td><td>Rutas /api inexistentes responden HTML en lugar de JSON</td><td>Baja</td><td>P3</td><td>E06, N05</td><td>Cerrado</td><td><code>fe8a5bd</code></td><td>E06, N05 PASA</td></tr>
   <tr><td>D16</td><td>El nombre no tiene longitud máxima</td><td>Baja</td><td>P3</td><td>E01</td><td>Cerrado</td><td><code>fe8a5bd</code></td><td>E01 PASA</td></tr>
   <tr><td>D17</td><td>Cabecera X-Powered-By expone la tecnología y falta nosniff</td><td>Baja</td><td>P4</td><td>N04</td><td>Cerrado</td><td><code>fe8a5bd</code></td><td>N04 PASA</td></tr>
+  <tr><td>D18</td><td>Un doble clic en «Guardar» crea el registro dos veces</td><td>Media</td><td>P2</td><td>U06</td><td>Cerrado</td><td><code>cab9c88</code></td><td>U06 PASA</td></tr>
+  <tr><td>D19</td><td>El mensaje de inmunidad dice «a el» en lugar de «al»</td><td>Baja</td><td>P3</td><td>U17</td><td>Cerrado</td><td><code>cab9c88</code></td><td>U17 PASA</td></tr>
 </table>
 <p><strong>Regresión después de las correcciones:</strong> se ejecutaron otra vez todas las suites (17 unitarias, S01–S05, R01–R10, C01–C12, E01–E09,
   N01–N07, L01–L03 y M01–M04). Ningún caso que pasaba en la ronda 1 dejó de pasar.</p>
@@ -461,15 +470,95 @@
   los caracteres especiales ni lo que la interfaz hace con los datos. Por eso los defectos nuevos se concentran en esos huecos y se
   encontraron con tablas de decisión completas y exploración guiada.</p>
 
-<h2>11. Conclusión y recomendación</h2>
+<h2 class="salto">11. Pruebas de interfaz: errores del usuario y lógica en pantalla</h2>
+<p><strong>Objetivo.</strong> Comprobar desde la interfaz, como lo haría un usuario, que las reglas del sistema se aplican en lo que se ve
+  y que los errores típicos de uso (campos vacíos, valores fuera de rango, doble clic, cancelar, búsquedas mal escritas, pérdida de conexión)
+  se manejan bien.</p>
+<p><strong>Método.</strong> <code>tests/ui/run-ui.js</code> (<code>npm run test:ui</code>) controla Microsoft Edge 157 en modo headless mediante el
+  protocolo de DevTools, sin dependencias nuevas. Los clics y el teclado son eventos reales de entrada, así que también se aplican las
+  validaciones del navegador. Cada caso arranca la API con datos vacíos y la PokeAPI simulada (con imágenes reales) en una ventana de 1280 × 900.
+  Además de mirar la pantalla, compara lo mostrado con lo que guardó o calculó el servidor. Se guardan capturas automáticas y un JSON por caso con
+  las peticiones a la API, los avisos, los mensajes del combate y los errores de la consola.</p>
+<p><strong>Triage de la primera ejecución.</strong> La primera vez fallaron 6 casos. Cuatro eran errores del script, no de la aplicación,
+  y no se registraron como defectos: el script hacía clic mientras la página aún se desplazaba (U02, U13), un escenario de búsqueda estaba mal armado (U12)
+  y se leía el registro del combate plegado (U18). Se corrigió el script y la ronda 1 se repitió sobre el mismo código (<code>fe8a5bd</code>).</p>
+<table>
+  <tr><th>Caso</th><th>Error del usuario o acción</th><th>Lógica que debe aplicarse en pantalla</th><th>Ronda 1 (fe8a5bd)</th><th>Ronda 2 (cab9c88)</th></tr>
+  <tr><td>U01</td><td>Pulsar Guardar con el formulario vacío</td><td>El navegador exige el nombre; no se envía nada</td><td class="ok">PASA</td><td class="ok">PASA</td></tr>
+  <tr><td>U02</td><td>Escribir PS = 0, 1000 y 2.5; luego 1</td><td>Rango 1–999 entero en el formulario; con 1 se guarda</td><td class="ok">PASA</td><td class="ok">PASA</td></tr>
+  <tr><td>U03</td><td>Nombre con solo espacios</td><td>El servidor lo rechaza y la pantalla muestra el motivo</td><td class="ok">PASA</td><td class="ok">PASA</td></tr>
+  <tr><td>U04</td><td>Nombre <code>&lt;b&gt;hack&lt;/b&gt;</code></td><td>Rechazo por HTML (D08); nada se dibuja como HTML</td><td class="ok">PASA</td><td class="ok">PASA</td></tr>
+  <tr><td>U05</td><td>Nombre de 41 caracteres</td><td>Límite de 40 (D16) avisado al usuario</td><td class="ok">PASA</td><td class="ok">PASA</td></tr>
+  <tr><td>U06</td><td>Doble clic en Guardar</td><td>Un solo registro</td><td class="bad">FALLA</td><td class="ok">PASA</td></tr>
+  <tr><td>U07</td><td>Editar con PS = 0 y cancelar</td><td>No se envía el cambio; el registro queda igual</td><td class="ok">PASA</td><td class="ok">PASA</td></tr>
+  <tr><td>U08</td><td>Eliminar: cancelar la confirmación y luego aceptar</td><td>Cancelar no borra; aceptar borra y avisa</td><td class="ok">PASA</td><td class="ok">PASA</td></tr>
+  <tr><td>U09</td><td>Buscar «  PIKACHU  »</td><td>Se recortan espacios y mayúsculas; muestra #025</td><td class="ok">PASA</td><td class="ok">PASA</td></tr>
+  <tr><td>U10</td><td>Buscar un Pokémon inexistente</td><td>Aviso de error y ningún «encontrado» (D10)</td><td class="ok">PASA</td><td class="ok">PASA</td></tr>
+  <tr><td>U11</td><td>Buscar «Mr. Mime»</td><td>Mensaje que explica el formato (D12)</td><td class="ok">PASA</td><td class="ok">PASA</td></tr>
+  <tr><td>U12</td><td>Buscar sin escribir ni elegir nada</td><td>Aviso «Escribe o selecciona un Pokémon»; sin consulta</td><td class="ok">PASA</td><td class="ok">PASA</td></tr>
+  <tr><td>U13</td><td>Bajar la Velocidad de Pikachu a 10 en el CRUD y combatir</td><td>Vel. de combate 15: el salvaje (70) ataca primero</td><td class="ok">PASA</td><td class="ok">PASA</td></tr>
+  <tr><td>U14</td><td>Renombrar Squirtle a «bulbasaur» en el formulario y combatir</td><td>Tipos Planta/Veneno en la pantalla de combate (D14)</td><td class="ok">PASA</td><td class="ok">PASA</td></tr>
+  <tr><td>U15</td><td>Iniciar el combate sin elegir al salvaje</td><td>Mensaje y ninguna petición de combate</td><td class="ok">PASA</td><td class="ok">PASA</td></tr>
+  <tr><td>U16</td><td>Elegir un salvaje con datos incompletos</td><td>Mensaje controlado con el nombre del registro (422)</td><td class="ok">PASA</td><td class="ok">PASA</td></tr>
+  <tr><td>U17</td><td>Rapidez (Normal) contra Gastly (Fantasma)</td><td>Gastly no pierde PS; mensaje «No afecta al…»</td><td class="bad">FALLA</td><td class="ok">PASA</td></tr>
+  <tr><td>U18</td><td>Surf contra Charmander</td><td>Barra, números y desglose iguales a la fórmula del servidor</td><td class="ok">PASA</td><td class="ok">PASA</td></tr>
+  <tr><td>U19</td><td>Doble clic en un ataque</td><td>Se juega una sola ronda</td><td class="ok">PASA</td><td class="ok">PASA</td></tr>
+  <tr><td>U20</td><td>Seguir jugando tras ganar (incluso forzando la petición)</td><td>Sin menú LUCHAR; el servidor responde 409</td><td class="ok">PASA</td><td class="ok">PASA</td></tr>
+  <tr><td>U21</td><td>Se corta la conexión al atacar</td><td>«No hay conexión…» y se puede reintentar</td><td class="ok">PASA</td><td class="ok">PASA</td></tr>
+  <tr><td>U22</td><td>Recargar a mitad del combate</td><td>Vuelve a la preparación sin errores</td><td class="ok">PASA</td><td class="ok">PASA</td></tr>
+  <tr><td>U23</td><td>HUIR y empezar otro combate</td><td>Escapa y el siguiente combate funciona</td><td class="ok">PASA</td><td class="ok">PASA</td></tr>
+</table>
+<p>Ronda 1: <strong>21 PASA · 2 FALLA</strong>. Ronda 2, tras corregir D18 y D19: <strong>23/23 PASA</strong>. Después de las correcciones se
+  repitió también la regresión de la API (<code>semana13-ronda-3-regresion</code>: 43/43) y las 17 unitarias. Evidencia:
+  <code>docs/pruebas/evidencias/semana13-ui-ronda-1/</code> y <code>semana13-ui-ronda-2/</code>, con 29 capturas por ronda.</p>
+
+<div class="defecto"><h3>D18 · Un doble clic en «Guardar» crea el registro dos veces</h3><table>
+  <tr><td>Severidad / prioridad</td><td>Media / P2 (datos duplicados por un gesto común del usuario)</td></tr>
+  <tr><td>Caso</td><td>U06</td></tr>
+  <tr><td>Pasos</td><td>1) Abrir el CRUD. 2) Escribir el nombre <code>doble-clic</code> y 48 en las seis estadísticas. 3) Hacer doble clic en «Guardar».</td></tr>
+  <tr><td>Esperado / actual</td><td>Esperado: un registro. Actual: se enviaron 2 POST y aparecen dos registros «Doble-Clic».</td></tr>
+  <tr><td>Causa</td><td>El envío no se bloqueaba mientras se esperaba la respuesta del servidor.</td></tr>
+  <tr><td>Corrección</td><td><code>public/js/app.js</code>: una marca <code>saving</code> ignora los envíos repetidos y el botón se desactiva hasta terminar.</td></tr>
+  <tr><td>Re-test</td><td>U06 PASA: 1 POST y 1 registro.</td></tr>
+</table></div>
+<div class="par">
+  <figure><img src="../evidencias/semana13-ui-ronda-1/U06-1-tras-doble-clic.png" alt="Antes: dos registros"><figcaption><strong>Antes (U06):</strong> dos registros «Doble-Clic» creados con un solo doble clic.</figcaption></figure>
+  <figure><img src="../evidencias/semana13-ui-ronda-2/U06-1-tras-doble-clic.png" alt="Después: un registro"><figcaption><strong>Después (U06):</strong> el mismo gesto crea un solo registro.</figcaption></figure>
+</div>
+
+<div class="defecto"><h3>D19 · El mensaje de inmunidad dice «No afecta a el … salvaje»</h3><table>
+  <tr><td>Severidad / prioridad</td><td>Baja / P3 (texto incorrecto que ve el usuario; la lógica sí se aplica)</td></tr>
+  <tr><td>Caso</td><td>U17</td></tr>
+  <tr><td>Pasos</td><td>1) Combate Charmander contra Gastly salvaje. 2) LUCHAR → RAPIDEZ.</td></tr>
+  <tr><td>Esperado / actual</td><td>Esperado: «No afecta al GASTLY salvaje...». Actual: «No afecta a el GASTLY salvaje...». Gastly conserva sus PS en ambos casos.</td></tr>
+  <tr><td>Corrección</td><td><code>public/js/combate.js</code>: nueva función <code>objectOf</code> que usa «al» para el salvaje y «a» para el Pokémon del jugador.</td></tr>
+  <tr><td>Re-test</td><td>U17 PASA.</td></tr>
+</table></div>
+<div class="par">
+  <figure><img src="../evidencias/semana13-ui-ronda-1/U17-1-no-afecta.png" alt="Antes: a el"><figcaption><strong>Antes (U17):</strong> «No afecta a el GASTLY salvaje...».</figcaption></figure>
+  <figure><img src="../evidencias/semana13-ui-ronda-2/U17-1-no-afecta.png" alt="Después: al"><figcaption><strong>Después (U17):</strong> «No afecta al GASTLY salvaje...»; la barra de Gastly sigue llena.</figcaption></figure>
+</div>
+
+<h3>Evidencia de que la lógica se aplica en la interfaz (ronda 2)</h3>
+<div class="par">
+  <figure><img src="../evidencias/semana13-ui-ronda-2/U02-1-ps-cero.png" alt="Validación de rango"><figcaption><strong>U02:</strong> con PS = 0 el navegador bloquea el envío («El valor debe ser mayor o igual que 1»); no llega ninguna petición al servidor.</figcaption></figure>
+  <figure><img src="../evidencias/semana13-ui-ronda-2/U13-3-salvaje-primero.png" alt="Orden por velocidad"><figcaption><strong>U13:</strong> tras bajar la Velocidad de Pikachu a 10 en el CRUD, el Charmander salvaje ataca primero.</figcaption></figure>
+</div>
+<div class="par">
+  <figure><img src="../evidencias/semana13-ui-ronda-2/U18-2-desglose.png" alt="Desglose del daño"><figcaption><strong>U18:</strong> el registro muestra «Base 43 × STAB 1.5 × Efect. 2 × Var. 0.92 = 118» y PS 99 → 0, igual que el cálculo del servidor; el combate termina con ganador.</figcaption></figure>
+  <figure><img src="../evidencias/semana13-ui-ronda-2/U21-1-sin-conexion.png" alt="Sin conexión"><figcaption><strong>U21:</strong> si se corta la conexión al atacar, aparece «No hay conexión con el servidor del proyecto» y el menú vuelve para reintentar.</figcaption></figure>
+</div>
+
+<h2>12. Conclusión y recomendación</h2>
 <ul>
   <li><strong>Versión de master (<code>31b6d97</code>):</strong> funcional en CRUD, catálogo, sincronización y combate, pero con 2 defectos altos de seguridad
     y 5 medios. <span class="bad">NO LISTO</span>.</li>
-  <li><strong>Versión corregida (<code>fe8a5bd</code>):</strong> 43/43 automatizados, 17/17 unitarias, 3/3 contra la PokeAPI real y 4/4 manuales.
-    0 defectos abiertos y 0 reincidentes. <span class="ok">LISTO</span> para la demostración académica local.</li>
+  <li><strong>Versión corregida (<code>cab9c88</code>):</strong> 43/43 de API, 17/17 unitarias, 3/3 contra la PokeAPI real, 4/4 manuales y
+    23/23 de interfaz. La lógica de validación, búsqueda y combate se aplica en lo que ve el usuario. 0 defectos abiertos y 0 reincidentes.
+    <span class="ok">LISTO</span> para la demostración académica local.</li>
   <li><strong>Pendientes fuera de alcance (no se presentan como PASA):</strong> política de seguridad de contenido (CSP), autenticación,
-    escrituras concurrentes de varios procesos sobre el JSON, pruebas automatizadas de navegador (las de interfaz fueron manuales),
-    compatibilidad con otros navegadores y una regla de nombres únicos si el equipo la quiere.</li>
+    escrituras concurrentes de varios procesos sobre el JSON, compatibilidad con otros navegadores (las pruebas de interfaz usan Edge),
+    recuperar un combate en curso al recargar la página (U22) y una regla de nombres únicos si el equipo la quiere.</li>
   <li>Las correcciones están en la rama <code>test/semana-13-defectos</code> y deben integrarse a <code>master</code> con un pull request.
     Si cambia el código o el ambiente, hay que repetir la suite con <code>npm test</code>.</li>
 </ul>

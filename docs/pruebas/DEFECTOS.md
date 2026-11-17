@@ -40,5 +40,9 @@ Ronda sobre la última versión (CRUD + combate). Informe completo con triage, m
 | D15 | Baja / P3 | Rutas /api inexistentes respondían HTML. | 404 en JSON para toda ruta /api desconocida. | E06, N05 · Cerrado. |
 | D16 | Baja / P3 | El nombre no tenía longitud máxima (se aceptaron 5000 caracteres). | Máximo 40 caracteres. | E01 · Cerrado. |
 | D17 | Baja / P4 | Cabecera `X-Powered-By: Express` y sin `nosniff`. | Quitar la cabecera y enviar `X-Content-Type-Options: nosniff`. | N04 · Cerrado. |
+| D18 | Media / P2 | Un doble clic en «Guardar» creaba el registro dos veces. | Ignorar envíos repetidos y desactivar el botón mientras se guarda. | U06 · Cerrado (cab9c88). |
+| D19 | Baja / P3 | El combate decía «No afecta a el … salvaje». | Usar «al» con el Pokémon salvaje. | U17 · Cerrado (cab9c88). |
 
-Métricas: 17 defectos en total (D01–D17), 0 abiertos y 0 reincidentes. En la semana 13: 2 altos, 5 medios y 3 bajos. Comandos nuevos: `npm run test:exploratoria`, `npm run test:nofuncional` y `node scripts/capturas-evidencia.js`.
+Pruebas de interfaz con un usuario simulado en Edge (U01–U23, `npm run test:ui`): [ronda 1: 21 PASA / 2 FALLA](evidencias/semana13-ui-ronda-1/REPORTE.md), [ronda 2: 23/23 PASA](evidencias/semana13-ui-ronda-2/REPORTE.md) y [regresión de la API tras corregir: 43/43](evidencias/semana13-ronda-3-regresion/REPORTE.md).
+
+Métricas: 19 defectos en total (D01–D19), 0 abiertos y 0 reincidentes. En la semana 13: 2 altos, 6 medios y 4 bajos. Comandos nuevos: `npm run test:exploratoria`, `npm run test:nofuncional`, `npm run test:ui` y `node scripts/capturas-evidencia.js`.

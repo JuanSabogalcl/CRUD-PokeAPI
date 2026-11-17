@@ -1,0 +1,836 @@
+{
+  "id": "E07",
+  "title": "Renombrar un registro actualiza la especie usada en el combate",
+  "criterion": "RF02 / Sección 11",
+  "status": "PASA",
+  "observation": "",
+  "durationMs": 327,
+  "evidence": "E07.json",
+  "exchanges": [
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "squirtle",
+          "pokemonId": 7,
+          "stats": {
+            "hp": 44,
+            "attack": 48,
+            "defense": 65,
+            "special-attack": 50,
+            "special-defense": 64,
+            "speed": 43
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "72b0def6-4d52-4cc6-bb9c-ac7dc6750430",
+          "pokemonName": "squirtle",
+          "pokemonId": 7,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
+          "stats": {
+            "hp": 44,
+            "attack": 48,
+            "defense": 65,
+            "special-attack": 50,
+            "special-defense": 64,
+            "speed": 43
+          },
+          "createdAt": "2026-11-17T18:04:25.524Z",
+          "updatedAt": "2026-11-17T18:04:25.525Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 44
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 48
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 65
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 50
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 64
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 43
+            }
+          ]
+        }
+      },
+      "durationMs": 20
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "f2a826c2-ee19-4a8e-820d-d565be496189",
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          },
+          "createdAt": "2026-11-17T18:04:25.534Z",
+          "updatedAt": "2026-11-17T18:04:25.534Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 48
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 48
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 48
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 48
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 48
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 48
+            }
+          ]
+        }
+      },
+      "durationMs": 6
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "pvp",
+          "seed": 7,
+          "p1": {
+            "recordId": "72b0def6-4d52-4cc6-bb9c-ac7dc6750430"
+          },
+          "p2": {
+            "recordId": "f2a826c2-ee19-4a8e-820d-d565be496189"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "ac564f6b-29bf-41f3-9c63-8253660045f1",
+          "mode": "pvp",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "72b0def6-4d52-4cc6-bb9c-ac7dc6750430",
+              "pokemonId": 7,
+              "name": "squirtle",
+              "sprite": "https://example.test/7.png",
+              "types": [
+                "water"
+              ],
+              "baseStats": {
+                "hp": 44,
+                "attack": 48,
+                "defense": 65,
+                "special-attack": 50,
+                "special-defense": 64,
+                "speed": 43
+              },
+              "stats": {
+                "hp": 104,
+                "attack": 53,
+                "defense": 70,
+                "special-attack": 55,
+                "special-defense": 69,
+                "speed": 48
+              },
+              "hp": {
+                "current": 104,
+                "max": 104
+              },
+              "moves": [
+                {
+                  "id": "surf",
+                  "name": "Surf",
+                  "type": "water",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "hydro-pump",
+                  "name": "Hidrobomba",
+                  "type": "water",
+                  "power": 120,
+                  "accuracy": 80,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Agua"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "humano",
+              "recordId": "f2a826c2-ee19-4a8e-820d-d565be496189",
+              "pokemonId": 132,
+              "name": "ditto",
+              "sprite": "https://example.test/132.png",
+              "types": [
+                "normal"
+              ],
+              "baseStats": {
+                "hp": 48,
+                "attack": 48,
+                "defense": 48,
+                "special-attack": 48,
+                "special-defense": 48,
+                "speed": 48
+              },
+              "stats": {
+                "hp": 108,
+                "attack": 53,
+                "defense": 53,
+                "special-attack": 53,
+                "special-defense": 53,
+                "speed": 53
+              },
+              "hp": {
+                "current": 108,
+                "max": 108
+              },
+              "moves": [
+                {
+                  "id": "body-slam",
+                  "name": "Golpe Cuerpo",
+                  "type": "normal",
+                  "power": 85,
+                  "accuracy": 100,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": true
+                },
+                {
+                  "id": "slam",
+                  "name": "Atizar",
+                  "type": "normal",
+                  "power": 80,
+                  "accuracy": 75,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": true
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": true
+                }
+              ],
+              "typeLabels": [
+                "Normal"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T18:04:25.584Z"
+        }
+      },
+      "durationMs": 49
+    },
+    {
+      "request": {
+        "method": "PUT",
+        "route": "/api/records/72b0def6-4d52-4cc6-bb9c-ac7dc6750430",
+        "body": {
+          "pokemonName": "bulbasaur"
+        }
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "72b0def6-4d52-4cc6-bb9c-ac7dc6750430",
+          "pokemonName": "bulbasaur",
+          "pokemonId": null,
+          "sprite": null,
+          "stats": {
+            "hp": 44,
+            "attack": 48,
+            "defense": 65,
+            "special-attack": 50,
+            "special-defense": 64,
+            "speed": 43
+          },
+          "createdAt": "2026-11-17T18:04:25.524Z",
+          "updatedAt": "2026-11-17T18:04:25.588Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 44
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 48
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 65
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 50
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 64
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 43
+            }
+          ]
+        }
+      },
+      "durationMs": 5
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "pvp",
+          "seed": 7,
+          "p1": {
+            "recordId": "72b0def6-4d52-4cc6-bb9c-ac7dc6750430"
+          },
+          "p2": {
+            "recordId": "f2a826c2-ee19-4a8e-820d-d565be496189"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "84955360-8e89-4bf3-ab41-a71544a10d02",
+          "mode": "pvp",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "72b0def6-4d52-4cc6-bb9c-ac7dc6750430",
+              "pokemonId": 1,
+              "name": "bulbasaur",
+              "sprite": "https://example.test/1.png",
+              "types": [
+                "grass",
+                "poison"
+              ],
+              "baseStats": {
+                "hp": 44,
+                "attack": 48,
+                "defense": 65,
+                "special-attack": 50,
+                "special-defense": 64,
+                "speed": 43
+              },
+              "stats": {
+                "hp": 104,
+                "attack": 53,
+                "defense": 70,
+                "special-attack": 55,
+                "special-defense": 69,
+                "speed": 48
+              },
+              "hp": {
+                "current": 104,
+                "max": 104
+              },
+              "moves": [
+                {
+                  "id": "razor-leaf",
+                  "name": "Hoja Afilada",
+                  "type": "grass",
+                  "power": 55,
+                  "accuracy": 95,
+                  "category": "special",
+                  "typeLabel": "Planta",
+                  "stab": true
+                },
+                {
+                  "id": "sludge",
+                  "name": "Lodo",
+                  "type": "poison",
+                  "power": 65,
+                  "accuracy": 100,
+                  "category": "physical",
+                  "typeLabel": "Veneno",
+                  "stab": true
+                },
+                {
+                  "id": "vine-whip",
+                  "name": "Látigo Cepa",
+                  "type": "grass",
+                  "power": 35,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Planta",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Planta",
+                "Veneno"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "humano",
+              "recordId": "f2a826c2-ee19-4a8e-820d-d565be496189",
+              "pokemonId": 132,
+              "name": "ditto",
+              "sprite": "https://example.test/132.png",
+              "types": [
+                "normal"
+              ],
+              "baseStats": {
+                "hp": 48,
+                "attack": 48,
+                "defense": 48,
+                "special-attack": 48,
+                "special-defense": 48,
+                "speed": 48
+              },
+              "stats": {
+                "hp": 108,
+                "attack": 53,
+                "defense": 53,
+                "special-attack": 53,
+                "special-defense": 53,
+                "speed": 53
+              },
+              "hp": {
+                "current": 108,
+                "max": 108
+              },
+              "moves": [
+                {
+                  "id": "body-slam",
+                  "name": "Golpe Cuerpo",
+                  "type": "normal",
+                  "power": 85,
+                  "accuracy": 100,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": true
+                },
+                {
+                  "id": "slam",
+                  "name": "Atizar",
+                  "type": "normal",
+                  "power": 80,
+                  "accuracy": 75,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": true
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": true
+                }
+              ],
+              "typeLabels": [
+                "Normal"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T18:04:25.600Z"
+        }
+      },
+      "durationMs": 11
+    },
+    {
+      "request": {
+        "method": "PUT",
+        "route": "/api/records/72b0def6-4d52-4cc6-bb9c-ac7dc6750430",
+        "body": {
+          "pokemonName": "mi-squirtle",
+          "pokemonId": 7
+        }
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "72b0def6-4d52-4cc6-bb9c-ac7dc6750430",
+          "pokemonName": "mi-squirtle",
+          "pokemonId": 7,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
+          "stats": {
+            "hp": 44,
+            "attack": 48,
+            "defense": 65,
+            "special-attack": 50,
+            "special-defense": 64,
+            "speed": 43
+          },
+          "createdAt": "2026-11-17T18:04:25.524Z",
+          "updatedAt": "2026-11-17T18:04:25.604Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 44
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 48
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 65
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 50
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 64
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 43
+            }
+          ]
+        }
+      },
+      "durationMs": 5
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "pvp",
+          "seed": 7,
+          "p1": {
+            "recordId": "72b0def6-4d52-4cc6-bb9c-ac7dc6750430"
+          },
+          "p2": {
+            "recordId": "f2a826c2-ee19-4a8e-820d-d565be496189"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "81140fc9-3069-4635-b1f2-bc37a3549892",
+          "mode": "pvp",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "72b0def6-4d52-4cc6-bb9c-ac7dc6750430",
+              "pokemonId": 7,
+              "name": "mi-squirtle",
+              "sprite": "https://example.test/7.png",
+              "types": [
+                "water"
+              ],
+              "baseStats": {
+                "hp": 44,
+                "attack": 48,
+                "defense": 65,
+                "special-attack": 50,
+                "special-defense": 64,
+                "speed": 43
+              },
+              "stats": {
+                "hp": 104,
+                "attack": 53,
+                "defense": 70,
+                "special-attack": 55,
+                "special-defense": 69,
+                "speed": 48
+              },
+              "hp": {
+                "current": 104,
+                "max": 104
+              },
+              "moves": [
+                {
+                  "id": "surf",
+                  "name": "Surf",
+                  "type": "water",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "hydro-pump",
+                  "name": "Hidrobomba",
+                  "type": "water",
+                  "power": 120,
+                  "accuracy": 80,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Agua"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "humano",
+              "recordId": "f2a826c2-ee19-4a8e-820d-d565be496189",
+              "pokemonId": 132,
+              "name": "ditto",
+              "sprite": "https://example.test/132.png",
+              "types": [
+                "normal"
+              ],
+              "baseStats": {
+                "hp": 48,
+                "attack": 48,
+                "defense": 48,
+                "special-attack": 48,
+                "special-defense": 48,
+                "speed": 48
+              },
+              "stats": {
+                "hp": 108,
+                "attack": 53,
+                "defense": 53,
+                "special-attack": 53,
+                "special-defense": 53,
+                "speed": 53
+              },
+              "hp": {
+                "current": 108,
+                "max": 108
+              },
+              "moves": [
+                {
+                  "id": "body-slam",
+                  "name": "Golpe Cuerpo",
+                  "type": "normal",
+                  "power": 85,
+                  "accuracy": 100,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": true
+                },
+                {
+                  "id": "slam",
+                  "name": "Atizar",
+                  "type": "normal",
+                  "power": 80,
+                  "accuracy": 75,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": true
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": true
+                }
+              ],
+              "typeLabels": [
+                "Normal"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T18:04:25.617Z"
+        }
+      },
+      "durationMs": 12
+    }
+  ],
+  "serverLog": "Servidor CRUD PokeAPI en http://localhost:62645\n"
+}

@@ -1,0 +1,4779 @@
+{
+  "id": "N06",
+  "title": "Confiabilidad: 40 peticiones concurrentes y 25 combates completos",
+  "criterion": "RNF-CON-01",
+  "status": "PASA",
+  "observation": "40 concurrentes sin 5xx; 25 combates terminados con ganador, 1.9 rondas en promedio",
+  "durationMs": 839,
+  "evidence": "N06.json",
+  "exchanges": [
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "charmander",
+          "pokemonId": 4,
+          "stats": {
+            "hp": 39,
+            "attack": 52,
+            "defense": 43,
+            "special-attack": 60,
+            "special-defense": 50,
+            "speed": 65
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "16a75a53-70cd-47b3-bb95-7c99d481467d",
+          "pokemonName": "charmander",
+          "pokemonId": 4,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
+          "stats": {
+            "hp": 39,
+            "attack": 52,
+            "defense": 43,
+            "special-attack": 60,
+            "special-defense": 50,
+            "speed": 65
+          },
+          "createdAt": "2026-11-17T18:04:28.708Z",
+          "updatedAt": "2026-11-17T18:04:28.709Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 39
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 52
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 43
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 60
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 50
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 65
+            }
+          ]
+        }
+      },
+      "durationMs": 23
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "squirtle",
+          "pokemonId": 7,
+          "stats": {
+            "hp": 44,
+            "attack": 48,
+            "defense": 65,
+            "special-attack": 50,
+            "special-defense": 64,
+            "speed": 43
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "f5c0537f-fe14-4754-abab-7e0ae21ac594",
+          "pokemonName": "squirtle",
+          "pokemonId": 7,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
+          "stats": {
+            "hp": 44,
+            "attack": 48,
+            "defense": 65,
+            "special-attack": 50,
+            "special-defense": 64,
+            "speed": 43
+          },
+          "createdAt": "2026-11-17T18:04:28.719Z",
+          "updatedAt": "2026-11-17T18:04:28.719Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 44
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 48
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 65
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 50
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 64
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 43
+            }
+          ]
+        }
+      },
+      "durationMs": 6
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "cpu",
+          "seed": 1000,
+          "p1": {
+            "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d"
+          },
+          "p2": {
+            "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "70a17f6c-604e-40a8-8feb-570a0e397f29",
+          "mode": "cpu",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d",
+              "pokemonId": 4,
+              "name": "charmander",
+              "sprite": "https://example.test/4.png",
+              "types": [
+                "fire"
+              ],
+              "baseStats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "special-attack": 60,
+                "special-defense": 50,
+                "speed": 65
+              },
+              "stats": {
+                "hp": 99,
+                "attack": 57,
+                "defense": 48,
+                "special-attack": 65,
+                "special-defense": 55,
+                "speed": 70
+              },
+              "hp": {
+                "current": 99,
+                "max": 99
+              },
+              "moves": [
+                {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "power": 120,
+                  "accuracy": 85,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fuego"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "cpu",
+              "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594",
+              "pokemonId": 7,
+              "name": "squirtle",
+              "sprite": "https://example.test/7.png",
+              "types": [
+                "water"
+              ],
+              "baseStats": {
+                "hp": 44,
+                "attack": 48,
+                "defense": 65,
+                "special-attack": 50,
+                "special-defense": 64,
+                "speed": 43
+              },
+              "stats": {
+                "hp": 104,
+                "attack": 53,
+                "defense": 70,
+                "special-attack": 55,
+                "special-defense": 69,
+                "speed": 48
+              },
+              "hp": {
+                "current": 104,
+                "max": 104
+              },
+              "moves": [
+                {
+                  "id": "surf",
+                  "name": "Surf",
+                  "type": "water",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "hydro-pump",
+                  "name": "Hidrobomba",
+                  "type": "water",
+                  "power": 120,
+                  "accuracy": 80,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Agua"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T18:04:28.998Z"
+        }
+      },
+      "durationMs": 6
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "cpu",
+          "seed": 1001,
+          "p1": {
+            "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d"
+          },
+          "p2": {
+            "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "78d3ad7e-c497-4a55-8c7e-db24942b8d33",
+          "mode": "cpu",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d",
+              "pokemonId": 4,
+              "name": "charmander",
+              "sprite": "https://example.test/4.png",
+              "types": [
+                "fire"
+              ],
+              "baseStats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "special-attack": 60,
+                "special-defense": 50,
+                "speed": 65
+              },
+              "stats": {
+                "hp": 99,
+                "attack": 57,
+                "defense": 48,
+                "special-attack": 65,
+                "special-defense": 55,
+                "speed": 70
+              },
+              "hp": {
+                "current": 99,
+                "max": 99
+              },
+              "moves": [
+                {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "power": 120,
+                  "accuracy": 85,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fuego"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "cpu",
+              "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594",
+              "pokemonId": 7,
+              "name": "squirtle",
+              "sprite": "https://example.test/7.png",
+              "types": [
+                "water"
+              ],
+              "baseStats": {
+                "hp": 44,
+                "attack": 48,
+                "defense": 65,
+                "special-attack": 50,
+                "special-defense": 64,
+                "speed": 43
+              },
+              "stats": {
+                "hp": 104,
+                "attack": 53,
+                "defense": 70,
+                "special-attack": 55,
+                "special-defense": 69,
+                "speed": 48
+              },
+              "hp": {
+                "current": 104,
+                "max": 104
+              },
+              "moves": [
+                {
+                  "id": "surf",
+                  "name": "Surf",
+                  "type": "water",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "hydro-pump",
+                  "name": "Hidrobomba",
+                  "type": "water",
+                  "power": 120,
+                  "accuracy": 80,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Agua"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T18:04:29.009Z"
+        }
+      },
+      "durationMs": 5
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "cpu",
+          "seed": 1002,
+          "p1": {
+            "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d"
+          },
+          "p2": {
+            "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "33433093-a226-4025-ab10-d649fe47ed51",
+          "mode": "cpu",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d",
+              "pokemonId": 4,
+              "name": "charmander",
+              "sprite": "https://example.test/4.png",
+              "types": [
+                "fire"
+              ],
+              "baseStats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "special-attack": 60,
+                "special-defense": 50,
+                "speed": 65
+              },
+              "stats": {
+                "hp": 99,
+                "attack": 57,
+                "defense": 48,
+                "special-attack": 65,
+                "special-defense": 55,
+                "speed": 70
+              },
+              "hp": {
+                "current": 99,
+                "max": 99
+              },
+              "moves": [
+                {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "power": 120,
+                  "accuracy": 85,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fuego"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "cpu",
+              "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594",
+              "pokemonId": 7,
+              "name": "squirtle",
+              "sprite": "https://example.test/7.png",
+              "types": [
+                "water"
+              ],
+              "baseStats": {
+                "hp": 44,
+                "attack": 48,
+                "defense": 65,
+                "special-attack": 50,
+                "special-defense": 64,
+                "speed": 43
+              },
+              "stats": {
+                "hp": 104,
+                "attack": 53,
+                "defense": 70,
+                "special-attack": 55,
+                "special-defense": 69,
+                "speed": 48
+              },
+              "hp": {
+                "current": 104,
+                "max": 104
+              },
+              "moves": [
+                {
+                  "id": "surf",
+                  "name": "Surf",
+                  "type": "water",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "hydro-pump",
+                  "name": "Hidrobomba",
+                  "type": "water",
+                  "power": 120,
+                  "accuracy": 80,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Agua"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T18:04:29.018Z"
+        }
+      },
+      "durationMs": 6
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "cpu",
+          "seed": 1003,
+          "p1": {
+            "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d"
+          },
+          "p2": {
+            "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "a2f4bfa2-8548-48c8-b7c9-1f206284b718",
+          "mode": "cpu",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d",
+              "pokemonId": 4,
+              "name": "charmander",
+              "sprite": "https://example.test/4.png",
+              "types": [
+                "fire"
+              ],
+              "baseStats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "special-attack": 60,
+                "special-defense": 50,
+                "speed": 65
+              },
+              "stats": {
+                "hp": 99,
+                "attack": 57,
+                "defense": 48,
+                "special-attack": 65,
+                "special-defense": 55,
+                "speed": 70
+              },
+              "hp": {
+                "current": 99,
+                "max": 99
+              },
+              "moves": [
+                {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "power": 120,
+                  "accuracy": 85,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fuego"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "cpu",
+              "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594",
+              "pokemonId": 7,
+              "name": "squirtle",
+              "sprite": "https://example.test/7.png",
+              "types": [
+                "water"
+              ],
+              "baseStats": {
+                "hp": 44,
+                "attack": 48,
+                "defense": 65,
+                "special-attack": 50,
+                "special-defense": 64,
+                "speed": 43
+              },
+              "stats": {
+                "hp": 104,
+                "attack": 53,
+                "defense": 70,
+                "special-attack": 55,
+                "special-defense": 69,
+                "speed": 48
+              },
+              "hp": {
+                "current": 104,
+                "max": 104
+              },
+              "moves": [
+                {
+                  "id": "surf",
+                  "name": "Surf",
+                  "type": "water",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "hydro-pump",
+                  "name": "Hidrobomba",
+                  "type": "water",
+                  "power": 120,
+                  "accuracy": 80,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Agua"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T18:04:29.026Z"
+        }
+      },
+      "durationMs": 6
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "cpu",
+          "seed": 1004,
+          "p1": {
+            "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d"
+          },
+          "p2": {
+            "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "35f2cbda-22f9-4450-84b7-1d3aa4dca728",
+          "mode": "cpu",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d",
+              "pokemonId": 4,
+              "name": "charmander",
+              "sprite": "https://example.test/4.png",
+              "types": [
+                "fire"
+              ],
+              "baseStats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "special-attack": 60,
+                "special-defense": 50,
+                "speed": 65
+              },
+              "stats": {
+                "hp": 99,
+                "attack": 57,
+                "defense": 48,
+                "special-attack": 65,
+                "special-defense": 55,
+                "speed": 70
+              },
+              "hp": {
+                "current": 99,
+                "max": 99
+              },
+              "moves": [
+                {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "power": 120,
+                  "accuracy": 85,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fuego"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "cpu",
+              "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594",
+              "pokemonId": 7,
+              "name": "squirtle",
+              "sprite": "https://example.test/7.png",
+              "types": [
+                "water"
+              ],
+              "baseStats": {
+                "hp": 44,
+                "attack": 48,
+                "defense": 65,
+                "special-attack": 50,
+                "special-defense": 64,
+                "speed": 43
+              },
+              "stats": {
+                "hp": 104,
+                "attack": 53,
+                "defense": 70,
+                "special-attack": 55,
+                "special-defense": 69,
+                "speed": 48
+              },
+              "hp": {
+                "current": 104,
+                "max": 104
+              },
+              "moves": [
+                {
+                  "id": "surf",
+                  "name": "Surf",
+                  "type": "water",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "hydro-pump",
+                  "name": "Hidrobomba",
+                  "type": "water",
+                  "power": 120,
+                  "accuracy": 80,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Agua"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T18:04:29.034Z"
+        }
+      },
+      "durationMs": 5
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "cpu",
+          "seed": 1005,
+          "p1": {
+            "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d"
+          },
+          "p2": {
+            "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "3eb1e2ec-e4aa-4f06-aa96-495cb48f1c3c",
+          "mode": "cpu",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d",
+              "pokemonId": 4,
+              "name": "charmander",
+              "sprite": "https://example.test/4.png",
+              "types": [
+                "fire"
+              ],
+              "baseStats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "special-attack": 60,
+                "special-defense": 50,
+                "speed": 65
+              },
+              "stats": {
+                "hp": 99,
+                "attack": 57,
+                "defense": 48,
+                "special-attack": 65,
+                "special-defense": 55,
+                "speed": 70
+              },
+              "hp": {
+                "current": 99,
+                "max": 99
+              },
+              "moves": [
+                {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "power": 120,
+                  "accuracy": 85,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fuego"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "cpu",
+              "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594",
+              "pokemonId": 7,
+              "name": "squirtle",
+              "sprite": "https://example.test/7.png",
+              "types": [
+                "water"
+              ],
+              "baseStats": {
+                "hp": 44,
+                "attack": 48,
+                "defense": 65,
+                "special-attack": 50,
+                "special-defense": 64,
+                "speed": 43
+              },
+              "stats": {
+                "hp": 104,
+                "attack": 53,
+                "defense": 70,
+                "special-attack": 55,
+                "special-defense": 69,
+                "speed": 48
+              },
+              "hp": {
+                "current": 104,
+                "max": 104
+              },
+              "moves": [
+                {
+                  "id": "surf",
+                  "name": "Surf",
+                  "type": "water",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "hydro-pump",
+                  "name": "Hidrobomba",
+                  "type": "water",
+                  "power": 120,
+                  "accuracy": 80,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Agua"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T18:04:29.041Z"
+        }
+      },
+      "durationMs": 5
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "cpu",
+          "seed": 1006,
+          "p1": {
+            "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d"
+          },
+          "p2": {
+            "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "df934ac6-9c06-4ff3-b750-ad1030c28c00",
+          "mode": "cpu",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d",
+              "pokemonId": 4,
+              "name": "charmander",
+              "sprite": "https://example.test/4.png",
+              "types": [
+                "fire"
+              ],
+              "baseStats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "special-attack": 60,
+                "special-defense": 50,
+                "speed": 65
+              },
+              "stats": {
+                "hp": 99,
+                "attack": 57,
+                "defense": 48,
+                "special-attack": 65,
+                "special-defense": 55,
+                "speed": 70
+              },
+              "hp": {
+                "current": 99,
+                "max": 99
+              },
+              "moves": [
+                {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "power": 120,
+                  "accuracy": 85,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fuego"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "cpu",
+              "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594",
+              "pokemonId": 7,
+              "name": "squirtle",
+              "sprite": "https://example.test/7.png",
+              "types": [
+                "water"
+              ],
+              "baseStats": {
+                "hp": 44,
+                "attack": 48,
+                "defense": 65,
+                "special-attack": 50,
+                "special-defense": 64,
+                "speed": 43
+              },
+              "stats": {
+                "hp": 104,
+                "attack": 53,
+                "defense": 70,
+                "special-attack": 55,
+                "special-defense": 69,
+                "speed": 48
+              },
+              "hp": {
+                "current": 104,
+                "max": 104
+              },
+              "moves": [
+                {
+                  "id": "surf",
+                  "name": "Surf",
+                  "type": "water",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "hydro-pump",
+                  "name": "Hidrobomba",
+                  "type": "water",
+                  "power": 120,
+                  "accuracy": 80,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Agua"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T18:04:29.051Z"
+        }
+      },
+      "durationMs": 6
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "cpu",
+          "seed": 1007,
+          "p1": {
+            "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d"
+          },
+          "p2": {
+            "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "feaa1103-baf9-4fb0-838d-ef58ef2001d1",
+          "mode": "cpu",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d",
+              "pokemonId": 4,
+              "name": "charmander",
+              "sprite": "https://example.test/4.png",
+              "types": [
+                "fire"
+              ],
+              "baseStats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "special-attack": 60,
+                "special-defense": 50,
+                "speed": 65
+              },
+              "stats": {
+                "hp": 99,
+                "attack": 57,
+                "defense": 48,
+                "special-attack": 65,
+                "special-defense": 55,
+                "speed": 70
+              },
+              "hp": {
+                "current": 99,
+                "max": 99
+              },
+              "moves": [
+                {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "power": 120,
+                  "accuracy": 85,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fuego"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "cpu",
+              "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594",
+              "pokemonId": 7,
+              "name": "squirtle",
+              "sprite": "https://example.test/7.png",
+              "types": [
+                "water"
+              ],
+              "baseStats": {
+                "hp": 44,
+                "attack": 48,
+                "defense": 65,
+                "special-attack": 50,
+                "special-defense": 64,
+                "speed": 43
+              },
+              "stats": {
+                "hp": 104,
+                "attack": 53,
+                "defense": 70,
+                "special-attack": 55,
+                "special-defense": 69,
+                "speed": 48
+              },
+              "hp": {
+                "current": 104,
+                "max": 104
+              },
+              "moves": [
+                {
+                  "id": "surf",
+                  "name": "Surf",
+                  "type": "water",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "hydro-pump",
+                  "name": "Hidrobomba",
+                  "type": "water",
+                  "power": 120,
+                  "accuracy": 80,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Agua"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T18:04:29.067Z"
+        }
+      },
+      "durationMs": 6
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "cpu",
+          "seed": 1008,
+          "p1": {
+            "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d"
+          },
+          "p2": {
+            "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "70ce443d-b9dc-4116-8bce-59a53fbc4318",
+          "mode": "cpu",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d",
+              "pokemonId": 4,
+              "name": "charmander",
+              "sprite": "https://example.test/4.png",
+              "types": [
+                "fire"
+              ],
+              "baseStats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "special-attack": 60,
+                "special-defense": 50,
+                "speed": 65
+              },
+              "stats": {
+                "hp": 99,
+                "attack": 57,
+                "defense": 48,
+                "special-attack": 65,
+                "special-defense": 55,
+                "speed": 70
+              },
+              "hp": {
+                "current": 99,
+                "max": 99
+              },
+              "moves": [
+                {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "power": 120,
+                  "accuracy": 85,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fuego"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "cpu",
+              "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594",
+              "pokemonId": 7,
+              "name": "squirtle",
+              "sprite": "https://example.test/7.png",
+              "types": [
+                "water"
+              ],
+              "baseStats": {
+                "hp": 44,
+                "attack": 48,
+                "defense": 65,
+                "special-attack": 50,
+                "special-defense": 64,
+                "speed": 43
+              },
+              "stats": {
+                "hp": 104,
+                "attack": 53,
+                "defense": 70,
+                "special-attack": 55,
+                "special-defense": 69,
+                "speed": 48
+              },
+              "hp": {
+                "current": 104,
+                "max": 104
+              },
+              "moves": [
+                {
+                  "id": "surf",
+                  "name": "Surf",
+                  "type": "water",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "hydro-pump",
+                  "name": "Hidrobomba",
+                  "type": "water",
+                  "power": 120,
+                  "accuracy": 80,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Agua"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T18:04:29.076Z"
+        }
+      },
+      "durationMs": 5
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "cpu",
+          "seed": 1009,
+          "p1": {
+            "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d"
+          },
+          "p2": {
+            "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "2e70f27e-30a0-4f78-96f9-8fefe16a7a1a",
+          "mode": "cpu",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d",
+              "pokemonId": 4,
+              "name": "charmander",
+              "sprite": "https://example.test/4.png",
+              "types": [
+                "fire"
+              ],
+              "baseStats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "special-attack": 60,
+                "special-defense": 50,
+                "speed": 65
+              },
+              "stats": {
+                "hp": 99,
+                "attack": 57,
+                "defense": 48,
+                "special-attack": 65,
+                "special-defense": 55,
+                "speed": 70
+              },
+              "hp": {
+                "current": 99,
+                "max": 99
+              },
+              "moves": [
+                {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "power": 120,
+                  "accuracy": 85,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fuego"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "cpu",
+              "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594",
+              "pokemonId": 7,
+              "name": "squirtle",
+              "sprite": "https://example.test/7.png",
+              "types": [
+                "water"
+              ],
+              "baseStats": {
+                "hp": 44,
+                "attack": 48,
+                "defense": 65,
+                "special-attack": 50,
+                "special-defense": 64,
+                "speed": 43
+              },
+              "stats": {
+                "hp": 104,
+                "attack": 53,
+                "defense": 70,
+                "special-attack": 55,
+                "special-defense": 69,
+                "speed": 48
+              },
+              "hp": {
+                "current": 104,
+                "max": 104
+              },
+              "moves": [
+                {
+                  "id": "surf",
+                  "name": "Surf",
+                  "type": "water",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "hydro-pump",
+                  "name": "Hidrobomba",
+                  "type": "water",
+                  "power": 120,
+                  "accuracy": 80,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Agua"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T18:04:29.087Z"
+        }
+      },
+      "durationMs": 4
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "cpu",
+          "seed": 1010,
+          "p1": {
+            "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d"
+          },
+          "p2": {
+            "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "6d03c85c-b77f-4c02-b857-76994bda7ad9",
+          "mode": "cpu",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d",
+              "pokemonId": 4,
+              "name": "charmander",
+              "sprite": "https://example.test/4.png",
+              "types": [
+                "fire"
+              ],
+              "baseStats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "special-attack": 60,
+                "special-defense": 50,
+                "speed": 65
+              },
+              "stats": {
+                "hp": 99,
+                "attack": 57,
+                "defense": 48,
+                "special-attack": 65,
+                "special-defense": 55,
+                "speed": 70
+              },
+              "hp": {
+                "current": 99,
+                "max": 99
+              },
+              "moves": [
+                {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "power": 120,
+                  "accuracy": 85,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fuego"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "cpu",
+              "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594",
+              "pokemonId": 7,
+              "name": "squirtle",
+              "sprite": "https://example.test/7.png",
+              "types": [
+                "water"
+              ],
+              "baseStats": {
+                "hp": 44,
+                "attack": 48,
+                "defense": 65,
+                "special-attack": 50,
+                "special-defense": 64,
+                "speed": 43
+              },
+              "stats": {
+                "hp": 104,
+                "attack": 53,
+                "defense": 70,
+                "special-attack": 55,
+                "special-defense": 69,
+                "speed": 48
+              },
+              "hp": {
+                "current": 104,
+                "max": 104
+              },
+              "moves": [
+                {
+                  "id": "surf",
+                  "name": "Surf",
+                  "type": "water",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "hydro-pump",
+                  "name": "Hidrobomba",
+                  "type": "water",
+                  "power": 120,
+                  "accuracy": 80,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Agua"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T18:04:29.102Z"
+        }
+      },
+      "durationMs": 11
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "cpu",
+          "seed": 1011,
+          "p1": {
+            "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d"
+          },
+          "p2": {
+            "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "77ddae78-4337-4bce-abf6-de477438b08c",
+          "mode": "cpu",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d",
+              "pokemonId": 4,
+              "name": "charmander",
+              "sprite": "https://example.test/4.png",
+              "types": [
+                "fire"
+              ],
+              "baseStats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "special-attack": 60,
+                "special-defense": 50,
+                "speed": 65
+              },
+              "stats": {
+                "hp": 99,
+                "attack": 57,
+                "defense": 48,
+                "special-attack": 65,
+                "special-defense": 55,
+                "speed": 70
+              },
+              "hp": {
+                "current": 99,
+                "max": 99
+              },
+              "moves": [
+                {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "power": 120,
+                  "accuracy": 85,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fuego"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "cpu",
+              "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594",
+              "pokemonId": 7,
+              "name": "squirtle",
+              "sprite": "https://example.test/7.png",
+              "types": [
+                "water"
+              ],
+              "baseStats": {
+                "hp": 44,
+                "attack": 48,
+                "defense": 65,
+                "special-attack": 50,
+                "special-defense": 64,
+                "speed": 43
+              },
+              "stats": {
+                "hp": 104,
+                "attack": 53,
+                "defense": 70,
+                "special-attack": 55,
+                "special-defense": 69,
+                "speed": 48
+              },
+              "hp": {
+                "current": 104,
+                "max": 104
+              },
+              "moves": [
+                {
+                  "id": "surf",
+                  "name": "Surf",
+                  "type": "water",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "hydro-pump",
+                  "name": "Hidrobomba",
+                  "type": "water",
+                  "power": 120,
+                  "accuracy": 80,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Agua"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T18:04:29.123Z"
+        }
+      },
+      "durationMs": 16
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "cpu",
+          "seed": 1012,
+          "p1": {
+            "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d"
+          },
+          "p2": {
+            "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "d6200908-2512-4f89-9538-59f588dababa",
+          "mode": "cpu",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d",
+              "pokemonId": 4,
+              "name": "charmander",
+              "sprite": "https://example.test/4.png",
+              "types": [
+                "fire"
+              ],
+              "baseStats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "special-attack": 60,
+                "special-defense": 50,
+                "speed": 65
+              },
+              "stats": {
+                "hp": 99,
+                "attack": 57,
+                "defense": 48,
+                "special-attack": 65,
+                "special-defense": 55,
+                "speed": 70
+              },
+              "hp": {
+                "current": 99,
+                "max": 99
+              },
+              "moves": [
+                {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "power": 120,
+                  "accuracy": 85,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fuego"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "cpu",
+              "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594",
+              "pokemonId": 7,
+              "name": "squirtle",
+              "sprite": "https://example.test/7.png",
+              "types": [
+                "water"
+              ],
+              "baseStats": {
+                "hp": 44,
+                "attack": 48,
+                "defense": 65,
+                "special-attack": 50,
+                "special-defense": 64,
+                "speed": 43
+              },
+              "stats": {
+                "hp": 104,
+                "attack": 53,
+                "defense": 70,
+                "special-attack": 55,
+                "special-defense": 69,
+                "speed": 48
+              },
+              "hp": {
+                "current": 104,
+                "max": 104
+              },
+              "moves": [
+                {
+                  "id": "surf",
+                  "name": "Surf",
+                  "type": "water",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "hydro-pump",
+                  "name": "Hidrobomba",
+                  "type": "water",
+                  "power": 120,
+                  "accuracy": 80,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Agua"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T18:04:29.142Z"
+        }
+      },
+      "durationMs": 7
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "cpu",
+          "seed": 1013,
+          "p1": {
+            "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d"
+          },
+          "p2": {
+            "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "73b3573d-821c-455b-becf-ab88cb3d255e",
+          "mode": "cpu",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d",
+              "pokemonId": 4,
+              "name": "charmander",
+              "sprite": "https://example.test/4.png",
+              "types": [
+                "fire"
+              ],
+              "baseStats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "special-attack": 60,
+                "special-defense": 50,
+                "speed": 65
+              },
+              "stats": {
+                "hp": 99,
+                "attack": 57,
+                "defense": 48,
+                "special-attack": 65,
+                "special-defense": 55,
+                "speed": 70
+              },
+              "hp": {
+                "current": 99,
+                "max": 99
+              },
+              "moves": [
+                {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "power": 120,
+                  "accuracy": 85,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fuego"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "cpu",
+              "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594",
+              "pokemonId": 7,
+              "name": "squirtle",
+              "sprite": "https://example.test/7.png",
+              "types": [
+                "water"
+              ],
+              "baseStats": {
+                "hp": 44,
+                "attack": 48,
+                "defense": 65,
+                "special-attack": 50,
+                "special-defense": 64,
+                "speed": 43
+              },
+              "stats": {
+                "hp": 104,
+                "attack": 53,
+                "defense": 70,
+                "special-attack": 55,
+                "special-defense": 69,
+                "speed": 48
+              },
+              "hp": {
+                "current": 104,
+                "max": 104
+              },
+              "moves": [
+                {
+                  "id": "surf",
+                  "name": "Surf",
+                  "type": "water",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "hydro-pump",
+                  "name": "Hidrobomba",
+                  "type": "water",
+                  "power": 120,
+                  "accuracy": 80,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Agua"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T18:04:29.154Z"
+        }
+      },
+      "durationMs": 5
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "cpu",
+          "seed": 1014,
+          "p1": {
+            "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d"
+          },
+          "p2": {
+            "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "6f8f0323-4ef8-4d4f-90be-00706b986be4",
+          "mode": "cpu",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d",
+              "pokemonId": 4,
+              "name": "charmander",
+              "sprite": "https://example.test/4.png",
+              "types": [
+                "fire"
+              ],
+              "baseStats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "special-attack": 60,
+                "special-defense": 50,
+                "speed": 65
+              },
+              "stats": {
+                "hp": 99,
+                "attack": 57,
+                "defense": 48,
+                "special-attack": 65,
+                "special-defense": 55,
+                "speed": 70
+              },
+              "hp": {
+                "current": 99,
+                "max": 99
+              },
+              "moves": [
+                {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "power": 120,
+                  "accuracy": 85,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fuego"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "cpu",
+              "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594",
+              "pokemonId": 7,
+              "name": "squirtle",
+              "sprite": "https://example.test/7.png",
+              "types": [
+                "water"
+              ],
+              "baseStats": {
+                "hp": 44,
+                "attack": 48,
+                "defense": 65,
+                "special-attack": 50,
+                "special-defense": 64,
+                "speed": 43
+              },
+              "stats": {
+                "hp": 104,
+                "attack": 53,
+                "defense": 70,
+                "special-attack": 55,
+                "special-defense": 69,
+                "speed": 48
+              },
+              "hp": {
+                "current": 104,
+                "max": 104
+              },
+              "moves": [
+                {
+                  "id": "surf",
+                  "name": "Surf",
+                  "type": "water",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "hydro-pump",
+                  "name": "Hidrobomba",
+                  "type": "water",
+                  "power": 120,
+                  "accuracy": 80,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Agua"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T18:04:29.163Z"
+        }
+      },
+      "durationMs": 9
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "cpu",
+          "seed": 1015,
+          "p1": {
+            "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d"
+          },
+          "p2": {
+            "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "d23f1463-c6ae-4f15-9aa7-485c61add8d8",
+          "mode": "cpu",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d",
+              "pokemonId": 4,
+              "name": "charmander",
+              "sprite": "https://example.test/4.png",
+              "types": [
+                "fire"
+              ],
+              "baseStats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "special-attack": 60,
+                "special-defense": 50,
+                "speed": 65
+              },
+              "stats": {
+                "hp": 99,
+                "attack": 57,
+                "defense": 48,
+                "special-attack": 65,
+                "special-defense": 55,
+                "speed": 70
+              },
+              "hp": {
+                "current": 99,
+                "max": 99
+              },
+              "moves": [
+                {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "power": 120,
+                  "accuracy": 85,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fuego"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "cpu",
+              "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594",
+              "pokemonId": 7,
+              "name": "squirtle",
+              "sprite": "https://example.test/7.png",
+              "types": [
+                "water"
+              ],
+              "baseStats": {
+                "hp": 44,
+                "attack": 48,
+                "defense": 65,
+                "special-attack": 50,
+                "special-defense": 64,
+                "speed": 43
+              },
+              "stats": {
+                "hp": 104,
+                "attack": 53,
+                "defense": 70,
+                "special-attack": 55,
+                "special-defense": 69,
+                "speed": 48
+              },
+              "hp": {
+                "current": 104,
+                "max": 104
+              },
+              "moves": [
+                {
+                  "id": "surf",
+                  "name": "Surf",
+                  "type": "water",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "hydro-pump",
+                  "name": "Hidrobomba",
+                  "type": "water",
+                  "power": 120,
+                  "accuracy": 80,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Agua"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T18:04:29.171Z"
+        }
+      },
+      "durationMs": 4
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "cpu",
+          "seed": 1016,
+          "p1": {
+            "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d"
+          },
+          "p2": {
+            "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "9ae84682-aec7-481b-a4b1-c8c3207362b0",
+          "mode": "cpu",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d",
+              "pokemonId": 4,
+              "name": "charmander",
+              "sprite": "https://example.test/4.png",
+              "types": [
+                "fire"
+              ],
+              "baseStats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "special-attack": 60,
+                "special-defense": 50,
+                "speed": 65
+              },
+              "stats": {
+                "hp": 99,
+                "attack": 57,
+                "defense": 48,
+                "special-attack": 65,
+                "special-defense": 55,
+                "speed": 70
+              },
+              "hp": {
+                "current": 99,
+                "max": 99
+              },
+              "moves": [
+                {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "power": 120,
+                  "accuracy": 85,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fuego"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "cpu",
+              "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594",
+              "pokemonId": 7,
+              "name": "squirtle",
+              "sprite": "https://example.test/7.png",
+              "types": [
+                "water"
+              ],
+              "baseStats": {
+                "hp": 44,
+                "attack": 48,
+                "defense": 65,
+                "special-attack": 50,
+                "special-defense": 64,
+                "speed": 43
+              },
+              "stats": {
+                "hp": 104,
+                "attack": 53,
+                "defense": 70,
+                "special-attack": 55,
+                "special-defense": 69,
+                "speed": 48
+              },
+              "hp": {
+                "current": 104,
+                "max": 104
+              },
+              "moves": [
+                {
+                  "id": "surf",
+                  "name": "Surf",
+                  "type": "water",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "hydro-pump",
+                  "name": "Hidrobomba",
+                  "type": "water",
+                  "power": 120,
+                  "accuracy": 80,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Agua"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T18:04:29.182Z"
+        }
+      },
+      "durationMs": 8
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "cpu",
+          "seed": 1017,
+          "p1": {
+            "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d"
+          },
+          "p2": {
+            "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "9e3fdb33-d8e5-4b85-a5d3-0288580139bc",
+          "mode": "cpu",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d",
+              "pokemonId": 4,
+              "name": "charmander",
+              "sprite": "https://example.test/4.png",
+              "types": [
+                "fire"
+              ],
+              "baseStats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "special-attack": 60,
+                "special-defense": 50,
+                "speed": 65
+              },
+              "stats": {
+                "hp": 99,
+                "attack": 57,
+                "defense": 48,
+                "special-attack": 65,
+                "special-defense": 55,
+                "speed": 70
+              },
+              "hp": {
+                "current": 99,
+                "max": 99
+              },
+              "moves": [
+                {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "power": 120,
+                  "accuracy": 85,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fuego"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "cpu",
+              "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594",
+              "pokemonId": 7,
+              "name": "squirtle",
+              "sprite": "https://example.test/7.png",
+              "types": [
+                "water"
+              ],
+              "baseStats": {
+                "hp": 44,
+                "attack": 48,
+                "defense": 65,
+                "special-attack": 50,
+                "special-defense": 64,
+                "speed": 43
+              },
+              "stats": {
+                "hp": 104,
+                "attack": 53,
+                "defense": 70,
+                "special-attack": 55,
+                "special-defense": 69,
+                "speed": 48
+              },
+              "hp": {
+                "current": 104,
+                "max": 104
+              },
+              "moves": [
+                {
+                  "id": "surf",
+                  "name": "Surf",
+                  "type": "water",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "hydro-pump",
+                  "name": "Hidrobomba",
+                  "type": "water",
+                  "power": 120,
+                  "accuracy": 80,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Agua"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T18:04:29.193Z"
+        }
+      },
+      "durationMs": 7
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "cpu",
+          "seed": 1018,
+          "p1": {
+            "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d"
+          },
+          "p2": {
+            "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "955f6f1c-77a1-40ba-93d2-7be2ddb95c72",
+          "mode": "cpu",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d",
+              "pokemonId": 4,
+              "name": "charmander",
+              "sprite": "https://example.test/4.png",
+              "types": [
+                "fire"
+              ],
+              "baseStats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "special-attack": 60,
+                "special-defense": 50,
+                "speed": 65
+              },
+              "stats": {
+                "hp": 99,
+                "attack": 57,
+                "defense": 48,
+                "special-attack": 65,
+                "special-defense": 55,
+                "speed": 70
+              },
+              "hp": {
+                "current": 99,
+                "max": 99
+              },
+              "moves": [
+                {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "power": 120,
+                  "accuracy": 85,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fuego"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "cpu",
+              "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594",
+              "pokemonId": 7,
+              "name": "squirtle",
+              "sprite": "https://example.test/7.png",
+              "types": [
+                "water"
+              ],
+              "baseStats": {
+                "hp": 44,
+                "attack": 48,
+                "defense": 65,
+                "special-attack": 50,
+                "special-defense": 64,
+                "speed": 43
+              },
+              "stats": {
+                "hp": 104,
+                "attack": 53,
+                "defense": 70,
+                "special-attack": 55,
+                "special-defense": 69,
+                "speed": 48
+              },
+              "hp": {
+                "current": 104,
+                "max": 104
+              },
+              "moves": [
+                {
+                  "id": "surf",
+                  "name": "Surf",
+                  "type": "water",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "hydro-pump",
+                  "name": "Hidrobomba",
+                  "type": "water",
+                  "power": 120,
+                  "accuracy": 80,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Agua"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T18:04:29.203Z"
+        }
+      },
+      "durationMs": 4
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "cpu",
+          "seed": 1019,
+          "p1": {
+            "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d"
+          },
+          "p2": {
+            "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "466039a4-51c3-4ba2-a8b4-7dad75611188",
+          "mode": "cpu",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d",
+              "pokemonId": 4,
+              "name": "charmander",
+              "sprite": "https://example.test/4.png",
+              "types": [
+                "fire"
+              ],
+              "baseStats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "special-attack": 60,
+                "special-defense": 50,
+                "speed": 65
+              },
+              "stats": {
+                "hp": 99,
+                "attack": 57,
+                "defense": 48,
+                "special-attack": 65,
+                "special-defense": 55,
+                "speed": 70
+              },
+              "hp": {
+                "current": 99,
+                "max": 99
+              },
+              "moves": [
+                {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "power": 120,
+                  "accuracy": 85,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fuego"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "cpu",
+              "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594",
+              "pokemonId": 7,
+              "name": "squirtle",
+              "sprite": "https://example.test/7.png",
+              "types": [
+                "water"
+              ],
+              "baseStats": {
+                "hp": 44,
+                "attack": 48,
+                "defense": 65,
+                "special-attack": 50,
+                "special-defense": 64,
+                "speed": 43
+              },
+              "stats": {
+                "hp": 104,
+                "attack": 53,
+                "defense": 70,
+                "special-attack": 55,
+                "special-defense": 69,
+                "speed": 48
+              },
+              "hp": {
+                "current": 104,
+                "max": 104
+              },
+              "moves": [
+                {
+                  "id": "surf",
+                  "name": "Surf",
+                  "type": "water",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "hydro-pump",
+                  "name": "Hidrobomba",
+                  "type": "water",
+                  "power": 120,
+                  "accuracy": 80,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Agua"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T18:04:29.235Z"
+        }
+      },
+      "durationMs": 5
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "cpu",
+          "seed": 1020,
+          "p1": {
+            "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d"
+          },
+          "p2": {
+            "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "07aa1fb2-f932-4f92-ac1a-18e60e2740c9",
+          "mode": "cpu",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d",
+              "pokemonId": 4,
+              "name": "charmander",
+              "sprite": "https://example.test/4.png",
+              "types": [
+                "fire"
+              ],
+              "baseStats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "special-attack": 60,
+                "special-defense": 50,
+                "speed": 65
+              },
+              "stats": {
+                "hp": 99,
+                "attack": 57,
+                "defense": 48,
+                "special-attack": 65,
+                "special-defense": 55,
+                "speed": 70
+              },
+              "hp": {
+                "current": 99,
+                "max": 99
+              },
+              "moves": [
+                {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "power": 120,
+                  "accuracy": 85,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fuego"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "cpu",
+              "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594",
+              "pokemonId": 7,
+              "name": "squirtle",
+              "sprite": "https://example.test/7.png",
+              "types": [
+                "water"
+              ],
+              "baseStats": {
+                "hp": 44,
+                "attack": 48,
+                "defense": 65,
+                "special-attack": 50,
+                "special-defense": 64,
+                "speed": 43
+              },
+              "stats": {
+                "hp": 104,
+                "attack": 53,
+                "defense": 70,
+                "special-attack": 55,
+                "special-defense": 69,
+                "speed": 48
+              },
+              "hp": {
+                "current": 104,
+                "max": 104
+              },
+              "moves": [
+                {
+                  "id": "surf",
+                  "name": "Surf",
+                  "type": "water",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "hydro-pump",
+                  "name": "Hidrobomba",
+                  "type": "water",
+                  "power": 120,
+                  "accuracy": 80,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Agua"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T18:04:29.245Z"
+        }
+      },
+      "durationMs": 8
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "cpu",
+          "seed": 1021,
+          "p1": {
+            "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d"
+          },
+          "p2": {
+            "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "68bc4183-82e4-4d8f-936b-d0926d25a76d",
+          "mode": "cpu",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d",
+              "pokemonId": 4,
+              "name": "charmander",
+              "sprite": "https://example.test/4.png",
+              "types": [
+                "fire"
+              ],
+              "baseStats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "special-attack": 60,
+                "special-defense": 50,
+                "speed": 65
+              },
+              "stats": {
+                "hp": 99,
+                "attack": 57,
+                "defense": 48,
+                "special-attack": 65,
+                "special-defense": 55,
+                "speed": 70
+              },
+              "hp": {
+                "current": 99,
+                "max": 99
+              },
+              "moves": [
+                {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "power": 120,
+                  "accuracy": 85,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fuego"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "cpu",
+              "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594",
+              "pokemonId": 7,
+              "name": "squirtle",
+              "sprite": "https://example.test/7.png",
+              "types": [
+                "water"
+              ],
+              "baseStats": {
+                "hp": 44,
+                "attack": 48,
+                "defense": 65,
+                "special-attack": 50,
+                "special-defense": 64,
+                "speed": 43
+              },
+              "stats": {
+                "hp": 104,
+                "attack": 53,
+                "defense": 70,
+                "special-attack": 55,
+                "special-defense": 69,
+                "speed": 48
+              },
+              "hp": {
+                "current": 104,
+                "max": 104
+              },
+              "moves": [
+                {
+                  "id": "surf",
+                  "name": "Surf",
+                  "type": "water",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "hydro-pump",
+                  "name": "Hidrobomba",
+                  "type": "water",
+                  "power": 120,
+                  "accuracy": 80,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Agua"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T18:04:29.254Z"
+        }
+      },
+      "durationMs": 5
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "cpu",
+          "seed": 1022,
+          "p1": {
+            "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d"
+          },
+          "p2": {
+            "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "f94d74ef-83bb-41a2-9e4c-018abf89b2be",
+          "mode": "cpu",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d",
+              "pokemonId": 4,
+              "name": "charmander",
+              "sprite": "https://example.test/4.png",
+              "types": [
+                "fire"
+              ],
+              "baseStats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "special-attack": 60,
+                "special-defense": 50,
+                "speed": 65
+              },
+              "stats": {
+                "hp": 99,
+                "attack": 57,
+                "defense": 48,
+                "special-attack": 65,
+                "special-defense": 55,
+                "speed": 70
+              },
+              "hp": {
+                "current": 99,
+                "max": 99
+              },
+              "moves": [
+                {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "power": 120,
+                  "accuracy": 85,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fuego"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "cpu",
+              "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594",
+              "pokemonId": 7,
+              "name": "squirtle",
+              "sprite": "https://example.test/7.png",
+              "types": [
+                "water"
+              ],
+              "baseStats": {
+                "hp": 44,
+                "attack": 48,
+                "defense": 65,
+                "special-attack": 50,
+                "special-defense": 64,
+                "speed": 43
+              },
+              "stats": {
+                "hp": 104,
+                "attack": 53,
+                "defense": 70,
+                "special-attack": 55,
+                "special-defense": 69,
+                "speed": 48
+              },
+              "hp": {
+                "current": 104,
+                "max": 104
+              },
+              "moves": [
+                {
+                  "id": "surf",
+                  "name": "Surf",
+                  "type": "water",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "hydro-pump",
+                  "name": "Hidrobomba",
+                  "type": "water",
+                  "power": 120,
+                  "accuracy": 80,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Agua"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T18:04:29.271Z"
+        }
+      },
+      "durationMs": 6
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "cpu",
+          "seed": 1023,
+          "p1": {
+            "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d"
+          },
+          "p2": {
+            "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "825c74a3-29ff-4636-a366-8fcc8ed5e330",
+          "mode": "cpu",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d",
+              "pokemonId": 4,
+              "name": "charmander",
+              "sprite": "https://example.test/4.png",
+              "types": [
+                "fire"
+              ],
+              "baseStats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "special-attack": 60,
+                "special-defense": 50,
+                "speed": 65
+              },
+              "stats": {
+                "hp": 99,
+                "attack": 57,
+                "defense": 48,
+                "special-attack": 65,
+                "special-defense": 55,
+                "speed": 70
+              },
+              "hp": {
+                "current": 99,
+                "max": 99
+              },
+              "moves": [
+                {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "power": 120,
+                  "accuracy": 85,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fuego"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "cpu",
+              "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594",
+              "pokemonId": 7,
+              "name": "squirtle",
+              "sprite": "https://example.test/7.png",
+              "types": [
+                "water"
+              ],
+              "baseStats": {
+                "hp": 44,
+                "attack": 48,
+                "defense": 65,
+                "special-attack": 50,
+                "special-defense": 64,
+                "speed": 43
+              },
+              "stats": {
+                "hp": 104,
+                "attack": 53,
+                "defense": 70,
+                "special-attack": 55,
+                "special-defense": 69,
+                "speed": 48
+              },
+              "hp": {
+                "current": 104,
+                "max": 104
+              },
+              "moves": [
+                {
+                  "id": "surf",
+                  "name": "Surf",
+                  "type": "water",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "hydro-pump",
+                  "name": "Hidrobomba",
+                  "type": "water",
+                  "power": 120,
+                  "accuracy": 80,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Agua"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T18:04:29.287Z"
+        }
+      },
+      "durationMs": 5
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "cpu",
+          "seed": 1024,
+          "p1": {
+            "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d"
+          },
+          "p2": {
+            "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "ec805c9a-3939-4bcf-bf9c-03c7b15674c6",
+          "mode": "cpu",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "16a75a53-70cd-47b3-bb95-7c99d481467d",
+              "pokemonId": 4,
+              "name": "charmander",
+              "sprite": "https://example.test/4.png",
+              "types": [
+                "fire"
+              ],
+              "baseStats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "special-attack": 60,
+                "special-defense": 50,
+                "speed": 65
+              },
+              "stats": {
+                "hp": 99,
+                "attack": 57,
+                "defense": 48,
+                "special-attack": 65,
+                "special-defense": 55,
+                "speed": 70
+              },
+              "hp": {
+                "current": 99,
+                "max": 99
+              },
+              "moves": [
+                {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "power": 120,
+                  "accuracy": 85,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fuego"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "cpu",
+              "recordId": "f5c0537f-fe14-4754-abab-7e0ae21ac594",
+              "pokemonId": 7,
+              "name": "squirtle",
+              "sprite": "https://example.test/7.png",
+              "types": [
+                "water"
+              ],
+              "baseStats": {
+                "hp": 44,
+                "attack": 48,
+                "defense": 65,
+                "special-attack": 50,
+                "special-defense": 64,
+                "speed": 43
+              },
+              "stats": {
+                "hp": 104,
+                "attack": 53,
+                "defense": 70,
+                "special-attack": 55,
+                "special-defense": 69,
+                "speed": 48
+              },
+              "hp": {
+                "current": 104,
+                "max": 104
+              },
+              "moves": [
+                {
+                  "id": "surf",
+                  "name": "Surf",
+                  "type": "water",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "hydro-pump",
+                  "name": "Hidrobomba",
+                  "type": "water",
+                  "power": 120,
+                  "accuracy": 80,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Agua"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T18:04:29.303Z"
+        }
+      },
+      "durationMs": 5
+    }
+  ],
+  "serverLog": "Servidor CRUD PokeAPI en http://localhost:62725\n"
+}

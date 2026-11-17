@@ -1,0 +1,38 @@
+{
+  "id": "U03",
+  "title": "Nombre con solo espacios",
+  "criterion": "R04 / interfaz",
+  "status": "PASA",
+  "observation": "Aviso: «El nombre del Pokémon debe ser un texto no vacío»",
+  "durationMs": 1711,
+  "screenshots": [
+    "U03-1-aviso-nombre-vacio.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/pokemon-list?limit=151"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "GET",
+      "url": "/api/pokemon/ditto"
+    },
+    {
+      "method": "POST",
+      "url": "/api/records"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [
+    {
+      "text": "El nombre del Pokémon debe ser un texto no vacío",
+      "type": "error"
+    }
+  ],
+  "messages": []
+}
