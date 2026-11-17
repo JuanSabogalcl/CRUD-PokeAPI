@@ -23,6 +23,8 @@ let gen1List = [];
 let savedRecords = [];
 let savedNames = new Set();
 let activePokemonName = 'ditto';
+// Pokémon cuyos datos se cargaron en el formulario: su número solo se envía si el nombre no cambia.
+let formPokemon = { name: '', id: null };
 
 function showToast(message, type = 'success') {
   toast.textContent = message;
@@ -32,6 +34,13 @@ function showToast(message, type = 'success') {
 
 function formatPokemonNumber(id) {
   return `#${String(id).padStart(3, '0')}`;
+}
+
+// Todo dato que viene de la API se escapa antes de insertarlo como HTML (D08).
+function escapeHtml(value) {
+  return String(value ?? '').replace(/[&<>"']/g, (char) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+  }[char]));
 }
 
 function getFormStats() {
@@ -52,6 +61,7 @@ function setFormStats(stats, pokemonName = '', pokemonId = null) {
   if (pokemonId) {
     document.getElementById('recordId').dataset.pokemonId = pokemonId;
   }
+  formPokemon = { name: pokemonName, id: pokemonId };
 }
 
 function resetForm() {
@@ -60,6 +70,7 @@ function resetForm() {
   delete document.getElementById('recordId').dataset.pokemonId;
   statsForm.reset();
   pokemonNameSelect.value = '';
+  formPokemon = { name: '', id: null };
   formTitle.textContent = 'Crear registro';
   submitBtn.textContent = 'Guardar';
   cancelBtn.classList.add('hidden');
@@ -67,13 +78,13 @@ function resetForm() {
 
 function populateSelects(list) {
   const options = list
-    .map(({ id, name }) => `<option value="${name}">${formatPokemonNumber(id)} ${name}</option>`)
+    .map(({ id, name }) => `<option value="${escapeHtml(name)}">${formatPokemonNumber(id)} ${escapeHtml(name)}</option>`)
     .join('');
 
   pokemonSelect.innerHTML = `<option value="">Selecciona un Pokémon...</option>${options}`;
   pokemonNameSelect.innerHTML = `<option value="">Selecciona de la Gen 1...</option>${options}`;
 
-  pokemonSelect.value = 'ditto';
+  pokemonSelect.value = list.some(({ name }) => name === 'ditto') ? 'ditto' : '';
 }
 
 function updateRecordCount(total = savedNames.size) {
@@ -88,6 +99,11 @@ function renderCatalog(filter = '') {
     return name.includes(query) || String(id).includes(query.replace('#', ''));
   });
 
+  if (gen1List.length === 0) {
+    pokemonCatalog.innerHTML = '<div class="empty-state">No se pudo cargar el catálogo desde PokeAPI. Los registros guardados siguen disponibles más abajo.</div>';
+    return;
+  }
+
   if (filtered.length === 0) {
     pokemonCatalog.innerHTML = '<div class="empty-state">No hay Pokémon que coincidan con el filtro.</div>';
     return;
@@ -99,10 +115,10 @@ function renderCatalog(filter = '') {
       const isActive = activePokemonName === name;
 
       return `
-        <button type="button" class="pokemon-card ${isSaved ? 'saved' : ''} ${isActive ? 'active' : ''}" data-name="${name}">
+        <button type="button" class="pokemon-card ${isSaved ? 'saved' : ''} ${isActive ? 'active' : ''}" data-name="${escapeHtml(name)}">
           <span class="pokemon-card-id">${formatPokemonNumber(id)}</span>
-          <img src="${sprite}" alt="${name}" loading="lazy">
-          <span class="pokemon-card-name">${name}</span>
+          <img src="${escapeHtml(sprite)}" alt="${escapeHtml(name)}" loading="lazy">
+          <span class="pokemon-card-name">${escapeHtml(name)}</span>
           ${isSaved ? '<span class="pokemon-card-badge">Guardado</span>' : ''}
         </button>
       `;
@@ -117,7 +133,7 @@ function renderApiResult(pokemon) {
       const width = Math.min((value / maxStat) * 100, 100);
       return `
         <div class="stat-row">
-          <span class="stat-label">${label}</span>
+          <span class="stat-label">${escapeHtml(label)}</span>
           <div class="stat-bar"><div class="stat-bar-fill" style="width:${width}%"></div></div>
           <span class="stat-value">${value}</span>
         </div>
@@ -127,9 +143,9 @@ function renderApiResult(pokemon) {
 
   apiResult.innerHTML = `
     <div class="api-result-header">
-      ${pokemon.sprite ? `<img src="${pokemon.sprite}" alt="${pokemon.name}">` : ''}
+      ${pokemon.sprite ? `<img src="${escapeHtml(pokemon.sprite)}" alt="${escapeHtml(pokemon.name)}">` : ''}
       <div>
-        <h3>${formatPokemonNumber(pokemon.id)} ${pokemon.name}</h3>
+        <h3>${formatPokemonNumber(pokemon.id)} ${escapeHtml(pokemon.name)}</h3>
         <p class="hint">Datos obtenidos de PokeAPI</p>
       </div>
     </div>
@@ -158,10 +174,17 @@ async function fetchPokemon(name) {
   return data;
 }
 
+// Si PokeAPI falla, el catálogo queda vacío con un aviso, pero el resto de la página sigue (D11).
 async function loadGen1List() {
-  const response = await fetch('/api/pokemon-list?limit=151');
-  const data = await response.json();
-  gen1List = data.results;
+  try {
+    const response = await fetch('/api/pokemon-list?limit=151');
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || 'No se pudo cargar el catálogo');
+    gen1List = data.results;
+  } catch (error) {
+    gen1List = [];
+    showToast(`Catálogo no disponible: ${error.message}`, 'error');
+  }
   populateSelects(gen1List);
   renderCatalog();
 }
@@ -187,16 +210,16 @@ function renderRecordsList(filter = '') {
   recordsList.innerHTML = records
     .map((record) => {
       const statsHtml = record.statsFormatted
-        .map(({ label, value }) => `<div class="record-stat"><strong>${label}</strong>${value}</div>`)
+        .map(({ label, value }) => `<div class="record-stat"><strong>${escapeHtml(label)}</strong>${escapeHtml(value)}</div>`)
         .join('');
 
       return `
-        <article class="record-item" data-id="${record.id}">
+        <article class="record-item" data-id="${escapeHtml(record.id)}">
           <div class="record-top">
             <div class="record-info">
-              ${record.sprite ? `<img class="record-sprite" src="${record.sprite}" alt="${record.pokemonName}">` : ''}
+              ${record.sprite ? `<img class="record-sprite" src="${escapeHtml(record.sprite)}" alt="${escapeHtml(record.pokemonName)}">` : ''}
               <div>
-                <div class="record-name">${record.pokemonId ? formatPokemonNumber(record.pokemonId) : ''} ${record.pokemonName}</div>
+                <div class="record-name">${record.pokemonId ? formatPokemonNumber(record.pokemonId) : ''} ${escapeHtml(record.pokemonName)}</div>
                 <div class="record-meta">Actualizado: ${new Date(record.updatedAt).toLocaleString('es-ES')}</div>
               </div>
             </div>
@@ -215,7 +238,12 @@ function renderRecordsList(filter = '') {
 
 async function loadRecords() {
   const response = await fetch('/api/records');
-  savedRecords = await response.json();
+  const data = await response.json();
+  if (!response.ok) {
+    showToast(data.error || 'No se pudieron cargar los registros', 'error');
+    return;
+  }
+  savedRecords = data;
 
   savedNames = new Set(savedRecords.map((record) => record.pokemonName));
   updateRecordCount(savedRecords.length);
@@ -223,8 +251,9 @@ async function loadRecords() {
   renderRecordsList(recordsFilter.value);
 }
 
+// Devuelve si se encontró, para no anunciar "encontrado" cuando la consulta falla (D10).
 async function selectPokemon(name) {
-  if (!name) return;
+  if (!name) return false;
 
   activePokemonName = name;
   document.getElementById('pokemonSearch').value = name;
@@ -234,9 +263,11 @@ async function selectPokemon(name) {
   try {
     const pokemon = await fetchPokemon(name);
     renderApiResult(pokemon);
+    return true;
   } catch (error) {
     apiResult.classList.add('hidden');
     showToast(error.message, 'error');
+    return false;
   }
 }
 
@@ -262,11 +293,15 @@ async function syncGen1() {
   }
 }
 
+// El texto escrito manda: elegir de la lista ya lo copia al campo de texto (D10).
 searchForm.addEventListener('submit', async (event) => {
   event.preventDefault();
-  const name = pokemonSelect.value || document.getElementById('pokemonSearch').value.trim();
-  await selectPokemon(name);
-  showToast(`Pokémon ${name} encontrado`);
+  const name = document.getElementById('pokemonSearch').value.trim().toLowerCase() || pokemonSelect.value;
+  if (!name) {
+    showToast('Escribe o selecciona un Pokémon', 'error');
+    return;
+  }
+  if (await selectPokemon(name)) showToast(`Pokémon ${name} encontrado`);
 });
 
 pokemonSelect.addEventListener('change', (event) => {
@@ -302,11 +337,12 @@ statsForm.addEventListener('submit', async (event) => {
 
   const pokemonName = document.getElementById('pokemonName').value.trim();
   const stats = getFormStats();
-  const pokemonId = document.getElementById('recordId').dataset.pokemonId;
+  // El número de Pokédex solo acompaña al nombre con el que se cargó; si el nombre cambió se omite (D14).
+  const samePokemon = formPokemon.id && pokemonName.toLowerCase() === String(formPokemon.name).toLowerCase();
   const payload = {
     pokemonName,
     stats,
-    pokemonId: pokemonId ? Number(pokemonId) : undefined,
+    pokemonId: samePokemon ? Number(formPokemon.id) : undefined,
   };
 
   try {
@@ -389,7 +425,7 @@ recordsList.addEventListener('click', async (event) => {
 async function init() {
   await loadGen1List();
   await loadRecords();
-  await selectPokemon('ditto');
+  if (gen1List.length) await selectPokemon('ditto');
 }
 
 init();

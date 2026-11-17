@@ -459,6 +459,11 @@ button.secondary:hover {
   padding: 32px 16px;
 }
 
+/* Dentro de la cuadrícula del catálogo el aviso ocupa todo el ancho. */
+.pokemon-catalog .empty-state {
+  grid-column: 1 / -1;
+}
+
 .toast {
   position: fixed;
   bottom: 24px;
