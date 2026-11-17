@@ -1,0 +1,39 @@
+{
+  "id": "V03",
+  "title": "Buscar como lo muestra la pantalla: «#025» y «Mr. Mime»",
+  "criterion": "Capa 8 / CRUD Read",
+  "status": "FALLA",
+  "observation": "«#025» es como la aplicación muestra a Pikachu. «#025» → resultado «#132 ditto». Avisos: Escribe el nombre como aparece en PokeAPI (letras, números y guiones) o su número",
+  "durationMs": 3065,
+  "screenshots": [
+    "V03-1-numero-025.png",
+    "V03-2-falla.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/pokemon-list?limit=151"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "GET",
+      "url": "/api/pokemon/ditto"
+    },
+    {
+      "method": "GET",
+      "url": "/api/pokemon/%23025"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [
+    {
+      "text": "Escribe el nombre como aparece en PokeAPI (letras, números y guiones) o su número",
+      "type": "error"
+    }
+  ],
+  "messages": []
+}

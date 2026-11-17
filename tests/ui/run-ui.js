@@ -45,7 +45,8 @@ async function seed(c, ...names) {
 }
 
 const records = async (c) => (await api(c.base, 'GET', '/api/records')).data;
-const posts = (page, route) => page.requests.filter((r) => r.method === 'POST' && r.url.startsWith(route)).length;
+// Peticiones POST exactamente a esa ruta (sin contar, por ejemplo, /api/battles/<id>/turn).
+const posts = (page, route) => page.requests.filter((r) => r.method === 'POST' && r.url === route).length;
 
 async function fillForm(page, name, values = {}) {
   if (name !== undefined) await page.type('#pokemonName', name);
@@ -286,8 +287,9 @@ add('U10', 'Búsqueda de un Pokémon que no existe', 'R02 / interfaz', async (c)
   assert.ok(await c.page.eval('document.getElementById("apiResult").classList.contains("hidden")'));
 });
 
-add('U11', 'Búsqueda escrita con formato inválido («Mr. Mime»)', 'D12 / interfaz', async (c) => {
-  await search(c, 'Mr. Mime');
+add('U11', 'Búsqueda escrita con formato inválido («pika@chu»)', 'D12 / interfaz', async (c) => {
+  // «Mr. Mime» ya se convierte a mr-mime (D22); un carácter como @ sigue sin ser válido.
+  await search(c, 'pika@chu');
   const text = await lastToast(c.page, 'error');
   await sleep(400);
   await c.shot('formato-invalido', '.search-section');
@@ -601,6 +603,142 @@ add('U28', '× 4 en pantalla: Rayo contra Gyarados hasta el final del combate', 
   assert.equal(loser.hp.current, 0);
   assert.ok(battle.participants[battle.result.winner].hp.current > 0);
   c.note(`Daños de Rayo × 4: ${damages.join(', ')}. Ganador: ${battle.participants[battle.result.winner].name}`);
+});
+
+// ---------- Capa 8: errores y hábitos humanos al usar la aplicación ----------
+
+const filterRecords = (page, text) => page.eval(`(() => { const f = document.getElementById('recordsFilter');
+  f.value = ${JSON.stringify(text)}; f.dispatchEvent(new Event('input')); })()`);
+
+add('V01', 'Crear un Pokémon que ya existe', 'Capa 8 / Sección 11 (no duplicar)', async (c) => {
+  await seed(c, 'pikachu');
+  await openCrud(c.page);
+  c.page.acceptDialogs = false; // El usuario se arrepiente si la aplicación le avisa.
+  await fillForm(c.page, 'pikachu', allStats(48));
+  await c.page.click('#submitBtn');
+  await sleep(1000);
+  await filterRecords(c.page, 'pikachu');
+  await c.shot('tras-guardar-repetido', '.list-section');
+  const pikachus = (await records(c)).filter((record) => record.pokemonName === 'pikachu').length;
+  c.note(`Avisos al usuario: ${c.page.dialogs.map((d) => `«${d.message}»`).join(' ') || 'ninguno'}. Registros «pikachu»: ${pikachus}`);
+  assert.equal(c.page.dialogs.length, 1, 'La aplicación debe avisar que ese Pokémon ya existe');
+  assert.equal(pikachus, 1, 'Si el usuario cancela, no se crea el duplicado');
+});
+
+add('V02', 'Buscar dos Pokémon seguidos con la red lenta', 'Capa 8 / CRUD Read', async (c) => {
+  await ready(c.page);
+  await c.page.delayRequests('*/api/pokemon/pikachu', 1500);
+  await c.page.type('#pokemonSearch', 'pikachu');
+  await c.page.key('Enter');
+  await sleep(200);
+  await c.page.type('#pokemonSearch', 'ditto'); // Se arrepiente y busca otro antes de que llegue el primero.
+  await c.page.key('Enter');
+  await sleep(2800);
+  await c.shot('resultado-final', '.search-section');
+  const screen = await c.page.eval(`({ shown: document.querySelector('#apiResult h3')?.textContent,
+    typed: document.getElementById('pokemonSearch').value, list: document.getElementById('pokemonSelect').value })`);
+  c.note(`Último buscado: ditto. En pantalla: «${screen.shown}», campo «${screen.typed}», lista «${screen.list}»`);
+  assert.match(screen.shown, /ditto/i, 'Debe quedar el último Pokémon que pidió el usuario');
+  assert.equal(screen.typed, 'ditto');
+});
+
+add('V03', 'Buscar como lo muestra la pantalla: «#025» y «Mr. Mime»', 'Capa 8 / CRUD Read', async (c) => {
+  await ready(c.page);
+  await c.page.eval('window.__toasts = []');
+  await c.page.type('#pokemonSearch', '#025');
+  await c.page.key('Enter');
+  await sleep(1500);
+  await c.shot('numero-025', '.search-section');
+  const shown = await c.page.eval('document.querySelector("#apiResult h3")?.textContent || ""');
+  const toasts = await c.page.toasts();
+  c.note(`«#025» → resultado «${shown}». Avisos: ${toasts.map((t) => t.text).join(' | ') || 'ninguno'}`);
+  assert.match(shown, /#025 pikachu/i, '«#025» es como la aplicación muestra a Pikachu');
+  await c.page.type('#pokemonSearch', 'Mr. Mime');
+  await c.page.key('Enter');
+  await sleep(1500);
+  assert.ok(c.page.requests.some((r) => r.url === '/api/pokemon/mr-mime'), '«Mr. Mime» debe consultarse como mr-mime');
+});
+
+add('V04', 'Doble clic en «Eliminar»', 'Capa 8 / CRUD Delete', async (c) => {
+  const { ditto } = await seed(c, 'ditto', 'pikachu');
+  await openCrud(c.page);
+  await c.page.dblclick(`.record-item[data-id="${ditto.id}"] [data-action="delete"]`);
+  await sleep(1500);
+  await c.shot('tras-doble-clic', '.list-section');
+  const deletes = c.page.requests.filter((r) => r.method === 'DELETE').length;
+  const errors = (await c.page.toasts()).filter((t) => t.type === 'error').map((t) => t.text);
+  c.note(`Confirmaciones: ${c.page.dialogs.length}. Peticiones DELETE: ${deletes}. Avisos de error: ${errors.join(' | ') || 'ninguno'}`);
+  assert.equal((await api(c.base, 'GET', `/api/records/${ditto.id}`)).status, 404, 'El registro se elimina');
+  assert.equal(errors.length, 0, 'El usuario no debe ver un error después de eliminar con éxito');
+});
+
+add('V05', 'Doble clic en «¡A combatir!»', 'Capa 8 / RF01', async (c) => {
+  const { charmander, ditto } = await seed(c, 'charmander', 'ditto');
+  await openBattle(c.page, charmander, ditto);
+  await c.page.dblclick('#startBtn');
+  await advanceUntil(c, ['command']);
+  await c.shot('un-combate', '.gb-frame');
+  assert.equal(posts(c.page, '/api/battles'), 1, 'Se crea un solo combate');
+});
+
+add('V06', 'Apretar Enter sin parar durante todo el combate', 'Capa 8 / RF11', async (c) => {
+  const { charmander, ditto } = await seed(c, 'charmander', 'ditto');
+  await openBattle(c.page, charmander, ditto);
+  await c.page.click('#startBtn');
+  await c.page.waitFor('typeof battle !== "undefined" && battle && battle.id');
+  const firstId = await c.page.eval('battle.id');
+  const started = Date.now();
+  let extra = 0;
+  // Enter cada 120 ms: el usuario quiere terminar rápido y sigue apretando cuando aparece el resultado.
+  while (Date.now() - started < 60000 && extra < 25) {
+    await c.page.key('Enter');
+    await sleep(120);
+    if (await c.page.eval('battle.id !== ' + JSON.stringify(firstId) + ' || battle.status === "finalizado"')) extra += 1;
+  }
+  await sleep(500);
+  await c.shot('tras-machacar-enter', '.gb-frame');
+  const state = await c.page.eval(`({ id: battle.id, status: battle.status, menu: document.getElementById('textBox').dataset.menu,
+    banner: !document.getElementById('resultBanner').classList.contains('hidden') })`);
+  const battles = posts(c.page, '/api/battles');
+  c.note(`Combates creados: ${battles}. Pantalla final: menú «${state.menu}», resultado visible: ${state.banner}`);
+  assert.equal(battles, 1, 'Al terminar, el Enter repetido no debe iniciar otro combate sin que el usuario lo elija');
+  assert.equal(state.id, firstId);
+  assert.ok(state.banner, 'El resultado del combate debe seguir a la vista');
+});
+
+add('V07', 'Escribir letras en las estadísticas', 'Capa 8 / R05', async (c) => {
+  await ready(c.page);
+  await fillForm(c.page, 'ditto', allStats(48));
+  await c.page.type('#hp', 'abc');
+  await c.page.type('#attack', '4o');
+  const values = await c.page.eval('[document.getElementById("hp").value, document.getElementById("attack").value]');
+  await c.page.click('#submitBtn');
+  await sleep(500);
+  await c.shot('letras', '.form-section');
+  c.note(`Valores que aceptó el campo: PS «${values[0]}», Ataque «${values[1]}»`);
+  assert.equal(posts(c.page, '/api/records'), 0, 'No se envía un formulario con letras en las estadísticas');
+});
+
+add('V08', 'Entrar al combate sin registros guardados', 'Capa 8 / RF01', async (c) => {
+  await c.page.goto('/combate.html');
+  await sleep(800);
+  await c.page.click('#startBtn');
+  await sleep(500);
+  await c.shot('sin-registros', '#setupSection');
+  const text = await c.page.eval('document.getElementById("setupError").textContent');
+  assert.match(text, /Selecciona tu Pokémon|No hay suficientes registros/);
+  assert.equal(posts(c.page, '/api/battles'), 0);
+  c.note(`Mensaje: «${text}»`);
+});
+
+add('V09', 'Elegir el mismo Pokémon para ambos lados', 'Capa 8 / RF01', async (c) => {
+  const { ditto } = await seed(c, 'ditto');
+  await startBattle(c, ditto, ditto);
+  await useMove(c, 'tackle');
+  await c.shot('espejo', '.gb-frame');
+  const battle = await uiBattle(c.page);
+  assert.equal(battle.round, 1);
+  assert.equal(battle.turns[0].speedTie, true, 'Misma Velocidad: el orden se sortea');
 });
 
 // ---------- Ejecución ----------

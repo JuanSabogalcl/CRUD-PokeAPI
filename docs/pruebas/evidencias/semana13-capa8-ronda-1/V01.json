@@ -1,0 +1,43 @@
+{
+  "id": "V01",
+  "title": "Crear un Pokémon que ya existe",
+  "criterion": "Capa 8 / Sección 11 (no duplicar)",
+  "status": "FALLA",
+  "observation": "La aplicación debe avisar que ese Pokémon ya existe. Avisos al usuario: ninguno. Registros «pikachu»: 2",
+  "durationMs": 2991,
+  "screenshots": [
+    "V01-1-tras-guardar-repetido.png",
+    "V01-2-falla.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/pokemon-list?limit=151"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "GET",
+      "url": "/api/pokemon/ditto"
+    },
+    {
+      "method": "POST",
+      "url": "/api/records"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [
+    {
+      "text": "Registro creado",
+      "type": "success"
+    }
+  ],
+  "messages": []
+}

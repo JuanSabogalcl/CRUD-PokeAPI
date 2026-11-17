@@ -84,7 +84,7 @@ class Page {
     this.consoleErrors = [];
     this.acceptDialogs = true;
     this.dialogs = [];
-    this.failing = null;
+    this.fetchMode = { type: 'fail', ms: 0 };
     cdp.on('Network.requestWillBeSent', ({ request }) => {
       if (request.url.includes('/api/')) this.requests.push({ method: request.method, url: request.url.replace(base, '') });
     });
@@ -95,8 +95,13 @@ class Page {
       this.dialogs.push({ message, accepted: this.acceptDialogs });
       cdp.send('Page.handleJavaScriptDialog', { accept: this.acceptDialogs });
     });
+    // Peticiones interceptadas: se cortan (sin conexión) o se retrasan (red lenta).
     cdp.on('Fetch.requestPaused', ({ requestId }) => {
-      cdp.send('Fetch.failRequest', { requestId, errorReason: 'ConnectionRefused' });
+      if (this.fetchMode.type === 'delay') {
+        setTimeout(() => cdp.send('Fetch.continueRequest', { requestId }).catch(() => {}), this.fetchMode.ms);
+      } else {
+        cdp.send('Fetch.failRequest', { requestId, errorReason: 'ConnectionRefused' });
+      }
     });
   }
 
@@ -166,6 +171,14 @@ class Page {
 
   // Simula que la red falla para las peticiones cuya URL coincide con el patrón.
   async failRequests(pattern) {
+    this.fetchMode = { type: 'fail', ms: 0 };
+    if (pattern) await this.cdp.send('Fetch.enable', { patterns: [{ urlPattern: pattern }] });
+    else await this.cdp.send('Fetch.disable');
+  }
+
+  // Simula una red lenta solo para las peticiones cuya URL coincide con el patrón.
+  async delayRequests(pattern, ms) {
+    this.fetchMode = { type: 'delay', ms };
     if (pattern) await this.cdp.send('Fetch.enable', { patterns: [{ urlPattern: pattern }] });
     else await this.cdp.send('Fetch.disable');
   }

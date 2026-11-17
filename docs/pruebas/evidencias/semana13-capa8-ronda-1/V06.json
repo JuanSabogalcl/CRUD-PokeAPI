@@ -1,0 +1,68 @@
+{
+  "id": "V06",
+  "title": "Apretar Enter sin parar durante todo el combate",
+  "criterion": "Capa 8 / RF11",
+  "status": "FALLA",
+  "observation": "Al terminar, el Enter repetido no debe iniciar otro combate sin que el usuario lo elija. Combates creados: 2. Pantalla final: menú «», resultado visible: false",
+  "durationMs": 9474,
+  "screenshots": [
+    "V06-1-tras-machacar-enter.png",
+    "V06-2-falla.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/combat/rules"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles/4f5c4db3-7cbb-461e-8d84-e051d557dfd3/turn"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles/4f5c4db3-7cbb-461e-8d84-e051d557dfd3/turn"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles/b6ff6451-9f94-416d-ade0-d9afdd66e654/turn"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [],
+  "messages": [
+    "¡Un DITTO salvaje apareció!",
+    "¡Adelante, CHARMANDER!",
+    "¿Qué debe hacer CHARMANDER?",
+    "¡CHARMANDER usó LANZALLAMAS!",
+    "¡El DITTO salvaje usó RAPIDEZ!",
+    "¿Qué debe hacer CHARMANDER?",
+    "¡CHARMANDER usó LANZALLAMAS!",
+    "¡El DITTO salvaje se debilitó!",
+    "¡Ganaste! Derrotaste al DITTO salvaje.",
+    "¡Un DITTO salvaje apareció!",
+    "¡Adelante, CHARMANDER!",
+    "¿Qué debe hacer CHARMANDER?",
+    "¡CHARMANDER usó LANZALLAMAS!"
+  ]
+}
