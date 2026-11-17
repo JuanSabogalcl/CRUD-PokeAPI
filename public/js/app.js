@@ -20,6 +20,8 @@ const toast = document.getElementById('toast');
 
 let editingId = null;
 let saving = false; // Evita guardar dos veces con un doble clic o Enter repetido (D18).
+let searchTicket = 0; // Solo se muestra la respuesta de la última búsqueda pedida (D21).
+const deleting = new Set(); // Registros con un borrado en curso (D23).
 let gen1List = [];
 let savedRecords = [];
 let savedNames = new Set();
@@ -35,6 +37,15 @@ function showToast(message, type = 'success') {
 
 function formatPokemonNumber(id) {
   return `#${String(id).padStart(3, '0')}`;
+}
+
+// Convierte lo que escribe el usuario al nombre que usa PokeAPI: «#025» → «25», «Mr. Mime» → «mr-mime»,
+// «Nidoran♀» → «nidoran-f», «Farfetch'd» → «farfetchd» (D22).
+function toPokeApiName(text) {
+  const value = text.trim().toLowerCase().replace(/^#/, '');
+  if (/^\d+$/.test(value)) return String(Number(value));
+  return value.replace(/♀/g, '-f').replace(/♂/g, '-m').replace(/['’.]/g, '')
+    .replace(/\s+/g, '-').replace(/-+/g, '-');
 }
 
 // Todo dato que viene de la API se escapa antes de insertarlo como HTML (D08).
@@ -255,6 +266,7 @@ async function loadRecords() {
 // Devuelve si se encontró, para no anunciar "encontrado" cuando la consulta falla (D10).
 async function selectPokemon(name) {
   if (!name) return false;
+  const ticket = ++searchTicket;
 
   activePokemonName = name;
   document.getElementById('pokemonSearch').value = name;
@@ -263,9 +275,16 @@ async function selectPokemon(name) {
 
   try {
     const pokemon = await fetchPokemon(name);
+    if (ticket !== searchTicket) return false; // Llegó tarde: el usuario ya pidió otro Pokémon.
+    // Se muestra el nombre oficial aunque se haya buscado por número.
+    activePokemonName = pokemon.name;
+    document.getElementById('pokemonSearch').value = pokemon.name;
+    pokemonSelect.value = pokemon.name;
+    renderCatalog(catalogFilter.value);
     renderApiResult(pokemon);
-    return true;
+    return pokemon.name;
   } catch (error) {
+    if (ticket !== searchTicket) return false;
     apiResult.classList.add('hidden');
     showToast(error.message, 'error');
     return false;
@@ -297,12 +316,13 @@ async function syncGen1() {
 // El texto escrito manda: elegir de la lista ya lo copia al campo de texto (D10).
 searchForm.addEventListener('submit', async (event) => {
   event.preventDefault();
-  const name = document.getElementById('pokemonSearch').value.trim().toLowerCase() || pokemonSelect.value;
+  const name = toPokeApiName(document.getElementById('pokemonSearch').value) || pokemonSelect.value;
   if (!name) {
     showToast('Escribe o selecciona un Pokémon', 'error');
     return;
   }
-  if (await selectPokemon(name)) showToast(`Pokémon ${name} encontrado`);
+  const found = await selectPokemon(name);
+  if (found) showToast(`Pokémon ${found} encontrado`);
 });
 
 pokemonSelect.addEventListener('change', (event) => {
@@ -336,10 +356,14 @@ syncGen1Btn.addEventListener('click', syncGen1);
 statsForm.addEventListener('submit', async (event) => {
   event.preventDefault();
   if (saving) return;
-  saving = true;
-  submitBtn.disabled = true;
 
   const pokemonName = document.getElementById('pokemonName').value.trim();
+  // Avisar antes de duplicar un Pokémon que ya está guardado (D20).
+  const duplicate = savedRecords.some((record) => record.pokemonName === pokemonName.toLowerCase() && record.id !== editingId);
+  if (duplicate && !confirm(`Ya existe un registro de «${pokemonName.toLowerCase()}». ¿Quieres guardar otro con el mismo nombre?`)) return;
+
+  saving = true;
+  submitBtn.disabled = true;
   const stats = getFormStats();
   // El número de Pokédex solo acompaña al nombre con el que se cargó; si el nombre cambió se omite (D14).
   const samePokemon = formPokemon.id && pokemonName.toLowerCase() === String(formPokemon.name).toLowerCase();
@@ -413,19 +437,26 @@ recordsList.addEventListener('click', async (event) => {
   }
 
   if (action === 'delete') {
+    // Un segundo clic mientras se borra no vuelve a preguntar ni a borrar (D23).
+    if (deleting.has(id)) return;
     if (!confirm('¿Eliminar este registro?')) return;
+    deleting.add(id);
 
-    const response = await fetch(`/api/records/${id}`, { method: 'DELETE' });
-    const data = await response.json();
+    try {
+      const response = await fetch(`/api/records/${id}`, { method: 'DELETE' });
+      const data = await response.json();
 
-    if (!response.ok) {
-      showToast(data.error || 'Error al eliminar', 'error');
-      return;
+      if (!response.ok) {
+        showToast(data.error || 'Error al eliminar', 'error');
+        return;
+      }
+
+      showToast('Registro eliminado');
+      if (editingId === id) resetForm();
+      await loadRecords();
+    } finally {
+      deleting.delete(id);
     }
-
-    showToast('Registro eliminado');
-    if (editingId === id) resetForm();
-    await loadRecords();
   }
 });
 

@@ -196,9 +196,9 @@ function menuOptions() {
 function setCursor(index) {
   const options = menuOptions();
   if (!options.length) return;
-  cursor = (index + options.length) % options.length;
+  cursor = index < 0 ? -1 : (index + options.length) % options.length;
   options.forEach((option, i) => option.classList.toggle('focused', i === cursor));
-  if (activeMenu === 'moves') renderMoveInfo(options[cursor].dataset.move);
+  if (activeMenu === 'moves' && cursor >= 0) renderMoveInfo(options[cursor].dataset.move);
 }
 
 function openMenu(name) {
@@ -208,7 +208,9 @@ function openMenu(name) {
   activeMenu = name;
   menus[name].classList.remove('hidden');
   el('textBox').dataset.menu = name;
-  setCursor(0);
+  // Al terminar no queda ninguna opción marcada: un Enter repetido no inicia otra pelea sin
+  // que el usuario elija REVANCHA o NUEVO con las flechas o el ratón (D24).
+  setCursor(name === 'end' ? -1 : 0);
 }
 
 function renderMoveInfo(moveId) {
@@ -467,7 +469,8 @@ el('textBox').addEventListener('click', (event) => {
 
 el('textBox').addEventListener('mouseover', (event) => {
   const option = event.target.closest('.menu-option');
-  if (option) setCursor(menuOptions().indexOf(option));
+  // En el menú final, pasar el ratón no marca la opción: así un Enter repetido no la activa (D24).
+  if (option && activeMenu !== 'end') setCursor(menuOptions().indexOf(option));
 });
 
 document.addEventListener('keydown', (event) => {
