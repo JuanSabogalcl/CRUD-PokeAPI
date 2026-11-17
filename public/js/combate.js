@@ -135,6 +135,8 @@ const nameOf = (side) => battle.participants[side].name.toUpperCase();
 // El rival se nombra como en los juegos: "el CHARMANDER salvaje".
 const subject = (side, start = false) => (side === 'p1' ? nameOf(side)
   : `${start ? 'El' : 'el'} ${nameOf(side)} salvaje`);
+// Complemento con «a»: «a PIKACHU», pero «al CHARMANDER salvaje» (no «a el», D19).
+const objectOf = (side) => (side === 'p1' ? `a ${nameOf(side)}` : `al ${nameOf(side)} salvaje`);
 
 function hideMenus() {
   Object.values(menus).forEach((menu) => menu.classList.add('hidden'));
@@ -327,7 +329,7 @@ async function playEvent(event) {
   }
   const lines = [];
   if (event.critical) lines.push('¡Un golpe crítico!');
-  if (event.effectiveness === 0) lines.push(`No afecta a ${subject(defender)}...`);
+  if (event.effectiveness === 0) lines.push(`No afecta ${objectOf(defender)}...`);
   else if (event.effectiveness > 1) lines.push('¡Es súper eficaz!');
   else if (event.effectiveness < 1) lines.push('No es muy eficaz...');
   if (!lines.length) await waitForAdvance(); // Da tiempo a leer "X usó Y" aunque no haya más texto.

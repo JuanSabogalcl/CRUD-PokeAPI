@@ -19,6 +19,7 @@ const recordsFilter = document.getElementById('recordsFilter');
 const toast = document.getElementById('toast');
 
 let editingId = null;
+let saving = false; // Evita guardar dos veces con un doble clic o Enter repetido (D18).
 let gen1List = [];
 let savedRecords = [];
 let savedNames = new Set();
@@ -334,6 +335,9 @@ syncGen1Btn.addEventListener('click', syncGen1);
 
 statsForm.addEventListener('submit', async (event) => {
   event.preventDefault();
+  if (saving) return;
+  saving = true;
+  submitBtn.disabled = true;
 
   const pokemonName = document.getElementById('pokemonName').value.trim();
   const stats = getFormStats();
@@ -366,6 +370,9 @@ statsForm.addEventListener('submit', async (event) => {
     await loadRecords();
   } catch (error) {
     showToast(error.message, 'error');
+  } finally {
+    saving = false;
+    submitBtn.disabled = false;
   }
 });
 
