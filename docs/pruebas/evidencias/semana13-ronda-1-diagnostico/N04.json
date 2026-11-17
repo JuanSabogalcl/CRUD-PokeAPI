@@ -1,0 +1,29 @@
+{
+  "id": "N04",
+  "title": "Seguridad: cabeceras HTTP y tamaño máximo del cuerpo",
+  "criterion": "RNF-SEG-02",
+  "status": "FALLA",
+  "observation": "No debe anunciar la tecnología del servidor\n+ actual - expected\n\n+ 'Express'\n- undefined\n",
+  "durationMs": 372,
+  "evidence": "N04.json",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/records",
+        "raw": true
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "headers": {
+          "x-powered-by": "Express",
+          "x-content-type-options": null
+        },
+        "body": []
+      },
+      "durationMs": 16
+    }
+  ],
+  "serverLog": "Servidor CRUD PokeAPI en http://localhost:29411\n"
+}

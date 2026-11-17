@@ -1,0 +1,24 @@
+{
+  "id": "N07",
+  "title": "Confiabilidad: archivo de datos dañado o incompleto",
+  "criterion": "RNF-CON-02",
+  "status": "FALLA",
+  "observation": "El servidor no debe caerse con un archivo de datos dañado",
+  "durationMs": 2145,
+  "evidence": "N07.json",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/records"
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": []
+      },
+      "durationMs": 15
+    }
+  ],
+  "serverLog": "Servidor CRUD PokeAPI en http://localhost:29486\n<anonymous_script>:1\r\n{\r\n\r\nSyntaxError: Expected property name or '}' in JSON at position 1 (line 1 column 2)\r\n    at JSON.parse (<anonymous>)\r\n    at readRecords (C:\\cc-repos\\CRUD-PokeAPI\\server.js:37:15)\r\n    at bootstrapGen1 (C:\\cc-repos\\CRUD-PokeAPI\\server.js:224:19)\r\n    at Server.<anonymous> (C:\\cc-repos\\CRUD-PokeAPI\\server.js:250:47)\r\n    at Server.wrapper (node:events:639:12)\r\n    at Server.emit (node:events:526:24)\r\n    at emitListeningNT (node:net:2423:10)\r\n    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)\r\n\r\nNode.js v24.21.0\r\n"
+}

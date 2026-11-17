@@ -30,6 +30,7 @@ async function createFixture() {
     if (state.failure) return send(503, { error: 'Fallo simulado del proveedor' });
     const key = decodeURIComponent(url.pathname.split('/')[4] || '');
     if (key === 'slow') return; // El cliente debe cortar por timeout.
+    if (key === 'sin-stats') return send(200, { id: 999, name: 'sin-stats' }); // Respuesta 200 incompleta.
     if (key === 'broken-json') {
       res.writeHead(200, { 'Content-Type': 'application/json' });
       return res.end('{');

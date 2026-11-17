@@ -1,0 +1,183 @@
+{
+  "id": "N05",
+  "title": "Usabilidad: errores comprensibles en JSON y en español",
+  "criterion": "RNF-USA-01",
+  "status": "FALLA",
+  "observation": "Respuesta 404 no es JSON",
+  "durationMs": 322,
+  "evidence": "N05.json",
+  "exchanges": [
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "grupo6-custom",
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "99144fc5-66fc-4aa2-8826-4fc9fcc4202b",
+          "pokemonName": "grupo6-custom",
+          "pokemonId": null,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png",
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          },
+          "createdAt": "2026-11-17T16:46:52.795Z",
+          "updatedAt": "2026-11-17T16:46:52.797Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 48
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 48
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 48
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 48
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 48
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 48
+            }
+          ]
+        }
+      },
+      "durationMs": 22
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {}
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "El nombre del Pokémon debe ser un texto no vacío"
+        }
+      },
+      "durationMs": 3
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/records/00000000-0000-0000-0000-000000000000"
+      },
+      "response": {
+        "status": 404,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "Registro no encontrado"
+        }
+      },
+      "durationMs": 5
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/no-existe",
+        "raw": true
+      },
+      "response": {
+        "status": 404,
+        "contentType": "text/html; charset=utf-8",
+        "headers": {
+          "x-powered-by": "Express",
+          "x-content-type-options": "nosniff"
+        },
+        "body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/no-existe</pre>\n</body>\n</html>\n"
+      },
+      "durationMs": 3
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/pokemon/%2E%2E",
+        "raw": true
+      },
+      "response": {
+        "status": 502,
+        "contentType": "application/json; charset=utf-8",
+        "headers": {
+          "x-powered-by": "Express",
+          "x-content-type-options": null
+        },
+        "body": {
+          "error": "stats is not iterable"
+        }
+      },
+      "durationMs": 38
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "p1": {
+            "recordId": "99144fc5-66fc-4aa2-8826-4fc9fcc4202b"
+          },
+          "p2": {
+            "recordId": "99144fc5-66fc-4aa2-8826-4fc9fcc4202b"
+          }
+        }
+      },
+      "response": {
+        "status": 422,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "Datos incompletos de grupo6-custom: no tiene tipos y no existe en PokeAPI para completarlos"
+        }
+      },
+      "durationMs": 7
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/pokemon/pikachu"
+      },
+      "response": {
+        "status": 502,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "Error al conectar con PokeAPI"
+        }
+      },
+      "durationMs": 2
+    }
+  ],
+  "serverLog": "Servidor CRUD PokeAPI en http://localhost:29414\n"
+}

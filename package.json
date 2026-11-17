@@ -12,6 +12,8 @@
     "test:smoke": "node tests/run.js --suite=smoke",
     "test:regression": "node tests/run.js --suite=regression",
     "test:combat": "node tests/run.js --suite=combat",
+    "test:exploratoria": "node tests/run.js --suite=exploratoria",
+    "test:nofuncional": "node tests/run.js --suite=nofuncional",
     "test:live": "node tests/live.js"
   },
   "engines": { "node": ">=22" },

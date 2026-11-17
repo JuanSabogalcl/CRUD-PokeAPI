@@ -5,7 +5,10 @@ const { root, fields, launch, stop, tempData, request } = require('./helpers');
 
 async function main() {
   const dataDir = tempData();
-  const outDir = path.join(root, 'docs', 'pruebas', 'evidencias', 'integracion-real');
+  // --run=<carpeta> conserva rondas anteriores; por defecto se mantiene la carpeta histórica.
+  const runName = process.argv.find((arg) => arg.startsWith('--run='))?.split('=')[1] || 'integracion-real';
+  if (!/^[\w-]+$/.test(runName)) throw new Error('Nombre de ronda inválido');
+  const outDir = path.join(root, 'docs', 'pruebas', 'evidencias', runName);
   fs.mkdirSync(outDir, { recursive: true });
   const evidence = [], results = [];
   let server;

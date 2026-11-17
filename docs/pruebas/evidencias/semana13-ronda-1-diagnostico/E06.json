@@ -1,0 +1,29 @@
+{
+  "id": "E06",
+  "title": "Rutas de la API inexistentes responden con error JSON",
+  "criterion": "CA15",
+  "status": "FALLA",
+  "observation": "The input did not match the regular expression /application\\/json/. Input:\n\n'text/html; charset=utf-8'\n",
+  "durationMs": 358,
+  "evidence": "E06.json",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/no-existe",
+        "raw": true
+      },
+      "response": {
+        "status": 404,
+        "contentType": "text/html; charset=utf-8",
+        "headers": {
+          "x-powered-by": "Express",
+          "x-content-type-options": "nosniff"
+        },
+        "body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/no-existe</pre>\n</body>\n</html>\n"
+      },
+      "durationMs": 13
+    }
+  ],
+  "serverLog": "Servidor CRUD PokeAPI en http://localhost:29331\n"
+}
