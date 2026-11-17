@@ -2,11 +2,12 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const { randomUUID } = require('node:crypto');
-const { validateRecord } = require('./lib/validation');
-const { fetchJson } = require('./lib/pokeapi-client');
+const { validateRecord, parsePokemonQuery } = require('./lib/validation');
+const { fetchJson, PokeApiError } = require('./lib/pokeapi-client');
 const {
   STAT_LABELS,
   GEN1_LIMIT,
+  parseRecords,
   mapStatsFromApi,
   getSpriteUrl,
   syncGen1Records: syncGen1FromApi,
@@ -20,6 +21,12 @@ const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, 'data');
 const DATA_FILE = path.join(DATA_DIR, 'records.json');
 const POKEAPI_BASE = process.env.POKEAPI_BASE || 'https://pokeapi.co/api/v2/pokemon';
 
+// No anunciar la tecnología del servidor e impedir que el navegador adivine tipos de contenido (D17).
+app.disable('x-powered-by');
+app.use((_req, res, next) => {
+  res.set('X-Content-Type-Options', 'nosniff');
+  next();
+});
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -34,7 +41,7 @@ function ensureDataFile() {
 
 function readRecords() {
   ensureDataFile();
-  return JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
+  return parseRecords(fs.readFileSync(DATA_FILE, 'utf8'));
 }
 
 function writeRecords(records) {
@@ -62,9 +69,10 @@ function formatPokemonResponse(data) {
 function formatRecord(record) {
   return {
     ...record,
-    sprite: record.sprite
-      || `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${record.pokemonId || 0}.png`,
-    statsFormatted: Object.entries(record.stats).map(([key, value]) => ({
+    sprite: record.sprite || (record.pokemonId
+      ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${record.pokemonId}.png` : null),
+    // Un registro incompleto en el archivo no debe impedir listar los demás (D13).
+    statsFormatted: Object.entries(record.stats || {}).map(([key, value]) => ({
       key,
       label: STAT_LABELS[key],
       value,
@@ -115,14 +123,18 @@ app.get('/api/pokemon-list', async (req, res) => {
 });
 
 app.get('/api/pokemon/:name', async (req, res) => {
-  const name = req.params.name.trim().toLowerCase();
+  // Sin esta validación, ".." cambiaba la ruta consultada en PokeAPI y se filtraba un error interno (D12).
+  const name = parsePokemonQuery(req.params.name);
+  if (!name) {
+    return res.status(400).json({ error: 'Escribe el nombre como aparece en PokeAPI (letras, números y guiones) o su número' });
+  }
 
   try {
     const data = await fetchPokemonData(name);
     res.json(formatPokemonResponse(data));
   } catch (error) {
-    const status = error.status || 502;
-    res.status(status).json({ error: error.message || 'Error al conectar con PokeAPI' });
+    const known = error instanceof PokeApiError;
+    res.status(known ? error.status : 502).json({ error: known ? error.message : 'Error al conectar con PokeAPI' });
   }
 });
 
@@ -134,6 +146,7 @@ app.post('/api/records/sync-gen1', async (_req, res) => {
       ...result,
     });
   } catch (error) {
+    if (error.publicMessage) return res.status(error.status).json({ error: error.publicMessage });
     res.status(error.status === 504 ? 504 : 502).json({ error: 'Error al sincronizar la Gen 1 desde PokeAPI' });
   }
 });
@@ -157,14 +170,14 @@ app.get('/api/records/:id', (req, res) => {
 app.post('/api/records', (req, res) => {
   const validation = validateRecord(req.body);
   if (validation.error) return res.status(400).json({ error: validation.error });
-  const { pokemonName, stats } = validation.value;
+  const { pokemonName, stats, pokemonId = null, sprite = null } = validation.value;
 
   const records = readRecords();
   const newRecord = {
     id: randomUUID(),
     pokemonName,
-    pokemonId: req.body.pokemonId || null,
-    sprite: req.body.sprite || null,
+    pokemonId,
+    sprite,
     stats,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -188,6 +201,20 @@ app.put('/api/records/:id', (req, res) => {
   if (validation.error) return res.status(400).json({ error: validation.error });
   const { pokemonName, stats } = validation.value;
   const current = records[index];
+  const hasId = Object.hasOwn(validation.value, 'pokemonId');
+  const renamed = pokemonName && pokemonName !== current.pokemonName;
+  const speciesChanged = renamed || (hasId && validation.value.pokemonId !== current.pokemonId);
+
+  // Número, imagen y tipos dependen de la especie. Al cambiar el nombre o el número se descartan
+  // para que el combate los complete de nuevo desde PokeAPI (D14), salvo que el cambio indique el número.
+  if (speciesChanged) {
+    current.pokemonId = hasId ? validation.value.pokemonId : null;
+    current.sprite = null;
+    delete current.types;
+  }
+  if (Object.hasOwn(validation.value, 'sprite')) {
+    current.sprite = validation.value.sprite;
+  }
 
   if (pokemonName) {
     current.pokemonName = pokemonName;
@@ -218,17 +245,23 @@ app.delete('/api/records/:id', (req, res) => {
   res.json({ message: 'Registro eliminado', record: formatRecord(deleted) });
 });
 
-registerCombatRoutes(app, { readRecords, writeRecords, fetchPokemonData });
+registerCombatRoutes(app, { readRecords, writeRecords, fetchPokemonData, getSpriteUrl });
+
+// Rutas de la API inexistentes: error JSON como el resto del contrato, no la página HTML de Express (D15).
+app.use('/api', (_req, res) => {
+  res.status(404).json({ error: 'Ruta de la API no encontrada' });
+});
 
 async function bootstrapGen1() {
-  const records = readRecords();
-  if (records.length >= GEN1_LIMIT) {
-    console.log(`Gen 1 lista: ${records.length}/${GEN1_LIMIT} Pokémon cargados`);
-    return;
-  }
-
-  console.log(`Importando Gen 1 desde PokeAPI (${records.length}/${GEN1_LIMIT})...`);
+  // Todo dentro de try: un archivo de datos dañado ya no tumba el proceso al iniciar (D13).
   try {
+    const records = readRecords();
+    if (records.length >= GEN1_LIMIT) {
+      console.log(`Gen 1 lista: ${records.length}/${GEN1_LIMIT} Pokémon cargados`);
+      return;
+    }
+
+    console.log(`Importando Gen 1 desde PokeAPI (${records.length}/${GEN1_LIMIT})...`);
     const result = await syncGen1FromApi(__dirname);
     console.log(`Gen 1 sincronizada: ${result.total} registros (${result.created} nuevos, ${result.updated} actualizados)`);
   } catch (error) {
@@ -238,6 +271,7 @@ async function bootstrapGen1() {
 
 // Express entrega JSON también para errores del parser y del almacenamiento.
 app.use((error, _req, res, _next) => {
+  if (error.publicMessage) return res.status(error.status).json({ error: error.publicMessage });
   const status = error.status >= 400 && error.status < 500 ? error.status : 500;
   res.status(status).json({ error: status === 400 ? 'El cuerpo debe contener JSON válido'
     : status === 413 ? 'El cuerpo excede el tamaño permitido' : 'No se pudo procesar la solicitud' });

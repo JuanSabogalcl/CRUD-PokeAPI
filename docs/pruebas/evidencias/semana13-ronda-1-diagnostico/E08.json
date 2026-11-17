@@ -1,0 +1,804 @@
+{
+  "id": "E08",
+  "title": "Tabla de decisión: iniciar combate",
+  "criterion": "RF01 / Sección 11",
+  "status": "PASA",
+  "observation": "",
+  "durationMs": 445,
+  "evidence": "E08.json",
+  "exchanges": [
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "charmander",
+          "pokemonId": 4,
+          "stats": {
+            "hp": 39,
+            "attack": 52,
+            "defense": 43,
+            "special-attack": 60,
+            "special-defense": 50,
+            "speed": 65
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "2cb07de0-ccd4-4df5-8a5e-d98485a4df1a",
+          "pokemonName": "charmander",
+          "pokemonId": 4,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
+          "stats": {
+            "hp": 39,
+            "attack": 52,
+            "defense": 43,
+            "special-attack": 60,
+            "special-defense": 50,
+            "speed": 65
+          },
+          "createdAt": "2026-11-17T16:46:49.746Z",
+          "updatedAt": "2026-11-17T16:46:49.747Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 39
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 52
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 43
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 60
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 50
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 65
+            }
+          ]
+        }
+      },
+      "durationMs": 28
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "bulbasaur",
+          "pokemonId": 1,
+          "stats": {
+            "hp": 45,
+            "attack": 49,
+            "defense": 49,
+            "special-attack": 65,
+            "special-defense": 65,
+            "speed": 45
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "cea90d47-c3a7-45cb-8e1a-5cd5a0860864",
+          "pokemonName": "bulbasaur",
+          "pokemonId": 1,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+          "stats": {
+            "hp": 45,
+            "attack": 49,
+            "defense": 49,
+            "special-attack": 65,
+            "special-defense": 65,
+            "speed": 45
+          },
+          "createdAt": "2026-11-17T16:46:49.759Z",
+          "updatedAt": "2026-11-17T16:46:49.759Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 45
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 49
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 49
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 65
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 65
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 45
+            }
+          ]
+        }
+      },
+      "durationMs": 7
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "pvp",
+          "seed": 7,
+          "p1": {
+            "recordId": "2cb07de0-ccd4-4df5-8a5e-d98485a4df1a"
+          },
+          "p2": {
+            "recordId": "cea90d47-c3a7-45cb-8e1a-5cd5a0860864"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "48e89a33-4e99-41b2-afc8-3c7e10531f6c",
+          "mode": "pvp",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "2cb07de0-ccd4-4df5-8a5e-d98485a4df1a",
+              "pokemonId": 4,
+              "name": "charmander",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
+              "types": [
+                "fire"
+              ],
+              "baseStats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "special-attack": 60,
+                "special-defense": 50,
+                "speed": 65
+              },
+              "stats": {
+                "hp": 99,
+                "attack": 57,
+                "defense": 48,
+                "special-attack": 65,
+                "special-defense": 55,
+                "speed": 70
+              },
+              "hp": {
+                "current": 99,
+                "max": 99
+              },
+              "moves": [
+                {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "power": 120,
+                  "accuracy": 85,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fuego"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "humano",
+              "recordId": "cea90d47-c3a7-45cb-8e1a-5cd5a0860864",
+              "pokemonId": 1,
+              "name": "bulbasaur",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+              "types": [
+                "grass",
+                "poison"
+              ],
+              "baseStats": {
+                "hp": 45,
+                "attack": 49,
+                "defense": 49,
+                "special-attack": 65,
+                "special-defense": 65,
+                "speed": 45
+              },
+              "stats": {
+                "hp": 105,
+                "attack": 54,
+                "defense": 54,
+                "special-attack": 70,
+                "special-defense": 70,
+                "speed": 50
+              },
+              "hp": {
+                "current": 105,
+                "max": 105
+              },
+              "moves": [
+                {
+                  "id": "razor-leaf",
+                  "name": "Hoja Afilada",
+                  "type": "grass",
+                  "power": 55,
+                  "accuracy": 95,
+                  "category": "special",
+                  "typeLabel": "Planta",
+                  "stab": true
+                },
+                {
+                  "id": "sludge",
+                  "name": "Lodo",
+                  "type": "poison",
+                  "power": 65,
+                  "accuracy": 100,
+                  "category": "physical",
+                  "typeLabel": "Veneno",
+                  "stab": true
+                },
+                {
+                  "id": "vine-whip",
+                  "name": "Látigo Cepa",
+                  "type": "grass",
+                  "power": 35,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Planta",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Planta",
+                "Veneno"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T16:46:49.825Z"
+        }
+      },
+      "durationMs": 66
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/records/cea90d47-c3a7-45cb-8e1a-5cd5a0860864"
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "cea90d47-c3a7-45cb-8e1a-5cd5a0860864",
+          "pokemonName": "bulbasaur",
+          "pokemonId": 1,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+          "stats": {
+            "hp": 45,
+            "attack": 49,
+            "defense": 49,
+            "special-attack": 65,
+            "special-defense": 65,
+            "speed": 45
+          },
+          "createdAt": "2026-11-17T16:46:49.759Z",
+          "updatedAt": "2026-11-17T16:46:49.759Z",
+          "types": [
+            "grass",
+            "poison"
+          ],
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 45
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 49
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 49
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 65
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 65
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 45
+            }
+          ]
+        }
+      },
+      "durationMs": 10
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "pvp",
+          "seed": 7,
+          "p1": {
+            "recordId": "2cb07de0-ccd4-4df5-8a5e-d98485a4df1a"
+          },
+          "p2": {
+            "recordId": "cea90d47-c3a7-45cb-8e1a-5cd5a0860864"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "e1dee6ea-0f02-4663-9cb8-8ec551d2087b",
+          "mode": "pvp",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "2cb07de0-ccd4-4df5-8a5e-d98485a4df1a",
+              "pokemonId": 4,
+              "name": "charmander",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
+              "types": [
+                "fire"
+              ],
+              "baseStats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "special-attack": 60,
+                "special-defense": 50,
+                "speed": 65
+              },
+              "stats": {
+                "hp": 99,
+                "attack": 57,
+                "defense": 48,
+                "special-attack": 65,
+                "special-defense": 55,
+                "speed": 70
+              },
+              "hp": {
+                "current": 99,
+                "max": 99
+              },
+              "moves": [
+                {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "power": 120,
+                  "accuracy": 85,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fuego"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "humano",
+              "recordId": "cea90d47-c3a7-45cb-8e1a-5cd5a0860864",
+              "pokemonId": 1,
+              "name": "bulbasaur",
+              "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+              "types": [
+                "grass",
+                "poison"
+              ],
+              "baseStats": {
+                "hp": 45,
+                "attack": 49,
+                "defense": 49,
+                "special-attack": 65,
+                "special-defense": 65,
+                "speed": 45
+              },
+              "stats": {
+                "hp": 105,
+                "attack": 54,
+                "defense": 54,
+                "special-attack": 70,
+                "special-defense": 70,
+                "speed": 50
+              },
+              "hp": {
+                "current": 105,
+                "max": 105
+              },
+              "moves": [
+                {
+                  "id": "razor-leaf",
+                  "name": "Hoja Afilada",
+                  "type": "grass",
+                  "power": 55,
+                  "accuracy": 95,
+                  "category": "special",
+                  "typeLabel": "Planta",
+                  "stab": true
+                },
+                {
+                  "id": "sludge",
+                  "name": "Lodo",
+                  "type": "poison",
+                  "power": 65,
+                  "accuracy": 100,
+                  "category": "physical",
+                  "typeLabel": "Veneno",
+                  "stab": true
+                },
+                {
+                  "id": "vine-whip",
+                  "name": "Látigo Cepa",
+                  "type": "grass",
+                  "power": 35,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Planta",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Planta",
+                "Veneno"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T16:46:49.843Z"
+        }
+      },
+      "durationMs": 9
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "533d46ba-c888-4c50-9e3b-254353329b8b",
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          },
+          "createdAt": "2026-11-17T16:46:49.848Z",
+          "updatedAt": "2026-11-17T16:46:49.848Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 48
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 48
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 48
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 48
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 48
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 48
+            }
+          ]
+        }
+      },
+      "durationMs": 6
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "pvp",
+          "seed": 7,
+          "p1": {
+            "recordId": "533d46ba-c888-4c50-9e3b-254353329b8b"
+          },
+          "p2": {
+            "recordId": "cea90d47-c3a7-45cb-8e1a-5cd5a0860864"
+          }
+        }
+      },
+      "response": {
+        "status": 502,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "No se pudieron completar los tipos de ditto: Error al conectar con PokeAPI"
+        }
+      },
+      "durationMs": 7
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "grupo6-custom",
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "ae7994b8-14fc-43e1-ae9c-639837c4c9ed",
+          "pokemonName": "grupo6-custom",
+          "pokemonId": null,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png",
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          },
+          "createdAt": "2026-11-17T16:46:49.860Z",
+          "updatedAt": "2026-11-17T16:46:49.860Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 48
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 48
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 48
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 48
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 48
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 48
+            }
+          ]
+        }
+      },
+      "durationMs": 5
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "pvp",
+          "seed": 7,
+          "p1": {
+            "recordId": "ae7994b8-14fc-43e1-ae9c-639837c4c9ed"
+          },
+          "p2": {
+            "recordId": "cea90d47-c3a7-45cb-8e1a-5cd5a0860864"
+          }
+        }
+      },
+      "response": {
+        "status": 422,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "Datos incompletos de grupo6-custom: no tiene tipos y no existe en PokeAPI para completarlos"
+        }
+      },
+      "durationMs": 8
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "pvp",
+          "seed": 7,
+          "p1": {
+            "recordId": "00000000-0000-0000-0000-000000000000"
+          },
+          "p2": {
+            "recordId": "cea90d47-c3a7-45cb-8e1a-5cd5a0860864"
+          }
+        }
+      },
+      "response": {
+        "status": 404,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "Registro 00000000-0000-0000-0000-000000000000 no encontrado"
+        }
+      },
+      "durationMs": 5
+    }
+  ],
+  "serverLog": "Servidor CRUD PokeAPI en http://localhost:29341\n"
+}

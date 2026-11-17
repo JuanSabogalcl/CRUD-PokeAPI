@@ -1,0 +1,38 @@
+{
+  "id": "U09",
+  "title": "Búsqueda con mayúsculas y espacios",
+  "criterion": "R01 / interfaz",
+  "status": "PASA",
+  "observation": "",
+  "durationMs": 1563,
+  "screenshots": [
+    "U09-1-pikachu.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/pokemon-list?limit=151"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "GET",
+      "url": "/api/pokemon/ditto"
+    },
+    {
+      "method": "GET",
+      "url": "/api/pokemon/pikachu"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [
+    {
+      "text": "Pokémon pikachu encontrado",
+      "type": "success"
+    }
+  ],
+  "messages": []
+}

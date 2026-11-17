@@ -1,0 +1,60 @@
+{
+  "id": "V06",
+  "title": "Apretar Enter sin parar durante todo el combate",
+  "criterion": "Capa 8 / RF11",
+  "status": "PASA",
+  "observation": "Combates creados: 1. Pantalla final: menú «end», resultado visible: true",
+  "durationMs": 9329,
+  "screenshots": [
+    "V06-1-tras-machacar-enter.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/combat/rules"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles/221ec355-b49f-457a-a34d-a8e9b1b23870/turn"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles/221ec355-b49f-457a-a34d-a8e9b1b23870/turn"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [],
+  "messages": [
+    "¡Un DITTO salvaje apareció!",
+    "¡Adelante, CHARMANDER!",
+    "¿Qué debe hacer CHARMANDER?",
+    "¡CHARMANDER usó LANZALLAMAS!",
+    "¡El DITTO salvaje usó PLACAJE!",
+    "¿Qué debe hacer CHARMANDER?",
+    "¡CHARMANDER usó LANZALLAMAS!",
+    "¡El DITTO salvaje se debilitó!",
+    "¡Ganaste! Derrotaste al DITTO salvaje.",
+    "¡Un DI"
+  ]
+}

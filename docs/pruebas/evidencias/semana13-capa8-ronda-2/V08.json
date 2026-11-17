@@ -1,0 +1,25 @@
+{
+  "id": "V08",
+  "title": "Entrar al combate sin registros guardados",
+  "criterion": "Capa 8 / RF01",
+  "status": "PASA",
+  "observation": "Mensaje: «Selecciona tu Pokémon y el Pokémon salvaje»",
+  "durationMs": 2730,
+  "screenshots": [
+    "V08-1-sin-registros.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/combat/rules"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [],
+  "messages": []
+}

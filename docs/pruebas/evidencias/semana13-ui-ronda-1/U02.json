@@ -1,0 +1,43 @@
+{
+  "id": "U02",
+  "title": "Estadística fuera de rango en el formulario (0, 1000, 2.5 y 1)",
+  "criterion": "R05 / interfaz",
+  "status": "PASA",
+  "observation": "0: «El valor debe ser mayor o igual que 1.» · 1000: «El valor debe ser menor o igual que 999.» · 2.5: «Escribe un valor válido. Los dos valores válidos más cercanos son 2 y 3.»",
+  "durationMs": 3971,
+  "screenshots": [
+    "U02-1-ps-cero.png",
+    "U02-2-ps-uno-guardado.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/pokemon-list?limit=151"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "GET",
+      "url": "/api/pokemon/ditto"
+    },
+    {
+      "method": "POST",
+      "url": "/api/records"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [
+    {
+      "text": "Registro creado",
+      "type": "success"
+    }
+  ],
+  "messages": []
+}

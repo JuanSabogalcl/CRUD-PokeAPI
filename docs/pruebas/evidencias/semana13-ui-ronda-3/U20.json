@@ -1,0 +1,50 @@
+{
+  "id": "U20",
+  "title": "Después de terminar no se puede seguir atacando",
+  "criterion": "RF11 / interfaz",
+  "status": "PASA",
+  "observation": "Ganador: Squirtle. Derrotado: Charmander.. Turno forzado desde la página: HTTP 409",
+  "durationMs": 9347,
+  "screenshots": [
+    "U20-1-fin-del-combate.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/combat/rules"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles/88b36c90-5b21-4890-a02f-55a3a38de21a/turn"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles/88b36c90-5b21-4890-a02f-55a3a38de21a/turn"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [],
+  "messages": [
+    "¡Un CHARMANDER salvaje apareció!",
+    "¡Adelante, SQUIRTLE!",
+    "¿Qué debe hacer SQUIRTLE?",
+    "¡El CHARMANDER salvaje usó PLACAJE!",
+    "¡SQUIRTLE usó SURF!",
+    "¡Es súper eficaz!",
+    "¡El CHARMANDER salvaje se debilitó!",
+    "¡Ganaste! Derrotaste al CHARMANDER salvaje."
+  ]
+}

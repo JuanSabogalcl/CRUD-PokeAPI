@@ -1,0 +1,61 @@
+{
+  "id": "U14",
+  "title": "Renombrar desde el formulario cambia la especie en el combate",
+  "criterion": "D14 / interfaz",
+  "status": "PASA",
+  "observation": "",
+  "durationMs": 23790,
+  "screenshots": [
+    "U14-1-bulbasaur-en-combate.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/pokemon-list?limit=151"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "GET",
+      "url": "/api/pokemon/ditto"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records/18cb9750-0cea-4654-9481-dcf5ba20c653"
+    },
+    {
+      "method": "PUT",
+      "url": "/api/records/18cb9750-0cea-4654-9481-dcf5ba20c653"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "GET",
+      "url": "/api/combat/rules"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [],
+  "messages": [
+    "¡Un DITTO salvaje apareció!",
+    "¡Adelante, BULBASAUR!",
+    "¿Qué debe hacer BULBASAUR?"
+  ]
+}

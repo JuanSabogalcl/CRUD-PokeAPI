@@ -1,0 +1,38 @@
+{
+  "id": "U10",
+  "title": "Búsqueda de un Pokémon que no existe",
+  "criterion": "R02 / interfaz",
+  "status": "PASA",
+  "observation": "",
+  "durationMs": 2017,
+  "screenshots": [
+    "U10-1-no-existe.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/pokemon-list?limit=151"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "GET",
+      "url": "/api/pokemon/ditto"
+    },
+    {
+      "method": "GET",
+      "url": "/api/pokemon/no-existe-grupo6"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [
+    {
+      "text": "Pokémon no encontrado",
+      "type": "error"
+    }
+  ],
+  "messages": []
+}

@@ -135,6 +135,8 @@ const nameOf = (side) => battle.participants[side].name.toUpperCase();
 // El rival se nombra como en los juegos: "el CHARMANDER salvaje".
 const subject = (side, start = false) => (side === 'p1' ? nameOf(side)
   : `${start ? 'El' : 'el'} ${nameOf(side)} salvaje`);
+// Complemento con «a»: «a PIKACHU», pero «al CHARMANDER salvaje» (no «a el», D19).
+const objectOf = (side) => (side === 'p1' ? `a ${nameOf(side)}` : `al ${nameOf(side)} salvaje`);
 
 function hideMenus() {
   Object.values(menus).forEach((menu) => menu.classList.add('hidden'));
@@ -194,9 +196,9 @@ function menuOptions() {
 function setCursor(index) {
   const options = menuOptions();
   if (!options.length) return;
-  cursor = (index + options.length) % options.length;
+  cursor = index < 0 ? -1 : (index + options.length) % options.length;
   options.forEach((option, i) => option.classList.toggle('focused', i === cursor));
-  if (activeMenu === 'moves') renderMoveInfo(options[cursor].dataset.move);
+  if (activeMenu === 'moves' && cursor >= 0) renderMoveInfo(options[cursor].dataset.move);
 }
 
 function openMenu(name) {
@@ -206,7 +208,9 @@ function openMenu(name) {
   activeMenu = name;
   menus[name].classList.remove('hidden');
   el('textBox').dataset.menu = name;
-  setCursor(0);
+  // Al terminar no queda ninguna opción marcada: un Enter repetido no inicia otra pelea sin
+  // que el usuario elija REVANCHA o NUEVO con las flechas o el ratón (D24).
+  setCursor(name === 'end' ? -1 : 0);
 }
 
 function renderMoveInfo(moveId) {
@@ -327,7 +331,7 @@ async function playEvent(event) {
   }
   const lines = [];
   if (event.critical) lines.push('¡Un golpe crítico!');
-  if (event.effectiveness === 0) lines.push(`No afecta a ${subject(defender)}...`);
+  if (event.effectiveness === 0) lines.push(`No afecta ${objectOf(defender)}...`);
   else if (event.effectiveness > 1) lines.push('¡Es súper eficaz!');
   else if (event.effectiveness < 1) lines.push('No es muy eficaz...');
   if (!lines.length) await waitForAdvance(); // Da tiempo a leer "X usó Y" aunque no haya más texto.
@@ -465,7 +469,8 @@ el('textBox').addEventListener('click', (event) => {
 
 el('textBox').addEventListener('mouseover', (event) => {
   const option = event.target.closest('.menu-option');
-  if (option) setCursor(menuOptions().indexOf(option));
+  // En el menú final, pasar el ratón no marca la opción: así un Enter repetido no la activa (D24).
+  if (option && activeMenu !== 'end') setCursor(menuOptions().indexOf(option));
 });
 
 document.addEventListener('keydown', (event) => {

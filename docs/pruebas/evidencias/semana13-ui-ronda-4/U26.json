@@ -1,0 +1,45 @@
+{
+  "id": "U26",
+  "title": "Golpe crítico en pantalla: daño × 1,5 según la fórmula",
+  "criterion": "Críticos / interfaz",
+  "status": "PASA",
+  "observation": "Crítico: daño 46 frente a 30 sin crítico con la misma variación (0.99)",
+  "durationMs": 7028,
+  "screenshots": [
+    "U26-1-critico.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/combat/rules"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles/7ea57d66-8afc-46ec-b1ad-312d950fa12c/turn"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [],
+  "messages": [
+    "¡Un DITTO salvaje apareció!",
+    "¡Adelante, PIKACHU!",
+    "¿Qué debe hacer PIKACHU?",
+    "¡PIKACHU usó RAPIDEZ!",
+    "¡Un golpe crítico!",
+    "¡El DITTO salvaje usó PLACAJE!",
+    "¿Qué debe hacer PIKACHU?"
+  ]
+}

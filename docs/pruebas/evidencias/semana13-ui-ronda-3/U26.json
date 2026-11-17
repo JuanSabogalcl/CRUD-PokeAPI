@@ -1,0 +1,53 @@
+{
+  "id": "U26",
+  "title": "Golpe crítico en pantalla: daño × 1,5 según la fórmula",
+  "criterion": "Críticos / interfaz",
+  "status": "PASA",
+  "observation": "Crítico: daño 40 frente a 26 sin crítico con la misma variación (0.87)",
+  "durationMs": 10921,
+  "screenshots": [
+    "U26-1-critico.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/combat/rules"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles/5930f973-4d0a-4a14-8a06-b3c3eac78766/turn"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles/5930f973-4d0a-4a14-8a06-b3c3eac78766/turn"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [],
+  "messages": [
+    "¡Un DITTO salvaje apareció!",
+    "¡Adelante, PIKACHU!",
+    "¿Qué debe hacer PIKACHU?",
+    "¡PIKACHU usó RAPIDEZ!",
+    "¡El DITTO salvaje usó ATIZAR!",
+    "¿Qué debe hacer PIKACHU?",
+    "¡PIKACHU usó RAPIDEZ!",
+    "¡Un golpe crítico!",
+    "¡El DITTO salvaje usó ATIZAR!",
+    "¡Pero falló!",
+    "¿Qué debe hacer PIKACHU?"
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "id": "U24",
+  "title": "Combate completo: cada ronda en pantalla coincide con el oráculo",
+  "criterion": "RF04–RF11 / interfaz",
+  "status": "PASA",
+  "observation": "2 rondas y 4 ataques: daño, PS, barra y desglose iguales al oráculo. Ganador: ditto",
+  "durationMs": 13841,
+  "screenshots": [
+    "U24-1-ronda-2.png",
+    "U24-2-registro-completo.png",
+    "U24-3-fin.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/combat/rules"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles/817f47f1-df08-44c1-8372-db81950dfc09/turn"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles/817f47f1-df08-44c1-8372-db81950dfc09/turn"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [],
+  "messages": [
+    "¡Un DITTO salvaje apareció!",
+    "¡Adelante, CHARMANDER!",
+    "¿Qué debe hacer CHARMANDER?",
+    "¡CHARMANDER usó PLACAJE!",
+    "¡El DITTO salvaje usó ATIZAR!",
+    "¿Qué debe hacer CHARMANDER?",
+    "¡CHARMANDER usó PLACAJE!",
+    "¡El DITTO salvaje usó GOLPE CUERPO!",
+    "¡CHARMANDER se debilitó!",
+    "¡CHARMANDER no puede continuar! Perdiste el combate."
+  ]
+}

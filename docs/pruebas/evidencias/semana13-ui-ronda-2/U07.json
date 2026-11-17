@@ -1,0 +1,34 @@
+{
+  "id": "U07",
+  "title": "Editar con un valor inválido y cancelar",
+  "criterion": "R06 / interfaz",
+  "status": "PASA",
+  "observation": "",
+  "durationMs": 3615,
+  "screenshots": [
+    "U07-1-editar-ps-cero.png",
+    "U07-2-cancelado.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/pokemon-list?limit=151"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "GET",
+      "url": "/api/pokemon/ditto"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records/3d467bc3-932f-4b4b-8ba7-5c03798dea16"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [],
+  "messages": []
+}

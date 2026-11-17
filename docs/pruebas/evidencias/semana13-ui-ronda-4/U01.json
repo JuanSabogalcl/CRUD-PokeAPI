@@ -1,0 +1,29 @@
+{
+  "id": "U01",
+  "title": "Crear con el formulario vacío",
+  "criterion": "RN-01 / interfaz",
+  "status": "PASA",
+  "observation": "Mensaje del navegador: «Rellena este campo.»",
+  "durationMs": 2138,
+  "screenshots": [
+    "U01-1-formulario-vacio.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/pokemon-list?limit=151"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "GET",
+      "url": "/api/pokemon/ditto"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [],
+  "messages": []
+}

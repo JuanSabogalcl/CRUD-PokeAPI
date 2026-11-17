@@ -1,0 +1,42 @@
+{
+  "id": "V02",
+  "title": "Buscar dos Pokémon seguidos con la red lenta",
+  "criterion": "Capa 8 / CRUD Read",
+  "status": "PASA",
+  "observation": "Último buscado: ditto. En pantalla: «#132 ditto», campo «ditto», lista «ditto»",
+  "durationMs": 4434,
+  "screenshots": [
+    "V02-1-resultado-final.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/pokemon-list?limit=151"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "GET",
+      "url": "/api/pokemon/ditto"
+    },
+    {
+      "method": "GET",
+      "url": "/api/pokemon/pikachu"
+    },
+    {
+      "method": "GET",
+      "url": "/api/pokemon/ditto"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [
+    {
+      "text": "Pokémon ditto encontrado",
+      "type": "success"
+    }
+  ],
+  "messages": []
+}

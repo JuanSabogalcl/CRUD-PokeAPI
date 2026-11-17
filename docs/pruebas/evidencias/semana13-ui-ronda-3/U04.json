@@ -1,0 +1,38 @@
+{
+  "id": "U04",
+  "title": "Nombre con etiquetas HTML",
+  "criterion": "D08 / interfaz",
+  "status": "PASA",
+  "observation": "Aviso: «El nombre del Pokémon no puede contener < > ni caracteres de control»",
+  "durationMs": 2074,
+  "screenshots": [
+    "U04-1-aviso-html.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/pokemon-list?limit=151"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "GET",
+      "url": "/api/pokemon/ditto"
+    },
+    {
+      "method": "POST",
+      "url": "/api/records"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [
+    {
+      "text": "El nombre del Pokémon no puede contener < > ni caracteres de control",
+      "type": "error"
+    }
+  ],
+  "messages": []
+}

@@ -1,0 +1,88 @@
+{
+  "id": "E06",
+  "title": "Rutas de la API inexistentes responden con error JSON",
+  "criterion": "CA15",
+  "status": "PASA",
+  "observation": "",
+  "durationMs": 241,
+  "evidence": "E06.json",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/no-existe",
+        "raw": true
+      },
+      "response": {
+        "status": 404,
+        "contentType": "application/json; charset=utf-8",
+        "headers": {
+          "x-powered-by": null,
+          "x-content-type-options": "nosniff"
+        },
+        "body": {
+          "error": "Ruta de la API no encontrada"
+        }
+      },
+      "durationMs": 11
+    },
+    {
+      "request": {
+        "method": "DELETE",
+        "route": "/api/records",
+        "raw": true
+      },
+      "response": {
+        "status": 404,
+        "contentType": "application/json; charset=utf-8",
+        "headers": {
+          "x-powered-by": null,
+          "x-content-type-options": "nosniff"
+        },
+        "body": {
+          "error": "Ruta de la API no encontrada"
+        }
+      },
+      "durationMs": 2
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/pokemon/pikachu",
+        "raw": true
+      },
+      "response": {
+        "status": 404,
+        "contentType": "application/json; charset=utf-8",
+        "headers": {
+          "x-powered-by": null,
+          "x-content-type-options": "nosniff"
+        },
+        "body": {
+          "error": "Ruta de la API no encontrada"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/pokemon/",
+        "raw": true
+      },
+      "response": {
+        "status": 404,
+        "contentType": "application/json; charset=utf-8",
+        "headers": {
+          "x-powered-by": null,
+          "x-content-type-options": "nosniff"
+        },
+        "body": {
+          "error": "Ruta de la API no encontrada"
+        }
+      },
+      "durationMs": 2
+    }
+  ],
+  "serverLog": "Servidor CRUD PokeAPI en http://localhost:62642\n"
+}

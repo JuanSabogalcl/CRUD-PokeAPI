@@ -1,0 +1,1153 @@
+{
+  "id": "K02",
+  "title": "Multiplicadores dobles: ×4 y ×0,25 por la API",
+  "criterion": "RF08",
+  "status": "PASA",
+  "observation": "Rayo a Gyarados: ×4, daño 190. Hoja Afilada entre Bulbasaur: ×0,25",
+  "durationMs": 345,
+  "evidence": "K02.json",
+  "exchanges": [
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "pikachu",
+          "pokemonId": 25,
+          "stats": {
+            "hp": 35,
+            "attack": 55,
+            "defense": 40,
+            "special-attack": 50,
+            "special-defense": 50,
+            "speed": 90
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "bdd7cb11-e51e-406b-a9c2-db88a57610ab",
+          "pokemonName": "pikachu",
+          "pokemonId": 25,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+          "stats": {
+            "hp": 35,
+            "attack": 55,
+            "defense": 40,
+            "special-attack": 50,
+            "special-defense": 50,
+            "speed": 90
+          },
+          "createdAt": "2026-11-17T19:31:41.251Z",
+          "updatedAt": "2026-11-17T19:31:41.252Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 35
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 55
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 40
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 50
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 50
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 90
+            }
+          ]
+        }
+      },
+      "durationMs": 25
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "gyarados",
+          "pokemonId": 130,
+          "stats": {
+            "hp": 95,
+            "attack": 125,
+            "defense": 79,
+            "special-attack": 60,
+            "special-defense": 100,
+            "speed": 81
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "67a45cf6-b841-41f3-b5f3-be63ae21177d",
+          "pokemonName": "gyarados",
+          "pokemonId": 130,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/130.png",
+          "stats": {
+            "hp": 95,
+            "attack": 125,
+            "defense": 79,
+            "special-attack": 60,
+            "special-defense": 100,
+            "speed": 81
+          },
+          "createdAt": "2026-11-17T19:31:41.262Z",
+          "updatedAt": "2026-11-17T19:31:41.262Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 95
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 125
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 79
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 60
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 100
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 81
+            }
+          ]
+        }
+      },
+      "durationMs": 7
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "bulbasaur",
+          "pokemonId": 1,
+          "stats": {
+            "hp": 45,
+            "attack": 49,
+            "defense": 49,
+            "special-attack": 65,
+            "special-defense": 65,
+            "speed": 45
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "d1ce1318-3cf1-43e2-8eb8-948a2ccb293d",
+          "pokemonName": "bulbasaur",
+          "pokemonId": 1,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+          "stats": {
+            "hp": 45,
+            "attack": 49,
+            "defense": 49,
+            "special-attack": 65,
+            "special-defense": 65,
+            "speed": 45
+          },
+          "createdAt": "2026-11-17T19:31:41.267Z",
+          "updatedAt": "2026-11-17T19:31:41.267Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 45
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 49
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 49
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 65
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 65
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 45
+            }
+          ]
+        }
+      },
+      "durationMs": 4
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "pvp",
+          "p1": {
+            "recordId": "bdd7cb11-e51e-406b-a9c2-db88a57610ab"
+          },
+          "p2": {
+            "recordId": "67a45cf6-b841-41f3-b5f3-be63ae21177d"
+          },
+          "seed": 3
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "909ede00-d681-48f7-bd6e-0a94d62bdf1a",
+          "mode": "pvp",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "bdd7cb11-e51e-406b-a9c2-db88a57610ab",
+              "pokemonId": 25,
+              "name": "pikachu",
+              "sprite": "https://example.test/25.png",
+              "types": [
+                "electric"
+              ],
+              "baseStats": {
+                "hp": 35,
+                "attack": 55,
+                "defense": 40,
+                "special-attack": 50,
+                "special-defense": 50,
+                "speed": 90
+              },
+              "stats": {
+                "hp": 95,
+                "attack": 60,
+                "defense": 45,
+                "special-attack": 55,
+                "special-defense": 55,
+                "speed": 95
+              },
+              "hp": {
+                "current": 95,
+                "max": 95
+              },
+              "moves": [
+                {
+                  "id": "thunderbolt",
+                  "name": "Rayo",
+                  "type": "electric",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Eléctrico",
+                  "stab": true
+                },
+                {
+                  "id": "thunder",
+                  "name": "Trueno",
+                  "type": "electric",
+                  "power": 120,
+                  "accuracy": 70,
+                  "category": "special",
+                  "typeLabel": "Eléctrico",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Eléctrico"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "humano",
+              "recordId": "67a45cf6-b841-41f3-b5f3-be63ae21177d",
+              "pokemonId": 130,
+              "name": "gyarados",
+              "sprite": "https://example.test/130.png",
+              "types": [
+                "water",
+                "flying"
+              ],
+              "baseStats": {
+                "hp": 95,
+                "attack": 125,
+                "defense": 79,
+                "special-attack": 60,
+                "special-defense": 100,
+                "speed": 81
+              },
+              "stats": {
+                "hp": 155,
+                "attack": 130,
+                "defense": 84,
+                "special-attack": 65,
+                "special-defense": 105,
+                "speed": 86
+              },
+              "hp": {
+                "current": 155,
+                "max": 155
+              },
+              "moves": [
+                {
+                  "id": "surf",
+                  "name": "Surf",
+                  "type": "water",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "drill-peck",
+                  "name": "Pico Taladro",
+                  "type": "flying",
+                  "power": 80,
+                  "accuracy": 100,
+                  "category": "physical",
+                  "typeLabel": "Volador",
+                  "stab": true
+                },
+                {
+                  "id": "hydro-pump",
+                  "name": "Hidrobomba",
+                  "type": "water",
+                  "power": 120,
+                  "accuracy": 80,
+                  "category": "special",
+                  "typeLabel": "Agua",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Agua",
+                "Volador"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T19:31:41.316Z"
+        }
+      },
+      "durationMs": 49
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles/909ede00-d681-48f7-bd6e-0a94d62bdf1a/turn",
+        "body": {
+          "p1Move": "thunderbolt",
+          "p2Move": "surf"
+        }
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "turn": {
+            "round": 1,
+            "order": [
+              "p1",
+              "p2"
+            ],
+            "speedTie": false,
+            "events": [
+              {
+                "attacker": "p1",
+                "defender": "p2",
+                "move": {
+                  "id": "thunderbolt",
+                  "name": "Rayo",
+                  "type": "electric",
+                  "category": "special",
+                  "power": 95,
+                  "accuracy": 100
+                },
+                "hit": true,
+                "damage": 190,
+                "hpBefore": 155,
+                "hpAfter": 0,
+                "fainted": true,
+                "effectiveness": 4,
+                "stab": 1.5,
+                "baseDamage": 23,
+                "critical": true,
+                "random": 92,
+                "message": "pikachu usó Rayo. ¡Golpe crítico! ¡Es súper eficaz! gyarados pierde 155 PS. ¡gyarados se debilitó!"
+              }
+            ]
+          },
+          "battle": {
+            "id": "909ede00-d681-48f7-bd6e-0a94d62bdf1a",
+            "mode": "pvp",
+            "status": "finalizado",
+            "round": 1,
+            "level": 50,
+            "participants": {
+              "p1": {
+                "side": "p1",
+                "controller": "humano",
+                "recordId": "bdd7cb11-e51e-406b-a9c2-db88a57610ab",
+                "pokemonId": 25,
+                "name": "pikachu",
+                "sprite": "https://example.test/25.png",
+                "types": [
+                  "electric"
+                ],
+                "baseStats": {
+                  "hp": 35,
+                  "attack": 55,
+                  "defense": 40,
+                  "special-attack": 50,
+                  "special-defense": 50,
+                  "speed": 90
+                },
+                "stats": {
+                  "hp": 95,
+                  "attack": 60,
+                  "defense": 45,
+                  "special-attack": 55,
+                  "special-defense": 55,
+                  "speed": 95
+                },
+                "hp": {
+                  "current": 95,
+                  "max": 95
+                },
+                "moves": [
+                  {
+                    "id": "thunderbolt",
+                    "name": "Rayo",
+                    "type": "electric",
+                    "power": 95,
+                    "accuracy": 100,
+                    "category": "special",
+                    "typeLabel": "Eléctrico",
+                    "stab": true
+                  },
+                  {
+                    "id": "thunder",
+                    "name": "Trueno",
+                    "type": "electric",
+                    "power": 120,
+                    "accuracy": 70,
+                    "category": "special",
+                    "typeLabel": "Eléctrico",
+                    "stab": true
+                  },
+                  {
+                    "id": "tackle",
+                    "name": "Placaje",
+                    "type": "normal",
+                    "power": 35,
+                    "accuracy": 95,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": false
+                  },
+                  {
+                    "id": "swift",
+                    "name": "Rapidez",
+                    "type": "normal",
+                    "power": 60,
+                    "accuracy": null,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": false
+                  }
+                ],
+                "typeLabels": [
+                  "Eléctrico"
+                ]
+              },
+              "p2": {
+                "side": "p2",
+                "controller": "humano",
+                "recordId": "67a45cf6-b841-41f3-b5f3-be63ae21177d",
+                "pokemonId": 130,
+                "name": "gyarados",
+                "sprite": "https://example.test/130.png",
+                "types": [
+                  "water",
+                  "flying"
+                ],
+                "baseStats": {
+                  "hp": 95,
+                  "attack": 125,
+                  "defense": 79,
+                  "special-attack": 60,
+                  "special-defense": 100,
+                  "speed": 81
+                },
+                "stats": {
+                  "hp": 155,
+                  "attack": 130,
+                  "defense": 84,
+                  "special-attack": 65,
+                  "special-defense": 105,
+                  "speed": 86
+                },
+                "hp": {
+                  "current": 0,
+                  "max": 155
+                },
+                "moves": [
+                  {
+                    "id": "surf",
+                    "name": "Surf",
+                    "type": "water",
+                    "power": 95,
+                    "accuracy": 100,
+                    "category": "special",
+                    "typeLabel": "Agua",
+                    "stab": true
+                  },
+                  {
+                    "id": "drill-peck",
+                    "name": "Pico Taladro",
+                    "type": "flying",
+                    "power": 80,
+                    "accuracy": 100,
+                    "category": "physical",
+                    "typeLabel": "Volador",
+                    "stab": true
+                  },
+                  {
+                    "id": "hydro-pump",
+                    "name": "Hidrobomba",
+                    "type": "water",
+                    "power": 120,
+                    "accuracy": 80,
+                    "category": "special",
+                    "typeLabel": "Agua",
+                    "stab": true
+                  },
+                  {
+                    "id": "tackle",
+                    "name": "Placaje",
+                    "type": "normal",
+                    "power": 35,
+                    "accuracy": 95,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": false
+                  }
+                ],
+                "typeLabels": [
+                  "Agua",
+                  "Volador"
+                ]
+              }
+            },
+            "turns": [
+              {
+                "round": 1,
+                "order": [
+                  "p1",
+                  "p2"
+                ],
+                "speedTie": false,
+                "events": [
+                  {
+                    "attacker": "p1",
+                    "defender": "p2",
+                    "move": {
+                      "id": "thunderbolt",
+                      "name": "Rayo",
+                      "type": "electric",
+                      "category": "special",
+                      "power": 95,
+                      "accuracy": 100
+                    },
+                    "hit": true,
+                    "damage": 190,
+                    "hpBefore": 155,
+                    "hpAfter": 0,
+                    "fainted": true,
+                    "effectiveness": 4,
+                    "stab": 1.5,
+                    "baseDamage": 23,
+                    "critical": true,
+                    "random": 92,
+                    "message": "pikachu usó Rayo. ¡Golpe crítico! ¡Es súper eficaz! gyarados pierde 155 PS. ¡gyarados se debilitó!"
+                  }
+                ]
+              }
+            ],
+            "result": {
+              "winner": "p1",
+              "loser": "p2",
+              "message": "¡pikachu gana el combate! gyarados quedó debilitado."
+            },
+            "createdAt": "2026-11-17T19:31:41.316Z"
+          }
+        }
+      },
+      "durationMs": 3
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "pvp",
+          "p1": {
+            "recordId": "d1ce1318-3cf1-43e2-8eb8-948a2ccb293d"
+          },
+          "p2": {
+            "recordId": "d1ce1318-3cf1-43e2-8eb8-948a2ccb293d"
+          },
+          "seed": 3
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "c69aafc5-9095-44d0-b77e-bd09de4fe1da",
+          "mode": "pvp",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "d1ce1318-3cf1-43e2-8eb8-948a2ccb293d",
+              "pokemonId": 1,
+              "name": "bulbasaur",
+              "sprite": "https://example.test/1.png",
+              "types": [
+                "grass",
+                "poison"
+              ],
+              "baseStats": {
+                "hp": 45,
+                "attack": 49,
+                "defense": 49,
+                "special-attack": 65,
+                "special-defense": 65,
+                "speed": 45
+              },
+              "stats": {
+                "hp": 105,
+                "attack": 54,
+                "defense": 54,
+                "special-attack": 70,
+                "special-defense": 70,
+                "speed": 50
+              },
+              "hp": {
+                "current": 105,
+                "max": 105
+              },
+              "moves": [
+                {
+                  "id": "razor-leaf",
+                  "name": "Hoja Afilada",
+                  "type": "grass",
+                  "power": 55,
+                  "accuracy": 95,
+                  "category": "special",
+                  "typeLabel": "Planta",
+                  "stab": true
+                },
+                {
+                  "id": "sludge",
+                  "name": "Lodo",
+                  "type": "poison",
+                  "power": 65,
+                  "accuracy": 100,
+                  "category": "physical",
+                  "typeLabel": "Veneno",
+                  "stab": true
+                },
+                {
+                  "id": "vine-whip",
+                  "name": "Látigo Cepa",
+                  "type": "grass",
+                  "power": 35,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Planta",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Planta",
+                "Veneno"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "humano",
+              "recordId": "d1ce1318-3cf1-43e2-8eb8-948a2ccb293d",
+              "pokemonId": 1,
+              "name": "bulbasaur",
+              "sprite": "https://example.test/1.png",
+              "types": [
+                "grass",
+                "poison"
+              ],
+              "baseStats": {
+                "hp": 45,
+                "attack": 49,
+                "defense": 49,
+                "special-attack": 65,
+                "special-defense": 65,
+                "speed": 45
+              },
+              "stats": {
+                "hp": 105,
+                "attack": 54,
+                "defense": 54,
+                "special-attack": 70,
+                "special-defense": 70,
+                "speed": 50
+              },
+              "hp": {
+                "current": 105,
+                "max": 105
+              },
+              "moves": [
+                {
+                  "id": "razor-leaf",
+                  "name": "Hoja Afilada",
+                  "type": "grass",
+                  "power": 55,
+                  "accuracy": 95,
+                  "category": "special",
+                  "typeLabel": "Planta",
+                  "stab": true
+                },
+                {
+                  "id": "sludge",
+                  "name": "Lodo",
+                  "type": "poison",
+                  "power": 65,
+                  "accuracy": 100,
+                  "category": "physical",
+                  "typeLabel": "Veneno",
+                  "stab": true
+                },
+                {
+                  "id": "vine-whip",
+                  "name": "Látigo Cepa",
+                  "type": "grass",
+                  "power": 35,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Planta",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Planta",
+                "Veneno"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T19:31:41.331Z"
+        }
+      },
+      "durationMs": 11
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles/c69aafc5-9095-44d0-b77e-bd09de4fe1da/turn",
+        "body": {
+          "p1Move": "razor-leaf",
+          "p2Move": "razor-leaf"
+        }
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "turn": {
+            "round": 1,
+            "order": [
+              "p2",
+              "p1"
+            ],
+            "speedTie": true,
+            "events": [
+              {
+                "attacker": "p2",
+                "defender": "p1",
+                "move": {
+                  "id": "razor-leaf",
+                  "name": "Hoja Afilada",
+                  "type": "grass",
+                  "category": "special",
+                  "power": 55,
+                  "accuracy": 95
+                },
+                "hit": true,
+                "damage": 8,
+                "hpBefore": 105,
+                "hpAfter": 97,
+                "fainted": false,
+                "effectiveness": 0.25,
+                "stab": 1.5,
+                "baseDamage": 26,
+                "critical": false,
+                "random": 86,
+                "message": "bulbasaur usó Hoja Afilada. No es muy eficaz... bulbasaur pierde 8 PS."
+              },
+              {
+                "attacker": "p1",
+                "defender": "p2",
+                "move": {
+                  "id": "razor-leaf",
+                  "name": "Hoja Afilada",
+                  "type": "grass",
+                  "category": "special",
+                  "power": 55,
+                  "accuracy": 95
+                },
+                "hit": true,
+                "damage": 8,
+                "hpBefore": 105,
+                "hpAfter": 97,
+                "fainted": false,
+                "effectiveness": 0.25,
+                "stab": 1.5,
+                "baseDamage": 26,
+                "critical": false,
+                "random": 92,
+                "message": "bulbasaur usó Hoja Afilada. No es muy eficaz... bulbasaur pierde 8 PS."
+              }
+            ]
+          },
+          "battle": {
+            "id": "c69aafc5-9095-44d0-b77e-bd09de4fe1da",
+            "mode": "pvp",
+            "status": "en-curso",
+            "round": 1,
+            "level": 50,
+            "participants": {
+              "p1": {
+                "side": "p1",
+                "controller": "humano",
+                "recordId": "d1ce1318-3cf1-43e2-8eb8-948a2ccb293d",
+                "pokemonId": 1,
+                "name": "bulbasaur",
+                "sprite": "https://example.test/1.png",
+                "types": [
+                  "grass",
+                  "poison"
+                ],
+                "baseStats": {
+                  "hp": 45,
+                  "attack": 49,
+                  "defense": 49,
+                  "special-attack": 65,
+                  "special-defense": 65,
+                  "speed": 45
+                },
+                "stats": {
+                  "hp": 105,
+                  "attack": 54,
+                  "defense": 54,
+                  "special-attack": 70,
+                  "special-defense": 70,
+                  "speed": 50
+                },
+                "hp": {
+                  "current": 97,
+                  "max": 105
+                },
+                "moves": [
+                  {
+                    "id": "razor-leaf",
+                    "name": "Hoja Afilada",
+                    "type": "grass",
+                    "power": 55,
+                    "accuracy": 95,
+                    "category": "special",
+                    "typeLabel": "Planta",
+                    "stab": true
+                  },
+                  {
+                    "id": "sludge",
+                    "name": "Lodo",
+                    "type": "poison",
+                    "power": 65,
+                    "accuracy": 100,
+                    "category": "physical",
+                    "typeLabel": "Veneno",
+                    "stab": true
+                  },
+                  {
+                    "id": "vine-whip",
+                    "name": "Látigo Cepa",
+                    "type": "grass",
+                    "power": 35,
+                    "accuracy": 100,
+                    "category": "special",
+                    "typeLabel": "Planta",
+                    "stab": true
+                  },
+                  {
+                    "id": "tackle",
+                    "name": "Placaje",
+                    "type": "normal",
+                    "power": 35,
+                    "accuracy": 95,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": false
+                  }
+                ],
+                "typeLabels": [
+                  "Planta",
+                  "Veneno"
+                ]
+              },
+              "p2": {
+                "side": "p2",
+                "controller": "humano",
+                "recordId": "d1ce1318-3cf1-43e2-8eb8-948a2ccb293d",
+                "pokemonId": 1,
+                "name": "bulbasaur",
+                "sprite": "https://example.test/1.png",
+                "types": [
+                  "grass",
+                  "poison"
+                ],
+                "baseStats": {
+                  "hp": 45,
+                  "attack": 49,
+                  "defense": 49,
+                  "special-attack": 65,
+                  "special-defense": 65,
+                  "speed": 45
+                },
+                "stats": {
+                  "hp": 105,
+                  "attack": 54,
+                  "defense": 54,
+                  "special-attack": 70,
+                  "special-defense": 70,
+                  "speed": 50
+                },
+                "hp": {
+                  "current": 97,
+                  "max": 105
+                },
+                "moves": [
+                  {
+                    "id": "razor-leaf",
+                    "name": "Hoja Afilada",
+                    "type": "grass",
+                    "power": 55,
+                    "accuracy": 95,
+                    "category": "special",
+                    "typeLabel": "Planta",
+                    "stab": true
+                  },
+                  {
+                    "id": "sludge",
+                    "name": "Lodo",
+                    "type": "poison",
+                    "power": 65,
+                    "accuracy": 100,
+                    "category": "physical",
+                    "typeLabel": "Veneno",
+                    "stab": true
+                  },
+                  {
+                    "id": "vine-whip",
+                    "name": "Látigo Cepa",
+                    "type": "grass",
+                    "power": 35,
+                    "accuracy": 100,
+                    "category": "special",
+                    "typeLabel": "Planta",
+                    "stab": true
+                  },
+                  {
+                    "id": "tackle",
+                    "name": "Placaje",
+                    "type": "normal",
+                    "power": 35,
+                    "accuracy": 95,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": false
+                  }
+                ],
+                "typeLabels": [
+                  "Planta",
+                  "Veneno"
+                ]
+              }
+            },
+            "turns": [
+              {
+                "round": 1,
+                "order": [
+                  "p2",
+                  "p1"
+                ],
+                "speedTie": true,
+                "events": [
+                  {
+                    "attacker": "p2",
+                    "defender": "p1",
+                    "move": {
+                      "id": "razor-leaf",
+                      "name": "Hoja Afilada",
+                      "type": "grass",
+                      "category": "special",
+                      "power": 55,
+                      "accuracy": 95
+                    },
+                    "hit": true,
+                    "damage": 8,
+                    "hpBefore": 105,
+                    "hpAfter": 97,
+                    "fainted": false,
+                    "effectiveness": 0.25,
+                    "stab": 1.5,
+                    "baseDamage": 26,
+                    "critical": false,
+                    "random": 86,
+                    "message": "bulbasaur usó Hoja Afilada. No es muy eficaz... bulbasaur pierde 8 PS."
+                  },
+                  {
+                    "attacker": "p1",
+                    "defender": "p2",
+                    "move": {
+                      "id": "razor-leaf",
+                      "name": "Hoja Afilada",
+                      "type": "grass",
+                      "category": "special",
+                      "power": 55,
+                      "accuracy": 95
+                    },
+                    "hit": true,
+                    "damage": 8,
+                    "hpBefore": 105,
+                    "hpAfter": 97,
+                    "fainted": false,
+                    "effectiveness": 0.25,
+                    "stab": 1.5,
+                    "baseDamage": 26,
+                    "critical": false,
+                    "random": 92,
+                    "message": "bulbasaur usó Hoja Afilada. No es muy eficaz... bulbasaur pierde 8 PS."
+                  }
+                ]
+              }
+            ],
+            "result": null,
+            "createdAt": "2026-11-17T19:31:41.331Z"
+          }
+        }
+      },
+      "durationMs": 3
+    }
+  ],
+  "serverLog": "Servidor CRUD PokeAPI en http://localhost:45841\n"
+}

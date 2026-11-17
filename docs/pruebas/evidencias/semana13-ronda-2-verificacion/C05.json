@@ -1,0 +1,1070 @@
+{
+  "id": "C05",
+  "title": "Ataque con STAB y ataque sin STAB",
+  "criterion": "RF07/RF09",
+  "status": "PASA",
+  "observation": "",
+  "durationMs": 252,
+  "evidence": "C05.json",
+  "exchanges": [
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "charmander",
+          "pokemonId": 4,
+          "stats": {
+            "hp": 39,
+            "attack": 52,
+            "defense": 43,
+            "special-attack": 60,
+            "special-defense": 50,
+            "speed": 65
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "00facaa1-ff98-48fa-b00a-5b75c7f53285",
+          "pokemonName": "charmander",
+          "pokemonId": 4,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
+          "stats": {
+            "hp": 39,
+            "attack": 52,
+            "defense": 43,
+            "special-attack": 60,
+            "special-defense": 50,
+            "speed": 65
+          },
+          "createdAt": "2026-11-17T16:56:01.490Z",
+          "updatedAt": "2026-11-17T16:56:01.491Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 39
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 52
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 43
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 60
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 50
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 65
+            }
+          ]
+        }
+      },
+      "durationMs": 16
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "3c843a73-9094-454e-9d6a-ca44132ef1e2",
+          "pokemonName": "ditto",
+          "pokemonId": 132,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          },
+          "createdAt": "2026-11-17T16:56:01.497Z",
+          "updatedAt": "2026-11-17T16:56:01.497Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 48
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 48
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 48
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 48
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 48
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 48
+            }
+          ]
+        }
+      },
+      "durationMs": 4
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "pvp",
+          "p1": {
+            "recordId": "00facaa1-ff98-48fa-b00a-5b75c7f53285"
+          },
+          "p2": {
+            "recordId": "3c843a73-9094-454e-9d6a-ca44132ef1e2"
+          },
+          "seed": 7
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "92f14cf6-8a90-47df-a78c-29b8d459b908",
+          "mode": "pvp",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "00facaa1-ff98-48fa-b00a-5b75c7f53285",
+              "pokemonId": 4,
+              "name": "charmander",
+              "sprite": "https://example.test/4.png",
+              "types": [
+                "fire"
+              ],
+              "baseStats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "special-attack": 60,
+                "special-defense": 50,
+                "speed": 65
+              },
+              "stats": {
+                "hp": 99,
+                "attack": 57,
+                "defense": 48,
+                "special-attack": 65,
+                "special-defense": 55,
+                "speed": 70
+              },
+              "hp": {
+                "current": 99,
+                "max": 99
+              },
+              "moves": [
+                {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "power": 120,
+                  "accuracy": 85,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fuego"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "humano",
+              "recordId": "3c843a73-9094-454e-9d6a-ca44132ef1e2",
+              "pokemonId": 132,
+              "name": "ditto",
+              "sprite": "https://example.test/132.png",
+              "types": [
+                "normal"
+              ],
+              "baseStats": {
+                "hp": 48,
+                "attack": 48,
+                "defense": 48,
+                "special-attack": 48,
+                "special-defense": 48,
+                "speed": 48
+              },
+              "stats": {
+                "hp": 108,
+                "attack": 53,
+                "defense": 53,
+                "special-attack": 53,
+                "special-defense": 53,
+                "speed": 53
+              },
+              "hp": {
+                "current": 108,
+                "max": 108
+              },
+              "moves": [
+                {
+                  "id": "body-slam",
+                  "name": "Golpe Cuerpo",
+                  "type": "normal",
+                  "power": 85,
+                  "accuracy": 100,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": true
+                },
+                {
+                  "id": "slam",
+                  "name": "Atizar",
+                  "type": "normal",
+                  "power": 80,
+                  "accuracy": 75,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": true
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": true
+                }
+              ],
+              "typeLabels": [
+                "Normal"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T16:56:01.537Z"
+        }
+      },
+      "durationMs": 40
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles/92f14cf6-8a90-47df-a78c-29b8d459b908/turn",
+        "body": {
+          "p1Move": "flamethrower",
+          "p2Move": "swift"
+        }
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "turn": {
+            "round": 1,
+            "order": [
+              "p1",
+              "p2"
+            ],
+            "speedTie": false,
+            "events": [
+              {
+                "attacker": "p1",
+                "defender": "p2",
+                "move": {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "category": "special",
+                  "power": 95,
+                  "accuracy": 100
+                },
+                "hit": true,
+                "damage": 119,
+                "hpBefore": 108,
+                "hpAfter": 0,
+                "fainted": true,
+                "effectiveness": 1,
+                "stab": 1.5,
+                "baseDamage": 53,
+                "critical": true,
+                "random": 100,
+                "message": "charmander usó Lanzallamas. ¡Golpe crítico! ditto pierde 108 PS. ¡ditto se debilitó!"
+              }
+            ]
+          },
+          "battle": {
+            "id": "92f14cf6-8a90-47df-a78c-29b8d459b908",
+            "mode": "pvp",
+            "status": "finalizado",
+            "round": 1,
+            "level": 50,
+            "participants": {
+              "p1": {
+                "side": "p1",
+                "controller": "humano",
+                "recordId": "00facaa1-ff98-48fa-b00a-5b75c7f53285",
+                "pokemonId": 4,
+                "name": "charmander",
+                "sprite": "https://example.test/4.png",
+                "types": [
+                  "fire"
+                ],
+                "baseStats": {
+                  "hp": 39,
+                  "attack": 52,
+                  "defense": 43,
+                  "special-attack": 60,
+                  "special-defense": 50,
+                  "speed": 65
+                },
+                "stats": {
+                  "hp": 99,
+                  "attack": 57,
+                  "defense": 48,
+                  "special-attack": 65,
+                  "special-defense": 55,
+                  "speed": 70
+                },
+                "hp": {
+                  "current": 99,
+                  "max": 99
+                },
+                "moves": [
+                  {
+                    "id": "flamethrower",
+                    "name": "Lanzallamas",
+                    "type": "fire",
+                    "power": 95,
+                    "accuracy": 100,
+                    "category": "special",
+                    "typeLabel": "Fuego",
+                    "stab": true
+                  },
+                  {
+                    "id": "fire-blast",
+                    "name": "Llamarada",
+                    "type": "fire",
+                    "power": 120,
+                    "accuracy": 85,
+                    "category": "special",
+                    "typeLabel": "Fuego",
+                    "stab": true
+                  },
+                  {
+                    "id": "tackle",
+                    "name": "Placaje",
+                    "type": "normal",
+                    "power": 35,
+                    "accuracy": 95,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": false
+                  },
+                  {
+                    "id": "swift",
+                    "name": "Rapidez",
+                    "type": "normal",
+                    "power": 60,
+                    "accuracy": null,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": false
+                  }
+                ],
+                "typeLabels": [
+                  "Fuego"
+                ]
+              },
+              "p2": {
+                "side": "p2",
+                "controller": "humano",
+                "recordId": "3c843a73-9094-454e-9d6a-ca44132ef1e2",
+                "pokemonId": 132,
+                "name": "ditto",
+                "sprite": "https://example.test/132.png",
+                "types": [
+                  "normal"
+                ],
+                "baseStats": {
+                  "hp": 48,
+                  "attack": 48,
+                  "defense": 48,
+                  "special-attack": 48,
+                  "special-defense": 48,
+                  "speed": 48
+                },
+                "stats": {
+                  "hp": 108,
+                  "attack": 53,
+                  "defense": 53,
+                  "special-attack": 53,
+                  "special-defense": 53,
+                  "speed": 53
+                },
+                "hp": {
+                  "current": 0,
+                  "max": 108
+                },
+                "moves": [
+                  {
+                    "id": "body-slam",
+                    "name": "Golpe Cuerpo",
+                    "type": "normal",
+                    "power": 85,
+                    "accuracy": 100,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": true
+                  },
+                  {
+                    "id": "slam",
+                    "name": "Atizar",
+                    "type": "normal",
+                    "power": 80,
+                    "accuracy": 75,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": true
+                  },
+                  {
+                    "id": "tackle",
+                    "name": "Placaje",
+                    "type": "normal",
+                    "power": 35,
+                    "accuracy": 95,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": true
+                  },
+                  {
+                    "id": "swift",
+                    "name": "Rapidez",
+                    "type": "normal",
+                    "power": 60,
+                    "accuracy": null,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": true
+                  }
+                ],
+                "typeLabels": [
+                  "Normal"
+                ]
+              }
+            },
+            "turns": [
+              {
+                "round": 1,
+                "order": [
+                  "p1",
+                  "p2"
+                ],
+                "speedTie": false,
+                "events": [
+                  {
+                    "attacker": "p1",
+                    "defender": "p2",
+                    "move": {
+                      "id": "flamethrower",
+                      "name": "Lanzallamas",
+                      "type": "fire",
+                      "category": "special",
+                      "power": 95,
+                      "accuracy": 100
+                    },
+                    "hit": true,
+                    "damage": 119,
+                    "hpBefore": 108,
+                    "hpAfter": 0,
+                    "fainted": true,
+                    "effectiveness": 1,
+                    "stab": 1.5,
+                    "baseDamage": 53,
+                    "critical": true,
+                    "random": 100,
+                    "message": "charmander usó Lanzallamas. ¡Golpe crítico! ditto pierde 108 PS. ¡ditto se debilitó!"
+                  }
+                ]
+              }
+            ],
+            "result": {
+              "winner": "p1",
+              "loser": "p2",
+              "message": "¡charmander gana el combate! ditto quedó debilitado."
+            },
+            "createdAt": "2026-11-17T16:56:01.537Z"
+          }
+        }
+      },
+      "durationMs": 3
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "pvp",
+          "p1": {
+            "recordId": "00facaa1-ff98-48fa-b00a-5b75c7f53285"
+          },
+          "p2": {
+            "recordId": "3c843a73-9094-454e-9d6a-ca44132ef1e2"
+          },
+          "seed": 7
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "9a16b86c-8cb3-4304-a156-a88b73a5b1ad",
+          "mode": "pvp",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "00facaa1-ff98-48fa-b00a-5b75c7f53285",
+              "pokemonId": 4,
+              "name": "charmander",
+              "sprite": "https://example.test/4.png",
+              "types": [
+                "fire"
+              ],
+              "baseStats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "special-attack": 60,
+                "special-defense": 50,
+                "speed": 65
+              },
+              "stats": {
+                "hp": 99,
+                "attack": 57,
+                "defense": 48,
+                "special-attack": 65,
+                "special-defense": 55,
+                "speed": 70
+              },
+              "hp": {
+                "current": 99,
+                "max": 99
+              },
+              "moves": [
+                {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "power": 120,
+                  "accuracy": 85,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fuego"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "humano",
+              "recordId": "3c843a73-9094-454e-9d6a-ca44132ef1e2",
+              "pokemonId": 132,
+              "name": "ditto",
+              "sprite": "https://example.test/132.png",
+              "types": [
+                "normal"
+              ],
+              "baseStats": {
+                "hp": 48,
+                "attack": 48,
+                "defense": 48,
+                "special-attack": 48,
+                "special-defense": 48,
+                "speed": 48
+              },
+              "stats": {
+                "hp": 108,
+                "attack": 53,
+                "defense": 53,
+                "special-attack": 53,
+                "special-defense": 53,
+                "speed": 53
+              },
+              "hp": {
+                "current": 108,
+                "max": 108
+              },
+              "moves": [
+                {
+                  "id": "body-slam",
+                  "name": "Golpe Cuerpo",
+                  "type": "normal",
+                  "power": 85,
+                  "accuracy": 100,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": true
+                },
+                {
+                  "id": "slam",
+                  "name": "Atizar",
+                  "type": "normal",
+                  "power": 80,
+                  "accuracy": 75,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": true
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": true
+                }
+              ],
+              "typeLabels": [
+                "Normal"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T16:56:01.546Z"
+        }
+      },
+      "durationMs": 6
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles/9a16b86c-8cb3-4304-a156-a88b73a5b1ad/turn",
+        "body": {
+          "p1Move": "swift",
+          "p2Move": "swift"
+        }
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "turn": {
+            "round": 1,
+            "order": [
+              "p1",
+              "p2"
+            ],
+            "speedTie": false,
+            "events": [
+              {
+                "attacker": "p1",
+                "defender": "p2",
+                "move": {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "category": "physical",
+                  "power": 60,
+                  "accuracy": null
+                },
+                "hit": true,
+                "damage": 38,
+                "hpBefore": 108,
+                "hpAfter": 70,
+                "fainted": false,
+                "effectiveness": 1,
+                "stab": 1,
+                "baseDamage": 30,
+                "critical": true,
+                "random": 85,
+                "message": "charmander usó Rapidez. ¡Golpe crítico! ditto pierde 38 PS."
+              },
+              {
+                "attacker": "p2",
+                "defender": "p1",
+                "move": {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "category": "physical",
+                  "power": 60,
+                  "accuracy": null
+                },
+                "hit": true,
+                "damage": 44,
+                "hpBefore": 99,
+                "hpAfter": 55,
+                "fainted": false,
+                "effectiveness": 1,
+                "stab": 1.5,
+                "baseDamage": 31,
+                "critical": false,
+                "random": 96,
+                "message": "ditto usó Rapidez. charmander pierde 44 PS."
+              }
+            ]
+          },
+          "battle": {
+            "id": "9a16b86c-8cb3-4304-a156-a88b73a5b1ad",
+            "mode": "pvp",
+            "status": "en-curso",
+            "round": 1,
+            "level": 50,
+            "participants": {
+              "p1": {
+                "side": "p1",
+                "controller": "humano",
+                "recordId": "00facaa1-ff98-48fa-b00a-5b75c7f53285",
+                "pokemonId": 4,
+                "name": "charmander",
+                "sprite": "https://example.test/4.png",
+                "types": [
+                  "fire"
+                ],
+                "baseStats": {
+                  "hp": 39,
+                  "attack": 52,
+                  "defense": 43,
+                  "special-attack": 60,
+                  "special-defense": 50,
+                  "speed": 65
+                },
+                "stats": {
+                  "hp": 99,
+                  "attack": 57,
+                  "defense": 48,
+                  "special-attack": 65,
+                  "special-defense": 55,
+                  "speed": 70
+                },
+                "hp": {
+                  "current": 55,
+                  "max": 99
+                },
+                "moves": [
+                  {
+                    "id": "flamethrower",
+                    "name": "Lanzallamas",
+                    "type": "fire",
+                    "power": 95,
+                    "accuracy": 100,
+                    "category": "special",
+                    "typeLabel": "Fuego",
+                    "stab": true
+                  },
+                  {
+                    "id": "fire-blast",
+                    "name": "Llamarada",
+                    "type": "fire",
+                    "power": 120,
+                    "accuracy": 85,
+                    "category": "special",
+                    "typeLabel": "Fuego",
+                    "stab": true
+                  },
+                  {
+                    "id": "tackle",
+                    "name": "Placaje",
+                    "type": "normal",
+                    "power": 35,
+                    "accuracy": 95,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": false
+                  },
+                  {
+                    "id": "swift",
+                    "name": "Rapidez",
+                    "type": "normal",
+                    "power": 60,
+                    "accuracy": null,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": false
+                  }
+                ],
+                "typeLabels": [
+                  "Fuego"
+                ]
+              },
+              "p2": {
+                "side": "p2",
+                "controller": "humano",
+                "recordId": "3c843a73-9094-454e-9d6a-ca44132ef1e2",
+                "pokemonId": 132,
+                "name": "ditto",
+                "sprite": "https://example.test/132.png",
+                "types": [
+                  "normal"
+                ],
+                "baseStats": {
+                  "hp": 48,
+                  "attack": 48,
+                  "defense": 48,
+                  "special-attack": 48,
+                  "special-defense": 48,
+                  "speed": 48
+                },
+                "stats": {
+                  "hp": 108,
+                  "attack": 53,
+                  "defense": 53,
+                  "special-attack": 53,
+                  "special-defense": 53,
+                  "speed": 53
+                },
+                "hp": {
+                  "current": 70,
+                  "max": 108
+                },
+                "moves": [
+                  {
+                    "id": "body-slam",
+                    "name": "Golpe Cuerpo",
+                    "type": "normal",
+                    "power": 85,
+                    "accuracy": 100,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": true
+                  },
+                  {
+                    "id": "slam",
+                    "name": "Atizar",
+                    "type": "normal",
+                    "power": 80,
+                    "accuracy": 75,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": true
+                  },
+                  {
+                    "id": "tackle",
+                    "name": "Placaje",
+                    "type": "normal",
+                    "power": 35,
+                    "accuracy": 95,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": true
+                  },
+                  {
+                    "id": "swift",
+                    "name": "Rapidez",
+                    "type": "normal",
+                    "power": 60,
+                    "accuracy": null,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": true
+                  }
+                ],
+                "typeLabels": [
+                  "Normal"
+                ]
+              }
+            },
+            "turns": [
+              {
+                "round": 1,
+                "order": [
+                  "p1",
+                  "p2"
+                ],
+                "speedTie": false,
+                "events": [
+                  {
+                    "attacker": "p1",
+                    "defender": "p2",
+                    "move": {
+                      "id": "swift",
+                      "name": "Rapidez",
+                      "type": "normal",
+                      "category": "physical",
+                      "power": 60,
+                      "accuracy": null
+                    },
+                    "hit": true,
+                    "damage": 38,
+                    "hpBefore": 108,
+                    "hpAfter": 70,
+                    "fainted": false,
+                    "effectiveness": 1,
+                    "stab": 1,
+                    "baseDamage": 30,
+                    "critical": true,
+                    "random": 85,
+                    "message": "charmander usó Rapidez. ¡Golpe crítico! ditto pierde 38 PS."
+                  },
+                  {
+                    "attacker": "p2",
+                    "defender": "p1",
+                    "move": {
+                      "id": "swift",
+                      "name": "Rapidez",
+                      "type": "normal",
+                      "category": "physical",
+                      "power": 60,
+                      "accuracy": null
+                    },
+                    "hit": true,
+                    "damage": 44,
+                    "hpBefore": 99,
+                    "hpAfter": 55,
+                    "fainted": false,
+                    "effectiveness": 1,
+                    "stab": 1.5,
+                    "baseDamage": 31,
+                    "critical": false,
+                    "random": 96,
+                    "message": "ditto usó Rapidez. charmander pierde 44 PS."
+                  }
+                ]
+              }
+            ],
+            "result": null,
+            "createdAt": "2026-11-17T16:56:01.546Z"
+          }
+        }
+      },
+      "durationMs": 1
+    }
+  ],
+  "serverLog": "Servidor CRUD PokeAPI en http://localhost:50572\n"
+}

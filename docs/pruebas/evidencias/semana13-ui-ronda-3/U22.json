@@ -1,0 +1,45 @@
+{
+  "id": "U22",
+  "title": "Recargar la página a mitad del combate",
+  "criterion": "Confiabilidad / interfaz",
+  "status": "PASA",
+  "observation": "La página vuelve a la preparación sin errores; el combate en curso no se recupera (no es un requisito)",
+  "durationMs": 7603,
+  "screenshots": [
+    "U22-1-tras-recargar.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/combat/rules"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles/d36c60f5-1ea1-4bac-8b46-2bf6ddf97afb/turn"
+    },
+    {
+      "method": "GET",
+      "url": "/api/combat/rules"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [],
+  "messages": []
+}

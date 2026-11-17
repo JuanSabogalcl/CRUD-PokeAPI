@@ -2,7 +2,8 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const { createHash } = require('node:crypto');
-const { root, fields, stats, launch, stop, tempData, request } = require('./helpers');
+const { execSync } = require('node:child_process');
+const { root, fields, stats, launch, stop, tempData, request, rawRequest } = require('./helpers');
 const { createFixture } = require('./fixture');
 
 const cases = [];
@@ -165,8 +166,18 @@ add('R10', 'JSON malformado y cuerpo incompatible', 'CA15', async (c) => {
 });
 
 require('./combat-cases')(add, { ok, jsonError });
+require('./semana13-cases')(add, { ok, jsonError });
+require('./combate-logica-cases')(add, { ok, jsonError });
 
-const SUITE_PREFIX = { smoke: 'S', regression: 'R', combat: 'C' };
+const SUITE_PREFIX = { smoke: 'S', regression: 'R', combat: 'C', exploratoria: 'E', nofuncional: 'N', logica: 'K' };
+
+function gitCommit() {
+  try {
+    const head = execSync('git rev-parse HEAD', { cwd: root, encoding: 'utf8' }).trim();
+    const dirty = execSync('git status --porcelain -- server.js lib public', { cwd: root, encoding: 'utf8' }).trim();
+    return dirty ? `${head} + cambios sin commit` : head;
+  } catch { return 'desconocido'; }
+}
 
 async function main() {
   const suite = process.argv.find((arg) => arg.startsWith('--suite='))?.split('=')[1] || 'all';
@@ -184,6 +195,7 @@ async function main() {
     const dataDir = tempData();
     let fixture, server;
     let status = 'PASA', observation = '';
+    const notes = [];
     const start = Date.now();
     try {
       fixture = await createFixture();
@@ -191,7 +203,12 @@ async function main() {
       const context = {
         fixture,
         req: (...args) => request(server.base, evidence, ...args),
-        restart: async () => { await stop(server); server = await launch(dataDir, fixture.base); },
+        dataDir,
+        base: () => server.base,
+        note: (text) => notes.push(text),
+        raw: (...args) => rawRequest(server.base, evidence, ...args),
+        alive: () => server.child.exitCode === null,
+        restart: async (env) => { await stop(server); server = await launch(dataDir, fixture.base, undefined, env); },
       };
       await item.run(context);
     } catch (error) {
@@ -204,17 +221,17 @@ async function main() {
       // Solo se elimina el directorio temporal creado para este caso.
       fs.rmSync(dataDir, { recursive: true, force: true });
       const result = { id: item.id, title: item.title, criterion: item.criterion, status,
-        observation, durationMs: Date.now() - start, evidence: `${item.id}.json` };
+        observation: [observation, ...notes].filter(Boolean).join('. '), durationMs: Date.now() - start, evidence: `${item.id}.json` };
       results.push(result);
       fs.writeFileSync(path.join(outDir, result.evidence), JSON.stringify({ ...result, exchanges: evidence, serverLog }, null, 2));
-      console.log(`${status.padEnd(9)} ${item.id} ${item.title}${observation ? `: ${observation.slice(0,180)}` : ''}`);
+      console.log(`${status.padEnd(9)} ${item.id} ${item.title}${result.observation ? `: ${result.observation.slice(0,180)}` : ''}`);
     }
   }
   const totals = Object.fromEntries(['PASA','FALLA','BLOQUEADO'].map((state) => [state, results.filter((item) => item.status === state).length]));
-  const hashes = Object.fromEntries(['server.js','lib/pokeapi-sync.js','lib/pokeapi-client.js','lib/validation.js','lib/combat/types.js','lib/combat/moves.js','lib/combat/rules.js','lib/combat/battle.js','lib/combat/routes.js','tests/run.js','tests/combat-cases.js','tests/fixture.js','tests/helpers.js'].filter((file) => fs.existsSync(path.join(root,file))).map((file) => [file, createHash('sha256').update(fs.readFileSync(path.join(root,file))).digest('hex')]));
+  const hashes = Object.fromEntries(['server.js','lib/pokeapi-sync.js','lib/pokeapi-client.js','lib/validation.js','lib/combat/types.js','lib/combat/moves.js','lib/combat/rules.js','lib/combat/battle.js','lib/combat/routes.js','public/js/app.js','tests/run.js','tests/combat-cases.js','tests/semana13-cases.js','tests/combate-logica-cases.js','tests/oraculo-combate.js','tests/fixture.js','tests/helpers.js'].filter((file) => fs.existsSync(path.join(root,file))).map((file) => [file, createHash('sha256').update(fs.readFileSync(path.join(root,file))).digest('hex')]));
   const report = { startedAt, endedAt: new Date().toISOString(), node: process.version, platform: process.platform,
     suite, provider: 'PokeAPI simulada en localhost; integración HTTP real con la API del proyecto',
-    sourceCommit: 'c468b40f1258fd01b1228544065f1a123eef2825', hashes, totals, results,
+    sourceCommit: gitCommit(), hashes, totals, results,
     decision: totals.FALLA || totals.BLOQUEADO ? 'NO LISTO' : 'LISTO para el alcance automatizado local' };
   fs.writeFileSync(path.join(outDir, 'resultados.json'), JSON.stringify(report, null, 2));
   const clean = (value) => String(value).replace(/\|/g, '/').replace(/\r?\n/g, ' ');

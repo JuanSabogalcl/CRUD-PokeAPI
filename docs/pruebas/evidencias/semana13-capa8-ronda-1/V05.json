@@ -1,0 +1,37 @@
+{
+  "id": "V05",
+  "title": "Doble clic en «¡A combatir!»",
+  "criterion": "Capa 8 / RF01",
+  "status": "PASA",
+  "observation": "",
+  "durationMs": 3206,
+  "screenshots": [
+    "V05-1-un-combate.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/combat/rules"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [],
+  "messages": [
+    "¡Un DITTO salvaje apareció!",
+    "¡Adelante, CHARMANDER!",
+    "¿Qué debe hacer CHARMANDER?"
+  ]
+}

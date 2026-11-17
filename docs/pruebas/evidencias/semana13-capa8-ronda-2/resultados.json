@@ -1,0 +1,114 @@
+{
+  "startedAt": "2026-11-17T20:14:24.848Z",
+  "endedAt": "2026-11-17T20:15:12.654Z",
+  "node": "v24.21.0",
+  "browser": "Edg/157.0.4341.60",
+  "sourceCommit": "004bc7b29015276693904b485aa54da05e47b28c",
+  "totals": {
+    "PASA": 9,
+    "FALLA": 0,
+    "BLOQUEADO": 0
+  },
+  "results": [
+    {
+      "id": "V01",
+      "title": "Crear un Pokémon que ya existe",
+      "criterion": "Capa 8 / Sección 11 (no duplicar)",
+      "status": "PASA",
+      "observation": "Avisos al usuario: «Ya existe un registro de «pikachu». ¿Quieres guardar otro con el mismo nombre?». Registros «pikachu»: 1",
+      "screenshots": [
+        "V01-1-tras-guardar-repetido.png"
+      ],
+      "evidence": "V01.json"
+    },
+    {
+      "id": "V02",
+      "title": "Buscar dos Pokémon seguidos con la red lenta",
+      "criterion": "Capa 8 / CRUD Read",
+      "status": "PASA",
+      "observation": "Último buscado: ditto. En pantalla: «#132 ditto», campo «ditto», lista «ditto»",
+      "screenshots": [
+        "V02-1-resultado-final.png"
+      ],
+      "evidence": "V02.json"
+    },
+    {
+      "id": "V03",
+      "title": "Buscar como lo muestra la pantalla: «#025» y «Mr. Mime»",
+      "criterion": "Capa 8 / CRUD Read",
+      "status": "PASA",
+      "observation": "«#025» → resultado «#025 pikachu». Avisos: Pokémon pikachu encontrado",
+      "screenshots": [
+        "V03-1-numero-025.png"
+      ],
+      "evidence": "V03.json"
+    },
+    {
+      "id": "V04",
+      "title": "Doble clic en «Eliminar»",
+      "criterion": "Capa 8 / CRUD Delete",
+      "status": "PASA",
+      "observation": "Confirmaciones: 1. Peticiones DELETE: 1. Avisos de error: ninguno",
+      "screenshots": [
+        "V04-1-tras-doble-clic.png"
+      ],
+      "evidence": "V04.json"
+    },
+    {
+      "id": "V05",
+      "title": "Doble clic en «¡A combatir!»",
+      "criterion": "Capa 8 / RF01",
+      "status": "PASA",
+      "observation": "",
+      "screenshots": [
+        "V05-1-un-combate.png"
+      ],
+      "evidence": "V05.json"
+    },
+    {
+      "id": "V06",
+      "title": "Apretar Enter sin parar durante todo el combate",
+      "criterion": "Capa 8 / RF11",
+      "status": "PASA",
+      "observation": "Combates creados: 1. Pantalla final: menú «end», resultado visible: true",
+      "screenshots": [
+        "V06-1-tras-machacar-enter.png"
+      ],
+      "evidence": "V06.json"
+    },
+    {
+      "id": "V07",
+      "title": "Escribir letras en las estadísticas",
+      "criterion": "Capa 8 / R05",
+      "status": "PASA",
+      "observation": "Valores que aceptó el campo: PS «», Ataque «4»",
+      "screenshots": [
+        "V07-1-letras.png"
+      ],
+      "evidence": "V07.json"
+    },
+    {
+      "id": "V08",
+      "title": "Entrar al combate sin registros guardados",
+      "criterion": "Capa 8 / RF01",
+      "status": "PASA",
+      "observation": "Mensaje: «Selecciona tu Pokémon y el Pokémon salvaje»",
+      "screenshots": [
+        "V08-1-sin-registros.png"
+      ],
+      "evidence": "V08.json"
+    },
+    {
+      "id": "V09",
+      "title": "Elegir el mismo Pokémon para ambos lados",
+      "criterion": "Capa 8 / RF01",
+      "status": "PASA",
+      "observation": "",
+      "screenshots": [
+        "V09-1-espejo.png"
+      ],
+      "evidence": "V09.json"
+    }
+  ],
+  "decision": "LISTO para el alcance de interfaz probado"
+}

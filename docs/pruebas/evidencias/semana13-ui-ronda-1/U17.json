@@ -1,0 +1,46 @@
+{
+  "id": "U17",
+  "title": "Inmunidad visible: Rapidez contra Gastly",
+  "criterion": "RF08 / interfaz",
+  "status": "FALLA",
+  "observation": "Mensaje mostrado: «No afecta a el GASTLY salvaje...»",
+  "durationMs": 7765,
+  "screenshots": [
+    "U17-1-no-afecta.png",
+    "U17-2-falla.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/combat/rules"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles/7a986fb1-8ceb-4bea-852a-4ca5e94dcf6b/turn"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [],
+  "messages": [
+    "¡Un GASTLY salvaje apareció!",
+    "¡Adelante, CHARMANDER!",
+    "¿Qué debe hacer CHARMANDER?",
+    "¡El GASTLY salvaje usó LENGÜETAZO!",
+    "¡CHARMANDER usó RAPIDEZ!",
+    "No afecta a el GASTLY salvaje...",
+    "¿Qué debe hacer CHARMANDER?"
+  ]
+}

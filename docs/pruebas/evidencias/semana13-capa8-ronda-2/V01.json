@@ -1,0 +1,34 @@
+{
+  "id": "V01",
+  "title": "Crear un Pokémon que ya existe",
+  "criterion": "Capa 8 / Sección 11 (no duplicar)",
+  "status": "PASA",
+  "observation": "Avisos al usuario: «Ya existe un registro de «pikachu». ¿Quieres guardar otro con el mismo nombre?». Registros «pikachu»: 1",
+  "durationMs": 2580,
+  "screenshots": [
+    "V01-1-tras-guardar-repetido.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/pokemon-list?limit=151"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "GET",
+      "url": "/api/pokemon/ditto"
+    }
+  ],
+  "dialogs": [
+    {
+      "message": "Ya existe un registro de «pikachu». ¿Quieres guardar otro con el mismo nombre?",
+      "accepted": false
+    }
+  ],
+  "consoleErrors": [],
+  "toasts": [],
+  "messages": []
+}

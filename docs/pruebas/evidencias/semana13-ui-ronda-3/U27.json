@@ -1,0 +1,45 @@
+{
+  "id": "U27",
+  "title": "«No es muy eficaz» en pantalla: Fuego contra Agua (× 0,5)",
+  "criterion": "RF08 / interfaz",
+  "status": "PASA",
+  "observation": "Lanzallamas a Squirtle: × 0,5, daño 30",
+  "durationMs": 7892,
+  "screenshots": [
+    "U27-1-poco-eficaz.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/combat/rules"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles/cef6812c-90df-43cd-ae77-c2997c823780/turn"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [],
+  "messages": [
+    "¡Un SQUIRTLE salvaje apareció!",
+    "¡Adelante, CHARMANDER!",
+    "¿Qué debe hacer CHARMANDER?",
+    "¡CHARMANDER usó LANZALLAMAS!",
+    "No es muy eficaz...",
+    "¡El SQUIRTLE salvaje usó PLACAJE!",
+    "¿Qué debe hacer CHARMANDER?"
+  ]
+}

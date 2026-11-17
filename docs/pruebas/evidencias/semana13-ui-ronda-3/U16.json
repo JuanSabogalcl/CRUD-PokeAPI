@@ -1,0 +1,29 @@
+{
+  "id": "U16",
+  "title": "Pokémon salvaje con datos incompletos",
+  "criterion": "C12 / interfaz",
+  "status": "PASA",
+  "observation": "Mensaje: «Datos incompletos de grupo6-custom: no tiene tipos y no existe en PokeAPI para completarlos»",
+  "durationMs": 1797,
+  "screenshots": [
+    "U16-1-datos-incompletos.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/combat/rules"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [],
+  "messages": []
+}

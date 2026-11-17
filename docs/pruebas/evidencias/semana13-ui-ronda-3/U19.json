@@ -1,0 +1,45 @@
+{
+  "id": "U19",
+  "title": "Doble clic en un ataque",
+  "criterion": "RF04 / interfaz",
+  "status": "PASA",
+  "observation": "Peticiones de turno: 1. Rondas jugadas: 1",
+  "durationMs": 6930,
+  "screenshots": [
+    "U19-1-tras-doble-clic.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/combat/rules"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles/f21751ca-9d3a-4448-acb2-6c4e67a07612/turn"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [],
+  "messages": [
+    "¡Un DITTO salvaje apareció!",
+    "¡Adelante, CHARMANDER!",
+    "¿Qué debe hacer CHARMANDER?",
+    "¡CHARMANDER usó RAPIDEZ!",
+    "¡El DITTO salvaje usó ATIZAR!",
+    "¡Pero falló!",
+    "¿Qué debe hacer CHARMANDER?"
+  ]
+}

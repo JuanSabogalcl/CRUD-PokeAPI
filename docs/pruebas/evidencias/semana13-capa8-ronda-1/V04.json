@@ -1,0 +1,60 @@
+{
+  "id": "V04",
+  "title": "Doble clic en «Eliminar»",
+  "criterion": "Capa 8 / CRUD Delete",
+  "status": "FALLA",
+  "observation": "El usuario no debe ver un error después de eliminar con éxito. Confirmaciones: 2. Peticiones DELETE: 2. Avisos de error: Registro no encontrado",
+  "durationMs": 3125,
+  "screenshots": [
+    "V04-1-tras-doble-clic.png",
+    "V04-2-falla.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/pokemon-list?limit=151"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "GET",
+      "url": "/api/pokemon/ditto"
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/records/b1041cee-c99e-4504-8154-e18647c1464a"
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/records/b1041cee-c99e-4504-8154-e18647c1464a"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    }
+  ],
+  "dialogs": [
+    {
+      "message": "¿Eliminar este registro?",
+      "accepted": true
+    },
+    {
+      "message": "¿Eliminar este registro?",
+      "accepted": true
+    }
+  ],
+  "consoleErrors": [],
+  "toasts": [
+    {
+      "text": "Registro eliminado",
+      "type": "success"
+    },
+    {
+      "text": "Registro no encontrado",
+      "type": "error"
+    }
+  ],
+  "messages": []
+}

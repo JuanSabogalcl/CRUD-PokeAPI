@@ -1,0 +1,51 @@
+{
+  "id": "U08",
+  "title": "Eliminar: cancelar y luego confirmar",
+  "criterion": "S05 / interfaz",
+  "status": "PASA",
+  "observation": "Diálogo: «¿Eliminar este registro?» (cancelado y luego aceptado)",
+  "durationMs": 2154,
+  "screenshots": [
+    "U08-1-eliminado.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/pokemon-list?limit=151"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "GET",
+      "url": "/api/pokemon/ditto"
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/records/b36b6e3e-6423-4b4d-9210-221fd1145877"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    }
+  ],
+  "dialogs": [
+    {
+      "message": "¿Eliminar este registro?",
+      "accepted": false
+    },
+    {
+      "message": "¿Eliminar este registro?",
+      "accepted": true
+    }
+  ],
+  "consoleErrors": [],
+  "toasts": [
+    {
+      "text": "Registro eliminado",
+      "type": "success"
+    }
+  ],
+  "messages": []
+}

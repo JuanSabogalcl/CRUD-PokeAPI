@@ -1,0 +1,50 @@
+{
+  "id": "U21",
+  "title": "Se pierde la conexión al atacar",
+  "criterion": "Sección 10 / interfaz",
+  "status": "PASA",
+  "observation": "Mensaje: «No hay conexión con el servidor del proyecto»",
+  "durationMs": 20739,
+  "screenshots": [
+    "U21-1-sin-conexion.png",
+    "U21-2-conexion-recuperada.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/combat/rules"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles/c03bb466-c94d-41c6-8aad-b24be3dcaee0/turn"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles/c03bb466-c94d-41c6-8aad-b24be3dcaee0/turn"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [],
+  "messages": [
+    "¡Un DITTO salvaje apareció!",
+    "¡Adelante, CHARMANDER!",
+    "¿Qué debe hacer CHARMANDER?",
+    "¿Qué debe hacer CHARMANDER?",
+    "¡CHARMANDER usó RAPIDEZ!",
+    "¡El DITTO salvaje usó GOLPE CUERPO!",
+    "¿Qué debe hacer CHARMANDER?"
+  ]
+}

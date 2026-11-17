@@ -1,0 +1,71 @@
+{
+  "id": "U25",
+  "title": "Fallo por precisión en pantalla: Trueno (70 %) no quita PS",
+  "criterion": "RF06 / interfaz",
+  "status": "PASA",
+  "observation": "Trueno falló: PS del rival 108 → 108",
+  "durationMs": 14258,
+  "screenshots": [
+    "U25-1-trueno-fallo.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/combat/rules"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles/8f680645-8c8c-4225-8221-fb39deb87beb/turn"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles/8f680645-8c8c-4225-8221-fb39deb87beb/turn"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles/41a54dc4-a005-4b5c-ba09-9b7a6a20c263/turn"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [],
+  "messages": [
+    "¡Un DITTO salvaje apareció!",
+    "¡Adelante, PIKACHU!",
+    "¿Qué debe hacer PIKACHU?",
+    "¡PIKACHU usó TRUENO!",
+    "¡El DITTO salvaje usó ATIZAR!",
+    "¡Pero falló!",
+    "¿Qué debe hacer PIKACHU?",
+    "¡PIKACHU usó TRUENO!",
+    "¡El DITTO salvaje se debilitó!",
+    "¡Ganaste! Derrotaste al DITTO salvaje.",
+    "¡Un DITTO salvaje apareció!",
+    "¡Adelante, PIKACHU!",
+    "¿Qué debe hacer PIKACHU?",
+    "¡PIKACHU usó TRUENO!",
+    "¡Pero falló!",
+    "¡El DITTO salvaje usó RAPIDEZ!",
+    "¿Qué debe hacer PIKACHU?"
+  ]
+}

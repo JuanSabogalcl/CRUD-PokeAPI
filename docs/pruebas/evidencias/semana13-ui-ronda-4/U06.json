@@ -1,0 +1,42 @@
+{
+  "id": "U06",
+  "title": "Doble clic en Guardar",
+  "criterion": "Integridad / interfaz",
+  "status": "PASA",
+  "observation": "Peticiones POST enviadas: 1. Registros creados: 1",
+  "durationMs": 2853,
+  "screenshots": [
+    "U06-1-tras-doble-clic.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/pokemon-list?limit=151"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "GET",
+      "url": "/api/pokemon/ditto"
+    },
+    {
+      "method": "POST",
+      "url": "/api/records"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [
+    {
+      "text": "Registro creado",
+      "type": "success"
+    }
+  ],
+  "messages": []
+}

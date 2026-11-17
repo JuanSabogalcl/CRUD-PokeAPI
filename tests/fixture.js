@@ -11,15 +11,22 @@ const species = {
   25: { types: ['electric'], stats: [35, 55, 40, 50, 50, 90] },
   35: { types: ['fairy'], past: ['normal'] }, // Clefairy era Normal hasta la Gen 5.
   50: { types: ['ground'], stats: [10, 55, 25, 35, 45, 95] },
+  63: { types: ['psychic'], stats: [25, 20, 15, 105, 55, 90] },
+  66: { types: ['fighting'], stats: [70, 80, 50, 35, 35, 35] },
+  74: { types: ['rock', 'ground'], stats: [40, 80, 100, 30, 30, 20] },
   92: { types: ['ghost', 'poison'], stats: [30, 35, 30, 100, 35, 80] },
+  130: { types: ['water', 'flying'], stats: [95, 125, 79, 60, 100, 81] },
+  147: { types: ['dragon'], stats: [41, 64, 45, 50, 50, 50] },
 };
 const typeList = (names) => names.map((name, index) => ({ slot: index + 1, type: { name } }));
 
-async function createFixture() {
+// realSprites: usa las imágenes reales de GitHub (pruebas de interfaz con capturas legibles).
+async function createFixture({ realSprites = false } = {}) {
   const state = { failure: false, brokenDetail: false };
   const names = Array.from({ length: 151 }, (_, i) => `pokemon-${i + 1}`);
   names[0] = 'bulbasaur'; names[24] = 'pikachu'; names[131] = 'ditto'; names[150] = 'mew';
   names[3] = 'charmander'; names[6] = 'squirtle'; names[34] = 'clefairy'; names[49] = 'diglett'; names[91] = 'gastly';
+  names[62] = 'abra'; names[65] = 'machop'; names[73] = 'geodude'; names[129] = 'gyarados'; names[146] = 'dratini';
   let base;
   const server = http.createServer((req, res) => {
     const url = new URL(req.url, 'http://localhost');
@@ -30,6 +37,7 @@ async function createFixture() {
     if (state.failure) return send(503, { error: 'Fallo simulado del proveedor' });
     const key = decodeURIComponent(url.pathname.split('/')[4] || '');
     if (key === 'slow') return; // El cliente debe cortar por timeout.
+    if (key === 'sin-stats') return send(200, { id: 999, name: 'sin-stats' }); // Respuesta 200 incompleta.
     if (key === 'broken-json') {
       res.writeHead(200, { 'Content-Type': 'application/json' });
       return res.end('{');
@@ -50,7 +58,8 @@ async function createFixture() {
       stats: fields.map((name, index) => ({ stat: { name }, base_stat: values[index] })),
       types: typeList(species[id]?.types || ['normal']),
       past_types: species[id]?.past ? [{ generation: { name: 'generation-v' }, types: typeList(species[id].past) }] : [],
-      sprites: { front_default: `https://example.test/${id}.png` },
+      sprites: { front_default: realSprites
+        ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png` : `https://example.test/${id}.png` },
     });
   });
   server.listen(0, '127.0.0.1');

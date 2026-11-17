@@ -1,0 +1,1950 @@
+{
+  "id": "C04",
+  "title": "Un movimiento fallido por precisión no causa daño",
+  "criterion": "RF06",
+  "status": "PASA",
+  "observation": "",
+  "durationMs": 346,
+  "evidence": "C04.json",
+  "exchanges": [
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "charmander",
+          "pokemonId": 4,
+          "stats": {
+            "hp": 39,
+            "attack": 52,
+            "defense": 43,
+            "special-attack": 60,
+            "special-defense": 50,
+            "speed": 65
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "3296675f-fe70-4e78-870c-94e27e4ac3cd",
+          "pokemonName": "charmander",
+          "pokemonId": 4,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
+          "stats": {
+            "hp": 39,
+            "attack": 52,
+            "defense": 43,
+            "special-attack": 60,
+            "special-defense": 50,
+            "speed": 65
+          },
+          "createdAt": "2026-11-17T19:31:29.005Z",
+          "updatedAt": "2026-11-17T19:31:29.006Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 39
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 52
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 43
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 60
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 50
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 65
+            }
+          ]
+        }
+      },
+      "durationMs": 21
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "bulbasaur",
+          "pokemonId": 1,
+          "stats": {
+            "hp": 45,
+            "attack": 49,
+            "defense": 49,
+            "special-attack": 65,
+            "special-defense": 65,
+            "speed": 45
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "a281816a-3b1d-4a05-b471-4d338c813516",
+          "pokemonName": "bulbasaur",
+          "pokemonId": 1,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+          "stats": {
+            "hp": 45,
+            "attack": 49,
+            "defense": 49,
+            "special-attack": 65,
+            "special-defense": 65,
+            "speed": 45
+          },
+          "createdAt": "2026-11-17T19:31:29.014Z",
+          "updatedAt": "2026-11-17T19:31:29.015Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 45
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 49
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 49
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 65
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 65
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 45
+            }
+          ]
+        }
+      },
+      "durationMs": 6
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "pvp",
+          "p1": {
+            "recordId": "3296675f-fe70-4e78-870c-94e27e4ac3cd"
+          },
+          "p2": {
+            "recordId": "a281816a-3b1d-4a05-b471-4d338c813516"
+          },
+          "seed": 1
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "4b9df376-675d-4aa1-a5ff-a09487e0bf53",
+          "mode": "pvp",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "3296675f-fe70-4e78-870c-94e27e4ac3cd",
+              "pokemonId": 4,
+              "name": "charmander",
+              "sprite": "https://example.test/4.png",
+              "types": [
+                "fire"
+              ],
+              "baseStats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "special-attack": 60,
+                "special-defense": 50,
+                "speed": 65
+              },
+              "stats": {
+                "hp": 99,
+                "attack": 57,
+                "defense": 48,
+                "special-attack": 65,
+                "special-defense": 55,
+                "speed": 70
+              },
+              "hp": {
+                "current": 99,
+                "max": 99
+              },
+              "moves": [
+                {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "power": 120,
+                  "accuracy": 85,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fuego"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "humano",
+              "recordId": "a281816a-3b1d-4a05-b471-4d338c813516",
+              "pokemonId": 1,
+              "name": "bulbasaur",
+              "sprite": "https://example.test/1.png",
+              "types": [
+                "grass",
+                "poison"
+              ],
+              "baseStats": {
+                "hp": 45,
+                "attack": 49,
+                "defense": 49,
+                "special-attack": 65,
+                "special-defense": 65,
+                "speed": 45
+              },
+              "stats": {
+                "hp": 105,
+                "attack": 54,
+                "defense": 54,
+                "special-attack": 70,
+                "special-defense": 70,
+                "speed": 50
+              },
+              "hp": {
+                "current": 105,
+                "max": 105
+              },
+              "moves": [
+                {
+                  "id": "razor-leaf",
+                  "name": "Hoja Afilada",
+                  "type": "grass",
+                  "power": 55,
+                  "accuracy": 95,
+                  "category": "special",
+                  "typeLabel": "Planta",
+                  "stab": true
+                },
+                {
+                  "id": "sludge",
+                  "name": "Lodo",
+                  "type": "poison",
+                  "power": 65,
+                  "accuracy": 100,
+                  "category": "physical",
+                  "typeLabel": "Veneno",
+                  "stab": true
+                },
+                {
+                  "id": "vine-whip",
+                  "name": "Látigo Cepa",
+                  "type": "grass",
+                  "power": 35,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Planta",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Planta",
+                "Veneno"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T19:31:29.064Z"
+        }
+      },
+      "durationMs": 49
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles/4b9df376-675d-4aa1-a5ff-a09487e0bf53/turn",
+        "body": {
+          "p1Move": "fire-blast",
+          "p2Move": "vine-whip"
+        }
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "turn": {
+            "round": 1,
+            "order": [
+              "p1",
+              "p2"
+            ],
+            "speedTie": false,
+            "events": [
+              {
+                "attacker": "p1",
+                "defender": "p2",
+                "move": {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "category": "special",
+                  "power": 120,
+                  "accuracy": 85
+                },
+                "hit": true,
+                "damage": 213,
+                "hpBefore": 105,
+                "hpAfter": 0,
+                "fainted": true,
+                "effectiveness": 2,
+                "stab": 1.5,
+                "baseDamage": 51,
+                "critical": true,
+                "random": 93,
+                "message": "charmander usó Llamarada. ¡Golpe crítico! ¡Es súper eficaz! bulbasaur pierde 105 PS. ¡bulbasaur se debilitó!"
+              }
+            ]
+          },
+          "battle": {
+            "id": "4b9df376-675d-4aa1-a5ff-a09487e0bf53",
+            "mode": "pvp",
+            "status": "finalizado",
+            "round": 1,
+            "level": 50,
+            "participants": {
+              "p1": {
+                "side": "p1",
+                "controller": "humano",
+                "recordId": "3296675f-fe70-4e78-870c-94e27e4ac3cd",
+                "pokemonId": 4,
+                "name": "charmander",
+                "sprite": "https://example.test/4.png",
+                "types": [
+                  "fire"
+                ],
+                "baseStats": {
+                  "hp": 39,
+                  "attack": 52,
+                  "defense": 43,
+                  "special-attack": 60,
+                  "special-defense": 50,
+                  "speed": 65
+                },
+                "stats": {
+                  "hp": 99,
+                  "attack": 57,
+                  "defense": 48,
+                  "special-attack": 65,
+                  "special-defense": 55,
+                  "speed": 70
+                },
+                "hp": {
+                  "current": 99,
+                  "max": 99
+                },
+                "moves": [
+                  {
+                    "id": "flamethrower",
+                    "name": "Lanzallamas",
+                    "type": "fire",
+                    "power": 95,
+                    "accuracy": 100,
+                    "category": "special",
+                    "typeLabel": "Fuego",
+                    "stab": true
+                  },
+                  {
+                    "id": "fire-blast",
+                    "name": "Llamarada",
+                    "type": "fire",
+                    "power": 120,
+                    "accuracy": 85,
+                    "category": "special",
+                    "typeLabel": "Fuego",
+                    "stab": true
+                  },
+                  {
+                    "id": "tackle",
+                    "name": "Placaje",
+                    "type": "normal",
+                    "power": 35,
+                    "accuracy": 95,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": false
+                  },
+                  {
+                    "id": "swift",
+                    "name": "Rapidez",
+                    "type": "normal",
+                    "power": 60,
+                    "accuracy": null,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": false
+                  }
+                ],
+                "typeLabels": [
+                  "Fuego"
+                ]
+              },
+              "p2": {
+                "side": "p2",
+                "controller": "humano",
+                "recordId": "a281816a-3b1d-4a05-b471-4d338c813516",
+                "pokemonId": 1,
+                "name": "bulbasaur",
+                "sprite": "https://example.test/1.png",
+                "types": [
+                  "grass",
+                  "poison"
+                ],
+                "baseStats": {
+                  "hp": 45,
+                  "attack": 49,
+                  "defense": 49,
+                  "special-attack": 65,
+                  "special-defense": 65,
+                  "speed": 45
+                },
+                "stats": {
+                  "hp": 105,
+                  "attack": 54,
+                  "defense": 54,
+                  "special-attack": 70,
+                  "special-defense": 70,
+                  "speed": 50
+                },
+                "hp": {
+                  "current": 0,
+                  "max": 105
+                },
+                "moves": [
+                  {
+                    "id": "razor-leaf",
+                    "name": "Hoja Afilada",
+                    "type": "grass",
+                    "power": 55,
+                    "accuracy": 95,
+                    "category": "special",
+                    "typeLabel": "Planta",
+                    "stab": true
+                  },
+                  {
+                    "id": "sludge",
+                    "name": "Lodo",
+                    "type": "poison",
+                    "power": 65,
+                    "accuracy": 100,
+                    "category": "physical",
+                    "typeLabel": "Veneno",
+                    "stab": true
+                  },
+                  {
+                    "id": "vine-whip",
+                    "name": "Látigo Cepa",
+                    "type": "grass",
+                    "power": 35,
+                    "accuracy": 100,
+                    "category": "special",
+                    "typeLabel": "Planta",
+                    "stab": true
+                  },
+                  {
+                    "id": "tackle",
+                    "name": "Placaje",
+                    "type": "normal",
+                    "power": 35,
+                    "accuracy": 95,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": false
+                  }
+                ],
+                "typeLabels": [
+                  "Planta",
+                  "Veneno"
+                ]
+              }
+            },
+            "turns": [
+              {
+                "round": 1,
+                "order": [
+                  "p1",
+                  "p2"
+                ],
+                "speedTie": false,
+                "events": [
+                  {
+                    "attacker": "p1",
+                    "defender": "p2",
+                    "move": {
+                      "id": "fire-blast",
+                      "name": "Llamarada",
+                      "type": "fire",
+                      "category": "special",
+                      "power": 120,
+                      "accuracy": 85
+                    },
+                    "hit": true,
+                    "damage": 213,
+                    "hpBefore": 105,
+                    "hpAfter": 0,
+                    "fainted": true,
+                    "effectiveness": 2,
+                    "stab": 1.5,
+                    "baseDamage": 51,
+                    "critical": true,
+                    "random": 93,
+                    "message": "charmander usó Llamarada. ¡Golpe crítico! ¡Es súper eficaz! bulbasaur pierde 105 PS. ¡bulbasaur se debilitó!"
+                  }
+                ]
+              }
+            ],
+            "result": {
+              "winner": "p1",
+              "loser": "p2",
+              "message": "¡charmander gana el combate! bulbasaur quedó debilitado."
+            },
+            "createdAt": "2026-11-17T19:31:29.064Z"
+          }
+        }
+      },
+      "durationMs": 4
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "pvp",
+          "p1": {
+            "recordId": "3296675f-fe70-4e78-870c-94e27e4ac3cd"
+          },
+          "p2": {
+            "recordId": "a281816a-3b1d-4a05-b471-4d338c813516"
+          },
+          "seed": 2
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "f72565a8-a163-4c30-a0ed-4690f75e43b9",
+          "mode": "pvp",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "3296675f-fe70-4e78-870c-94e27e4ac3cd",
+              "pokemonId": 4,
+              "name": "charmander",
+              "sprite": "https://example.test/4.png",
+              "types": [
+                "fire"
+              ],
+              "baseStats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "special-attack": 60,
+                "special-defense": 50,
+                "speed": 65
+              },
+              "stats": {
+                "hp": 99,
+                "attack": 57,
+                "defense": 48,
+                "special-attack": 65,
+                "special-defense": 55,
+                "speed": 70
+              },
+              "hp": {
+                "current": 99,
+                "max": 99
+              },
+              "moves": [
+                {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "power": 120,
+                  "accuracy": 85,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fuego"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "humano",
+              "recordId": "a281816a-3b1d-4a05-b471-4d338c813516",
+              "pokemonId": 1,
+              "name": "bulbasaur",
+              "sprite": "https://example.test/1.png",
+              "types": [
+                "grass",
+                "poison"
+              ],
+              "baseStats": {
+                "hp": 45,
+                "attack": 49,
+                "defense": 49,
+                "special-attack": 65,
+                "special-defense": 65,
+                "speed": 45
+              },
+              "stats": {
+                "hp": 105,
+                "attack": 54,
+                "defense": 54,
+                "special-attack": 70,
+                "special-defense": 70,
+                "speed": 50
+              },
+              "hp": {
+                "current": 105,
+                "max": 105
+              },
+              "moves": [
+                {
+                  "id": "razor-leaf",
+                  "name": "Hoja Afilada",
+                  "type": "grass",
+                  "power": 55,
+                  "accuracy": 95,
+                  "category": "special",
+                  "typeLabel": "Planta",
+                  "stab": true
+                },
+                {
+                  "id": "sludge",
+                  "name": "Lodo",
+                  "type": "poison",
+                  "power": 65,
+                  "accuracy": 100,
+                  "category": "physical",
+                  "typeLabel": "Veneno",
+                  "stab": true
+                },
+                {
+                  "id": "vine-whip",
+                  "name": "Látigo Cepa",
+                  "type": "grass",
+                  "power": 35,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Planta",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Planta",
+                "Veneno"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T19:31:29.075Z"
+        }
+      },
+      "durationMs": 6
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles/f72565a8-a163-4c30-a0ed-4690f75e43b9/turn",
+        "body": {
+          "p1Move": "fire-blast",
+          "p2Move": "vine-whip"
+        }
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "turn": {
+            "round": 1,
+            "order": [
+              "p1",
+              "p2"
+            ],
+            "speedTie": false,
+            "events": [
+              {
+                "attacker": "p1",
+                "defender": "p2",
+                "move": {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "category": "special",
+                  "power": 120,
+                  "accuracy": 85
+                },
+                "hit": true,
+                "damage": 136,
+                "hpBefore": 105,
+                "hpAfter": 0,
+                "fainted": true,
+                "effectiveness": 2,
+                "stab": 1.5,
+                "baseDamage": 51,
+                "critical": false,
+                "random": 89,
+                "message": "charmander usó Llamarada. ¡Es súper eficaz! bulbasaur pierde 105 PS. ¡bulbasaur se debilitó!"
+              }
+            ]
+          },
+          "battle": {
+            "id": "f72565a8-a163-4c30-a0ed-4690f75e43b9",
+            "mode": "pvp",
+            "status": "finalizado",
+            "round": 1,
+            "level": 50,
+            "participants": {
+              "p1": {
+                "side": "p1",
+                "controller": "humano",
+                "recordId": "3296675f-fe70-4e78-870c-94e27e4ac3cd",
+                "pokemonId": 4,
+                "name": "charmander",
+                "sprite": "https://example.test/4.png",
+                "types": [
+                  "fire"
+                ],
+                "baseStats": {
+                  "hp": 39,
+                  "attack": 52,
+                  "defense": 43,
+                  "special-attack": 60,
+                  "special-defense": 50,
+                  "speed": 65
+                },
+                "stats": {
+                  "hp": 99,
+                  "attack": 57,
+                  "defense": 48,
+                  "special-attack": 65,
+                  "special-defense": 55,
+                  "speed": 70
+                },
+                "hp": {
+                  "current": 99,
+                  "max": 99
+                },
+                "moves": [
+                  {
+                    "id": "flamethrower",
+                    "name": "Lanzallamas",
+                    "type": "fire",
+                    "power": 95,
+                    "accuracy": 100,
+                    "category": "special",
+                    "typeLabel": "Fuego",
+                    "stab": true
+                  },
+                  {
+                    "id": "fire-blast",
+                    "name": "Llamarada",
+                    "type": "fire",
+                    "power": 120,
+                    "accuracy": 85,
+                    "category": "special",
+                    "typeLabel": "Fuego",
+                    "stab": true
+                  },
+                  {
+                    "id": "tackle",
+                    "name": "Placaje",
+                    "type": "normal",
+                    "power": 35,
+                    "accuracy": 95,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": false
+                  },
+                  {
+                    "id": "swift",
+                    "name": "Rapidez",
+                    "type": "normal",
+                    "power": 60,
+                    "accuracy": null,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": false
+                  }
+                ],
+                "typeLabels": [
+                  "Fuego"
+                ]
+              },
+              "p2": {
+                "side": "p2",
+                "controller": "humano",
+                "recordId": "a281816a-3b1d-4a05-b471-4d338c813516",
+                "pokemonId": 1,
+                "name": "bulbasaur",
+                "sprite": "https://example.test/1.png",
+                "types": [
+                  "grass",
+                  "poison"
+                ],
+                "baseStats": {
+                  "hp": 45,
+                  "attack": 49,
+                  "defense": 49,
+                  "special-attack": 65,
+                  "special-defense": 65,
+                  "speed": 45
+                },
+                "stats": {
+                  "hp": 105,
+                  "attack": 54,
+                  "defense": 54,
+                  "special-attack": 70,
+                  "special-defense": 70,
+                  "speed": 50
+                },
+                "hp": {
+                  "current": 0,
+                  "max": 105
+                },
+                "moves": [
+                  {
+                    "id": "razor-leaf",
+                    "name": "Hoja Afilada",
+                    "type": "grass",
+                    "power": 55,
+                    "accuracy": 95,
+                    "category": "special",
+                    "typeLabel": "Planta",
+                    "stab": true
+                  },
+                  {
+                    "id": "sludge",
+                    "name": "Lodo",
+                    "type": "poison",
+                    "power": 65,
+                    "accuracy": 100,
+                    "category": "physical",
+                    "typeLabel": "Veneno",
+                    "stab": true
+                  },
+                  {
+                    "id": "vine-whip",
+                    "name": "Látigo Cepa",
+                    "type": "grass",
+                    "power": 35,
+                    "accuracy": 100,
+                    "category": "special",
+                    "typeLabel": "Planta",
+                    "stab": true
+                  },
+                  {
+                    "id": "tackle",
+                    "name": "Placaje",
+                    "type": "normal",
+                    "power": 35,
+                    "accuracy": 95,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": false
+                  }
+                ],
+                "typeLabels": [
+                  "Planta",
+                  "Veneno"
+                ]
+              }
+            },
+            "turns": [
+              {
+                "round": 1,
+                "order": [
+                  "p1",
+                  "p2"
+                ],
+                "speedTie": false,
+                "events": [
+                  {
+                    "attacker": "p1",
+                    "defender": "p2",
+                    "move": {
+                      "id": "fire-blast",
+                      "name": "Llamarada",
+                      "type": "fire",
+                      "category": "special",
+                      "power": 120,
+                      "accuracy": 85
+                    },
+                    "hit": true,
+                    "damage": 136,
+                    "hpBefore": 105,
+                    "hpAfter": 0,
+                    "fainted": true,
+                    "effectiveness": 2,
+                    "stab": 1.5,
+                    "baseDamage": 51,
+                    "critical": false,
+                    "random": 89,
+                    "message": "charmander usó Llamarada. ¡Es súper eficaz! bulbasaur pierde 105 PS. ¡bulbasaur se debilitó!"
+                  }
+                ]
+              }
+            ],
+            "result": {
+              "winner": "p1",
+              "loser": "p2",
+              "message": "¡charmander gana el combate! bulbasaur quedó debilitado."
+            },
+            "createdAt": "2026-11-17T19:31:29.075Z"
+          }
+        }
+      },
+      "durationMs": 2
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "pvp",
+          "p1": {
+            "recordId": "3296675f-fe70-4e78-870c-94e27e4ac3cd"
+          },
+          "p2": {
+            "recordId": "a281816a-3b1d-4a05-b471-4d338c813516"
+          },
+          "seed": 3
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "3ef45425-0e74-4857-8eee-33ab9ce61d03",
+          "mode": "pvp",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "3296675f-fe70-4e78-870c-94e27e4ac3cd",
+              "pokemonId": 4,
+              "name": "charmander",
+              "sprite": "https://example.test/4.png",
+              "types": [
+                "fire"
+              ],
+              "baseStats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "special-attack": 60,
+                "special-defense": 50,
+                "speed": 65
+              },
+              "stats": {
+                "hp": 99,
+                "attack": 57,
+                "defense": 48,
+                "special-attack": 65,
+                "special-defense": 55,
+                "speed": 70
+              },
+              "hp": {
+                "current": 99,
+                "max": 99
+              },
+              "moves": [
+                {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "power": 120,
+                  "accuracy": 85,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fuego"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "humano",
+              "recordId": "a281816a-3b1d-4a05-b471-4d338c813516",
+              "pokemonId": 1,
+              "name": "bulbasaur",
+              "sprite": "https://example.test/1.png",
+              "types": [
+                "grass",
+                "poison"
+              ],
+              "baseStats": {
+                "hp": 45,
+                "attack": 49,
+                "defense": 49,
+                "special-attack": 65,
+                "special-defense": 65,
+                "speed": 45
+              },
+              "stats": {
+                "hp": 105,
+                "attack": 54,
+                "defense": 54,
+                "special-attack": 70,
+                "special-defense": 70,
+                "speed": 50
+              },
+              "hp": {
+                "current": 105,
+                "max": 105
+              },
+              "moves": [
+                {
+                  "id": "razor-leaf",
+                  "name": "Hoja Afilada",
+                  "type": "grass",
+                  "power": 55,
+                  "accuracy": 95,
+                  "category": "special",
+                  "typeLabel": "Planta",
+                  "stab": true
+                },
+                {
+                  "id": "sludge",
+                  "name": "Lodo",
+                  "type": "poison",
+                  "power": 65,
+                  "accuracy": 100,
+                  "category": "physical",
+                  "typeLabel": "Veneno",
+                  "stab": true
+                },
+                {
+                  "id": "vine-whip",
+                  "name": "Látigo Cepa",
+                  "type": "grass",
+                  "power": 35,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Planta",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Planta",
+                "Veneno"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T19:31:29.085Z"
+        }
+      },
+      "durationMs": 8
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles/3ef45425-0e74-4857-8eee-33ab9ce61d03/turn",
+        "body": {
+          "p1Move": "fire-blast",
+          "p2Move": "vine-whip"
+        }
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "turn": {
+            "round": 1,
+            "order": [
+              "p1",
+              "p2"
+            ],
+            "speedTie": false,
+            "events": [
+              {
+                "attacker": "p1",
+                "defender": "p2",
+                "move": {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "category": "special",
+                  "power": 120,
+                  "accuracy": 85
+                },
+                "hit": true,
+                "damage": 211,
+                "hpBefore": 105,
+                "hpAfter": 0,
+                "fainted": true,
+                "effectiveness": 2,
+                "stab": 1.5,
+                "baseDamage": 51,
+                "critical": true,
+                "random": 92,
+                "message": "charmander usó Llamarada. ¡Golpe crítico! ¡Es súper eficaz! bulbasaur pierde 105 PS. ¡bulbasaur se debilitó!"
+              }
+            ]
+          },
+          "battle": {
+            "id": "3ef45425-0e74-4857-8eee-33ab9ce61d03",
+            "mode": "pvp",
+            "status": "finalizado",
+            "round": 1,
+            "level": 50,
+            "participants": {
+              "p1": {
+                "side": "p1",
+                "controller": "humano",
+                "recordId": "3296675f-fe70-4e78-870c-94e27e4ac3cd",
+                "pokemonId": 4,
+                "name": "charmander",
+                "sprite": "https://example.test/4.png",
+                "types": [
+                  "fire"
+                ],
+                "baseStats": {
+                  "hp": 39,
+                  "attack": 52,
+                  "defense": 43,
+                  "special-attack": 60,
+                  "special-defense": 50,
+                  "speed": 65
+                },
+                "stats": {
+                  "hp": 99,
+                  "attack": 57,
+                  "defense": 48,
+                  "special-attack": 65,
+                  "special-defense": 55,
+                  "speed": 70
+                },
+                "hp": {
+                  "current": 99,
+                  "max": 99
+                },
+                "moves": [
+                  {
+                    "id": "flamethrower",
+                    "name": "Lanzallamas",
+                    "type": "fire",
+                    "power": 95,
+                    "accuracy": 100,
+                    "category": "special",
+                    "typeLabel": "Fuego",
+                    "stab": true
+                  },
+                  {
+                    "id": "fire-blast",
+                    "name": "Llamarada",
+                    "type": "fire",
+                    "power": 120,
+                    "accuracy": 85,
+                    "category": "special",
+                    "typeLabel": "Fuego",
+                    "stab": true
+                  },
+                  {
+                    "id": "tackle",
+                    "name": "Placaje",
+                    "type": "normal",
+                    "power": 35,
+                    "accuracy": 95,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": false
+                  },
+                  {
+                    "id": "swift",
+                    "name": "Rapidez",
+                    "type": "normal",
+                    "power": 60,
+                    "accuracy": null,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": false
+                  }
+                ],
+                "typeLabels": [
+                  "Fuego"
+                ]
+              },
+              "p2": {
+                "side": "p2",
+                "controller": "humano",
+                "recordId": "a281816a-3b1d-4a05-b471-4d338c813516",
+                "pokemonId": 1,
+                "name": "bulbasaur",
+                "sprite": "https://example.test/1.png",
+                "types": [
+                  "grass",
+                  "poison"
+                ],
+                "baseStats": {
+                  "hp": 45,
+                  "attack": 49,
+                  "defense": 49,
+                  "special-attack": 65,
+                  "special-defense": 65,
+                  "speed": 45
+                },
+                "stats": {
+                  "hp": 105,
+                  "attack": 54,
+                  "defense": 54,
+                  "special-attack": 70,
+                  "special-defense": 70,
+                  "speed": 50
+                },
+                "hp": {
+                  "current": 0,
+                  "max": 105
+                },
+                "moves": [
+                  {
+                    "id": "razor-leaf",
+                    "name": "Hoja Afilada",
+                    "type": "grass",
+                    "power": 55,
+                    "accuracy": 95,
+                    "category": "special",
+                    "typeLabel": "Planta",
+                    "stab": true
+                  },
+                  {
+                    "id": "sludge",
+                    "name": "Lodo",
+                    "type": "poison",
+                    "power": 65,
+                    "accuracy": 100,
+                    "category": "physical",
+                    "typeLabel": "Veneno",
+                    "stab": true
+                  },
+                  {
+                    "id": "vine-whip",
+                    "name": "Látigo Cepa",
+                    "type": "grass",
+                    "power": 35,
+                    "accuracy": 100,
+                    "category": "special",
+                    "typeLabel": "Planta",
+                    "stab": true
+                  },
+                  {
+                    "id": "tackle",
+                    "name": "Placaje",
+                    "type": "normal",
+                    "power": 35,
+                    "accuracy": 95,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": false
+                  }
+                ],
+                "typeLabels": [
+                  "Planta",
+                  "Veneno"
+                ]
+              }
+            },
+            "turns": [
+              {
+                "round": 1,
+                "order": [
+                  "p1",
+                  "p2"
+                ],
+                "speedTie": false,
+                "events": [
+                  {
+                    "attacker": "p1",
+                    "defender": "p2",
+                    "move": {
+                      "id": "fire-blast",
+                      "name": "Llamarada",
+                      "type": "fire",
+                      "category": "special",
+                      "power": 120,
+                      "accuracy": 85
+                    },
+                    "hit": true,
+                    "damage": 211,
+                    "hpBefore": 105,
+                    "hpAfter": 0,
+                    "fainted": true,
+                    "effectiveness": 2,
+                    "stab": 1.5,
+                    "baseDamage": 51,
+                    "critical": true,
+                    "random": 92,
+                    "message": "charmander usó Llamarada. ¡Golpe crítico! ¡Es súper eficaz! bulbasaur pierde 105 PS. ¡bulbasaur se debilitó!"
+                  }
+                ]
+              }
+            ],
+            "result": {
+              "winner": "p1",
+              "loser": "p2",
+              "message": "¡charmander gana el combate! bulbasaur quedó debilitado."
+            },
+            "createdAt": "2026-11-17T19:31:29.085Z"
+          }
+        }
+      },
+      "durationMs": 3
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "pvp",
+          "p1": {
+            "recordId": "3296675f-fe70-4e78-870c-94e27e4ac3cd"
+          },
+          "p2": {
+            "recordId": "a281816a-3b1d-4a05-b471-4d338c813516"
+          },
+          "seed": 4
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "d608a4f3-f8fc-4f49-8a89-40a244cb5e71",
+          "mode": "pvp",
+          "status": "en-curso",
+          "round": 0,
+          "level": 50,
+          "participants": {
+            "p1": {
+              "side": "p1",
+              "controller": "humano",
+              "recordId": "3296675f-fe70-4e78-870c-94e27e4ac3cd",
+              "pokemonId": 4,
+              "name": "charmander",
+              "sprite": "https://example.test/4.png",
+              "types": [
+                "fire"
+              ],
+              "baseStats": {
+                "hp": 39,
+                "attack": 52,
+                "defense": 43,
+                "special-attack": 60,
+                "special-defense": 50,
+                "speed": 65
+              },
+              "stats": {
+                "hp": 99,
+                "attack": 57,
+                "defense": 48,
+                "special-attack": 65,
+                "special-defense": 55,
+                "speed": 70
+              },
+              "hp": {
+                "current": 99,
+                "max": 99
+              },
+              "moves": [
+                {
+                  "id": "flamethrower",
+                  "name": "Lanzallamas",
+                  "type": "fire",
+                  "power": 95,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "power": 120,
+                  "accuracy": 85,
+                  "category": "special",
+                  "typeLabel": "Fuego",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                },
+                {
+                  "id": "swift",
+                  "name": "Rapidez",
+                  "type": "normal",
+                  "power": 60,
+                  "accuracy": null,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Fuego"
+              ]
+            },
+            "p2": {
+              "side": "p2",
+              "controller": "humano",
+              "recordId": "a281816a-3b1d-4a05-b471-4d338c813516",
+              "pokemonId": 1,
+              "name": "bulbasaur",
+              "sprite": "https://example.test/1.png",
+              "types": [
+                "grass",
+                "poison"
+              ],
+              "baseStats": {
+                "hp": 45,
+                "attack": 49,
+                "defense": 49,
+                "special-attack": 65,
+                "special-defense": 65,
+                "speed": 45
+              },
+              "stats": {
+                "hp": 105,
+                "attack": 54,
+                "defense": 54,
+                "special-attack": 70,
+                "special-defense": 70,
+                "speed": 50
+              },
+              "hp": {
+                "current": 105,
+                "max": 105
+              },
+              "moves": [
+                {
+                  "id": "razor-leaf",
+                  "name": "Hoja Afilada",
+                  "type": "grass",
+                  "power": 55,
+                  "accuracy": 95,
+                  "category": "special",
+                  "typeLabel": "Planta",
+                  "stab": true
+                },
+                {
+                  "id": "sludge",
+                  "name": "Lodo",
+                  "type": "poison",
+                  "power": 65,
+                  "accuracy": 100,
+                  "category": "physical",
+                  "typeLabel": "Veneno",
+                  "stab": true
+                },
+                {
+                  "id": "vine-whip",
+                  "name": "Látigo Cepa",
+                  "type": "grass",
+                  "power": 35,
+                  "accuracy": 100,
+                  "category": "special",
+                  "typeLabel": "Planta",
+                  "stab": true
+                },
+                {
+                  "id": "tackle",
+                  "name": "Placaje",
+                  "type": "normal",
+                  "power": 35,
+                  "accuracy": 95,
+                  "category": "physical",
+                  "typeLabel": "Normal",
+                  "stab": false
+                }
+              ],
+              "typeLabels": [
+                "Planta",
+                "Veneno"
+              ]
+            }
+          },
+          "turns": [],
+          "result": null,
+          "createdAt": "2026-11-17T19:31:29.094Z"
+        }
+      },
+      "durationMs": 5
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles/d608a4f3-f8fc-4f49-8a89-40a244cb5e71/turn",
+        "body": {
+          "p1Move": "fire-blast",
+          "p2Move": "vine-whip"
+        }
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "turn": {
+            "round": 1,
+            "order": [
+              "p1",
+              "p2"
+            ],
+            "speedTie": false,
+            "events": [
+              {
+                "attacker": "p1",
+                "defender": "p2",
+                "move": {
+                  "id": "fire-blast",
+                  "name": "Llamarada",
+                  "type": "fire",
+                  "category": "special",
+                  "power": 120,
+                  "accuracy": 85
+                },
+                "hit": false,
+                "damage": 0,
+                "hpBefore": 105,
+                "hpAfter": 105,
+                "fainted": false,
+                "message": "charmander usó Llamarada. ¡Pero falló!"
+              },
+              {
+                "attacker": "p2",
+                "defender": "p1",
+                "move": {
+                  "id": "vine-whip",
+                  "name": "Látigo Cepa",
+                  "type": "grass",
+                  "category": "special",
+                  "power": 35,
+                  "accuracy": 100
+                },
+                "hit": true,
+                "damage": 13,
+                "hpBefore": 99,
+                "hpAfter": 86,
+                "fainted": false,
+                "effectiveness": 0.5,
+                "stab": 1.5,
+                "baseDamage": 21,
+                "critical": false,
+                "random": 86,
+                "message": "bulbasaur usó Látigo Cepa. No es muy eficaz... charmander pierde 13 PS."
+              }
+            ]
+          },
+          "battle": {
+            "id": "d608a4f3-f8fc-4f49-8a89-40a244cb5e71",
+            "mode": "pvp",
+            "status": "en-curso",
+            "round": 1,
+            "level": 50,
+            "participants": {
+              "p1": {
+                "side": "p1",
+                "controller": "humano",
+                "recordId": "3296675f-fe70-4e78-870c-94e27e4ac3cd",
+                "pokemonId": 4,
+                "name": "charmander",
+                "sprite": "https://example.test/4.png",
+                "types": [
+                  "fire"
+                ],
+                "baseStats": {
+                  "hp": 39,
+                  "attack": 52,
+                  "defense": 43,
+                  "special-attack": 60,
+                  "special-defense": 50,
+                  "speed": 65
+                },
+                "stats": {
+                  "hp": 99,
+                  "attack": 57,
+                  "defense": 48,
+                  "special-attack": 65,
+                  "special-defense": 55,
+                  "speed": 70
+                },
+                "hp": {
+                  "current": 86,
+                  "max": 99
+                },
+                "moves": [
+                  {
+                    "id": "flamethrower",
+                    "name": "Lanzallamas",
+                    "type": "fire",
+                    "power": 95,
+                    "accuracy": 100,
+                    "category": "special",
+                    "typeLabel": "Fuego",
+                    "stab": true
+                  },
+                  {
+                    "id": "fire-blast",
+                    "name": "Llamarada",
+                    "type": "fire",
+                    "power": 120,
+                    "accuracy": 85,
+                    "category": "special",
+                    "typeLabel": "Fuego",
+                    "stab": true
+                  },
+                  {
+                    "id": "tackle",
+                    "name": "Placaje",
+                    "type": "normal",
+                    "power": 35,
+                    "accuracy": 95,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": false
+                  },
+                  {
+                    "id": "swift",
+                    "name": "Rapidez",
+                    "type": "normal",
+                    "power": 60,
+                    "accuracy": null,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": false
+                  }
+                ],
+                "typeLabels": [
+                  "Fuego"
+                ]
+              },
+              "p2": {
+                "side": "p2",
+                "controller": "humano",
+                "recordId": "a281816a-3b1d-4a05-b471-4d338c813516",
+                "pokemonId": 1,
+                "name": "bulbasaur",
+                "sprite": "https://example.test/1.png",
+                "types": [
+                  "grass",
+                  "poison"
+                ],
+                "baseStats": {
+                  "hp": 45,
+                  "attack": 49,
+                  "defense": 49,
+                  "special-attack": 65,
+                  "special-defense": 65,
+                  "speed": 45
+                },
+                "stats": {
+                  "hp": 105,
+                  "attack": 54,
+                  "defense": 54,
+                  "special-attack": 70,
+                  "special-defense": 70,
+                  "speed": 50
+                },
+                "hp": {
+                  "current": 105,
+                  "max": 105
+                },
+                "moves": [
+                  {
+                    "id": "razor-leaf",
+                    "name": "Hoja Afilada",
+                    "type": "grass",
+                    "power": 55,
+                    "accuracy": 95,
+                    "category": "special",
+                    "typeLabel": "Planta",
+                    "stab": true
+                  },
+                  {
+                    "id": "sludge",
+                    "name": "Lodo",
+                    "type": "poison",
+                    "power": 65,
+                    "accuracy": 100,
+                    "category": "physical",
+                    "typeLabel": "Veneno",
+                    "stab": true
+                  },
+                  {
+                    "id": "vine-whip",
+                    "name": "Látigo Cepa",
+                    "type": "grass",
+                    "power": 35,
+                    "accuracy": 100,
+                    "category": "special",
+                    "typeLabel": "Planta",
+                    "stab": true
+                  },
+                  {
+                    "id": "tackle",
+                    "name": "Placaje",
+                    "type": "normal",
+                    "power": 35,
+                    "accuracy": 95,
+                    "category": "physical",
+                    "typeLabel": "Normal",
+                    "stab": false
+                  }
+                ],
+                "typeLabels": [
+                  "Planta",
+                  "Veneno"
+                ]
+              }
+            },
+            "turns": [
+              {
+                "round": 1,
+                "order": [
+                  "p1",
+                  "p2"
+                ],
+                "speedTie": false,
+                "events": [
+                  {
+                    "attacker": "p1",
+                    "defender": "p2",
+                    "move": {
+                      "id": "fire-blast",
+                      "name": "Llamarada",
+                      "type": "fire",
+                      "category": "special",
+                      "power": 120,
+                      "accuracy": 85
+                    },
+                    "hit": false,
+                    "damage": 0,
+                    "hpBefore": 105,
+                    "hpAfter": 105,
+                    "fainted": false,
+                    "message": "charmander usó Llamarada. ¡Pero falló!"
+                  },
+                  {
+                    "attacker": "p2",
+                    "defender": "p1",
+                    "move": {
+                      "id": "vine-whip",
+                      "name": "Látigo Cepa",
+                      "type": "grass",
+                      "category": "special",
+                      "power": 35,
+                      "accuracy": 100
+                    },
+                    "hit": true,
+                    "damage": 13,
+                    "hpBefore": 99,
+                    "hpAfter": 86,
+                    "fainted": false,
+                    "effectiveness": 0.5,
+                    "stab": 1.5,
+                    "baseDamage": 21,
+                    "critical": false,
+                    "random": 86,
+                    "message": "bulbasaur usó Látigo Cepa. No es muy eficaz... charmander pierde 13 PS."
+                  }
+                ]
+              }
+            ],
+            "result": null,
+            "createdAt": "2026-11-17T19:31:29.094Z"
+          }
+        }
+      },
+      "durationMs": 3
+    }
+  ],
+  "serverLog": "Servidor CRUD PokeAPI en http://localhost:45592\n"
+}
