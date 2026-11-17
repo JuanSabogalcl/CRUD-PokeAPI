@@ -8,6 +8,7 @@ const { execSync } = require('node:child_process');
 const { root, fields, launch, stop, tempData } = require('../helpers');
 const { createFixture } = require('../fixture');
 const { launchEdge, sleep } = require('./navegador');
+const oracle = require('../oraculo-combate');
 
 const SPECIES = {
   bulbasaur: { id: 1, stats: [45, 49, 49, 65, 65, 45] },
@@ -16,6 +17,7 @@ const SPECIES = {
   pikachu: { id: 25, stats: [35, 55, 40, 50, 50, 90] },
   gastly: { id: 92, stats: [30, 35, 30, 100, 35, 80] },
   ditto: { id: 132, stats: [48, 48, 48, 48, 48, 48] },
+  gyarados: { id: 130, stats: [95, 125, 79, 60, 100, 81] },
 };
 const FORM_STATS = ['hp', 'attack', 'defense', 'special-attack', 'special-defense', 'speed'];
 
@@ -101,15 +103,15 @@ async function openBattle(page, p1, p2) {
 }
 
 // Avanza el texto (clic en la caja) hasta que aparezca uno de los menús. Si un mensaje coincide
-// con alguna expresión de `shots`, toma la captura en ese momento.
+// con alguna expresión de `shots` (y el anterior con `prev`, si se indica), toma la captura en ese momento.
 async function advanceUntil(c, menus = ['command', 'end'], shots = []) {
   const pending = [...shots];
   const started = Date.now();
   while (Date.now() - started < 45000) {
     const state = await c.page.eval(`({ menu: document.getElementById('textBox').dataset.menu,
       advance: !document.getElementById('advance').classList.contains('hidden'),
-      text: document.getElementById('message').textContent })`);
-    const index = pending.findIndex((shot) => shot.re.test(state.text));
+      text: document.getElementById('message').textContent, prev: window.__msgs[window.__msgs.length - 2] || '' })`);
+    const index = pending.findIndex((shot) => shot.re.test(state.text) && (!shot.prev || shot.prev.test(state.prev)));
     if (index >= 0 && (state.advance || menus.includes(state.menu))) {
       await c.shot(pending[index].name, '.gb-frame');
       pending.splice(index, 1);
@@ -478,6 +480,127 @@ add('U23', 'HUIR y empezar otro combate', 'Interfaz', async (c) => {
   await c.page.click('#startBtn');
   await advanceUntil(c, ['command']);
   assert.equal(posts(c.page, '/api/battles'), 2);
+});
+
+// ---------- Lógica de pelea en pantalla, comparada con el oráculo ----------
+
+// Comprueba cada evento de la ronda con el oráculo y que la pantalla muestre lo mismo que el servidor.
+async function checkRoundOnScreen(c, battle, turn) {
+  const log = await c.page.eval('document.getElementById("battleLog").textContent');
+  for (const event of turn.events) {
+    const attacker = battle.participants[event.attacker];
+    const defender = battle.participants[event.defender];
+    const move = attacker.moves.find((item) => item.id === event.move.id);
+    if (!event.hit) { assert.equal(event.damage, 0); continue; }
+    const expected = oracle.expectedHit({ attacker, defender, move, critical: Boolean(event.critical), random: event.random });
+    assert.equal(event.damage, expected.damage, `${attacker.name} ${move.id}: daño ${event.damage}, oráculo ${expected.damage}`);
+    if (!move.fixedDamage && expected.effectiveness > 0) {
+      const line = `Base ${expected.baseDamage} × STAB ${expected.stab} × Efect. ${expected.effectiveness}`
+        + `${event.critical ? ' × Crítico 1.5' : ''} × Var. ${(event.random / 100).toFixed(2)} = ${expected.damage}`;
+      assert.ok(log.includes(line), `El registro en pantalla debe mostrar «${line}»`);
+    }
+  }
+  const screen = await c.page.eval(`({ player: document.querySelector('#playerInfo .hp-numbers').textContent,
+    enemy: parseFloat(document.querySelector('#enemyInfo .hp-fill').style.width) })`);
+  const { p1, p2 } = battle.participants;
+  assert.equal(screen.player, `${p1.hp.current}/ ${p1.hp.max}`, 'PS del jugador en pantalla');
+  assert.ok(Math.abs(screen.enemy - (p2.hp.current / p2.hp.max) * 100) < 0.5, 'Barra del rival en pantalla');
+}
+
+// Juega rondas con el mismo movimiento hasta que `found(turn)` se cumpla (o se agoten los intentos).
+async function playUntil(c, moveId, found, shots, maxRounds = 25) {
+  for (let round = 0; round < maxRounds; round += 1) {
+    const menu = await useMove(c, moveId, shots);
+    const battle = await uiBattle(c.page);
+    const turn = battle.turns.at(-1);
+    await checkRoundOnScreen(c, battle, turn);
+    if (found(turn, battle)) return { battle, turn, menu };
+    if (menu === 'end') {
+      await c.page.click('[data-command="rematch"]');
+      await advanceUntil(c, ['command']);
+    }
+  }
+  throw new Error(`No ocurrió el evento buscado en ${maxRounds} rondas`);
+}
+
+add('U24', 'Combate completo: cada ronda en pantalla coincide con el oráculo', 'RF04–RF11 / interfaz', async (c) => {
+  const { charmander, ditto } = await seed(c, 'charmander', 'ditto');
+  await startBattle(c, charmander, ditto);
+  let rounds = 0;
+  let attacks = 0;
+  let menu = 'command';
+  while (menu === 'command') {
+    menu = await useMove(c, 'tackle');
+    const battle = await uiBattle(c.page);
+    await checkRoundOnScreen(c, battle, battle.turns.at(-1));
+    attacks += battle.turns.at(-1).events.length;
+    rounds += 1;
+    if (rounds === 2) await c.shot('ronda-2', '.gb-frame');
+  }
+  const battle = await uiBattle(c.page);
+  await c.page.eval('document.querySelector(".log-card").open = true');
+  await c.shot('registro-completo', '.log-card');
+  await c.shot('fin', '.gb-frame');
+  assert.equal(battle.participants[battle.result.loser].hp.current, 0);
+  c.note(`${rounds} rondas y ${attacks} ataques: daño, PS, barra y desglose iguales al oráculo. Ganador: ${battle.participants[battle.result.winner].name}`);
+});
+
+add('U25', 'Fallo por precisión en pantalla: Trueno (70 %) no quita PS', 'RF06 / interfaz', async (c) => {
+  const { pikachu, ditto } = await seed(c, 'pikachu', 'ditto');
+  await startBattle(c, pikachu, ditto);
+  const { turn } = await playUntil(c, 'thunder', (t) => t.events.some((e) => e.attacker === 'p1' && !e.hit),
+    [{ re: /¡Pero falló!/, prev: /PIKACHU usó TRUENO/, name: 'trueno-fallo' }]);
+  const miss = turn.events.find((e) => e.attacker === 'p1');
+  assert.equal(miss.damage, 0);
+  assert.equal(miss.hpAfter, miss.hpBefore, 'El rival conserva sus PS');
+  c.note(`Trueno falló: PS del rival ${miss.hpBefore} → ${miss.hpAfter}`);
+});
+
+add('U26', 'Golpe crítico en pantalla: daño × 1,5 según la fórmula', 'Críticos / interfaz', async (c) => {
+  const { pikachu, ditto } = await seed(c, 'pikachu', 'ditto');
+  await startBattle(c, pikachu, ditto);
+  const { battle, turn } = await playUntil(c, 'swift', (t) => t.events.some((e) => e.attacker === 'p1' && e.critical),
+    [{ re: /¡Un golpe crítico!/, prev: /PIKACHU usó RAPIDEZ/, name: 'critico' }], 40);
+  const crit = turn.events.find((e) => e.attacker === 'p1');
+  const normal = oracle.expectedHit({ attacker: battle.participants.p1, defender: battle.participants.p2,
+    move: battle.participants.p1.moves.find((m) => m.id === 'swift'), critical: false, random: crit.random });
+  c.note(`Crítico: daño ${crit.damage} frente a ${normal.damage} sin crítico con la misma variación (${crit.random / 100})`);
+  assert.ok(crit.damage > normal.damage);
+});
+
+add('U27', '«No es muy eficaz» en pantalla: Fuego contra Agua (× 0,5)', 'RF08 / interfaz', async (c) => {
+  const { charmander, squirtle } = await seed(c, 'charmander', 'squirtle');
+  await startBattle(c, charmander, squirtle);
+  const { turn } = await playUntil(c, 'flamethrower', (t) => t.events.some((e) => e.attacker === 'p1' && e.hit),
+    [{ re: /No es muy eficaz/, prev: /CHARMANDER usó LANZALLAMAS|golpe crítico/, name: 'poco-eficaz' }]);
+  const event = turn.events.find((e) => e.attacker === 'p1');
+  assert.equal(event.effectiveness, 0.5);
+  c.note(`Lanzallamas a Squirtle: × 0,5, daño ${event.damage}`);
+});
+
+add('U28', '× 4 en pantalla: Rayo contra Gyarados hasta el final del combate', 'RF08 / RF11 / interfaz', async (c) => {
+  const { pikachu, gyarados } = await seed(c, 'pikachu', 'gyarados');
+  await startBattle(c, pikachu, gyarados);
+  // Con la fórmula, un Rayo × 4 quita entre 117 y 138 de los 155 PS de Gyarados: hacen falta dos golpes.
+  const shots = [{ re: /súper eficaz/, prev: /PIKACHU usó RAYO/, name: 'super-eficaz-x4' }, { re: /se debilitó/, name: 'debilitado' }];
+  let menu = 'command';
+  let damages = [];
+  while (menu === 'command') {
+    menu = await useMove(c, 'thunderbolt', shots);
+    const battle = await uiBattle(c.page);
+    const turn = battle.turns.at(-1);
+    await checkRoundOnScreen(c, battle, turn);
+    for (const event of turn.events.filter((e) => e.attacker === 'p1' && e.hit)) {
+      assert.equal(event.effectiveness, 4, 'Eléctrico contra Agua/Volador = × 4');
+      damages.push(event.damage);
+    }
+  }
+  const battle = await uiBattle(c.page);
+  await c.shot('fin-del-combate', '.gb-frame');
+  const loser = battle.participants[battle.result.loser];
+  assert.equal(loser.hp.current, 0);
+  assert.ok(battle.participants[battle.result.winner].hp.current > 0);
+  c.note(`Daños de Rayo × 4: ${damages.join(', ')}. Ganador: ${battle.participants[battle.result.winner].name}`);
 });
 
 // ---------- Ejecución ----------

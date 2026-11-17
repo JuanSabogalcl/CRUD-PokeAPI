@@ -167,8 +167,9 @@ add('R10', 'JSON malformado y cuerpo incompatible', 'CA15', async (c) => {
 
 require('./combat-cases')(add, { ok, jsonError });
 require('./semana13-cases')(add, { ok, jsonError });
+require('./combate-logica-cases')(add, { ok, jsonError });
 
-const SUITE_PREFIX = { smoke: 'S', regression: 'R', combat: 'C', exploratoria: 'E', nofuncional: 'N' };
+const SUITE_PREFIX = { smoke: 'S', regression: 'R', combat: 'C', exploratoria: 'E', nofuncional: 'N', logica: 'K' };
 
 function gitCommit() {
   try {
@@ -227,7 +228,7 @@ async function main() {
     }
   }
   const totals = Object.fromEntries(['PASA','FALLA','BLOQUEADO'].map((state) => [state, results.filter((item) => item.status === state).length]));
-  const hashes = Object.fromEntries(['server.js','lib/pokeapi-sync.js','lib/pokeapi-client.js','lib/validation.js','lib/combat/types.js','lib/combat/moves.js','lib/combat/rules.js','lib/combat/battle.js','lib/combat/routes.js','public/js/app.js','tests/run.js','tests/combat-cases.js','tests/semana13-cases.js','tests/fixture.js','tests/helpers.js'].filter((file) => fs.existsSync(path.join(root,file))).map((file) => [file, createHash('sha256').update(fs.readFileSync(path.join(root,file))).digest('hex')]));
+  const hashes = Object.fromEntries(['server.js','lib/pokeapi-sync.js','lib/pokeapi-client.js','lib/validation.js','lib/combat/types.js','lib/combat/moves.js','lib/combat/rules.js','lib/combat/battle.js','lib/combat/routes.js','public/js/app.js','tests/run.js','tests/combat-cases.js','tests/semana13-cases.js','tests/combate-logica-cases.js','tests/oraculo-combate.js','tests/fixture.js','tests/helpers.js'].filter((file) => fs.existsSync(path.join(root,file))).map((file) => [file, createHash('sha256').update(fs.readFileSync(path.join(root,file))).digest('hex')]));
   const report = { startedAt, endedAt: new Date().toISOString(), node: process.version, platform: process.platform,
     suite, provider: 'PokeAPI simulada en localhost; integración HTTP real con la API del proyecto',
     sourceCommit: gitCommit(), hashes, totals, results,

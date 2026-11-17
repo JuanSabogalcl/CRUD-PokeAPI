@@ -1,0 +1,57 @@
+{
+  "id": "U28",
+  "title": "× 4 en pantalla: Rayo contra Gyarados hasta el final del combate",
+  "criterion": "RF08 / RF11 / interfaz",
+  "status": "PASA",
+  "observation": "Daños de Rayo × 4: 132, 131. Ganador: pikachu",
+  "durationMs": 13646,
+  "screenshots": [
+    "U28-1-super-eficaz-x4.png",
+    "U28-2-super-eficaz-x4.png",
+    "U28-3-debilitado.png",
+    "U28-4-fin-del-combate.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/combat/rules"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles/f482e1e7-74b1-467c-ba73-db1d4013f074/turn"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles/f482e1e7-74b1-467c-ba73-db1d4013f074/turn"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [],
+  "messages": [
+    "¡Un GYARADOS salvaje apareció!",
+    "¡Adelante, PIKACHU!",
+    "¿Qué debe hacer PIKACHU?",
+    "¡PIKACHU usó RAYO!",
+    "¡Es súper eficaz!",
+    "¡El GYARADOS salvaje usó PICO TALADRO!",
+    "No es muy eficaz...",
+    "¿Qué debe hacer PIKACHU?",
+    "¡PIKACHU usó RAYO!",
+    "¡Es súper eficaz!",
+    "¡El GYARADOS salvaje se debilitó!",
+    "¡Ganaste! Derrotaste al GYARADOS salvaje."
+  ]
+}

@@ -45,7 +45,7 @@ doc.add(pageBreak());
 // ---------- Introducción ----------
 p(TITLE_LINES, { style: 'Centrado', bold: true });
 p('Este informe muestra cómo se probó la última versión de CRUD-PokeAPI, una aplicación web que guarda las estadísticas de los 151 Pokémon de la primera generación, las trae de PokéAPI (s.f.) e incluye un combate por turnos contra un Pokémon salvaje (Fundación Escuela Tecnológica de Neiva [FET], s.f.). El objetivo fue comprobar si la aplicación funciona, encontrar sus errores, corregirlos y demostrar cada corrección con evidencia.');
-p('La aplicación funcionaba en lo esencial, pero las pruebas encontraron 12 defectos. Todos se corrigieron, y al final pasan las 90 pruebas: 17 unitarias, 43 de API, 3 contra PokéAPI real, 4 manuales y 23 de interfaz.');
+p('La aplicación funcionaba en lo esencial, pero las pruebas encontraron 12 defectos. Todos se corrigieron, y al final pasan las 112 pruebas: 29 unitarias, 48 de API, 3 contra PokéAPI real, 4 manuales y 28 de interfaz. Además, se demostró que la lógica de pelea se aplica correctamente comparándola con una segunda implementación de las reglas en más de 17 000 ataques.');
 
 // ---------- Método ----------
 h1('Método');
@@ -59,7 +59,8 @@ tabla('Pruebas Aplicadas', ['Tipo de prueba', 'Qué comprueba', 'Cómo se hizo',
   ['Integración real', 'Conexión con PokéAPI en internet', 'Consultas reales a PokéAPI', '3'],
   ['Manuales', 'Lo que ve el usuario en la pantalla', 'Pasos en el navegador con capturas', '4'],
   ['Interfaz automatizada', 'Errores típicos del usuario', 'Un script usa el navegador Edge como una persona y toma capturas', '23'],
-], [2300, 2800, 3360, 900], 'Las pruebas se repiten con npm test y npm run test:ui.');
+  ['Lógica del combate', 'Que cada ataque, turno y final siga las reglas', 'Comparación con un oráculo en el motor, la API y la pantalla', '22'],
+], [2300, 2800, 3360, 900], 'Las pruebas se repiten con npm test, npm run test:ui y npm run test:logica.');
 
 h2('Técnicas de Diseño de Casos');
 p('Para elegir los datos se usaron particiones de equivalencia y valores límite: por ejemplo, si el nombre admite hasta 40 caracteres, se prueban 40 (debe pasar) y 41 (debe fallar) (Vargas Ramírez, s.f.-d). Las reglas con varias condiciones se probaron con tablas de decisión: cada combinación de condiciones es un caso (*Diseño de casos con tablas de decisión*, s.f.). Los requisitos no funcionales se midieron contra un umbral, por ejemplo, responder en menos de 300 ms (Vargas Ramírez, s.f.-a). Cada falla se reportó como defecto con severidad, prioridad y evidencia, y solo se cerró después de repetir la prueba (Vargas Ramírez, s.f.-b).');
@@ -86,7 +87,8 @@ tabla('Pruebas que Pasan en Cada Ronda', ['Ronda', 'Versión del código', 'Pasa
   ['2. Después de corregir', 'Con 10 correcciones', '43 de 43', '0'],
   ['3. Interfaz con usuario simulado', 'Con 10 correcciones', '21 de 23', '2'],
   ['4. Interfaz después de corregir', 'Con 12 correcciones', '23 de 23', '0'],
-], [3900, 2460, 1500, 1500], 'Las 17 pruebas unitarias pasaron en todas las rondas. Las 3 consultas a PokéAPI real y las 4 pruebas manuales pasaron al final.');
+  ['5. Lógica del combate y regresión completa', 'Con 12 correcciones', '105 de 105', '0'],
+], [3900, 2460, 1500, 1500], 'La ronda 5 suma 29 unitarias, 48 de API y 28 de interfaz. Las 3 consultas a PokéAPI real y las 4 pruebas manuales pasaron al final. En un primer intento de la ronda 5, el caso C02 falló una vez por un corte de conexión con la PokéAPI simulada; no se reprodujo en 1 065 repeticiones, por lo que se clasificó como no reproducible y la ronda se repitió completa.');
 
 h2('Defectos Encontrados y Corregidos');
 p('La Tabla 4 lista los 12 defectos. Las Figuras 1 a 3 muestran tres de ellos antes y después de corregirlos; el Apéndice tiene la evidencia de los demás.');
@@ -114,8 +116,31 @@ figura(3, 'Prueba de Interfaz U06: Doble Clic en Guardar (D18)', pair(
   ui(1, 'U06-1-tras-doble-clic.png'), 'dos registros «Doble-Clic»',
   ui(2, 'U06-1-tras-doble-clic.png'), 'un solo registro'), 'Capturas tomadas automáticamente por el script de pruebas de interfaz.');
 
+h2('Pruebas de la Lógica de Pelea');
+p('Para demostrar que el combate aplica bien sus reglas se escribió un oráculo: una segunda implementación de las reglas de la especificación (estadísticas, fórmula de daño, STAB, tabla de tipos, críticos y orden por Velocidad) hecha sin usar el código del motor. Cada prueba hace que el motor resuelva ataques y compara el resultado con el que calcula el oráculo. Si coinciden en miles de casos, la lógica se aplica como se especificó. La Tabla 5 resume estas pruebas en los tres niveles: el motor, la API y la pantalla.');
+tabla('Pruebas de la Lógica de Pelea', ['Qué se verifica', 'Cómo se probó', 'Resultado'], [
+  ['Tabla de tipos de la Gen 1', 'Las 225 combinaciones de un tipo y las 1 575 de doble tipo', 'Todas coinciden; 6 inmunidades; valores de × 0 a × 4'],
+  ['Fórmula de daño, STAB y efectividad', 'Cada ataque de 19 Pokémon contra los 19, con y sin crítico y tres variaciones', '8 664 ataques iguales al oráculo'],
+  ['Precisión', '20 000 intentos por movimiento, de 65 % a 100 %', 'Trueno 69,9 % (esperado 70 %); Rapidez nunca falla'],
+  ['Golpes críticos', '20 000 ataques por Pokémon', 'Pikachu 17,5 % (esperado 17,6 %); daño × 1,5'],
+  ['Variación aleatoria', '32 000 ataques', 'Solo enteros de 85 a 100, con frecuencia pareja'],
+  ['Orden de los turnos', '361 enfrentamientos y 4 000 empates', 'Siempre ataca primero el más rápido; empates 50 %'],
+  ['Combates completos', '2 000 combates (8 612 ataques)', 'PS nunca negativos ni en aumento; el debilitado no ataca; el ganador es correcto'],
+  ['Pokémon salvaje', '8 000 rondas', 'Usa sus 4 movimientos, cerca del 25 % cada uno'],
+  ['Por la API (K01–K05)', '30 combates completos por HTTP, × 4 y × 0,25, empates y precisión', 'Todo igual al oráculo; Trueno acertó 71 % de 150'],
+  ['En pantalla (U24–U28)', 'Un usuario juega en Edge; se comparan mensajes, barras, números y desglose', 'La pantalla muestra lo mismo que calcula el oráculo'],
+], [2300, 3700, 3360], 'Los conteos y porcentajes salen de la ejecución con semillas fijas, por lo que se pueden repetir. Las pruebas usan las estadísticas base reales de la Gen 1.');
+figura(4, 'Fallo por Precisión y Golpe Crítico en Pantalla', [
+  { file: path.join(docs, 'evidencias', 'semana13-ui-ronda-3', 'U25-1-trueno-fallo.png'), caption: 'U25: Trueno falla y Ditto no pierde PS' },
+  { file: path.join(docs, 'evidencias', 'semana13-ui-ronda-3', 'U26-1-critico.png'), caption: 'U26: Rapidez con golpe crítico' }], 'En U26 el daño crítico fue 41 frente a 27 sin crítico con la misma variación (× 1,5).');
+figura(5, 'Efectividad de Tipos en Pantalla', [
+  { file: path.join(docs, 'evidencias', 'semana13-ui-ronda-3', 'U27-1-poco-eficaz.png'), caption: 'U27: Fuego contra Agua, × 0,5' },
+  { file: path.join(docs, 'evidencias', 'semana13-ui-ronda-3', 'U28-1-super-eficaz-x4.png'), caption: 'U28: Eléctrico contra Agua/Volador, × 4' }], 'En ambos casos el daño mostrado coincide con el oráculo.');
+figura(6, 'Registro de un Combate Completo con el Cálculo de Cada Ataque', [
+  { file: path.join(docs, 'evidencias', 'semana13-ui-ronda-3', 'U24-2-registro-completo.png') }], 'Cada línea muestra «Base × STAB × Efectividad × Variación = daño» y los PS antes y después. En la ronda 2, Golpe Cuerpo calcula 58 de daño, pero Charmander tenía 41 PS: queda en 0, no en negativo.');
+
 h2('Métricas');
-p('La Tabla 5 resume las métricas de calidad. Las características evaluadas (rendimiento, seguridad, usabilidad y fiabilidad) corresponden al modelo de calidad ISO/IEC 25010 (International Organization for Standardization [ISO], 2011).');
+p('La Tabla 6 resume las métricas de calidad. Las características evaluadas (rendimiento, seguridad, usabilidad y fiabilidad) corresponden al modelo de calidad ISO/IEC 25010 (International Organization for Standardization [ISO], 2011).');
 tabla('Métricas de la Ronda de Pruebas', ['Métrica', 'Valor'], [
   ['Defectos por severidad', 'Alta 2 · Media 6 · Baja 4 (total 12)'],
   ['Densidad de defectos', '7,0 por cada 1 000 líneas de código'],
@@ -123,12 +148,13 @@ tabla('Métricas de la Ronda de Pruebas', ['Métrica', 'Valor'], [
   ['Aprobación de la interfaz', '91,3 % antes de corregir → 100 % después'],
   ['Cobertura de las tablas de decisión', '19 de 19 reglas probadas (100 %)'],
   ['Tiempo de respuesta (p95)', 'Listado: 5,8 ms · ronda de combate: 2,0 ms'],
+  ['Ataques comparados con el oráculo', '17 410 (8 664 + 8 612 en 2 000 combates + 134 por la API), sin diferencias'],
   ['Defectos abiertos y reincidentes', '0 y 0'],
 ], [3600, 5760], 'La densidad se calculó sobre 1 706 líneas de JavaScript del producto, sin líneas vacías ni comentarios.');
 
 // ---------- Conclusión ----------
 h1('Conclusión');
-p('La aplicación funcionaba en sus funciones principales, pero no estaba lista para entregarse: tenía dos fallas graves de seguridad y varios errores que el usuario podía notar. Probar con datos en los límites, con tablas de decisión y simulando errores de usuario en la interfaz permitió encontrar fallas que las pruebas anteriores no cubrían. Después de corregirlas, todas las pruebas pasan y no quedan defectos abiertos, por lo que la versión corregida queda lista para la demostración. Quedan fuera del alcance otros navegadores distintos de Edge, la autenticación y el uso simultáneo por muchas personas.');
+p('La aplicación funcionaba en sus funciones principales, pero no estaba lista para entregarse: tenía dos fallas graves de seguridad y varios errores que el usuario podía notar. Probar con datos en los límites, con tablas de decisión y simulando errores de usuario en la interfaz permitió encontrar fallas que las pruebas anteriores no cubrían. Después de corregirlas, todas las pruebas pasan y no quedan defectos abiertos. En el combate, la comparación con un oráculo en más de 17 000 ataques, en el motor, la API y la pantalla, no encontró ninguna diferencia: el daño, la efectividad, los críticos, la precisión, el orden de los turnos y el final del combate se aplican como dice la especificación. Por eso la versión corregida queda lista para la demostración. Quedan fuera del alcance otros navegadores distintos de Edge, la autenticación y el uso simultáneo por muchas personas.');
 
 // ---------- Referencias ----------
 h1('Referencias', { pageBreakBefore: true });

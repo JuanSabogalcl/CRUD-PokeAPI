@@ -1,0 +1,334 @@
+{
+  "startedAt": "2026-11-17T19:32:11.090Z",
+  "endedAt": "2026-11-17T19:35:15.436Z",
+  "node": "v24.21.0",
+  "browser": "Edg/157.0.4341.60",
+  "sourceCommit": "c5968629894051cdbc586dc436fbc322e5a8a581",
+  "totals": {
+    "PASA": 28,
+    "FALLA": 0,
+    "BLOQUEADO": 0
+  },
+  "results": [
+    {
+      "id": "U01",
+      "title": "Crear con el formulario vacío",
+      "criterion": "RN-01 / interfaz",
+      "status": "PASA",
+      "observation": "Mensaje del navegador: «Rellena este campo.»",
+      "screenshots": [
+        "U01-1-formulario-vacio.png"
+      ],
+      "evidence": "U01.json"
+    },
+    {
+      "id": "U02",
+      "title": "Estadística fuera de rango en el formulario (0, 1000, 2.5 y 1)",
+      "criterion": "R05 / interfaz",
+      "status": "PASA",
+      "observation": "0: «El valor debe ser mayor o igual que 1.» · 1000: «El valor debe ser menor o igual que 999.» · 2.5: «Escribe un valor válido. Los dos valores válidos más cercanos son 2 y 3.»",
+      "screenshots": [
+        "U02-1-ps-cero.png",
+        "U02-2-ps-uno-guardado.png"
+      ],
+      "evidence": "U02.json"
+    },
+    {
+      "id": "U03",
+      "title": "Nombre con solo espacios",
+      "criterion": "R04 / interfaz",
+      "status": "PASA",
+      "observation": "Aviso: «El nombre del Pokémon debe ser un texto no vacío»",
+      "screenshots": [
+        "U03-1-aviso-nombre-vacio.png"
+      ],
+      "evidence": "U03.json"
+    },
+    {
+      "id": "U04",
+      "title": "Nombre con etiquetas HTML",
+      "criterion": "D08 / interfaz",
+      "status": "PASA",
+      "observation": "Aviso: «El nombre del Pokémon no puede contener < > ni caracteres de control»",
+      "screenshots": [
+        "U04-1-aviso-html.png"
+      ],
+      "evidence": "U04.json"
+    },
+    {
+      "id": "U05",
+      "title": "Nombre de 41 caracteres",
+      "criterion": "D16 / interfaz",
+      "status": "PASA",
+      "observation": "Caracteres aceptados en el campo: 41. Avisos: El nombre del Pokémon admite máximo 40 caracteres",
+      "screenshots": [
+        "U05-1-nombre-41.png"
+      ],
+      "evidence": "U05.json"
+    },
+    {
+      "id": "U06",
+      "title": "Doble clic en Guardar",
+      "criterion": "Integridad / interfaz",
+      "status": "PASA",
+      "observation": "Peticiones POST enviadas: 1. Registros creados: 1",
+      "screenshots": [
+        "U06-1-tras-doble-clic.png"
+      ],
+      "evidence": "U06.json"
+    },
+    {
+      "id": "U07",
+      "title": "Editar con un valor inválido y cancelar",
+      "criterion": "R06 / interfaz",
+      "status": "PASA",
+      "observation": "",
+      "screenshots": [
+        "U07-1-editar-ps-cero.png",
+        "U07-2-cancelado.png"
+      ],
+      "evidence": "U07.json"
+    },
+    {
+      "id": "U08",
+      "title": "Eliminar: cancelar y luego confirmar",
+      "criterion": "S05 / interfaz",
+      "status": "PASA",
+      "observation": "Diálogo: «¿Eliminar este registro?» (cancelado y luego aceptado)",
+      "screenshots": [
+        "U08-1-eliminado.png"
+      ],
+      "evidence": "U08.json"
+    },
+    {
+      "id": "U09",
+      "title": "Búsqueda con mayúsculas y espacios",
+      "criterion": "R01 / interfaz",
+      "status": "PASA",
+      "observation": "",
+      "screenshots": [
+        "U09-1-pikachu.png"
+      ],
+      "evidence": "U09.json"
+    },
+    {
+      "id": "U10",
+      "title": "Búsqueda de un Pokémon que no existe",
+      "criterion": "R02 / interfaz",
+      "status": "PASA",
+      "observation": "",
+      "screenshots": [
+        "U10-1-no-existe.png"
+      ],
+      "evidence": "U10.json"
+    },
+    {
+      "id": "U11",
+      "title": "Búsqueda escrita con formato inválido («Mr. Mime»)",
+      "criterion": "D12 / interfaz",
+      "status": "PASA",
+      "observation": "Aviso: «Escribe el nombre como aparece en PokeAPI (letras, números y guiones) o su número»",
+      "screenshots": [
+        "U11-1-formato-invalido.png"
+      ],
+      "evidence": "U11.json"
+    },
+    {
+      "id": "U12",
+      "title": "Búsqueda vacía",
+      "criterion": "D10 / interfaz",
+      "status": "PASA",
+      "observation": "",
+      "screenshots": [
+        "U12-1-busqueda-vacia.png"
+      ],
+      "evidence": "U12.json"
+    },
+    {
+      "id": "U13",
+      "title": "Editar la Velocidad cambia quién ataca primero",
+      "criterion": "RF05 / interfaz",
+      "status": "PASA",
+      "observation": "Orden en pantalla: ¡El CHARMANDER salvaje usó LLAMARADA! → ¡PIKACHU usó RAYO!",
+      "screenshots": [
+        "U13-1-velocidad-editada.png",
+        "U13-2-vista-previa.png",
+        "U13-3-salvaje-primero.png"
+      ],
+      "evidence": "U13.json"
+    },
+    {
+      "id": "U14",
+      "title": "Renombrar desde el formulario cambia la especie en el combate",
+      "criterion": "D14 / interfaz",
+      "status": "PASA",
+      "observation": "",
+      "screenshots": [
+        "U14-1-bulbasaur-en-combate.png"
+      ],
+      "evidence": "U14.json"
+    },
+    {
+      "id": "U15",
+      "title": "Iniciar el combate sin elegir al Pokémon salvaje",
+      "criterion": "RF01 / interfaz",
+      "status": "PASA",
+      "observation": "",
+      "screenshots": [
+        "U15-1-sin-salvaje.png"
+      ],
+      "evidence": "U15.json"
+    },
+    {
+      "id": "U16",
+      "title": "Pokémon salvaje con datos incompletos",
+      "criterion": "C12 / interfaz",
+      "status": "PASA",
+      "observation": "Mensaje: «Datos incompletos de grupo6-custom: no tiene tipos y no existe en PokeAPI para completarlos»",
+      "screenshots": [
+        "U16-1-datos-incompletos.png"
+      ],
+      "evidence": "U16.json"
+    },
+    {
+      "id": "U17",
+      "title": "Inmunidad visible: Rapidez contra Gastly",
+      "criterion": "RF08 / interfaz",
+      "status": "PASA",
+      "observation": "",
+      "screenshots": [
+        "U17-1-no-afecta.png"
+      ],
+      "evidence": "U17.json"
+    },
+    {
+      "id": "U18",
+      "title": "Súper eficaz: PS y desglose en pantalla iguales a la lógica",
+      "criterion": "RF07–RF10 / interfaz",
+      "status": "PASA",
+      "observation": "Daño 114 = ⌊43 × 1,5 × 2 × 0.89⌋",
+      "screenshots": [
+        "U18-1-super-eficaz.png",
+        "U18-2-desglose.png"
+      ],
+      "evidence": "U18.json"
+    },
+    {
+      "id": "U19",
+      "title": "Doble clic en un ataque",
+      "criterion": "RF04 / interfaz",
+      "status": "PASA",
+      "observation": "Peticiones de turno: 1. Rondas jugadas: 1",
+      "screenshots": [
+        "U19-1-tras-doble-clic.png"
+      ],
+      "evidence": "U19.json"
+    },
+    {
+      "id": "U20",
+      "title": "Después de terminar no se puede seguir atacando",
+      "criterion": "RF11 / interfaz",
+      "status": "PASA",
+      "observation": "Ganador: Squirtle. Derrotado: Charmander.. Turno forzado desde la página: HTTP 409",
+      "screenshots": [
+        "U20-1-fin-del-combate.png"
+      ],
+      "evidence": "U20.json"
+    },
+    {
+      "id": "U21",
+      "title": "Se pierde la conexión al atacar",
+      "criterion": "Sección 10 / interfaz",
+      "status": "PASA",
+      "observation": "Mensaje: «No hay conexión con el servidor del proyecto»",
+      "screenshots": [
+        "U21-1-sin-conexion.png",
+        "U21-2-conexion-recuperada.png"
+      ],
+      "evidence": "U21.json"
+    },
+    {
+      "id": "U22",
+      "title": "Recargar la página a mitad del combate",
+      "criterion": "Confiabilidad / interfaz",
+      "status": "PASA",
+      "observation": "La página vuelve a la preparación sin errores; el combate en curso no se recupera (no es un requisito)",
+      "screenshots": [
+        "U22-1-tras-recargar.png"
+      ],
+      "evidence": "U22.json"
+    },
+    {
+      "id": "U23",
+      "title": "HUIR y empezar otro combate",
+      "criterion": "Interfaz",
+      "status": "PASA",
+      "observation": "",
+      "screenshots": [
+        "U23-1-huir.png"
+      ],
+      "evidence": "U23.json"
+    },
+    {
+      "id": "U24",
+      "title": "Combate completo: cada ronda en pantalla coincide con el oráculo",
+      "criterion": "RF04–RF11 / interfaz",
+      "status": "PASA",
+      "observation": "2 rondas y 4 ataques: daño, PS, barra y desglose iguales al oráculo. Ganador: ditto",
+      "screenshots": [
+        "U24-1-ronda-2.png",
+        "U24-2-registro-completo.png",
+        "U24-3-fin.png"
+      ],
+      "evidence": "U24.json"
+    },
+    {
+      "id": "U25",
+      "title": "Fallo por precisión en pantalla: Trueno (70 %) no quita PS",
+      "criterion": "RF06 / interfaz",
+      "status": "PASA",
+      "observation": "Trueno falló: PS del rival 27 → 27",
+      "screenshots": [
+        "U25-1-trueno-fallo.png"
+      ],
+      "evidence": "U25.json"
+    },
+    {
+      "id": "U26",
+      "title": "Golpe crítico en pantalla: daño × 1,5 según la fórmula",
+      "criterion": "Críticos / interfaz",
+      "status": "PASA",
+      "observation": "Crítico: daño 40 frente a 26 sin crítico con la misma variación (0.87)",
+      "screenshots": [
+        "U26-1-critico.png"
+      ],
+      "evidence": "U26.json"
+    },
+    {
+      "id": "U27",
+      "title": "«No es muy eficaz» en pantalla: Fuego contra Agua (× 0,5)",
+      "criterion": "RF08 / interfaz",
+      "status": "PASA",
+      "observation": "Lanzallamas a Squirtle: × 0,5, daño 30",
+      "screenshots": [
+        "U27-1-poco-eficaz.png"
+      ],
+      "evidence": "U27.json"
+    },
+    {
+      "id": "U28",
+      "title": "× 4 en pantalla: Rayo contra Gyarados hasta el final del combate",
+      "criterion": "RF08 / RF11 / interfaz",
+      "status": "PASA",
+      "observation": "Daños de Rayo × 4: 132, 131. Ganador: pikachu",
+      "screenshots": [
+        "U28-1-super-eficaz-x4.png",
+        "U28-2-super-eficaz-x4.png",
+        "U28-3-debilitado.png",
+        "U28-4-fin-del-combate.png"
+      ],
+      "evidence": "U28.json"
+    }
+  ],
+  "decision": "LISTO para el alcance de interfaz probado"
+}

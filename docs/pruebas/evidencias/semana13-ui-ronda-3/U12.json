@@ -1,0 +1,34 @@
+{
+  "id": "U12",
+  "title": "Búsqueda vacía",
+  "criterion": "D10 / interfaz",
+  "status": "PASA",
+  "observation": "",
+  "durationMs": 1713,
+  "screenshots": [
+    "U12-1-busqueda-vacia.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/pokemon-list?limit=151"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "GET",
+      "url": "/api/pokemon/ditto"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [
+    {
+      "text": "Escribe o selecciona un Pokémon",
+      "type": "error"
+    }
+  ],
+  "messages": []
+}

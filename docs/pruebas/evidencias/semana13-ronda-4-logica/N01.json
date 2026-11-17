@@ -1,0 +1,30 @@
+{
+  "id": "N01",
+  "title": "Rendimiento: listar 151 registros (p95 ≤ 300 ms)",
+  "criterion": "RNF-REN-01",
+  "status": "PASA",
+  "observation": "30 consultas: p50 6.1 ms, p95 19.7 ms, máx 23.0 ms",
+  "durationMs": 601,
+  "evidence": "N01.json",
+  "exchanges": [
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records/sync-gen1"
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "message": "Sincronizados 151 Pokémon de la Gen 1",
+          "created": 151,
+          "updated": 0,
+          "total": 151,
+          "expected": 151
+        }
+      },
+      "durationMs": 126
+    }
+  ],
+  "serverLog": "Servidor CRUD PokeAPI en http://localhost:45702\n"
+}

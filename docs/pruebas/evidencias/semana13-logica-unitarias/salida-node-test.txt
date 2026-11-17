@@ -1,0 +1,46 @@
+✔ L01 · tabla de tipos de la Gen 1: las 225 combinaciones coinciden y hay 6 inmunidades (4.4973ms)
+ℹ 225 combinaciones verificadas; inmunidades: electric→ground, fighting→ghost, ghost→normal, ghost→psychic, ground→flying, normal→ghost
+✔ L02 · doble tipo: se multiplican los dos modificadores (1 575 combinaciones) (3.8924ms)
+ℹ 1575 combinaciones; valores posibles: 0, 0.25, 0.5, 1, 2, 4
+✔ L03 · estadísticas de combate al nivel 50 para toda base entre 1 y 255 (1.0926ms)
+✔ L04 · daño: el motor coincide con el oráculo en todos los ataques posibles (33.4714ms)
+ℹ 8664 ataques comparados con el oráculo (8298 con daño, 366 sin daño por inmunidad)
+✔ L05 · precisión: la tasa de acierto observada coincide con la de cada movimiento (96.3209ms)
+ℹ rock-throw 64.5 % (esperado 65 %) · thunder 69.9 % (esperado 70 %) · slam 74.7 % (esperado 75 %) · hydro-pump 79.5 % (esperado 80 %) · fire-blast 85.0 % (esperado 85 %) · blizzard 90.0 % (esperado 90 %) · tackle 95.1 % (esperado 95 %) · surf 100.0 % (esperado 100 %) · swift 100.0 % (esperado 100 %)
+✔ L06 · golpes críticos: la frecuencia observada es ⌊Velocidad base / 2⌋ / 256 (43.1836ms)
+ℹ snorlax 6.1 % (esperado 5.9 %) · charmander 12.4 % (esperado 12.5 %) · pikachu 17.5 % (esperado 17.6 %) · mewtwo 25.2 % (esperado 25.4 %)
+✔ L07 · variación aleatoria: enteros de 85 a 100 con frecuencia pareja (18.6112ms)
+ℹ 16 valores, entre 1913 y 2079 apariciones (esperado 2000)
+✔ L08 · orden por Velocidad en los 361 enfrentamientos y empates sorteados 50/50 (31.4698ms)
+ℹ 361 enfrentamientos con el orden correcto; en 4000 empates el jugador 1 fue primero el 50.0 %
+✔ L09 · 2 000 combates completos: cada ataque, los PS y el final siguen las reglas (66.737ms)
+ℹ 2000 combates, 4903 rondas, 8612 ataques: 496 fallos, 939 críticos, 730 súper eficaces, 1373 poco eficaces, 664 sin efecto; todos coinciden con el oráculo
+✔ L10 · el Pokémon salvaje elige al azar entre sus 4 movimientos (8 000 rondas) (46.6053ms)
+ℹ Surf 24.8 % · Rayo Hielo 25.3 % · Hidrobomba 25.1 % · Placaje 24.8 %
+✔ L11 · STAB y conjuntos de movimientos: 4 movimientos y STAB marcado solo con el tipo propio (0.6702ms)
+✔ L12 · reglas especiales: Furia Dragón hace 40 fijo y un ataque débil sigue la fórmula (mínimo 1) (0.3368ms)
+✔ tabla de tipos Gen 1: debilidad, resistencia, inmunidad y doble tipo (0.8384ms)
+✔ tipos desde PokeAPI usan past_types y descartan tipos posteriores a la Gen 1 (1.4285ms)
+✔ estadísticas de combate al nivel 50 y fórmula de daño base con truncamiento (0.2532ms)
+✔ ejemplo del documento: 20 × 1,5 × 1,0 × 0,90 = 27 (0.1077ms)
+✔ probabilidad de crítico centralizada y basada en la Velocidad base (0.1088ms)
+✔ cada Pokémon recibe 4 movimientos con STAB y un movimiento sin STAB (0.2325ms)
+✔ ataque con STAB súper eficaz: daño exacto y PS actualizados (1.8707ms)
+✔ ataque sin STAB y poco eficaz (0.266ms)
+✔ inmunidad: daño 0 sin consumir crítico ni variación (0.2679ms)
+✔ fallo por precisión: no hay daño y se informa (0.2676ms)
+✔ golpe crítico multiplica por 1,5 (0.2132ms)
+✔ Furia Dragón hace daño fijo de 40 (0.144ms)
+✔ orden por Velocidad y empate resuelto con el generador (0.3946ms)
+✔ PS no negativos, fin del combate y bloqueo de acciones posteriores (0.606ms)
+✔ movimientos inválidos y CPU que elige del propio conjunto (0.4269ms)
+✔ misma semilla y mismas elecciones producen el mismo combate (0.3378ms)
+✔ registros sin tipos o con estadísticas inválidas se rechazan (0.1545ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 452.5073

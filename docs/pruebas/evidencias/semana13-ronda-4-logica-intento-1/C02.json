@@ -1,0 +1,178 @@
+{
+  "id": "C02",
+  "title": "Mostrar los datos básicos de ambos Pokémon",
+  "criterion": "RF02/RF03",
+  "status": "FALLA",
+  "observation": "{\"error\":\"No se pudieron completar los tipos de pikachu: PokeAPI no está disponible o devolvió una respuesta inválida\"}\n\n502 !== 201\n",
+  "durationMs": 226,
+  "evidence": "C02.json",
+  "exchanges": [
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "pikachu",
+          "pokemonId": 25,
+          "stats": {
+            "hp": 35,
+            "attack": 55,
+            "defense": 40,
+            "special-attack": 50,
+            "special-defense": 50,
+            "speed": 90
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "9e82c2af-0fff-4a46-a84d-3cef5fdc4c2e",
+          "pokemonName": "pikachu",
+          "pokemonId": 25,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+          "stats": {
+            "hp": 35,
+            "attack": 55,
+            "defense": 40,
+            "special-attack": 50,
+            "special-defense": 50,
+            "speed": 90
+          },
+          "createdAt": "2026-11-17T19:26:00.903Z",
+          "updatedAt": "2026-11-17T19:26:00.903Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 35
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 55
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 40
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 50
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 50
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 90
+            }
+          ]
+        }
+      },
+      "durationMs": 17
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "squirtle",
+          "pokemonId": 7,
+          "stats": {
+            "hp": 44,
+            "attack": 48,
+            "defense": 65,
+            "special-attack": 50,
+            "special-defense": 64,
+            "speed": 43
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "8ac2986e-f212-42e0-a261-ce2c7d55c3ed",
+          "pokemonName": "squirtle",
+          "pokemonId": 7,
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
+          "stats": {
+            "hp": 44,
+            "attack": 48,
+            "defense": 65,
+            "special-attack": 50,
+            "special-defense": 64,
+            "speed": 43
+          },
+          "createdAt": "2026-11-17T19:26:00.909Z",
+          "updatedAt": "2026-11-17T19:26:00.909Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 44
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 48
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 65
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 50
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 64
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 43
+            }
+          ]
+        }
+      },
+      "durationMs": 5
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/battles",
+        "body": {
+          "mode": "pvp",
+          "p1": {
+            "recordId": "9e82c2af-0fff-4a46-a84d-3cef5fdc4c2e"
+          },
+          "p2": {
+            "recordId": "8ac2986e-f212-42e0-a261-ce2c7d55c3ed"
+          },
+          "seed": 7
+        }
+      },
+      "response": {
+        "status": 502,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "No se pudieron completar los tipos de pikachu: PokeAPI no está disponible o devolvió una respuesta inválida"
+        }
+      },
+      "durationMs": 20
+    }
+  ],
+  "serverLog": "Servidor CRUD PokeAPI en http://localhost:10081\n"
+}

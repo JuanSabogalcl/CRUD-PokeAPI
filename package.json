@@ -14,6 +14,7 @@
     "test:combat": "node tests/run.js --suite=combat",
     "test:exploratoria": "node tests/run.js --suite=exploratoria",
     "test:nofuncional": "node tests/run.js --suite=nofuncional",
+    "test:logica": "node --test tests/unit/combat-logica.test.js && node tests/run.js --suite=logica",
     "test:live": "node tests/live.js",
     "test:ui": "node tests/ui/run-ui.js"
   },

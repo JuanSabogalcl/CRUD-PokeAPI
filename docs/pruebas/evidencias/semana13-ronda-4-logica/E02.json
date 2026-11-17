@@ -1,0 +1,1024 @@
+{
+  "id": "E02",
+  "title": "Nombre: caracteres válidos y contenido HTML",
+  "criterion": "RN-01 / RNF-SEG",
+  "status": "PASA",
+  "observation": "",
+  "durationMs": 335,
+  "evidence": "E02.json",
+  "exchanges": [
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "Mr. Mime",
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "c736cd9c-1a65-4709-bc7b-d6486197b920",
+          "pokemonName": "mr. mime",
+          "pokemonId": null,
+          "sprite": null,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          },
+          "createdAt": "2026-11-17T19:31:32.576Z",
+          "updatedAt": "2026-11-17T19:31:32.578Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 48
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 48
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 48
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 48
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 48
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 48
+            }
+          ]
+        }
+      },
+      "durationMs": 21
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "Nidoran♀",
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "bd38a018-0b15-4aa8-86e9-b08c005b75de",
+          "pokemonName": "nidoran♀",
+          "pokemonId": null,
+          "sprite": null,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          },
+          "createdAt": "2026-11-17T19:31:32.598Z",
+          "updatedAt": "2026-11-17T19:31:32.598Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 48
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 48
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 48
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 48
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 48
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 48
+            }
+          ]
+        }
+      },
+      "durationMs": 18
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "Farfetch'd",
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "04e12c11-2227-4aa5-825a-bd75fb9d7475",
+          "pokemonName": "farfetch'd",
+          "pokemonId": null,
+          "sprite": null,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          },
+          "createdAt": "2026-11-17T19:31:32.603Z",
+          "updatedAt": "2026-11-17T19:31:32.603Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 48
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 48
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 48
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 48
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 48
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 48
+            }
+          ]
+        }
+      },
+      "durationMs": 4
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "porygon-z",
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "id": "abb56fa3-fc74-4609-91f0-ec251e4d3a91",
+          "pokemonName": "porygon-z",
+          "pokemonId": null,
+          "sprite": null,
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          },
+          "createdAt": "2026-11-17T19:31:32.607Z",
+          "updatedAt": "2026-11-17T19:31:32.607Z",
+          "statsFormatted": [
+            {
+              "key": "hp",
+              "label": "PS (Puntos de Salud)",
+              "value": 48
+            },
+            {
+              "key": "attack",
+              "label": "Ataque",
+              "value": 48
+            },
+            {
+              "key": "defense",
+              "label": "Defensa",
+              "value": 48
+            },
+            {
+              "key": "special-attack",
+              "label": "Ataque Especial",
+              "value": 48
+            },
+            {
+              "key": "special-defense",
+              "label": "Defensa Especial",
+              "value": 48
+            },
+            {
+              "key": "speed",
+              "label": "Velocidad",
+              "value": 48
+            }
+          ]
+        }
+      },
+      "durationMs": 4
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/records"
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": [
+          {
+            "id": "c736cd9c-1a65-4709-bc7b-d6486197b920",
+            "pokemonName": "mr. mime",
+            "pokemonId": null,
+            "sprite": null,
+            "stats": {
+              "hp": 48,
+              "attack": 48,
+              "defense": 48,
+              "special-attack": 48,
+              "special-defense": 48,
+              "speed": 48
+            },
+            "createdAt": "2026-11-17T19:31:32.576Z",
+            "updatedAt": "2026-11-17T19:31:32.578Z",
+            "statsFormatted": [
+              {
+                "key": "hp",
+                "label": "PS (Puntos de Salud)",
+                "value": 48
+              },
+              {
+                "key": "attack",
+                "label": "Ataque",
+                "value": 48
+              },
+              {
+                "key": "defense",
+                "label": "Defensa",
+                "value": 48
+              },
+              {
+                "key": "special-attack",
+                "label": "Ataque Especial",
+                "value": 48
+              },
+              {
+                "key": "special-defense",
+                "label": "Defensa Especial",
+                "value": 48
+              },
+              {
+                "key": "speed",
+                "label": "Velocidad",
+                "value": 48
+              }
+            ]
+          },
+          {
+            "id": "bd38a018-0b15-4aa8-86e9-b08c005b75de",
+            "pokemonName": "nidoran♀",
+            "pokemonId": null,
+            "sprite": null,
+            "stats": {
+              "hp": 48,
+              "attack": 48,
+              "defense": 48,
+              "special-attack": 48,
+              "special-defense": 48,
+              "speed": 48
+            },
+            "createdAt": "2026-11-17T19:31:32.598Z",
+            "updatedAt": "2026-11-17T19:31:32.598Z",
+            "statsFormatted": [
+              {
+                "key": "hp",
+                "label": "PS (Puntos de Salud)",
+                "value": 48
+              },
+              {
+                "key": "attack",
+                "label": "Ataque",
+                "value": 48
+              },
+              {
+                "key": "defense",
+                "label": "Defensa",
+                "value": 48
+              },
+              {
+                "key": "special-attack",
+                "label": "Ataque Especial",
+                "value": 48
+              },
+              {
+                "key": "special-defense",
+                "label": "Defensa Especial",
+                "value": 48
+              },
+              {
+                "key": "speed",
+                "label": "Velocidad",
+                "value": 48
+              }
+            ]
+          },
+          {
+            "id": "04e12c11-2227-4aa5-825a-bd75fb9d7475",
+            "pokemonName": "farfetch'd",
+            "pokemonId": null,
+            "sprite": null,
+            "stats": {
+              "hp": 48,
+              "attack": 48,
+              "defense": 48,
+              "special-attack": 48,
+              "special-defense": 48,
+              "speed": 48
+            },
+            "createdAt": "2026-11-17T19:31:32.603Z",
+            "updatedAt": "2026-11-17T19:31:32.603Z",
+            "statsFormatted": [
+              {
+                "key": "hp",
+                "label": "PS (Puntos de Salud)",
+                "value": 48
+              },
+              {
+                "key": "attack",
+                "label": "Ataque",
+                "value": 48
+              },
+              {
+                "key": "defense",
+                "label": "Defensa",
+                "value": 48
+              },
+              {
+                "key": "special-attack",
+                "label": "Ataque Especial",
+                "value": 48
+              },
+              {
+                "key": "special-defense",
+                "label": "Defensa Especial",
+                "value": 48
+              },
+              {
+                "key": "speed",
+                "label": "Velocidad",
+                "value": 48
+              }
+            ]
+          },
+          {
+            "id": "abb56fa3-fc74-4609-91f0-ec251e4d3a91",
+            "pokemonName": "porygon-z",
+            "pokemonId": null,
+            "sprite": null,
+            "stats": {
+              "hp": 48,
+              "attack": 48,
+              "defense": 48,
+              "special-attack": 48,
+              "special-defense": 48,
+              "speed": 48
+            },
+            "createdAt": "2026-11-17T19:31:32.607Z",
+            "updatedAt": "2026-11-17T19:31:32.607Z",
+            "statsFormatted": [
+              {
+                "key": "hp",
+                "label": "PS (Puntos de Salud)",
+                "value": 48
+              },
+              {
+                "key": "attack",
+                "label": "Ataque",
+                "value": 48
+              },
+              {
+                "key": "defense",
+                "label": "Defensa",
+                "value": 48
+              },
+              {
+                "key": "special-attack",
+                "label": "Ataque Especial",
+                "value": 48
+              },
+              {
+                "key": "special-defense",
+                "label": "Defensa Especial",
+                "value": 48
+              },
+              {
+                "key": "speed",
+                "label": "Velocidad",
+                "value": 48
+              }
+            ]
+          }
+        ]
+      },
+      "durationMs": 7
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "<img src=x onerror=alert(1)>",
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "El nombre del Pokémon no puede contener < > ni caracteres de control"
+        }
+      },
+      "durationMs": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "<script>alert(1)</script>",
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "El nombre del Pokémon no puede contener < > ni caracteres de control"
+        }
+      },
+      "durationMs": 2
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "ditto\u0000",
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "El nombre del Pokémon no puede contener < > ni caracteres de control"
+        }
+      },
+      "durationMs": 2
+    },
+    {
+      "request": {
+        "method": "POST",
+        "route": "/api/records",
+        "body": {
+          "pokemonName": "a\nb",
+          "stats": {
+            "hp": 48,
+            "attack": 48,
+            "defense": 48,
+            "special-attack": 48,
+            "special-defense": 48,
+            "speed": 48
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "El nombre del Pokémon no puede contener < > ni caracteres de control"
+        }
+      },
+      "durationMs": 2
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/records"
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": [
+          {
+            "id": "c736cd9c-1a65-4709-bc7b-d6486197b920",
+            "pokemonName": "mr. mime",
+            "pokemonId": null,
+            "sprite": null,
+            "stats": {
+              "hp": 48,
+              "attack": 48,
+              "defense": 48,
+              "special-attack": 48,
+              "special-defense": 48,
+              "speed": 48
+            },
+            "createdAt": "2026-11-17T19:31:32.576Z",
+            "updatedAt": "2026-11-17T19:31:32.578Z",
+            "statsFormatted": [
+              {
+                "key": "hp",
+                "label": "PS (Puntos de Salud)",
+                "value": 48
+              },
+              {
+                "key": "attack",
+                "label": "Ataque",
+                "value": 48
+              },
+              {
+                "key": "defense",
+                "label": "Defensa",
+                "value": 48
+              },
+              {
+                "key": "special-attack",
+                "label": "Ataque Especial",
+                "value": 48
+              },
+              {
+                "key": "special-defense",
+                "label": "Defensa Especial",
+                "value": 48
+              },
+              {
+                "key": "speed",
+                "label": "Velocidad",
+                "value": 48
+              }
+            ]
+          },
+          {
+            "id": "bd38a018-0b15-4aa8-86e9-b08c005b75de",
+            "pokemonName": "nidoran♀",
+            "pokemonId": null,
+            "sprite": null,
+            "stats": {
+              "hp": 48,
+              "attack": 48,
+              "defense": 48,
+              "special-attack": 48,
+              "special-defense": 48,
+              "speed": 48
+            },
+            "createdAt": "2026-11-17T19:31:32.598Z",
+            "updatedAt": "2026-11-17T19:31:32.598Z",
+            "statsFormatted": [
+              {
+                "key": "hp",
+                "label": "PS (Puntos de Salud)",
+                "value": 48
+              },
+              {
+                "key": "attack",
+                "label": "Ataque",
+                "value": 48
+              },
+              {
+                "key": "defense",
+                "label": "Defensa",
+                "value": 48
+              },
+              {
+                "key": "special-attack",
+                "label": "Ataque Especial",
+                "value": 48
+              },
+              {
+                "key": "special-defense",
+                "label": "Defensa Especial",
+                "value": 48
+              },
+              {
+                "key": "speed",
+                "label": "Velocidad",
+                "value": 48
+              }
+            ]
+          },
+          {
+            "id": "04e12c11-2227-4aa5-825a-bd75fb9d7475",
+            "pokemonName": "farfetch'd",
+            "pokemonId": null,
+            "sprite": null,
+            "stats": {
+              "hp": 48,
+              "attack": 48,
+              "defense": 48,
+              "special-attack": 48,
+              "special-defense": 48,
+              "speed": 48
+            },
+            "createdAt": "2026-11-17T19:31:32.603Z",
+            "updatedAt": "2026-11-17T19:31:32.603Z",
+            "statsFormatted": [
+              {
+                "key": "hp",
+                "label": "PS (Puntos de Salud)",
+                "value": 48
+              },
+              {
+                "key": "attack",
+                "label": "Ataque",
+                "value": 48
+              },
+              {
+                "key": "defense",
+                "label": "Defensa",
+                "value": 48
+              },
+              {
+                "key": "special-attack",
+                "label": "Ataque Especial",
+                "value": 48
+              },
+              {
+                "key": "special-defense",
+                "label": "Defensa Especial",
+                "value": 48
+              },
+              {
+                "key": "speed",
+                "label": "Velocidad",
+                "value": 48
+              }
+            ]
+          },
+          {
+            "id": "abb56fa3-fc74-4609-91f0-ec251e4d3a91",
+            "pokemonName": "porygon-z",
+            "pokemonId": null,
+            "sprite": null,
+            "stats": {
+              "hp": 48,
+              "attack": 48,
+              "defense": 48,
+              "special-attack": 48,
+              "special-defense": 48,
+              "speed": 48
+            },
+            "createdAt": "2026-11-17T19:31:32.607Z",
+            "updatedAt": "2026-11-17T19:31:32.607Z",
+            "statsFormatted": [
+              {
+                "key": "hp",
+                "label": "PS (Puntos de Salud)",
+                "value": 48
+              },
+              {
+                "key": "attack",
+                "label": "Ataque",
+                "value": 48
+              },
+              {
+                "key": "defense",
+                "label": "Defensa",
+                "value": 48
+              },
+              {
+                "key": "special-attack",
+                "label": "Ataque Especial",
+                "value": 48
+              },
+              {
+                "key": "special-defense",
+                "label": "Defensa Especial",
+                "value": 48
+              },
+              {
+                "key": "speed",
+                "label": "Velocidad",
+                "value": 48
+              }
+            ]
+          }
+        ]
+      },
+      "durationMs": 6
+    },
+    {
+      "request": {
+        "method": "PUT",
+        "route": "/api/records/c736cd9c-1a65-4709-bc7b-d6486197b920",
+        "body": {
+          "pokemonName": "<b>x</b>"
+        }
+      },
+      "response": {
+        "status": 400,
+        "contentType": "application/json; charset=utf-8",
+        "body": {
+          "error": "El nombre del Pokémon no puede contener < > ni caracteres de control"
+        }
+      },
+      "durationMs": 5
+    },
+    {
+      "request": {
+        "method": "GET",
+        "route": "/api/records"
+      },
+      "response": {
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "body": [
+          {
+            "id": "c736cd9c-1a65-4709-bc7b-d6486197b920",
+            "pokemonName": "mr. mime",
+            "pokemonId": null,
+            "sprite": null,
+            "stats": {
+              "hp": 48,
+              "attack": 48,
+              "defense": 48,
+              "special-attack": 48,
+              "special-defense": 48,
+              "speed": 48
+            },
+            "createdAt": "2026-11-17T19:31:32.576Z",
+            "updatedAt": "2026-11-17T19:31:32.578Z",
+            "statsFormatted": [
+              {
+                "key": "hp",
+                "label": "PS (Puntos de Salud)",
+                "value": 48
+              },
+              {
+                "key": "attack",
+                "label": "Ataque",
+                "value": 48
+              },
+              {
+                "key": "defense",
+                "label": "Defensa",
+                "value": 48
+              },
+              {
+                "key": "special-attack",
+                "label": "Ataque Especial",
+                "value": 48
+              },
+              {
+                "key": "special-defense",
+                "label": "Defensa Especial",
+                "value": 48
+              },
+              {
+                "key": "speed",
+                "label": "Velocidad",
+                "value": 48
+              }
+            ]
+          },
+          {
+            "id": "bd38a018-0b15-4aa8-86e9-b08c005b75de",
+            "pokemonName": "nidoran♀",
+            "pokemonId": null,
+            "sprite": null,
+            "stats": {
+              "hp": 48,
+              "attack": 48,
+              "defense": 48,
+              "special-attack": 48,
+              "special-defense": 48,
+              "speed": 48
+            },
+            "createdAt": "2026-11-17T19:31:32.598Z",
+            "updatedAt": "2026-11-17T19:31:32.598Z",
+            "statsFormatted": [
+              {
+                "key": "hp",
+                "label": "PS (Puntos de Salud)",
+                "value": 48
+              },
+              {
+                "key": "attack",
+                "label": "Ataque",
+                "value": 48
+              },
+              {
+                "key": "defense",
+                "label": "Defensa",
+                "value": 48
+              },
+              {
+                "key": "special-attack",
+                "label": "Ataque Especial",
+                "value": 48
+              },
+              {
+                "key": "special-defense",
+                "label": "Defensa Especial",
+                "value": 48
+              },
+              {
+                "key": "speed",
+                "label": "Velocidad",
+                "value": 48
+              }
+            ]
+          },
+          {
+            "id": "04e12c11-2227-4aa5-825a-bd75fb9d7475",
+            "pokemonName": "farfetch'd",
+            "pokemonId": null,
+            "sprite": null,
+            "stats": {
+              "hp": 48,
+              "attack": 48,
+              "defense": 48,
+              "special-attack": 48,
+              "special-defense": 48,
+              "speed": 48
+            },
+            "createdAt": "2026-11-17T19:31:32.603Z",
+            "updatedAt": "2026-11-17T19:31:32.603Z",
+            "statsFormatted": [
+              {
+                "key": "hp",
+                "label": "PS (Puntos de Salud)",
+                "value": 48
+              },
+              {
+                "key": "attack",
+                "label": "Ataque",
+                "value": 48
+              },
+              {
+                "key": "defense",
+                "label": "Defensa",
+                "value": 48
+              },
+              {
+                "key": "special-attack",
+                "label": "Ataque Especial",
+                "value": 48
+              },
+              {
+                "key": "special-defense",
+                "label": "Defensa Especial",
+                "value": 48
+              },
+              {
+                "key": "speed",
+                "label": "Velocidad",
+                "value": 48
+              }
+            ]
+          },
+          {
+            "id": "abb56fa3-fc74-4609-91f0-ec251e4d3a91",
+            "pokemonName": "porygon-z",
+            "pokemonId": null,
+            "sprite": null,
+            "stats": {
+              "hp": 48,
+              "attack": 48,
+              "defense": 48,
+              "special-attack": 48,
+              "special-defense": 48,
+              "speed": 48
+            },
+            "createdAt": "2026-11-17T19:31:32.607Z",
+            "updatedAt": "2026-11-17T19:31:32.607Z",
+            "statsFormatted": [
+              {
+                "key": "hp",
+                "label": "PS (Puntos de Salud)",
+                "value": 48
+              },
+              {
+                "key": "attack",
+                "label": "Ataque",
+                "value": 48
+              },
+              {
+                "key": "defense",
+                "label": "Defensa",
+                "value": 48
+              },
+              {
+                "key": "special-attack",
+                "label": "Ataque Especial",
+                "value": 48
+              },
+              {
+                "key": "special-defense",
+                "label": "Defensa Especial",
+                "value": 48
+              },
+              {
+                "key": "speed",
+                "label": "Velocidad",
+                "value": 48
+              }
+            ]
+          }
+        ]
+      },
+      "durationMs": 3
+    }
+  ],
+  "serverLog": "Servidor CRUD PokeAPI en http://localhost:45653\n"
+}
