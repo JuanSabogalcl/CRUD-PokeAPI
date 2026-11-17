@@ -1,0 +1,47 @@
+{
+  "id": "V04",
+  "title": "Doble clic en «Eliminar»",
+  "criterion": "Capa 8 / CRUD Delete",
+  "status": "PASA",
+  "observation": "Confirmaciones: 1. Peticiones DELETE: 1. Avisos de error: ninguno",
+  "durationMs": 2760,
+  "screenshots": [
+    "V04-1-tras-doble-clic.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/pokemon-list?limit=151"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "GET",
+      "url": "/api/pokemon/ditto"
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/records/0a2f9645-287b-4a5c-baa7-2a455b2aa0d2"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    }
+  ],
+  "dialogs": [
+    {
+      "message": "¿Eliminar este registro?",
+      "accepted": true
+    }
+  ],
+  "consoleErrors": [],
+  "toasts": [
+    {
+      "text": "Registro eliminado",
+      "type": "success"
+    }
+  ],
+  "messages": []
+}

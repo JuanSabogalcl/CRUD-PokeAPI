@@ -1,0 +1,38 @@
+{
+  "id": "U11",
+  "title": "Búsqueda escrita con formato inválido («pika@chu»)",
+  "criterion": "D12 / interfaz",
+  "status": "PASA",
+  "observation": "Aviso: «Escribe el nombre como aparece en PokeAPI (letras, números y guiones) o su número»",
+  "durationMs": 7976,
+  "screenshots": [
+    "U11-1-formato-invalido.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/pokemon-list?limit=151"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "GET",
+      "url": "/api/pokemon/ditto"
+    },
+    {
+      "method": "GET",
+      "url": "/api/pokemon/pika%40chu"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [
+    {
+      "text": "Escribe el nombre como aparece en PokeAPI (letras, números y guiones) o su número",
+      "type": "error"
+    }
+  ],
+  "messages": []
+}

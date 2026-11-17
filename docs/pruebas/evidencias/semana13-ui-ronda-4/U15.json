@@ -1,0 +1,25 @@
+{
+  "id": "U15",
+  "title": "Iniciar el combate sin elegir al Pokémon salvaje",
+  "criterion": "RF01 / interfaz",
+  "status": "PASA",
+  "observation": "",
+  "durationMs": 1865,
+  "screenshots": [
+    "U15-1-sin-salvaje.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/combat/rules"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [],
+  "messages": []
+}

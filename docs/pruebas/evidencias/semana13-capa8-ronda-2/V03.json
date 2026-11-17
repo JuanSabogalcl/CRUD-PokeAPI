@@ -1,0 +1,46 @@
+{
+  "id": "V03",
+  "title": "Buscar como lo muestra la pantalla: «#025» y «Mr. Mime»",
+  "criterion": "Capa 8 / CRUD Read",
+  "status": "PASA",
+  "observation": "«#025» → resultado «#025 pikachu». Avisos: Pokémon pikachu encontrado",
+  "durationMs": 4306,
+  "screenshots": [
+    "V03-1-numero-025.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/pokemon-list?limit=151"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "GET",
+      "url": "/api/pokemon/ditto"
+    },
+    {
+      "method": "GET",
+      "url": "/api/pokemon/25"
+    },
+    {
+      "method": "GET",
+      "url": "/api/pokemon/mr-mime"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [
+    {
+      "text": "Pokémon pikachu encontrado",
+      "type": "success"
+    },
+    {
+      "text": "Pokémon no encontrado",
+      "type": "error"
+    }
+  ],
+  "messages": []
+}

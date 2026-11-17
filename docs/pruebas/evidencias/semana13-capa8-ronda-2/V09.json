@@ -1,0 +1,45 @@
+{
+  "id": "V09",
+  "title": "Elegir el mismo Pokémon para ambos lados",
+  "criterion": "Capa 8 / RF01",
+  "status": "PASA",
+  "observation": "",
+  "durationMs": 6893,
+  "screenshots": [
+    "V09-1-espejo.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/combat/rules"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "POST",
+      "url": "/api/battles/4b7a8390-1f58-4efd-b1d1-3b4b9a5e9583/turn"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [],
+  "messages": [
+    "¡Un DITTO salvaje apareció!",
+    "¡Adelante, DITTO!",
+    "¿Qué debe hacer DITTO?",
+    "¡DITTO usó PLACAJE!",
+    "¡Un golpe crítico!",
+    "¡El DITTO salvaje usó RAPIDEZ!",
+    "¿Qué debe hacer DITTO?"
+  ]
+}

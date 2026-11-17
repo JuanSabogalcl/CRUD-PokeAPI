@@ -45,7 +45,7 @@ doc.add(pageBreak());
 // ---------- Introducción ----------
 p(TITLE_LINES, { style: 'Centrado', bold: true });
 p('Este informe muestra cómo se probó la última versión de CRUD-PokeAPI, una aplicación web que guarda las estadísticas de los 151 Pokémon de la primera generación, las trae de PokéAPI (s.f.) e incluye un combate por turnos contra un Pokémon salvaje (Fundación Escuela Tecnológica de Neiva [FET], s.f.). El objetivo fue comprobar si la aplicación funciona, encontrar sus errores, corregirlos y demostrar cada corrección con evidencia.');
-p('La aplicación funcionaba en lo esencial, pero las pruebas encontraron 12 defectos. Todos se corrigieron, y al final pasan las 112 pruebas: 29 unitarias, 48 de API, 3 contra PokéAPI real, 4 manuales y 28 de interfaz. Además, se demostró que la lógica de pelea se aplica correctamente comparándola con una segunda implementación de las reglas en más de 17 000 ataques.');
+p('La aplicación funcionaba en lo esencial, pero las pruebas encontraron 17 defectos, 5 de ellos al simular errores humanos (la «capa 8»). Todos se corrigieron, y al final pasan las 121 pruebas: 29 unitarias, 48 de API, 3 contra PokéAPI real, 4 manuales y 37 de interfaz. Además, se demostró que la lógica de pelea se aplica correctamente comparándola con una segunda implementación de las reglas en más de 17 000 ataques.');
 
 // ---------- Método ----------
 h1('Método');
@@ -60,6 +60,7 @@ tabla('Pruebas Aplicadas', ['Tipo de prueba', 'Qué comprueba', 'Cómo se hizo',
   ['Manuales', 'Lo que ve el usuario en la pantalla', 'Pasos en el navegador con capturas', '4'],
   ['Interfaz automatizada', 'Errores típicos del usuario', 'Un script usa el navegador Edge como una persona y toma capturas', '23'],
   ['Lógica del combate', 'Que cada ataque, turno y final siga las reglas', 'Comparación con un oráculo en el motor, la API y la pantalla', '22'],
+  ['Capa 8 (errores humanos)', 'Descuidos y hábitos de una persona', 'El script imita a un usuario apurado o distraído en Edge', '9'],
 ], [2300, 2800, 3360, 900], 'Las pruebas se repiten con npm test, npm run test:ui y npm run test:logica.');
 
 h2('Técnicas de Diseño de Casos');
@@ -88,10 +89,12 @@ tabla('Pruebas que Pasan en Cada Ronda', ['Ronda', 'Versión del código', 'Pasa
   ['3. Interfaz con usuario simulado', 'Con 10 correcciones', '21 de 23', '2'],
   ['4. Interfaz después de corregir', 'Con 12 correcciones', '23 de 23', '0'],
   ['5. Lógica del combate y regresión completa', 'Con 12 correcciones', '105 de 105', '0'],
+  ['6. Capa 8 (errores humanos)', 'Con 12 correcciones', '4 de 9', '5'],
+  ['7. Capa 8 y regresión después de corregir', 'Con 17 correcciones', '114 de 114', '0'],
 ], [3900, 2460, 1500, 1500], 'La ronda 5 suma 29 unitarias, 48 de API y 28 de interfaz. Las 3 consultas a PokéAPI real y las 4 pruebas manuales pasaron al final. En un primer intento de la ronda 5, el caso C02 falló una vez por un corte de conexión con la PokéAPI simulada; no se reprodujo en 1 065 repeticiones, por lo que se clasificó como no reproducible y la ronda se repitió completa.');
 
 h2('Defectos Encontrados y Corregidos');
-p('La Tabla 4 lista los 12 defectos. Las Figuras 1 a 3 muestran tres de ellos antes y después de corregirlos; el Apéndice tiene la evidencia de los demás.');
+p('La Tabla 4 lista los 17 defectos. Las Figuras 1 a 3 muestran tres de ellos antes y después de corregirlos, las Figuras 7 a 11 muestran los de capa 8 (D20 a D24) y el Apéndice tiene la evidencia de los demás.');
 tabla('Defectos y Correcciones', ['ID', 'Falla encontrada', 'Severidad', 'Corrección'], [
   ['D08', 'El CRUD ejecutaba código escondido en el nombre o la imagen (XSS)', 'Alta', 'Mostrar los datos como texto y rechazar < >'],
   ['D09', 'La API aceptaba números e imágenes inválidos', 'Alta', 'Validar número de Pokédex e imagen'],
@@ -105,6 +108,11 @@ tabla('Defectos y Correcciones', ['ID', 'Falla encontrada', 'Severidad', 'Correc
   ['D16', 'El nombre no tenía longitud máxima', 'Baja', 'Máximo 40 caracteres'],
   ['D17', 'El servidor revelaba su tecnología en las cabeceras', 'Baja', 'Quitar la cabecera'],
   ['D19', 'El combate decía «No afecta a el … salvaje»', 'Baja', 'Corregir el texto'],
+  ['D20', 'Se podía crear un Pokémon repetido sin ningún aviso', 'Media', 'Preguntar antes de duplicar'],
+  ['D21', 'Con la red lenta, una búsqueda vieja tapaba la nueva', 'Media', 'Mostrar solo la última búsqueda'],
+  ['D24', 'Apretar Enter al terminar iniciaba otro combate', 'Media', 'El menú final pide elegir con flechas o clic'],
+  ['D22', 'No se podía buscar «#025» ni «Mr. Mime»', 'Baja', 'Convertir lo escrito al nombre de PokéAPI'],
+  ['D23', 'Un doble clic en Eliminar mostraba un error', 'Baja', 'Ignorar el segundo clic'],
 ], [700, 4100, 1200, 3360], 'Todos los defectos quedaron cerrados después de repetir su prueba y la regresión completa.');
 figura(1, 'Prueba de Seguridad M01: Código en el Nombre de un Registro (D08)', pair(
   cap('antes', 'D08-xss-nombre.jpg'), 'el código se ejecuta (borde rojo y texto agregado)',
@@ -139,13 +147,43 @@ figura(5, 'Efectividad de Tipos en Pantalla', [
 figura(6, 'Registro de un Combate Completo con el Cálculo de Cada Ataque', [
   { file: path.join(docs, 'evidencias', 'semana13-ui-ronda-3', 'U24-2-registro-completo.png') }], 'Cada línea muestra «Base × STAB × Efectividad × Variación = daño» y los PS antes y después. En la ronda 2, Golpe Cuerpo calcula 58 de daño, pero Charmander tenía 41 PS: queda en 0, no en negativo.');
 
+h2('Pruebas de Capa 8: Errores Humanos');
+p('En informática se llama «capa 8» al usuario: los problemas que no vienen de la red ni del código, sino de cómo una persona usa el sistema. Para simularla, el script de interfaz actuó como un usuario apurado o distraído: repite clics, aprieta Enter sin parar, busca algo y enseguida otra cosa, escribe los datos como los ve en pantalla o crea lo que ya existe. La Tabla 6 muestra los 9 casos; cinco revelaron defectos que se corrigieron y se volvieron a probar (Figuras 7 a 11).');
+tabla('Casos de Capa 8', ['Caso', 'Lo que hace el usuario', 'Debería pasar', 'Antes', 'Después'], [
+  ['V01', 'Crea un Pokémon que ya existe', 'Se le avisa; si cancela, no se duplica', 'Falla: duplicado sin aviso', 'Pasa'],
+  ['V02', 'Busca «pikachu» y enseguida «ditto», con la red lenta', 'Queda en pantalla el último que pidió', 'Falla: aparece Pikachu', 'Pasa'],
+  ['V03', 'Escribe «#025» y «Mr. Mime», como se ven en la app', 'Encuentra a Pikachu y busca mr-mime', 'Falla: error de formato', 'Pasa'],
+  ['V04', 'Hace doble clic en «Eliminar»', 'Se borra una vez, sin error', 'Falla: «Registro no encontrado»', 'Pasa'],
+  ['V05', 'Hace doble clic en «¡A combatir!»', 'Se crea un solo combate', 'Pasa', 'Pasa'],
+  ['V06', 'Aprieta Enter sin parar hasta el final', 'Ve el resultado; no empieza otra pelea sola', 'Falla: otro combate', 'Pasa'],
+  ['V07', 'Escribe letras en las estadísticas', 'El formulario no se envía', 'Pasa', 'Pasa'],
+  ['V08', 'Entra al combate sin Pokémon guardados', 'Mensaje claro, sin errores', 'Pasa', 'Pasa'],
+  ['V09', 'Elige el mismo Pokémon en ambos lados', 'El combate funciona', 'Pasa', 'Pasa'],
+], [700, 2900, 2560, 1900, 1300], 'Antes = ronda 6, con el código previo a estas correcciones; después = ronda 7. En V06 también se comprobó que, tras corregir, el usuario puede elegir REVANCHA con la flecha y Enter.');
+figura(7, 'V01: Crear un Pokémon que Ya Existe (D20)', [
+  { file: path.join(docs, 'evidencias', 'semana13-capa8-ronda-1', 'V01-1-tras-guardar-repetido.png'), caption: 'Antes: dos registros «pikachu»' },
+  { file: path.join(docs, 'evidencias', 'semana13-capa8-ronda-2', 'V01-1-tras-guardar-repetido.png'), caption: 'Después: el usuario canceló el aviso; queda uno' }], 'El aviso dice «Ya existe un registro de pikachu. ¿Quieres guardar otro con el mismo nombre?».');
+figura(8, 'V02: Dos Búsquedas Seguidas con la Red Lenta (D21)', [
+  { file: path.join(docs, 'evidencias', 'semana13-capa8-ronda-1', 'V02-1-resultado-final.png'), caption: 'Antes: el campo dice «ditto», pero se ve Pikachu' },
+  { file: path.join(docs, 'evidencias', 'semana13-capa8-ronda-2', 'V02-1-resultado-final.png'), caption: 'Después: se ve Ditto, lo último que pidió' }], 'La búsqueda de Pikachu se retrasó 1,5 segundos a propósito.');
+figura(9, 'V03: Buscar «#025» como lo Muestra la Aplicación (D22)', [
+  { file: path.join(docs, 'evidencias', 'semana13-capa8-ronda-1', 'V03-1-numero-025.png'), caption: 'Antes: error de formato' },
+  { file: path.join(docs, 'evidencias', 'semana13-capa8-ronda-2', 'V03-1-numero-025.png'), caption: 'Después: aparece #025 Pikachu' }], 'La búsqueda también acepta «Mr. Mime», «Nidoran♀» y «Farfetch\'d».');
+figura(10, 'V04: Doble Clic en Eliminar (D23)', [
+  { file: path.join(docs, 'evidencias', 'semana13-capa8-ronda-1', 'V04-1-tras-doble-clic.png'), caption: 'Antes: «Registro no encontrado» tras borrar' },
+  { file: path.join(docs, 'evidencias', 'semana13-capa8-ronda-2', 'V04-1-tras-doble-clic.png'), caption: 'Después: «Registro eliminado»' }], 'Antes se pedía confirmar dos veces y se enviaban dos borrados.');
+figura(11, 'V06: Apretar Enter sin Parar hasta el Final del Combate (D24)', [
+  { file: path.join(docs, 'evidencias', 'semana13-capa8-ronda-1', 'V06-1-tras-machacar-enter.png'), caption: 'Antes: ya empezó otro combate y el resultado no se vio' },
+  { file: path.join(docs, 'evidencias', 'semana13-capa8-ronda-2', 'V06-1-tras-machacar-enter.png'), caption: 'Después: el resultado queda a la vista' }], 'Enter se apretó cada 0,12 segundos durante todo el combate y unos segundos más.');
+
 h2('Métricas');
-p('La Tabla 6 resume las métricas de calidad. Las características evaluadas (rendimiento, seguridad, usabilidad y fiabilidad) corresponden al modelo de calidad ISO/IEC 25010 (International Organization for Standardization [ISO], 2011).');
+p('La Tabla 7 resume las métricas de calidad. Las características evaluadas (rendimiento, seguridad, usabilidad y fiabilidad) corresponden al modelo de calidad ISO/IEC 25010 (International Organization for Standardization [ISO], 2011).');
 tabla('Métricas de la Ronda de Pruebas', ['Métrica', 'Valor'], [
-  ['Defectos por severidad', 'Alta 2 · Media 6 · Baja 4 (total 12)'],
-  ['Densidad de defectos', '7,0 por cada 1 000 líneas de código'],
+  ['Defectos por severidad', 'Alta 2 · Media 9 · Baja 6 (total 17)'],
+  ['Densidad de defectos', '10,0 por cada 1 000 líneas de código'],
   ['Aprobación de la API', '76,7 % antes de corregir → 100 % después'],
   ['Aprobación de la interfaz', '91,3 % antes de corregir → 100 % después'],
+  ['Aprobación de capa 8', '44,4 % antes de corregir (4 de 9) → 100 % después'],
   ['Cobertura de las tablas de decisión', '19 de 19 reglas probadas (100 %)'],
   ['Tiempo de respuesta (p95)', 'Listado: 5,8 ms · ronda de combate: 2,0 ms'],
   ['Ataques comparados con el oráculo', '17 410 (8 664 + 8 612 en 2 000 combates + 134 por la API), sin diferencias'],
@@ -154,7 +192,7 @@ tabla('Métricas de la Ronda de Pruebas', ['Métrica', 'Valor'], [
 
 // ---------- Conclusión ----------
 h1('Conclusión');
-p('La aplicación funcionaba en sus funciones principales, pero no estaba lista para entregarse: tenía dos fallas graves de seguridad y varios errores que el usuario podía notar. Probar con datos en los límites, con tablas de decisión y simulando errores de usuario en la interfaz permitió encontrar fallas que las pruebas anteriores no cubrían. Después de corregirlas, todas las pruebas pasan y no quedan defectos abiertos. En el combate, la comparación con un oráculo en más de 17 000 ataques, en el motor, la API y la pantalla, no encontró ninguna diferencia: el daño, la efectividad, los críticos, la precisión, el orden de los turnos y el final del combate se aplican como dice la especificación. Por eso la versión corregida queda lista para la demostración. Quedan fuera del alcance otros navegadores distintos de Edge, la autenticación y el uso simultáneo por muchas personas.');
+p('La aplicación funcionaba en sus funciones principales, pero no estaba lista para entregarse: tenía dos fallas graves de seguridad y varios errores que el usuario podía notar. Probar con datos en los límites, con tablas de decisión y simulando errores de usuario en la interfaz permitió encontrar fallas que las pruebas anteriores no cubrían. La simulación de la capa 8 mostró que, aunque la lógica era correcta, una persona apurada podía duplicar datos, ver un resultado equivocado o perder el resultado de un combate; esos cinco defectos también se corrigieron. Después de corregirlas, todas las pruebas pasan y no quedan defectos abiertos. En el combate, la comparación con un oráculo en más de 17 000 ataques, en el motor, la API y la pantalla, no encontró ninguna diferencia: el daño, la efectividad, los críticos, la precisión, el orden de los turnos y el final del combate se aplican como dice la especificación. Por eso la versión corregida queda lista para la demostración. Quedan fuera del alcance otros navegadores distintos de Edge, la autenticación y el uso simultáneo por muchas personas.');
 
 // ---------- Referencias ----------
 h1('Referencias', { pageBreakBefore: true });

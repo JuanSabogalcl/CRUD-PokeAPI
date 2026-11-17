@@ -1,0 +1,29 @@
+{
+  "id": "V07",
+  "title": "Escribir letras en las estadísticas",
+  "criterion": "Capa 8 / R05",
+  "status": "PASA",
+  "observation": "Valores que aceptó el campo: PS «», Ataque «4»",
+  "durationMs": 1857,
+  "screenshots": [
+    "V07-1-letras.png"
+  ],
+  "apiRequests": [
+    {
+      "method": "GET",
+      "url": "/api/pokemon-list?limit=151"
+    },
+    {
+      "method": "GET",
+      "url": "/api/records"
+    },
+    {
+      "method": "GET",
+      "url": "/api/pokemon/ditto"
+    }
+  ],
+  "dialogs": [],
+  "consoleErrors": [],
+  "toasts": [],
+  "messages": []
+}

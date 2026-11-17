@@ -704,6 +704,11 @@ add('V06', 'Apretar Enter sin parar durante todo el combate', 'Capa 8 / RF11', a
   assert.equal(battles, 1, 'Al terminar, el Enter repetido no debe iniciar otro combate sin que el usuario lo elija');
   assert.equal(state.id, firstId);
   assert.ok(state.banner, 'El resultado del combate debe seguir a la vista');
+  // Con el teclado se puede seguir eligiendo: flecha para marcar REVANCHA y Enter para aceptarla.
+  await c.page.key('ArrowRight');
+  await c.page.key('Enter');
+  await c.page.waitFor('battle.id !== ' + JSON.stringify(firstId), { message: 'Flecha + Enter debe iniciar la revancha' });
+  assert.equal(posts(c.page, '/api/battles'), 2);
 });
 
 add('V07', 'Escribir letras en las estadísticas', 'Capa 8 / R05', async (c) => {
